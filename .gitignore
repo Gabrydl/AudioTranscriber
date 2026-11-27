@@ -12,6 +12,11 @@ speakers_before_discord.json
 transcripts/
 *.secret
 .env
+# Gemini's review of the translations (made with your key on your PC)
+translation_check.json
+# language picked in the installer, read once by the app
+lang.txt
+*.tmp
 
 # ---- big or generated: not source ----
 .venv/

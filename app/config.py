@@ -12,6 +12,26 @@ TRANSCRIPTS_DIR = ROOT / "transcripts"                  # only used by "Export"
 SETTINGS_FILE = ROOT / "settings.json"
 LOG_FILE = ROOT / "audiotranscriber.log"
 
+def write_atomic(path: Path, text: str) -> None:
+    """Write a file so it is never left half-written (a crash or a quick restart during the save used to be
+    able to empty settings.json / speakers.json). Several threads may save at once: each uses its own temp file."""
+    import threading
+    tmp = path.with_name(f"{path.name}.{os.getpid()}.{threading.get_ident()}.tmp")
+    tmp.write_text(text, encoding="utf-8")
+    for attempt in range(5):
+        try:
+            os.replace(tmp, path)
+            return
+        except PermissionError:            # Windows: another save is replacing it this very moment
+            import time
+            time.sleep(0.05 * (attempt + 1))
+    try:
+        os.replace(tmp, path)
+    finally:
+        if tmp.exists():
+            tmp.unlink()
+
+
 # Keep every big download on G:, never on C:
 os.environ.setdefault("HF_HOME", str(MODELS_DIR / "hf"))
 os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS_WARNING", "1")
@@ -127,6 +147,7 @@ class Settings:
     online_day: str = ""
     online_used: int = 0
     online_timeout_s: float = 10.0
+    ui_lang: str = ""                     # interface language (i18n code); "" = not chosen yet
     skip_same_lang: bool = True           # lines already in the translation language skip the translator
     # 1.1 – control
     hotkeys_enabled: bool = True          # Ctrl+Alt+S start/stop · P pause · C copy · O overlay · L lock
@@ -182,6 +203,6 @@ class Settings:
 
     def save(self) -> None:
         try:
-            SETTINGS_FILE.write_text(json.dumps(asdict(self), indent=2), encoding="utf-8")
+            write_atomic(SETTINGS_FILE, json.dumps(asdict(self), indent=2))
         except Exception:
             pass

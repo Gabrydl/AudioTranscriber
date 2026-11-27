@@ -4,6 +4,7 @@ from __future__ import annotations
 import glob
 import json
 import logging
+from .i18n import tr
 import math
 import os
 import queue
@@ -399,7 +400,7 @@ class Transcriber:
             return WhisperModel(name, device=device, compute_type=compute, download_root=str(MODELS_DIR),
                                 local_files_only=True, **kw)
         except Exception:
-            self.status(f"Downloading '{name}' (one time)…")
+            self.status(tr("Downloading '{name}' (one time)…").format(name=name))
             return WhisperModel(name, device=device, compute_type=compute, download_root=str(MODELS_DIR), **kw)
 
     def load(self):
@@ -408,20 +409,22 @@ class Transcriber:
             big = (getattr(self.s, "llm_enabled", True) and self.s.llm_model in BIG_LLMS
                    and getattr(self.s, "compute", "gpu") != "cpu" and getattr(self.s, "translate_local", True))
             key = (self.model_name, self.device, big)
-            _CACHE["users"] += 1
             if _CACHE["whisper"] is not None and _CACHE["whisper_key"] == key:
                 self.model = _CACHE["whisper"]
                 self.device = _CACHE["whisper_device"]
+                _CACHE["users"] += 1
                 log.info("Whisper %s reused (already loaded)", self.model_name)
-                self.status(f"'{self.model_name}' ready (already loaded)")
+                self.status(tr("'{name}' ready (already loaded)").format(name=self.model_name))
                 return
             _CACHE.update(whisper=None, whisper_key=None)          # a different model: free the old one first
             import gc
             gc.collect()
-            self._load_fresh()
-            _CACHE.update(whisper=self.model, whisper_key=key, whisper_device=self.device)
+            self._load_fresh(big)
+            # counted only once it really loaded: a failed load must not keep the card busy after Stop
+            _CACHE["users"] += 1
+            _CACHE.update(whisper=self.model, whisper_key=(self.model_name, key[1], big), whisper_device=self.device)
 
-    def _load_fresh(self):
+    def _load_fresh(self, big: bool = False):
         MODELS_DIR.mkdir(parents=True, exist_ok=True)
         if not whisper_on_disk(self.model_name):
             # model not downloaded yet: start right away with one that is on disk, fetch the chosen one in the
@@ -432,7 +435,7 @@ class Transcriber:
                 start_background_download(self.model_name, self.status)
                 self.model_name = fallback
         name = self.model_name
-        self.status(f"loading '{name}'…")
+        self.status(tr("loading '{name}'…").format(name=name))
         t0 = time.time()
         if self.device == "cuda":
             try:
@@ -440,20 +443,18 @@ class Transcriber:
                 # full precision (float16, as stored on disk): the most accurate way to run every model.
                 # With the big translator, Whisper uses int8 weights (1.7 instead of 3 GB, almost the same
                 # accuracy) so more of the translator fits on the graphics card.
-                big = (getattr(self.s, "llm_enabled", True) and self.s.llm_model in BIG_LLMS
-                       and getattr(self.s, "compute", "gpu") != "cpu")
                 self.model = self._make("cuda", "int8_float16" if big else "float16")
                 list(self.model.transcribe(np.zeros(16000, np.float32), language="en", beam_size=1)[0])
                 log.info("Whisper %s loaded on GPU in %.1fs", name, time.time() - t0)
-                self.status(f"'{name}' ready on GPU ({time.time() - t0:.1f}s)")
+                self.status(tr("'{name}' ready on GPU ({t})").format(name=name, t=f"{time.time() - t0:.1f}s"))
                 return
             except Exception as e:
                 log.exception("CUDA load failed")
-                self.status(f"GPU failed ({str(e)[:80]}) – falling back to CPU")
+                self.status(tr("GPU failed – falling back to CPU") + f" ({str(e)[:80]})")
                 self.device = "cpu"
         self.model = self._make("cpu", "int8", cpu_threads=max(2, (os.cpu_count() or 4) - 2))
         log.info("Whisper %s loaded on CPU in %.1fs", name, time.time() - t0)
-        self.status(f"'{name}' ready on CPU ({time.time() - t0:.1f}s)")
+        self.status(tr("'{name}' ready on CPU ({t})").format(name=name, t=f"{time.time() - t0:.1f}s"))
 
     def unload(self):
         """Called on Stop: the model stays cached a few minutes (fast restart), then it is freed."""
@@ -465,6 +466,8 @@ class Transcriber:
     def drop(self):
         """Really free it now (lag fallback switching to another model)."""
         with _CACHE_LOCK:
+            if self.model is not None:
+                _CACHE["users"] = max(0, _CACHE["users"] - 1)       # load() counts this session again
             if _CACHE["whisper"] is self.model:
                 _CACHE.update(whisper=None, whisper_key=None)
         self.model = None
@@ -662,20 +665,20 @@ def start_background_download(name: str, status) -> None:
         def ticker():
             while not done.wait(3.0):
                 got = _downloaded_bytes(name) / 1e9
-                report(f"downloading {name} in the background (used from the next Start): {got:.1f} / {_BG_SIZE.get(name, 3e9) / 1e9:.1f} GB")
+                report(tr("downloading {m} in the background (used from the next Start)").format(m=name) + f": {got:.1f} / {_BG_SIZE.get(name, 3e9) / 1e9:.1f} GB")
         threading.Thread(target=ticker, daemon=True).start()
         for attempt in range(1, 4):
             try:
                 download_model(name, cache_dir=str(MODELS_DIR))
                 done.set()
                 log.info("Background download of %s finished", name)
-                report(f"{name} downloaded – press Stop and Start to use it")
+                report(tr("{m} downloaded – press Stop and Start to use it").format(m=name))
                 return
             except Exception as e:
                 log.warning("Background download of %s, attempt %d: %s", name, attempt, e)
                 time.sleep(5)
         done.set()
-        report(f"{name} could not be downloaded – staying on turbo (check the connection)")
+        report(tr("{m} could not be downloaded – staying on turbo (check the connection)").format(m=name))
 
     log.info("Starting background download of %s", name)
     _BG["thread"] = threading.Thread(target=run, daemon=True, name="model-download")
@@ -807,7 +810,7 @@ class Translator:
                         size, vram = m.get("size") or 0, m.get("size_vram") or 0
                         if size:
                             pct = round(vram / size * 100)
-                            return f"GPU {pct}%" + (f" / CPU {100 - pct}%" if pct < 100 else "") + f", {vram / 1e9:.1f} GB on the card"
+                            return f"GPU {pct}%" + (f" / CPU {100 - pct}%" if pct < 100 else "") + ", " + tr("{gb} GB on the card").format(gb=f"{vram / 1e9:.1f}")
         except Exception:
             pass
         return "GPU" if self.s.llm_on_gpu else "CPU"
@@ -828,7 +831,7 @@ class Translator:
         if models:
             env["OLLAMA_MODELS"] = models
         env.setdefault("OLLAMA_NUM_PARALLEL", "2")     # two sentences translated at the same time
-        self.status("starting Ollama…")
+        self.status(tr("starting Ollama…"))
         log.info("Starting Ollama: %s", exe)
         flags = 0x08000000 if sys.platform == "win32" else 0          # CREATE_NO_WINDOW
         subprocess.Popen([exe, "serve"], env=env, creationflags=flags,
@@ -849,13 +852,13 @@ class Translator:
             if not self.start_ollama():
                 self.available = False
                 log.warning("Ollama not reachable at %s", self.s.ollama_url)
-                self.status("Ollama not running – transcription only (translation off)")
+                self.status(tr("Ollama not running – transcription only (translation off)"))
                 return False
             tags = self._tags()
         names = {m.get("name", "") for m in tags.get("models", [])}
         want = self.s.llm_model
         if want not in names and f"{want}:latest" not in names:
-            self.status(f"Downloading translation model {want} (one time)…")
+            self.status(tr("Downloading translation model {m} (one time)…").format(m=want))
             try:
                 with self._req("/api/pull", {"model": want, "name": want, "stream": True}, timeout=3600) as r:
                     last = 0.0
@@ -864,9 +867,9 @@ class Translator:
                         tot, done = ev.get("total"), ev.get("completed")
                         if tot and done and time.time() - last > 0.5:
                             last = time.time()
-                            self.status(f"Downloading {want}: {done / tot * 100:.0f}%  ({tot / 1e9:.1f} GB)")
+                            self.status(tr("Downloading {m}").format(m=want) + f": {done / tot * 100:.0f}%  ({tot / 1e9:.1f} GB)")
             except Exception as e:
-                self.status(f"Could not download {want}: {e}")
+                self.status(tr("Could not download {m}").format(m=want) + f": {e}")
                 self.available = False
                 return False
         self.available = True
@@ -896,13 +899,13 @@ class Translator:
                         tot, done = ev.get("total"), ev.get("completed")
                         if tot and done and time.time() - last > 3:
                             last = time.time()
-                            say(f"{self.s.llm_model} ready · downloading {model} in the background: "
-                                f"{done / 1e9:.1f} / {tot / 1e9:.1f} GB")
+                            say(tr("{m} ready · downloading {x} in the background").format(m=self.s.llm_model, x=model)
+                                + f": {done / 1e9:.1f} / {tot / 1e9:.1f} GB")
                 log.info("Background download of %s finished", model)
-                say(f"{model} downloaded – choose it in Settings > Translator model")
+                say(tr("{m} downloaded – choose it in Settings > Translation").format(m=model))
             except Exception as e:
                 log.warning("Background download of %s failed: %s", model, e)
-                say(f"{model} could not be downloaded – it will retry next Start")
+                say(tr("{m} could not be downloaded – it will retry next Start").format(m=model))
 
         th = threading.Thread(target=run, daemon=True, name=f"pull-{model}")
         _LLM_BG[model] = th
@@ -926,7 +929,7 @@ class Translator:
             if self.loaded_now():
                 share = self.gpu_share()
                 log.info("LLM %s already loaded (%s)", self.s.llm_model, share)
-                self.status(f"{self.s.llm_model} ready ({share})")
+                self.status(tr("{m} ready ({where})").format(m=self.s.llm_model, where=share))
                 return
             self._load_locked()
 
@@ -935,7 +938,7 @@ class Translator:
 
     def _load_locked(self):
         t0 = time.time()
-        self.status(f"loading {self.s.llm_model}…")
+        self.status(tr("loading {m}…").format(m=self.s.llm_model))
         try:
             with self._req("/api/generate", {"model": self.s.llm_model, "prompt": "", "keep_alive": "30m",
                                              "options": self._options()}, timeout=300) as r:
@@ -945,7 +948,7 @@ class Translator:
                 raise
             # doesn't fit entirely on the card: let Ollama split it between graphics card and processor
             log.warning("%s does not fit fully on the GPU (%s) - using a GPU+CPU split", self.s.llm_model, e)
-            self.status(f"{self.s.llm_model} doesn't fit fully on the card – splitting it with the CPU…")
+            self.status(tr("{m} doesn't fit fully on the card – splitting it with the CPU…").format(m=self.s.llm_model))
             self._gpu_fallback = True
             with self._req("/api/generate", {"model": self.s.llm_model, "prompt": "", "keep_alive": "30m",
                                              "options": self._options()}, timeout=300) as r:
@@ -957,7 +960,7 @@ class Translator:
             pass
         share = self.gpu_share()
         log.info("LLM %s loaded in %.1fs (%s)", self.s.llm_model, time.time() - t0, share)
-        self.status(f"{self.s.llm_model} ready ({share}, {time.time() - t0:.1f}s)")
+        self.status(tr("{m} ready ({where})").format(m=self.s.llm_model, where=f"{share}, {time.time() - t0:.1f}s"))
 
     def unload(self, generation: Optional[int] = None):
         time.sleep(1.5)                                   # let a quick Stop->Start cancel this
@@ -1079,7 +1082,7 @@ class Engine:
         if self._lag_hits < 2 or not nxt:
             return
         old = self.transcriber.model_name
-        self.on_status("asr", f"lagging ({sum(self._recent_ms) / max(1, len(self._recent_ms)) / 1000:.1f}s) – switching {old} → {nxt}…")
+        self.on_status("asr", tr("lagging ({t}) – switching {a} → {b}…").format(t=f"{sum(self._recent_ms) / max(1, len(self._recent_ms)) / 1000:.1f}s", a=old, b=nxt))
         log.info("Lag fallback: %s -> %s", old, nxt)
         try:
             self.transcriber.drop()
@@ -1089,7 +1092,10 @@ class Engine:
         except Exception:
             log.exception("lag fallback")
             self.transcriber.model_name = old
-            self.transcriber.load()
+            try:
+                self.transcriber.load()
+            except Exception:
+                log.exception("lag fallback: reloading %s", old)
         self._recent_ms, self._lag_hits = [], 0
 
     def start(self, first_id: int = 1):
@@ -1121,7 +1127,7 @@ class Engine:
                 self._pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="voiceprint")
         except Exception as e:
             log.exception("speaker model load")
-            self.on_status("spk", f"speaker recognition unavailable: {str(e)[:100]}")
+            self.on_status("spk", tr("speaker recognition unavailable") + f": {str(e)[:100]}")
             self.embedder = None
         finally:
             self._spk_ready.set()
@@ -1151,7 +1157,7 @@ class Engine:
         return self._next_id
 
     def submit(self, utt):
-        if self.paused:
+        if self.paused or self._stop.is_set():      # after Stop: never push out the end marker
             return
         while self.asr_q.qsize() > 6:          # GPU far behind -> drop oldest, stay live
             try:
@@ -1166,7 +1172,7 @@ class Engine:
             self.transcriber.load()
         except Exception as e:
             log.exception("Whisper load failed")
-            self.on_status("asr", f"failed to load: {e}")
+            self.on_status("asr", tr("failed to load") + f": {e}")
             return
         finally:
             self._asr_ready.set()
@@ -1184,7 +1190,7 @@ class Engine:
                 whisper_ms = int((time.time() - t0) * 1000)
             except Exception as e:
                 log.exception("transcribe")
-                self.on_status("asr", f"transcription error: {e}")
+                self.on_status("asr", tr("transcription error") + f": {e}")
                 continue
             analysis = None
             tv = time.time()
@@ -1368,14 +1374,14 @@ class Engine:
         else:
             try:
                 if self.s.llm_enabled and not self._local_on():
-                    self.on_status("llm", "online (Gemini) – graphics card translator off")
+                    self.on_status("llm", tr("online (Gemini) – graphics card translator off"))
                 elif self.s.llm_enabled and self.translator.ensure() and not self._stop.is_set():
                     self.translator.load()
                 elif self.s.llm_enabled:
                     log.warning("Translator not available at start")
             except Exception as e:
                 log.exception("LLM load")
-                self.on_status("llm", f"failed to load: {str(e)[:120]}")
+                self.on_status("llm", tr("failed to load") + f": {str(e)[:120]}")
                 self.translator.available = False
             finally:
                 self._llm_ready.set()
@@ -1421,7 +1427,7 @@ class Engine:
                     log.warning("translate attempt %d failed: %s", attempt, e)
                     if attempt == 1 and self._local_on():
                         # Ollama closed or crashed -> start it again and retry this line once
-                        self.on_status("llm", "translator stopped – restarting Ollama…")
+                        self.on_status("llm", tr("translator stopped – restarting Ollama…"))
                         self.translator.available = False
                         self._last_revive = 0.0
                         self._revive_llm()
@@ -1432,7 +1438,8 @@ class Engine:
                         if not self.translator.available:
                             break
             if data is None:
-                self.on_status("llm", "translation unavailable – Ollama could not be started")
+                self.on_status("llm", tr("translation unavailable – Ollama could not be started") if self._local_on()
+                               else tr("translation unavailable – the online translator didn't answer"))
                 line.state = "llm-off"
                 self.on_update(line)
                 self._remember(line)
@@ -1528,12 +1535,12 @@ class Engine:
                     pass
                 self.s.llm_model = model
                 self.translator._gpu_fallback = False
-                self.on_status("llm", f"switching to {model}…")
+                self.on_status("llm", tr("switching to {m}…").format(m=model))
                 if self.translator.ensure() and not self._stop.is_set():
                     self.translator.load()
             except Exception as e:
                 log.exception("switch translator")
-                self.on_status("llm", f"could not load {model}: {str(e)[:100]}")
+                self.on_status("llm", tr("could not load {m}").format(m=model) + f": {str(e)[:100]}")
         threading.Thread(target=run, daemon=True, name="switch-llm").start()
 
     def _remember(self, line: Line):

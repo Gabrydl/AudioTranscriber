@@ -1,0 +1,363 @@
+1|kliknij „Autoryzuj” w Discordzie…
+2|połączono · poza rozmową głosową
+3|połączono · w {place}: {n}
+4|rozmowie
+5|czekam na Discorda…
+6|ponowne łączenie…
+7|uruchamiam Ollamę…
+8|wczytuję '{name}'…
+9|'{name}' gotowy na CPU ({t})
+10|wczytuję {m}…
+11|{m} gotowy ({where})
+12|opóźnienie ({t}) – zmiana z {a} na {b}…
+13|tłumaczenie niedostępne – nie udało się uruchomić Ollamy
+14|Ollama nie działa – tylko transkrypcja (tłumaczenie wyłączone)
+15|Pobieram model tłumaczenia {m} (tylko raz)…
+16|rozpoznawanie głosów niedostępne
+17|nie udało się wczytać
+18|online (Gemini) – tłumacz na karcie graficznej wyłączony
+19|Pobieram '{name}' (tylko raz)…
+20|'{name}' gotowy (już wczytany)
+21|'{name}' gotowy na GPU ({t})
+22|GPU zawiodło – przechodzę na CPU
+23|{m} nie mieści się cały na karcie – dzielę go z CPU…
+24|błąd transkrypcji
+25|zmieniam na {m}…
+26|tłumacz się zatrzymał – restartuję Ollamę…
+27|Nie udało się pobrać {m}
+28|nie udało się wczytać {m}
+29|{gb} GB na karcie
+30|Pobieram {m}
+31|Gotowy w zasobniku systemowym
+32|rozpoznawanie głosów gotowe (modele głosu: {n})
+33|Osoba {n}
+34|pobieranie nie powiodło się, ponawiam ({a}/{b})…
+35|pobieram {p} (tylko raz)
+36|model głosu
+37|model głosu {k} niedostępny – używam pozostałych
+38|Głośność na żywo wybranej aplikacji.\nPrzeciągnij białą linię w górę lub w dół: dźwięk powyżej liczy się jako mowa.
+39|MOWA
+40|Kto to powiedział – kliknij, aby zmienić nazwę lub poprawić
+41|ODGADNIĘTE Z KONTEKSTU
+42|tłumaczę…
+43|Zablokuj
+44|Zablokuj: kliknięcia przechodzą do gry (Ctrl+Alt+L)
+45|GPU: najszybciej, modele muszą zmieścić się na karcie graficznej (jeśli któryś się nie mieści, dzieli się sam).\nMieszany: tłumacz używa karty graficznej, ile się da, a CPU na resztę.\nTylko CPU: działa bez karty graficznej, dużo wolniej.
+46|Detektor głosu (ignoruje szumy i kliknięcia)
+47|Detektor mowy decyduje, gdzie zdanie się zaczyna i kończy, nie tylko głośność.\nSzumiące mikrofony nie trzymają już zdania otwartego, kliknięcia nie stają się fałszywymi liniami.\nDziała od następnego Start.
+48|Imiona, terminy z gier, slang – jeden na linię albo oddzielone przecinkami\nnp. Gabry, War Thunder, Bismarck, GG
+49|Terminy z League of Legends
+50|Bohaterowie, czary, przedmioty, runy i slang (nazwy Riotu we wszystkich językach).\nLepiej rozpoznawane i zostawiane jako angielskie słowo z gry w tłumaczeniach:\nFlash zostaje Flash, Hexflash zostaje Hexflash, "destello" staje się Flash.
+51|Redukcja szumów (buczenie, syczenie, słabe mikrofony)
+52|Usuwanie szumów na karcie graficznej
+53|Czyści bardzo zaszumione głosy na karcie graficznej; gdy karta nie może, używa CPU.
+54|Niepewne słowa na szaro
+55|Pomiń sprawdzanie języka u osób o znanym języku
+56|Szybciej: gdy język osoby jest pewny, osobny przebieg dla języka jest pomijany.
+57|Tłumacz + poprawiaj źle usłyszane słowa
+58|Karta graficzna – lokalnie, działa offline
+59|Online – Gemini, gdy jest internet
+60|Model tłumaczenia działa na twoim PC (Ollama). Nic nie opuszcza PC.
+61|Zamiast tego tłumaczy Gemini API od Google: szybsze i mądrzejsze niż to, co mieści się na karcie 8 GB.\nOba zaznaczone: najpierw online, karta graficzna przejmuje, gdy online nie odpowiada\n(brak internetu, dzienny darmowy limit wyczerpany, za wolno).
+62|Lżejszy = mniej pamięci graficznej i szybciej · cięższy = lepsze tłumaczenia.
+63|Zmienia od razu, także w trakcie działania. Brakujące modele pobierają się same.
+64|Klucz API Gemini (darmowy)
+65|Darmowy klucz
+66|Nie tłumacz linii, które już są w języku tłumaczenia
+67|Krótkie zwroty od razu (gg, ok, czekaj…) bez tłumacza
+68|Rozpoznawaj, kto mówi
+69|Zapamiętuj głosy (zapisane tylko na tym PC)
+70|Ucz się języka każdej osoby
+71|Po kilku liniach wie, w jakim języku zwykle mówi każda osoba, więc krótkie lub\nniewyraźne zdania nie są już słyszane w złym języku.\nWyraźna zmiana na inny język nadal jest rozpoznawana.
+72|Ctrl+klik: wybierz kilka · Shift+klik: wybierz zakres · Ctrl+A: wszystkie\nKlawisz Delete albo "Zapomnij zaznaczone" usuwa wybrane osoby
+73|Zapomnij zaznaczone
+74|Zapomnij wszystkie głosy
+75|Pokaż znowu wszystkich
+76|W lewo: dwie osoby częściej się łączą · W prawo: jedna osoba częściej się dzieli
+77|Imiona i kto mówi z Discorda
+78|Używa lokalnego połączenia samego Discorda (aplikacja Discord na tym PC) – żaden bot\nnie dołącza do twoich serwerów. Każdy głos jest powiązany z kontem Discord tej osoby, więc imiona\nsą poprawne od pierwszego zdania i zostają między sesjami.
+79|Client ID (z discord.com/developers)
+80|Client Secret
+81|Połącz
+82|Jak to ustawić
+83|Wyloguj
+84|Wyłączone
+85|Zacznij słuchać, gdy zaczyna się rozmowa na Discordzie
+86|Zatrzymaj, gdy rozmowa się kończy (zwalnia GPU)
+87|Tekst oryginalny w kanale (wyłączone = tylko tłumaczenie)
+88|Pokazuj tekst oryginalny w nakładce
+89|Godzina przed każdą linią
+90|Gdy nakładka jest zablokowana (kliknięcia przechodzą), znika po tylu sekundach ciszy. 0 = nigdy.
+91|Globalne skróty (działają w grach)
+92|Ctrl+Alt+S start/stop · Ctrl+Alt+P pauza · Ctrl+Alt+C kopiuj ostatnie tłumaczenie\nCtrl+Alt+O nakładka wł./wył. · Ctrl+Alt+L zablokuj/odblokuj nakładkę (kliknięcia przechodzą)
+93|Uruchamiaj z Windows (w zasobniku)
+94|Połącz ponownie po zmianie słuchawek / urządzenia
+95|Przejdź na lżejszy model, gdy jest opóźnienie
+96|Eksportuj .txt
+97|Wyczyść kanał
+98|Imiona z Discorda – konfiguracja (raz, około 2 minut)
+99|<b>1.</b> Otwórz <b>discord.com/developers/applications</b> w przeglądarce i zaloguj się.<br><b>2.</b> <b>New Application</b> → nazwij ją <i>AudioTranscriber</i> → Create.<br><b>3.</b> Menu po lewej <b>OAuth2</b>: skopiuj <b>Client ID</b>. Kliknij <b>Reset Secret</b> i skopiuj <b>Client Secret</b>.<br><b>4.</b> Dalej w OAuth2 → <b>Redirects</b> → <b>Add Redirect</b>: <code>http://localhost</code> → <b>Save Changes</b>.<br><b>5.</b> Wklej tu oba kody, zaznacz <i>Imiona i kto mówi z Discorda</i> i kliknij <b>Połącz</b>.<br><b>6.</b> Discord pokaże okno: kliknij <b>Autoryzuj</b>.<br><br>Gotowe – za każdym razem łączy się samo. Kody i logowanie zostają tylko na tym PC (settings.json i discord_token.json).
+100|Oba: najpierw online, karta graficzna, gdy online nie odpowiada.
+101|Tylko online: jeśli nie odpowie, linie zostają nieprzetłumaczone.
+102|Gemini – darmowy klucz (1 minuta)
+103|<b>1.</b> Otwórz <b>aistudio.google.com/apikey</b> i zaloguj się kontem Google.<br><b>2.</b> Kliknij <b>Create API key</b> i skopiuj go.<br><b>3.</b> Wklej go tutaj. Zostaje na tym PC (settings.json).<br><br><b>Gemma 3 27B</b> ma największy darmowy dzienny przydział (około 14 400 zdań). Gemini Flash-Lite / Flash są mądrzejsze, ale ich darmowy przydział jest mały.<br>W darmowym planie Google może używać wysłanych treści do ulepszania swoich produktów; z włączonymi płatnościami nie.
+104|częściej łączy
+105|Na żywo – rozmowa
+106|Osoby – imiona, głosy, Discord
+107|Słowa do znania – imiona, terminy z gier, slang
+108|Nakładka nad grą – Ctrl+Alt+O
+109|Zablokuj nakładkę (kliknięcia przechodzą do gry) – Ctrl+Alt+L
+110|Wyczyść cały czat (także nakładkę)
+111|Ustawienia
+112|Sesja na żywo
+113|Auto
+114|Automatyczny próg: śledzi szum tła każdej osoby\n(pomaga przy syczących / szumiących mikrofonach). Przeciągnij linię, aby ustawić go ręcznie.
+115|Wstrzymaj / wznów słuchanie – Ctrl+Alt+P\n(modele zostają wczytane, nic nie jest transkrybowane)
+116|SŁUCHAJ
+117|Odśwież listę aplikacji
+118|Wybierz aplikację powyżej (Discord wybiera się sam) i kliknij Start.\nLinie pojawiają się tutaj, gdy ludzie mówią – co zostało powiedziane i tłumaczenie.
+119|WYDAJNOŚĆ
+120|OSOBY
+121|Imiona pojawiają się tutaj, gdy ludzie mówią.
+122|Pokaż nakładkę w grze
+123|Przesuń nakładkę
+124|Odblokowuje nakładkę, aby można ją było przeciągnąć; po puszczeniu sama blokuje się z powrotem
+125|Pokaż okno
+126|Nakładka wł./wył.
+127|Zakończ
+128|zatrzymano – pamięć zwolniona
+129|Było opóźnienie, więc przełączono na lżejszy model mowy.
+130|Tak naprawdę to…
+131|Ktoś nowy…
+132|Zawsze mówi…
+133|Zmień nazwę osoby
+134|Nazwa:
+135|Nowa osoba
+136|Nazwa (opcjonalnie):
+137|Skopiowano ostatnie tłumaczenie
+138|Uruchom ponownie teraz
+139|Później
+140|łączenie…
+141|tłumaczenie niedostępne – czy Ollama działa?
+142|Przeciągnij, aby przesunąć · róg, aby zmienić rozmiar
+143|Aktualizacje są sprawdzane przy otwarciu aplikacji.
+144|Najpierw wklej klucz.
+145|częściej dzieli
+146|zrównoważone
+147|Nakładka chowa się w ciszy: nigdy
+148|Start
+149|bezczynny
+150|Żadna aplikacja nie odtwarza dźwięku – dołącz do rozmowy na Discordzie, potem ⟳
+151|Najpierw wybierz co najmniej jedną aplikację (np. Discord).
+152|Słucham
+153|ustawienia zastosowane – działają od następnego Start
+154|Użyj znowu nazwy z Discorda
+155|Wykrywaj automatycznie
+156|Pokaż znowu tę osobę
+157|Nikt nie jest ignorowany
+158|wstrzymano – naciśnij Ctrl+Alt+P, aby kontynuować
+159|słucham
+160|Wstrzymano
+161|Znowu słucham
+162|Kliknij, aby wybrać inny język (działa w trakcie, od następnego zdania).
+163|Zapomnieć wszystkie zapisane głosy?
+164|Na razie nie ma czego eksportować.
+165|Zapisano w
+166|Aplikacja uruchomi się ponownie, aby zmienić język.
+167|Pamięć AudioTranscriber + Ollama
+168|najpierw wklej Client ID i Client Secret (zobacz „Jak to ustawić”)
+169|wylogowano – kliknij Połącz, aby autoryzować ponownie
+170|Kliknij, aby zmienić nazwę lub poprawić
+171|online
+172|czekanie {a} · pierwsze słowa {b} · gotowe {c}
+173|Pewność rozpoznania {p}%
+174|Szare słowa: rozpoznawanie nie było ich pewne
+175|Zaawansowane
+176|Zastosuj
+177|Wczytuje wybrane modele (także w trakcie działania).
+178|Uruchamiaj na
+179|Wyświetlana nazwa
+180|Użyto dziś: {used} z około {lim} darmowych
+181|Użyto dziś: {used}
+182|zeruje się o 09:00
+183|Pauza kończąca zdanie: {ms} ms
+184|Rozdzielanie głosów: {side} ({v})
+185|Krycie tła nakładki: {v}%
+186|Rozmiar tekstu nakładki: {v}px
+187|Krycie tekstu nakładki: {v}%
+188|…gdy zdanie trwa dłużej niż {v} s
+189|Linie w nakładce: {v}
+190|Język aplikacji
+191|Opóźnienie
+192|RAM aplikacji
+193|Linie
+194|Tłumacz
+195|Odtwarza teraz dźwięk
+196|Nie odtwarza teraz dźwięku
+197|Wczytywanie…
+198|Stop
+199|Znane głosy: {n}
+200|Zmień nazwę „{name}”…
+201|Zapomnij głos osoby {name}…
+202|język wykrywany automatycznie
+203|zmieniono urządzenie audio
+204|przechwytywanie zatrzymane
+205|połączono ponownie – słucham
+206|aplikacja zniknęła – czekam, aż wróci
+207|Rozmowa na Discordzie – słucham
+208|Wszyscy pozostali zostają.
+209|Zapomniano głos osoby {name}
+210|tłumaczenie na: {lang}
+211|Nakładka zablokowana: kliknięcia przechodzą do gry – kliknij lub Ctrl+Alt+L, aby odblokować
+212|Ostatnie zdanie: {a} rozpoznawania + {b} do rozpoczęcia tłumaczenia
+213|niepewne
+214|{name} – kliknij, aby zmienić nazwę lub poprawić
+215|karta graficzna
+216|Usłyszano: „{text}”
+217|Model mowy
+218|Większy jest dokładniejszy, mniejszy jest szybszy.
+219|Języki do rozpoznawania
+220|Słuchane są tylko zaznaczone.
+221|Zdania
+222|Kiedy zdanie się zaczyna i kończy.
+223|Słowa do znania
+224|Używane przez rozpoznawanie i tłumacza, żeby te słowa wychodziły poprawnie.
+225|Gdzie działa
+226|Oba zaznaczone: najpierw online, karta graficzna jako zapas.
+227|Model na karcie graficznej
+228|Działa na tym PC z Ollamą.
+229|Online – Gemini
+230|Tłumacz Google, używany, gdy jest internet.
+231|Głosy
+232|Kliknij imię w dowolnej linii, aby zmienić nazwę lub poprawić osobę – każda poprawka zwiększa dokładność.
+233|Znane osoby
+234|Ctrl lub Shift + klik, aby wybrać kilka.
+235|Ignorowane osoby
+236|Kliknij imię w dowolnej linii, aby ignorować tę osobę albo ustalić język, którym zawsze mówi.
+237|Połączenie
+238|Używa aplikacji Discord na tym PC – żaden bot nie dołącza do twoich serwerów.
+239|Imiona
+240|Która nazwa z Discorda pokazuje się przy każdej linii. Nazwa wpisana przez ciebie zostaje.
+241|Rozmowy
+242|Start i stop razem z twoimi rozmowami na Discordzie.
+243|Kanał na żywo
+244|Linie w tym oknie.
+245|Tekst nakładki
+246|Co pokazuje nakładka nad grą.
+247|Wygląd nakładki
+248|Zostaje nad grami w trybie okna lub bez ramek (nie w wyłącznym pełnym ekranie).
+249|Skróty klawiszowe
+250|Także przez przycisk z flagą na lewym pasku. Aplikacja uruchamia się ponownie, aby zmienić.
+251|Windows
+252|Niezawodność
+253|Sama utrzymuje działanie.
+254|Transkrypcja
+255|Nic nie jest zapisywane, chyba że to wyeksportujesz.
+256|jeszcze bez głosu
+257|próbki głosu: {n}
+258|Nakładka chowa się w ciszy: po {v} s (gdy zablokowana)
+259|procesy potomne
+260|Nie można uruchomić:
+261|Nie można przechwycić:
+262|Tak, to {name}
+263|Ignoruj: {name}
+264|Połącz „{name}” z…
+265|Ignorowane osoby: {n}
+266|{model} zostanie użyty przy Start
+267|ponownie szukam aplikacji
+268|Rozmowa zakończona – zatrzymano
+269|Zapomnieć te głosy?
+270|W {place}: {n}
+271|Słuchanie zatrzyma się na chwilę.
+272|System
+273|Wersja {v}
+274|Ukryj nakładkę
+275|zawsze {lang}
+276|Tłumaczenie na: {lang}.
+277|nie działa
+278|Zapomnieć głos osoby {name}?\nPozostałe osoby zostają. Jeśli {name} znowu się odezwie, dostanie nową nazwę.
+279|w rozmowie
+280|Discord połączony – stare głosy przeniesione do speakers_before_discord.json: {n}
+281|Więcej opcji: {n}
+282|Windows odmówił przechwytywania dla aplikacji {app} – przechwytuję CAŁY dźwięk systemu
+283|Osoby
+284|Zgodność głosu {p}%
+285|Czekanie {q} · rozpoznawanie {w} · głosy +{v}
+286|powiedziane o {t}
+287|Nie udało się pobrać aktualizacji – spróbuje ponownie przy następnym otwarciu aplikacji
+288|Pobieram aktualizację {v}…
+289|Aktualizacja do {v} – wracam za kilka sekund
+290|Aktualizacja {v} gotowa – uruchamiam ponownie…
+291|Aktualizacja {v} gotowa – zainstaluje się, gdy klikniesz Stop
+292|Portugalski
+293|Hiszpański
+294|Niemiecki
+295|Tagalski
+296|Francuski
+297|Angielski
+298|Czeski
+299|Polski
+300|Włoski
+301|Bisaya (cebuański)
+302|maksymalna dokładność
+303|maksymalna dokładność · ~3 GB VRAM (1,7 GB obok gemma3:12b) · wolniejszy
+304|szybki i bardzo dobry
+305|szybki i bardzo dobry · ~1,6 GB VRAM
+306|dobry
+307|dobry · ~1,5 GB
+308|lekki
+309|lekki · ~0,8 GB
+310|najmniejszy
+311|najmniejszy · ~0,3 GB
+312|GPU – wszystko na karcie graficznej (najszybciej)
+313|Mieszany – karta graficzna + CPU (dla modeli większych niż karta)
+314|Tylko CPU – bez karty graficznej (wolno)
+315|Lekki – qwen2.5:3b
+316|~2,5 GB pamięci graficznej
+317|Lekki – qwen2.5:3b · ~2,5 GB pamięci graficznej · najszybszy
+318|Średni – gemma3:4b
+319|~4 GB pamięci graficznej
+320|Średni – gemma3:4b · ~4 GB pamięci graficznej · szybki, dobry
+321|Ciężki – gemma3:12b
+322|~8 GB pamięci graficznej
+323|Ciężki – gemma3:12b · ~8 GB pamięci graficznej · najlepszy, 10–20 s na kartach 8 GB
+324|Gemma 3 27B
+325|Gemma 3 27B – darmowy, około 14 400 zdań dziennie
+326|Gemini Flash-Lite
+327|Gemini Flash-Lite – szybszy/mądrzejszy, mały darmowy limit dzienny
+328|Gemini Flash
+329|Gemini Flash – najmądrzejszy, bardzo mały darmowy limit dzienny
+330|Rozpoznawanie
+331|Jak mowa jest słyszana i zamieniana na tekst
+332|Tłumaczenie
+333|Gdzie i jak linie są tłumaczone
+334|Osoby
+335|Kto mówi: głosy, imiona, ignorowane osoby
+336|Discord
+337|Imiona i rozmowy prosto z aplikacji Discord
+338|Nakładka i wyświetlanie
+339|Kanał na żywo i nakładka nad grą
+340|Aplikacja
+341|Język, Windows, niezawodność i aktualizacje
+342|Nazwa wyświetlana
+343|Pseudonim na serwerze
+344|@nazwa użytkownika
+345|Brak Client Secret - wklej go w Ustawienia > Discord
+346|dodaj http://localhost w OAuth2 > Redirects
+347|sprawdź Client Secret
+348|Logowanie do Discorda nie powiodło się
+349|Discord odrzucił Client ID ({why}) - sprawdź go w Ustawieniach
+350|dostęp nie został przyznany w Discordzie
+351|nie udało się pobrać {m} – zostaję przy turbo (sprawdź połączenie)
+352|tłumaczenie niedostępne – tłumacz online nie odpowiedział
+353|pobrano {m} – kliknij Stop i Start, aby go użyć
+354|pobrano {m} – wybierz go w Ustawienia > Tłumaczenie
+355|pobieram {m} w tle (używany od następnego Start)
+356|nie udało się pobrać {m} – ponowi próbę przy następnym Start
+357|{m} gotowy · pobieram {x} w tle
+358|brak odpowiedzi (internet?)
+359|używam karty graficznej
+360|dzienny darmowy limit wyczerpany (zeruje się o 09:00)
+361|za dużo zapytań na minutę
+362|klucz API lub model odrzucony – sprawdź Ustawienia
+363|błąd Google {c}

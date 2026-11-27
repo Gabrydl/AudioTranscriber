@@ -18,6 +18,8 @@ import re
 import time
 import urllib.error
 import urllib.request
+
+from .i18n import tr
 from typing import Callable, Optional
 
 log = logging.getLogger("online")
@@ -70,7 +72,8 @@ class GeminiTranslator:
         self.blocked_until = time.time() + seconds
         self.block_reason = why
         log.info("online translator paused for %.0f s: %s", seconds, why)
-        self.status(f"online: {why} – using the graphics card")
+        local = bool(getattr(self.s, "translate_local", True))
+        self.status("online: " + why + (" – " + tr("using the graphics card") if local else ""))
 
     # ------------------------------------------------------------------ request
     def translate_stream(self, line, context, on_partial, target: str) -> dict:
@@ -119,16 +122,16 @@ class GeminiTranslator:
                 pass
             if e.code == 429:
                 if "day" in msg.lower() or "daily" in msg.lower() or "PerDay" in msg:
-                    self._block(_seconds_to_reset(), "free daily limit reached (resets 09:00)")
+                    self._block(_seconds_to_reset(), tr("free daily limit reached (resets 09:00)"))
                 else:
-                    self._block(30, "too many requests per minute")
+                    self._block(30, tr("too many requests per minute"))
             elif e.code in (400, 401, 403):
-                self._block(600, "API key or model refused – check Settings")
+                self._block(600, tr("API key or model refused – check Settings"))
             else:
-                self._block(20, f"Google error {e.code}")
+                self._block(20, tr("Google error {c}").format(c=e.code))
             raise OnlineUnavailable(f"{e.code} {msg[:120]}")
         except Exception as e:                                    # offline, timeout...
-            self._block(20, "no answer (internet?)")
+            self._block(20, tr("no answer (internet?)"))
             raise OnlineUnavailable(str(e))
         text = _strip_fence(buf)
         try:

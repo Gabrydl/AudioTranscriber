@@ -6,6 +6,7 @@ import logging
 import threading
 import sys
 import time
+from pathlib import Path
 
 from PySide6.QtCore import (Qt, QObject, Signal, QTimer, QPropertyAnimation, QEasingCurve, QRectF,
                             QPointF, QFileInfo, QSize, QAbstractAnimation, QEvent)
@@ -26,6 +27,8 @@ from .audio import list_audio_apps, AppCapture, AppInfo, default_output_id
 from .engine import Engine, Line
 from .sysinfo import ResourceMonitor, GlobalHotkeys, set_start_with_windows, keep_on_top
 from .speakers import SpeakerRegistry
+from . import i18n
+from .i18n import tr
 
 log = logging.getLogger("ui")
 
@@ -134,6 +137,16 @@ QProgressBar::chunk {{ background: {ACCENT}; }}
 QPlainTextEdit {{ background: {SURF2}; color: {TEXT}; border: 1px solid {BORDER}; border-radius: 4px; padding: 6px 8px;
   selection-background-color: #3a3a40; font-size: 13px; }}
 QPlainTextEdit:focus {{ border-color: #5a5a62; }}
+#catcol {{ background: transparent; border-right: 1px solid {LINE}; }}
+QPushButton#catbtn {{ background: transparent; border: none; border-radius: 4px; padding: 10px 12px; text-align: left;
+   font-size: 14px; font-weight: 600; color: #b5b5bb; }}
+QPushButton#catbtn:hover {{ background: #141416; color: {TEXT}; }}
+QPushButton#catbtn:checked {{ background: #1c1c1f; color: {TEXT}; font-weight: 700; border-left: 2px solid {ACCENT}; }}
+#setcard {{ background: {SURF}; border: 1px solid #1d1d20; border-radius: 4px; }}
+#cardtitle {{ font-size: 14px; font-weight: 700; }}
+#pagetitle {{ font-family: {HEAD_FONT}; font-size: 18px; font-weight: 800; }}
+QPushButton#advbtn {{ background: transparent; border: none; text-align: left; padding: 8px 0; font-size: 13px; color: #b5b5bb; }}
+QPushButton#advbtn:hover {{ color: {TEXT}; }}
 """
 
 
@@ -258,7 +271,7 @@ class LevelMeter(QWidget):
         self.speaking = False
         self.threshold = threshold
         self.hist: list[tuple[float, bool]] = []
-        self.setToolTip("Live volume of the selected app.\nDrag the white line up or down: sound above it counts as speech.")
+        self.setToolTip(tr("Live volume of the selected app.\nDrag the white line up or down: sound above it counts as speech."))
         t = QTimer(self)
         t.timeout.connect(self._decay)
         t.start(50)
@@ -305,7 +318,7 @@ class LevelMeter(QWidget):
         fnt.setPointSizeF(7.5)
         fnt.setBold(True)
         p.setFont(fnt)
-        label = "SPEECH" if self.speaking else f"{self.threshold:.0f} dB"
+        label = tr("SPEECH") if self.speaking else f"{self.threshold:.0f} dB"
         p.fillRect(QRectF(0, ty - 7, 46, 14), QColor(BG))
         p.drawText(QRectF(2, ty - 7, 46, 14), Qt.AlignLeft | Qt.AlignVCenter, label)
 
@@ -331,7 +344,7 @@ def unsure_html(marked: str) -> str:
     out = []
     for w in marked.split():
         if w.endswith("(?)") and len(w) > 3:
-            out.append(f"<span style='color:{DIM}' title='not sure'>{_html.escape(w[:-3])}</span>")
+            out.append(f"<span style='color:{DIM}' title='{tr("not sure")}'>{_html.escape(w[:-3])}</span>")
         else:
             out.append(_html.escape(w))
     return " ".join(out)
@@ -365,14 +378,14 @@ class Card(QFrame):
         head.setSpacing(8)
         self.spk = QToolButton()
         self.spk.setCursor(Qt.PointingHandCursor)
-        self.spk.setToolTip("Who said this – click to rename or correct")
+        self.spk.setToolTip(tr("Who said this – click to rename or correct"))
         self.spk.clicked.connect(lambda: self.on_speaker and self.on_speaker(self))
         self.spk.hide()
         head.addWidget(self.spk)
         self.meta = QLabel()
         self.meta.setObjectName("meta")
         head.addWidget(self.meta)
-        self.est = QLabel("GUESSED FROM CONTEXT")
+        self.est = QLabel(tr("GUESSED FROM CONTEXT"))
         self.est.setObjectName("est")
         self.est.setFixedHeight(16)
         self.est.hide()
@@ -400,7 +413,7 @@ class Card(QFrame):
         self.orig.setTextInteractionFlags(Qt.TextSelectableByMouse)
         self.orig.setVisible(show_original)
         col.addWidget(self.orig)
-        self.pending = QLabel("translating…")
+        self.pending = QLabel(tr("translating…"))
         self.pending.setObjectName("pending")
         col.addWidget(self.pending)
         self.refresh()
@@ -425,13 +438,13 @@ class Card(QFrame):
                 f"QToolButton {{ background: {tint(col, .2)}; color: {col}; border: none; border-radius: 4px;"
                 f" font-family: {HEAD_FONT}; font-size: 15px; font-weight: 800; }}"
                 f"QToolButton:hover {{ background: {tint(col, .26)}; }}")
-            self.avatar.setToolTip(f"{name} – click to rename or correct")
+            self.avatar.setToolTip(tr("{name} – click to rename or correct").format(name=name))
             self.spk.setText(f"{name}{'  ?' if l.speaker_unsure else ''}")
             self.spk.setStyleSheet(
                 f"QToolButton {{ background: transparent; color: {TEXT}; border: none; padding: 0;"
                 f" font-size: 13px; font-weight: 700; }} QToolButton:hover {{ color: {col}; }}")
-            self.spk.setToolTip(f"Voice match {l.speaker_score * 100:.0f}%" + (" – not sure" if l.speaker_unsure else "")
-                                + "\nClick to rename or correct")
+            self.spk.setToolTip(tr("Voice match {p}%").format(p=f"{l.speaker_score * 100:.0f}") + (" – " + tr("not sure") if l.speaker_unsure else "")
+                                + "\n" + tr("Click to rename or correct"))
             self.spk.show()
         else:
             self.avatar.setText(l.lang.upper()[:2])
@@ -441,18 +454,20 @@ class Card(QFrame):
             self.avatar.setToolTip("")
             self.spk.hide()
         lat = f" · {(l.asr_ms + l.llm_wait_ms + (l.llm_first_ms or l.llm_ms)) / 1000:.1f}s" if (l.llm_first_ms or l.llm_ms) else ""
-        self.meta.setText(f"{LANGUAGES.get(l.lang, l.lang)}{lat}")
+        self.meta.setText(f"{lname(l.lang)}{lat}")
         self.when.setText(dt.datetime.fromtimestamp(l.t).strftime("%H:%M:%S"))
-        tip = (f"{l.source.rsplit('.', 1)[0]} · said at " + dt.datetime.fromtimestamp(l.t).strftime("%H:%M:%S") +
-               f"\nWaited {l.q_ms / 1000:.1f}s · recognition {l.whisper_ms / 1000:.1f}s · voices +{l.voice_ms / 1000:.1f}s"
-               f"\nTranslator{' (online)' if l.via == 'online' else ' (graphics card)' if l.via == 'local' else ''}: "
-               f"waited {l.llm_wait_ms / 1000:.1f}s · first words {l.llm_first_ms / 1000:.1f}s · done {l.llm_ms / 1000:.1f}s")
+        S = lambda ms: f"{ms / 1000:.1f}s"          # noqa: E731
+        via = (" (" + tr("online") + ")") if l.via == "online" else (" (" + tr("graphics card") + ")") if l.via == "local" else ""
+        tip = (f"{l.source.rsplit('.', 1)[0]} · " + tr("said at {t}").format(t=dt.datetime.fromtimestamp(l.t).strftime("%H:%M:%S")) +
+               "\n" + tr("Waited {q} · recognition {w} · voices +{v}").format(q=S(l.q_ms), w=S(l.whisper_ms), v=S(l.voice_ms)) +
+               "\n" + tr("Translator") + via + ": " +
+               tr("waited {a} · first words {b} · done {c}").format(a=S(l.llm_wait_ms), b=S(l.llm_first_ms), c=S(l.llm_ms)))
         self.meta.setToolTip(tip)
         self.when.setToolTip(tip)
         c = l.confidence
         dot = "#8c8c94" if c > .62 else "#6a6a72" if c > .42 else "#4a4a50"
         self.conf.setText(f"<span style='color:{dot};font-size:12px'>●</span>")
-        self.conf.setToolTip(f"Recognition confidence {c * 100:.0f}%")
+        self.conf.setToolTip(tr("Recognition confidence {p}%").format(p=f"{c * 100:.0f}"))
 
         shown = l.corrected or l.text
         if self.mark_unsure and l.marked and "(?)" in l.marked and (not l.corrected or l.corrected.strip().lower() == l.text.strip().lower()):
@@ -463,9 +478,9 @@ class Card(QFrame):
             self.orig.setTextFormat(Qt.PlainText)
             self.orig.setText(shown)
         if l.estimated and l.corrected:
-            self.orig.setToolTip(f"Heard: “{l.text}”")
+            self.orig.setToolTip(tr("Heard: “{text}”").format(text=l.text))
         elif l.marked and "(?)" in l.marked:
-            self.orig.setToolTip("Grey words: the recogniser wasn't sure about them")
+            self.orig.setToolTip(tr("Grey words: the recogniser wasn't sure about them"))
         self.est.setVisible(l.estimated)
         self.setProperty("estimated", "true" if l.estimated else "false")
         self.setProperty("live", "true" if l.state in ("transcribed", "streaming") else "false")
@@ -478,7 +493,7 @@ class Card(QFrame):
         self.tr_tag.setText(k.upper())
         self.tr_txt.setVisible(bool(t))
         if l.state == "llm-off":
-            self.pending.setText("translation unavailable – is Ollama running?")
+            self.pending.setText(tr("translation unavailable – is Ollama running?"))
         self.pending.setVisible(l.state == "llm-off" or (l.state in ("transcribed", "streaming") and not any(l.tr.values())))
         # while waiting for the translation always show the heard text
         self.orig.setVisible(self.show_original or l.state != "done")
@@ -490,6 +505,11 @@ LLM_CHOICES = {
     "gemma3:4b": "Medium – gemma3:4b · ~4 GB graphics memory · fast, good",
     "gemma3:12b": "Heavy – gemma3:12b · ~8 GB graphics memory · best, 10–20 s on 8 GB cards",
 }
+def lname(code: str) -> str:
+    """Language name in the interface language."""
+    return tr(LANGUAGES.get(code, code))
+
+
 LLM_SHORT = {"qwen2.5:3b": "Light", "gemma3:4b": "Medium", "gemma3:12b": "Heavy"}
 
 # translation languages shown in the → menu (native names)
@@ -516,13 +536,13 @@ class Overlay(QWidget):
         hb = QHBoxLayout(self.hint)
         hb.setContentsMargins(0, 0, 0, 0)
         hb.setSpacing(8)
-        handle = QLabel("⠿  Drag to move · corner to resize")
+        handle = QLabel("⠿  " + tr("Drag to move · corner to resize"))
         handle.setStyleSheet(f"color:{TEXT};font-size:11px;font-weight:700;")
         handle.setCursor(Qt.SizeAllCursor)
         hb.addWidget(handle, 1)
-        self.lock_now = QPushButton("Lock")
+        self.lock_now = QPushButton(tr("Lock"))
         self.lock_now.setCursor(Qt.PointingHandCursor)
-        self.lock_now.setToolTip("Lock: clicks go through to the game (Ctrl+Alt+L)")
+        self.lock_now.setToolTip(tr("Lock: clicks go through to the game (Ctrl+Alt+L)"))
         self.lock_now.setStyleSheet(f"QPushButton {{ background: {ACCENT}; color: white; border: none; border-radius: 3px;"
                                     f" padding: 3px 12px; font-size: 11px; font-weight: 700; }}"
                                     f"QPushButton:hover {{ background: {ACCENT_HI}; }}")
@@ -677,13 +697,13 @@ class Overlay(QWidget):
                         f"{_html.escape(l.speaker_name)}{'?' if l.speaker_unsure else ''}</span>&nbsp; ")
                        if l.speaker_id else "")
         lang = f"<span style='color:{col};font-weight:800;font-size:{fs - 4}px'>{l.lang.upper()}</span>&nbsp; "
-        tr = next((v for v in l.tr.values() if v), "")
+        trans = next((v for v in l.tr.values() if v), "")
         heard = _html.escape(l.corrected or l.text)
-        if l.state in ("done", "streaming") and tr:
+        if l.state in ("done", "streaming") and trans:
             est = f" <span style='color:{MUTED};font-size:{fs - 4}px'>≈</span>" if l.estimated else ""
             orig = (f"<span style='color:{MUTED};font-size:{fs - 3}px;font-style:italic'>{heard}</span><br>"
                     if self.s.overlay_show_original else "")
-            body = f"{orig}<span style='font-size:{fs}px;font-weight:600'>{_html.escape(tr)}</span>{est}"
+            body = f"{orig}<span style='font-size:{fs}px;font-weight:600'>{_html.escape(trans)}</span>{est}"
         else:
             body = f"<span style='color:{MUTED};font-size:{fs - 1}px;font-style:italic'>{heard}</span>"
         # older phrases fade towards the background (plain colour codes: Qt's text engine handles them reliably)
@@ -705,378 +725,591 @@ class Overlay(QWidget):
         self.update()
 
 
-# ----------------------------------------------------------------------------- settings panel
-class _NoWheelUnlessFocused(QObject):
-    """Scrolling over Settings must scroll the panel, never change a slider or list by accident.
-    A control reacts to the wheel only after it was clicked."""
-    def __init__(self, parent, scrollbar):
-        super().__init__(parent)
-        self.scrollbar = scrollbar
+# ----------------------------------------------------------------------------- flags
+def flag_pixmap(kind: str, w: int = 30, h: int = 20) -> QPixmap:
+    """Small flags drawn here (Windows has no flag emoji). Latin America gets a LATAM badge."""
+    import math
+    sc = 2                                     # drawn at double size for sharp edges
+    pm = QPixmap(w * sc, h * sc)
+    pm.fill(Qt.transparent)
+    p = QPainter(pm)
+    p.setRenderHint(QPainter.Antialiasing)
+    p.scale(sc, sc)
+    p.setPen(Qt.NoPen)
+    W, H = float(w), float(h)
 
+    def rect(x, y, ww, hh, col):
+        p.setBrush(QColor(col))
+        p.drawRect(QRectF(x, y, ww, hh))
+
+    def vtri(cols):
+        for i, c in enumerate(cols):
+            rect(W * i / 3, 0, W / 3 + .5, H, c)
+
+    def htri(cols):
+        n = len(cols)
+        for i, c in enumerate(cols):
+            rect(0, H * i / n, W, H / n + .5, c)
+
+    if kind == "it":
+        vtri(("#009246", "#ffffff", "#ce2b37"))
+    elif kind == "fr":
+        vtri(("#0055a4", "#ffffff", "#ef4135"))
+    elif kind == "de":
+        htri(("#000000", "#dd0000", "#ffce00"))
+    elif kind == "pl":
+        htri(("#ffffff", "#dc143c"))
+    elif kind == "es":
+        rect(0, 0, W, H, "#aa151b")
+        rect(0, H / 4, W, H / 2, "#f1bf00")
+    elif kind == "pt":
+        rect(0, 0, W, H, "#ff0000")
+        rect(0, 0, W * .4, H, "#006600")
+        p.setBrush(QColor("#ffcc00"))
+        p.drawEllipse(QPointF(W * .4, H / 2), H * .2, H * .2)
+    elif kind == "br":
+        rect(0, 0, W, H, "#009c3b")
+        p.setBrush(QColor("#ffdf00"))
+        from PySide6.QtGui import QPolygonF
+        p.drawPolygon(QPolygonF([QPointF(W / 2, H * .1), QPointF(W * .92, H / 2), QPointF(W / 2, H * .9),
+                                 QPointF(W * .08, H / 2)]))
+        p.setBrush(QColor("#002776"))
+        p.drawEllipse(QPointF(W / 2, H / 2), H * .22, H * .22)
+    elif kind == "cz":
+        htri(("#ffffff", "#d7141a"))
+        p.setBrush(QColor("#11457e"))
+        from PySide6.QtGui import QPolygonF
+        p.drawPolygon(QPolygonF([QPointF(0, 0), QPointF(W * .5, H / 2), QPointF(0, H)]))
+    elif kind == "ph":
+        htri(("#0038a8", "#ce1126"))
+        from PySide6.QtGui import QPolygonF
+        p.setBrush(QColor("#ffffff"))
+        p.drawPolygon(QPolygonF([QPointF(0, 0), QPointF(W * .45, H / 2), QPointF(0, H)]))
+        p.setBrush(QColor("#fcd116"))
+        p.drawEllipse(QPointF(W * .15, H / 2), H * .12, H * .12)
+    elif kind == "gb":
+        rect(0, 0, W, H, "#012169")
+        p.setPen(QPen(QColor("#ffffff"), H * .2))
+        p.drawLine(QPointF(0, 0), QPointF(W, H))
+        p.drawLine(QPointF(W, 0), QPointF(0, H))
+        p.setPen(QPen(QColor("#c8102e"), H * .08))
+        p.drawLine(QPointF(0, 0), QPointF(W, H))
+        p.drawLine(QPointF(W, 0), QPointF(0, H))
+        p.setPen(Qt.NoPen)
+        rect(W / 2 - H * .17, 0, H * .34, H, "#ffffff")
+        rect(0, H / 2 - H * .17, W, H * .34, "#ffffff")
+        rect(W / 2 - H * .1, 0, H * .2, H, "#c8102e")
+        rect(0, H / 2 - H * .1, W, H * .2, "#c8102e")
+    elif kind == "latam":
+        rect(0, 0, W, H, "#26262b")
+        p.setPen(QColor("#f2f2f3"))
+        f = QFont("Segoe UI")
+        f.setPixelSize(int(H * .42))
+        f.setBold(True)
+        p.setFont(f)
+        p.drawText(QRectF(0, 0, W, H), Qt.AlignCenter, "LATAM")
+    else:
+        rect(0, 0, W, H, "#3a3a40")
+    p.setPen(QPen(QColor(0, 0, 0, 90), .8))
+    p.setBrush(Qt.NoBrush)
+    p.drawRect(QRectF(.4, .4, W - .8, H - .8))
+    p.end()
+    pm.setDevicePixelRatio(sc)
+    return pm
+
+
+def flag_icon(code: str) -> QIcon:
+    return QIcon(flag_pixmap(i18n.FLAGS.get(code, "")))
+
+
+# ----------------------------------------------------------------------------- settings page
+class _NoWheelUnlessFocused(QObject):
+    """Scrolling over Settings must scroll the page, never change a slider or list by accident.
+    A control reacts to the wheel only after it was clicked."""
     def eventFilter(self, obj, ev):
         if ev.type() == QEvent.Wheel and not obj.hasFocus():
-            QApplication.sendEvent(self.scrollbar, ev)   # scroll the panel instead
+            w = obj.parentWidget()
+            while w is not None and not isinstance(w, QScrollArea):
+                w = w.parentWidget()
+            if w is not None:
+                QApplication.sendEvent(w.verticalScrollBar(), ev)   # scroll the page instead
             return True
         return False
 
 
+class SetCard(QFrame):
+    """One box on a settings page: bold title, one grey line, then its controls."""
+    def __init__(self, title: str, sub: str = ""):
+        super().__init__()
+        self.setObjectName("setcard")
+        self.lay = QVBoxLayout(self)
+        self.lay.setContentsMargins(18, 15, 18, 16)
+        self.lay.setSpacing(9)
+        t = QLabel(title)
+        t.setObjectName("cardtitle")
+        self.lay.addWidget(t)
+        if sub:
+            s = QLabel(sub)
+            s.setObjectName("status")
+            s.setWordWrap(True)
+            self.lay.addWidget(s)
+        self.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+
+    def add(self, *ws):
+        for w in ws:
+            (self.lay.addLayout if isinstance(w, (QHBoxLayout, QVBoxLayout, QGridLayout)) else self.lay.addWidget)(w)
+        return self
+
+
+class CardGrid(QWidget):
+    """Cards in two columns, or one when the window is narrow."""
+    def __init__(self):
+        super().__init__()
+        self.g = QGridLayout(self)
+        self.g.setContentsMargins(0, 0, 0, 0)
+        self.g.setSpacing(14)
+        self.cards: list[QWidget] = []
+        self._cols = 0
+
+    def add(self, card):
+        self.cards.append(card)
+        self._place(force=True)
+        return card
+
+    def _place(self, force=False):
+        cols = 2 if self.width() >= 640 else 1
+        if cols == self._cols and not force:
+            return
+        self._cols = cols
+        for c in self.cards:
+            self.g.removeWidget(c)
+        col_h = [0] * cols                        # shortest column first, like a masonry wall
+        rows = [0] * cols
+        for c in self.cards:
+            i = col_h.index(min(col_h))
+            self.g.addWidget(c, rows[i], i, Qt.AlignTop)
+            rows[i] += 1
+            col_h[i] += max(1, c.sizeHint().height())
+        for i in range(2):
+            self.g.setColumnStretch(i, 1 if i < cols else 0)
+        self.g.setRowStretch(max(rows) if rows else 0, 1)
+
+    def resizeEvent(self, e):
+        super().resizeEvent(e)
+        self._place()
+
+
+class Advanced(QFrame):
+    """Folded box at the bottom of a page: the options you rarely change."""
+    def __init__(self):
+        super().__init__()
+        self.setObjectName("setcard")
+        v = QVBoxLayout(self)
+        v.setContentsMargins(18, 6, 18, 6)
+        v.setSpacing(8)
+        self.btn = QPushButton()
+        self.btn.setObjectName("advbtn")
+        self.btn.setCheckable(True)
+        self.btn.setCursor(Qt.PointingHandCursor)
+        self.btn.toggled.connect(self._toggle)
+        v.addWidget(self.btn)
+        self.body = QWidget()
+        self.bl = QVBoxLayout(self.body)
+        self.bl.setContentsMargins(0, 4, 0, 10)
+        self.bl.setSpacing(9)
+        self.body.hide()
+        v.addWidget(self.body)
+        self.n = 0
+        self._toggle(False)
+
+    def add(self, *ws, count=True):
+        for w in ws:
+            (self.bl.addLayout if isinstance(w, (QHBoxLayout, QVBoxLayout, QGridLayout)) else self.bl.addWidget)(w)
+        if count:
+            self.n += 1
+        self._toggle(self.btn.isChecked())
+        return self
+
+    def _toggle(self, on):
+        self.body.setVisible(on)
+        self.btn.setText(("▾  " if on else "▸  ") + tr("Advanced") +
+                         ("" if on or not self.n else "   ·   " + tr("More options: {n}").format(n=self.n)))
+
+
 class SettingsPanel(QFrame):
+    """Settings as a full page: categories on the left, the chosen category's boxes on the right."""
     applyRequested = Signal()
     changed = Signal()
     llmPicked = Signal(str)                  # translator chosen in the list: switch right away
+    langPicked = Signal(str)                 # interface language chosen
+
+    CATS = [("rec", "Recognition", "How speech is heard and turned into text"),
+            ("tr", "Translation", "Where and how the lines are translated"),
+            ("people", "People", "Who is speaking: voices, names, ignored people"),
+            ("discord", "Discord", "Names and calls straight from the Discord app"),
+            ("view", "Overlay & display", "The live feed and the overlay on top of the game"),
+            ("app", "App", "Language, Windows, reliability and updates")]
 
     def __init__(self, s: Settings):
         super().__init__()
         self.s = s
-        self.setObjectName("panel")
-        self.setFixedWidth(392)
-        outer = QVBoxLayout(self)
-        outer.setContentsMargins(0, 0, 0, 0)
-        sc = QScrollArea()
-        self._scroll = sc
-        sc.setWidgetResizable(True)
-        sc.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        sc.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        outer.addWidget(sc)
-        inner = QWidget()
-        sc.setWidget(inner)
-        lay = QVBoxLayout(inner)
-        lay.setContentsMargins(18, 16, 18, 16)
-        lay.setSpacing(10)
+        self.setObjectName("setpage")
+        hl = QHBoxLayout(self)
+        hl.setContentsMargins(0, 0, 0, 0)
+        hl.setSpacing(0)
 
-        def section(t):
-            l = QLabel(t.upper())
-            l.setObjectName("sectiontitle")
-            lay.addSpacing(6)
-            lay.addWidget(l)
+        # --- category column
+        cat = QFrame()
+        cat.setObjectName("catcol")
+        cat.setFixedWidth(206)
+        cl = QVBoxLayout(cat)
+        cl.setContentsMargins(0, 4, 14, 6)
+        cl.setSpacing(4)
+        self.cat_btns = {}
+        from PySide6.QtWidgets import QButtonGroup, QStackedWidget
+        grp = QButtonGroup(self)
+        grp.setExclusive(True)
+        self.stack = QStackedWidget()
+        self.pages = {}
+        for i, (key, name, _sub) in enumerate(self.CATS):
+            b = QPushButton(tr(name).replace("&", "&&"))
+            b.setObjectName("catbtn")
+            b.setCheckable(True)
+            b.setCursor(Qt.PointingHandCursor)
+            grp.addButton(b, i)
+            cl.addWidget(b)
+            self.cat_btns[key] = b
+        grp.idClicked.connect(self.stack.setCurrentIndex)
+        cl.addStretch(1)
+        from .version import VERSION
+        ver = QLabel(tr("Version {v}").format(v=VERSION) + "\n" + tr("Updates are checked when the app opens."))
+        ver.setObjectName("status")
+        ver.setWordWrap(True)
+        cl.addWidget(ver)
+        hl.addWidget(cat)
+        hl.addWidget(self.stack, 1)
+        self._wheel_guard = _NoWheelUnlessFocused(self)
 
-        section("Run on")
-        self.hw = QComboBox()
-        for k, v in COMPUTE_MODES.items():
-            self.hw.addItem(v, k)
-        self.hw.setToolTip("GPU: fastest, the models must fit on the graphics card (if one doesn't, it is split automatically).\n"
-                           "Mix: the translator uses the graphics card as far as it fits and the CPU for the rest.\n"
-                           "CPU only: works without a graphics card, much slower.")
-        lay.addWidget(self.hw)
+        def page(key, apply_btn=False):
+            name, sub = next((n, s_) for k, n, s_ in self.CATS if k == key)
+            sc = QScrollArea()
+            sc.setWidgetResizable(True)
+            sc.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+            inner = QWidget()
+            sc.setWidget(inner)
+            v = QVBoxLayout(inner)
+            v.setContentsMargins(22, 2, 12, 16)
+            v.setSpacing(14)
+            head = QHBoxLayout()
+            tc = QVBoxLayout()
+            tc.setSpacing(2)
+            t = QLabel(tr(name))
+            t.setObjectName("pagetitle")
+            st_ = QLabel(tr(sub))
+            st_.setObjectName("status")
+            tc.addWidget(t)
+            tc.addWidget(st_)
+            head.addLayout(tc, 1)
+            if apply_btn:
+                a = QPushButton(tr("Apply"))
+                a.setObjectName("start")
+                a.setToolTip(tr("Loads the chosen models (also while running)."))
+                a.clicked.connect(self._apply)
+                head.addWidget(a, 0, Qt.AlignTop)
+            v.addLayout(head)
+            grid = CardGrid()
+            v.addWidget(grid)
+            adv = Advanced()
+            v.addWidget(adv)
+            v.addStretch(1)
+            self.stack.addWidget(sc)
+            self.pages[key] = sc
+            return grid, adv
 
-        section("Speech recognition model (Whisper)")
+        def status(text="", wrap=True):
+            l = QLabel(text)
+            l.setObjectName("status")
+            l.setWordWrap(wrap)
+            return l
+
+        def row(*ws, stretch_first=False):
+            r = QHBoxLayout()
+            r.setSpacing(8)
+            for i, w in enumerate(ws):
+                r.addWidget(w, 1 if (stretch_first and i == 0) or (not stretch_first) else 0)
+            return r
+
+        def ghost(text):
+            b = QPushButton(text)
+            b.setObjectName("ghost")
+            return b
+
+        # ================= Recognition
+        g, adv = page("rec", apply_btn=True)
         self.wm = QComboBox()
         for k, v in WHISPER_MODELS.items():             # short label (never cut off), details on hover
-            self.wm.addItem(f"{k} — {v.split(' · ')[0]}", k)
-            self.wm.setItemData(self.wm.count() - 1, f"{k} — {v}", Qt.ToolTipRole)
-        lay.addWidget(self.wm)
+            self.wm.addItem(f"{k} — {tr(v.split(' · ')[0])}", k)
+            self.wm.setItemData(self.wm.count() - 1, f"{k} — {tr(v)}", Qt.ToolTipRole)
+        self.hw = QComboBox()
+        for k, v in COMPUTE_MODES.items():
+            self.hw.addItem(tr(v), k)
+        self.hw.setToolTip(tr("GPU: fastest, the models must fit on the graphics card (if one doesn't, it is split automatically).\n"
+                              "Mix: the translator uses the graphics card as far as it fits and the CPU for the rest.\n"
+                              "CPU only: works without a graphics card, much slower."))
+        g.add(SetCard(tr("Speech model"), tr("Bigger is more accurate, smaller is faster.")).add(
+            self.wm, status(tr("Run on")), self.hw))
+        lg = QGridLayout()
+        lg.setHorizontalSpacing(12)
+        lg.setVerticalSpacing(7)
+        self.lang_boxes = {}
+        for i, (code, name) in enumerate(LANGUAGES.items()):
+            cb = QCheckBox(tr(name))
+            cb.toggled.connect(self._langs)
+            lg.addWidget(cb, i // 2, i % 2)
+            self.lang_boxes[code] = cb
+        g.add(SetCard(tr("Languages to recognise"), tr("Only the ticked ones are listened for.")).add(lg))
+        self.vc = QCheckBox(tr("Voice detector (ignores noise and clicks)"))
+        self.vc.setToolTip(tr("A speech detector decides where a sentence starts and ends, not only the volume.\n"
+                              "Noisy mics no longer keep a sentence open, clicks don't become fake lines.\n"
+                              "Applies from the next Start."))
+        self.vc.toggled.connect(lambda v: self._flag("vad_cut", v))
+        self.sil_lab = status()
+        self.sil = QSlider(Qt.Horizontal)
+        self.sil.setRange(300, 1500)
+        self.sil.valueChanged.connect(self._sil)
+        g.add(SetCard(tr("Sentences"), tr("When a sentence starts and ends.")).add(self.vc, self.sil_lab, self.sil))
+        self.vocab = QPlainTextEdit()
+        self.vocab.setPlaceholderText(tr("Names, game terms, slang – one per line or separated by commas\n"
+                                         "e.g. Gabry, War Thunder, Bismarck, GG"))
+        self.vocab.setFixedHeight(84)
+        self.vocab.textChanged.connect(self._vocab)
+        self.lol = QCheckBox(tr("League of Legends terms"))
+        self.lol.setToolTip(tr("Champions, spells, items, runes and slang (Riot's names in every language).\n"
+                               "Recognised better, and kept as the English game word in translations:\n"
+                               "Flash stays Flash, Hexflash stays Hexflash, \"destello\" becomes Flash."))
+        self.lol.toggled.connect(lambda v: self._flag("league_terms", v))
+        g.add(SetCard(tr("Words to know"), tr("Used by the recogniser and the translator, so these words come out right.")).add(
+            self.vocab, self.lol))
+        self.en = QCheckBox(tr("Noise suppression (hum, hiss, bad mics)"))
+        self.en.toggled.connect(self._enh)
+        self.dng = QCheckBox(tr("Noise removal on the graphics card"))
+        self.dng.setToolTip(tr("Cleans very noisy voices on the graphics card; uses the CPU when the card can't."))
+        self.dng.toggled.connect(lambda v: self._flag("denoise_gpu", v))
+        self.mu = QCheckBox(tr("Show unsure words in grey"))
+        self.mu.toggled.connect(self._mu)
+        self.fl = QCheckBox(tr("Skip the language check for people whose language is known"))
+        self.fl.setToolTip(tr("Faster: once a person's language is certain, the separate language pass is skipped."))
+        self.fl.toggled.connect(lambda v: self._flag("fast_lang", v))
+        adv.add(self.en).add(self.dng).add(self.mu).add(self.fl)
 
-        section("Translator model")
-        self.le = QCheckBox("Translate + fix misheard words")
+        # ================= Translation
+        g, adv = page("tr", apply_btn=True)
+        self.le = QCheckBox(tr("Translate + fix misheard words"))
+        self.tr_gpu = QCheckBox(tr("Graphics card – local, works offline"))
+        self.tr_on = QCheckBox(tr("Online – Gemini, when internet is on"))
+        self.tr_gpu.setToolTip(tr("The translator model runs on your PC (Ollama). Nothing leaves the PC."))
+        self.tr_on.setToolTip(tr("Google's Gemini API translates instead: faster and smarter than what fits on an 8 GB card.\n"
+                                 "Both ticked: online first, the graphics card takes over when online can't answer\n"
+                                 "(no internet, daily free limit reached, too slow)."))
+        g.add(SetCard(tr("Where it runs"), tr("Both ticked: online first, the graphics card as backup.")).add(
+            self.le, self.tr_gpu, self.tr_on))
         self.lm = QComboBox()
         for k, v in LLM_CHOICES.items():                  # light -> heavy, with graphics memory use
-            self.lm.addItem(" · ".join(v.split(" · ")[:2]), k)
-            self.lm.setItemData(self.lm.count() - 1, v, Qt.ToolTipRole)
+            self.lm.addItem(" · ".join(tr(x) for x in v.split(" · ")[:2]), k)
+            self.lm.setItemData(self.lm.count() - 1, tr(v), Qt.ToolTipRole)
         if s.llm_model not in LLM_CHOICES:               # a model chosen by name earlier stays selectable
             self.lm.addItem(s.llm_model, s.llm_model)
-        self.lm.setToolTip("Lighter = less graphics memory and faster · heavier = better translations.\n"
-                           "Also switchable on the fly with the AI button at the top.")
+        self.lm.setToolTip(tr("Lighter = less graphics memory and faster · heavier = better translations."))
         self.lm.activated.connect(lambda _i: self.llmPicked.emit(self.lm.currentData() or ""))
-        self.lm_hint = QLabel("Switches right away, also while running. Missing models are downloaded automatically.")
-        self.lm_hint.setObjectName("status")
-        self.lm_hint.setWordWrap(True)
-        lay.addWidget(self.le)
-        # where it runs: graphics card (local), online (Gemini), or both (online first, card as backup)
-        self.tr_gpu = QCheckBox("Graphics card – local, works offline")
-        self.tr_on = QCheckBox("Online – Gemini, when internet is on")
-        self.tr_gpu.setToolTip("The translator model below runs on your PC (Ollama). Nothing leaves the PC.")
-        self.tr_on.setToolTip("Google's Gemini API translates instead: faster and smarter than what fits on an 8 GB card.\n"
-                              "Both ticked: online first, the graphics card takes over when online can't answer\n"
-                              "(no internet, daily free limit reached, too slow).")
-        lay.addWidget(self.tr_gpu)
-        lay.addWidget(self.lm)
-        lay.addWidget(self.lm_hint)
-        lay.addWidget(self.tr_on)
+        self.lm_hint = status(tr("Switches right away, also while running. Missing models are downloaded automatically."))
+        self.local_card = g.add(SetCard(tr("Graphics card model"), tr("Runs on this PC with Ollama.")).add(self.lm, self.lm_hint))
         from .online import MODELS as GEM_MODELS
         self.gm = QComboBox()
         for k, (lab_, _n) in GEM_MODELS.items():
-            self.gm.addItem(lab_.split(" – ")[0], k)
-            self.gm.setItemData(self.gm.count() - 1, lab_, Qt.ToolTipRole)
+            self.gm.addItem(tr(lab_.split(" – ")[0]), k)
+            self.gm.setItemData(self.gm.count() - 1, tr(lab_), Qt.ToolTipRole)
         self.gkey = QLineEdit()
-        self.gkey.setPlaceholderText("Gemini API key (free)")
+        self.gkey.setPlaceholderText(tr("Gemini API key (free)"))
         self.gkey.setEchoMode(QLineEdit.Password)
-        grow = QHBoxLayout()
-        self.gkey_help = QPushButton("Get a free key")
-        self.gkey_help.setObjectName("ghost")
-        grow.addWidget(self.gkey, 1)
-        grow.addWidget(self.gkey_help)
-        self.g_usage = QLabel()
-        self.g_usage.setObjectName("status")
-        self.g_usage.setWordWrap(True)
-        self.on_box = QWidget()
-        ob = QVBoxLayout(self.on_box)
-        ob.setContentsMargins(0, 0, 0, 0)
-        ob.setSpacing(6)
-        ob.addWidget(self.gm)
-        ob.addLayout(grow)
-        ob.addWidget(self.g_usage)
-        lay.addWidget(self.on_box)
+        self.gkey_help = ghost(tr("Get a free key"))
+        self.g_usage = status()
+        self.on_box = g.add(SetCard(tr("Online – Gemini"), tr("Google's translator, used when internet is on.")).add(
+            self.gm, row(self.gkey, self.gkey_help, stretch_first=True), self.g_usage))
         self.tr_gpu.toggled.connect(lambda v: self._tr_where("local", v))
         self.tr_on.toggled.connect(lambda v: self._tr_where("online", v))
         self.gm.currentIndexChanged.connect(self._gem_changed)
         self.gkey.editingFinished.connect(self._gem_changed)
         self.gkey_help.clicked.connect(self._gem_help)
+        self.ssl = QCheckBox(tr("Don't translate lines already in the translation language"))
+        self.ssl.toggled.connect(lambda v: self._flag("skip_same_lang", v))
+        self.ip = QCheckBox(tr("Short phrases at once (gg, ok, wait…) without the translator"))
+        self.ip.toggled.connect(lambda v: self._flag("instant_phrases", v))
+        adv.add(self.ssl).add(self.ip)
 
-        apply = QPushButton("Apply model changes")
-        apply.setObjectName("start")
-        apply.clicked.connect(self._apply)
-        lay.addWidget(apply)
-
-        section("Languages to recognise")
-        grid = QGridLayout()
-        self.lang_boxes = {}
-        for i, (code, name) in enumerate(LANGUAGES.items()):
-            cb = QCheckBox(f"{name}")
-            cb.toggled.connect(self._langs)
-            grid.addWidget(cb, i // 2, i % 2)
-            self.lang_boxes[code] = cb
-        lay.addLayout(grid)
-
-        section("Speakers")
-        self.sp_en = QCheckBox("Recognise who is speaking")
+        # ================= People
+        g, adv = page("people")
+        self.sp_en = QCheckBox(tr("Recognise who is speaking"))
         self.sp_en.toggled.connect(self._sp_en)
-        lay.addWidget(self.sp_en)
-        self.sep_lab = QLabel()
-        self.sep_lab.setObjectName("status")
-        self.sep = QSlider(Qt.Horizontal)
-        self.sep.setRange(0, 100)
-        self.sep.setToolTip("Left: two people get merged more often · Right: one person gets split more often")
-        self.sep.valueChanged.connect(self._sep)
-        lay.addWidget(self.sep_lab)
-        lay.addWidget(self.sep)
-        self.sp_rem = QCheckBox("Remember voices (stored on this PC only)")
+        self.sp_rem = QCheckBox(tr("Remember voices (stored on this PC only)"))
         self.sp_rem.toggled.connect(self._sp_rem)
-        lay.addWidget(self.sp_rem)
-        srow = QHBoxLayout()
-        self.sp_count = QLabel()
-        self.sp_count.setObjectName("status")
-        self.forget_btn = QPushButton("Forget all voices")
-        self.forget_btn.setObjectName("ghost")
-        srow.addWidget(self.sp_count, 1)
-        srow.addWidget(self.forget_btn)
-        lay.addLayout(srow)
-        # every known voice with a tick box; "Forget selected" removes only the ticked ones
+        self.asl = QCheckBox(tr("Learn each person's language"))
+        self.asl.setToolTip(tr("After a few lines it knows the language each person usually speaks, so short or\n"
+                               "unclear sentences are no longer heard in the wrong language.\n"
+                               "A clear switch to another language is still recognised."))
+        self.asl.toggled.connect(lambda v: self._flag("auto_speaker_lang", v))
+        g.add(SetCard(tr("Voices"), tr("Click a name on any line to rename it or fix the person – every fix makes it more accurate.")).add(
+            self.sp_en, self.sp_rem, self.asl))
         # every known voice; Ctrl+click / Shift+click selects several, Delete or "Forget selected" removes them
         self.people_list = QListWidget()
         self.people_list.setSelectionMode(QAbstractItemView.ExtendedSelection)
-        self.people_list.setToolTip("Ctrl+click: pick several · Shift+click: pick a range · Ctrl+A: all\n"
-                                    "Delete key or \"Forget selected\" removes the picked people")
-        self.people_list.setStyleSheet(f"QListWidget {{ background: {SURF2}; border: 1px solid {BORDER}; border-radius: 6px; padding: 2px; }}"
-                                       f"QListWidget::item {{ padding: 5px 8px; border-radius: 4px; color: {TEXT}; }}"
+        self.people_list.setToolTip(tr("Ctrl+click: pick several · Shift+click: pick a range · Ctrl+A: all\n"
+                                       "Delete key or \"Forget selected\" removes the picked people"))
+        self.people_list.setStyleSheet(f"QListWidget {{ background: {SURF2}; border: 1px solid {BORDER}; border-radius: 4px; padding: 2px; }}"
+                                       f"QListWidget::item {{ padding: 5px 8px; border-radius: 3px; color: {TEXT}; }}"
                                        f"QListWidget::item:selected {{ background: #34343a; color: {TEXT}; }}")
         self.people_list.itemSelectionChanged.connect(self._people_ticked)
-        lay.addWidget(self.people_list)
         self.people_del = QShortcut(QKeySequence.Delete, self.people_list)
         self.people_del.setContext(Qt.WidgetShortcut)
-        self.forget_sel_btn = QPushButton("Forget selected")
-        self.forget_sel_btn.setObjectName("ghost")
+        self.sp_count = status(wrap=False)
+        self.forget_sel_btn = ghost(tr("Forget selected"))
         self.forget_sel_btn.setEnabled(False)
-        lay.addWidget(self.forget_sel_btn)
-        self.asl = QCheckBox("Learn each person's language")
-        self.asl.setToolTip("After a few lines it knows the language each person usually speaks, so short or\n"
-                            "unclear sentences are no longer heard in the wrong language.\n"
-                            "A clear switch to another language is still recognised.")
-        self.asl.toggled.connect(lambda v: self._flag("auto_speaker_lang", v))
-        lay.addWidget(self.asl)
-        tip = QLabel("Tip: click a name on any line to rename it, or fix it if it's the wrong person – "
-                     "every correction makes recognition more accurate.")
-        tip.setWordWrap(True)
-        tip.setObjectName("status")
-        lay.addWidget(tip)
+        self.forget_btn = ghost(tr("Forget all voices"))
+        g.add(SetCard(tr("Known people"), tr("Ctrl or Shift + click to pick several.")).add(
+            self.sp_count, self.people_list, row(self.forget_sel_btn, self.forget_btn)))
+        self.ign_lab = status(wrap=False)
+        self.unign_btn = ghost(tr("Show everyone again"))
+        g.add(SetCard(tr("Ignored people"), tr("Click a name on any line to ignore that person or to fix the language they always speak.")).add(
+            self.ign_lab, self.unign_btn))
+        self.sep_lab = status()
+        self.sep = QSlider(Qt.Horizontal)
+        self.sep.setRange(0, 100)
+        self.sep.setToolTip(tr("Left: two people get merged more often · Right: one person gets split more often"))
+        self.sep.valueChanged.connect(self._sep)
+        adv.add(self.sep_lab, self.sep)
 
-        section("Discord names")
-        self.dc_en = QCheckBox("Names and who is talking from Discord")
-        self.dc_en.setToolTip("Uses Discord's own local connection (the Discord app on this PC) – no bot joins\n"
-                              "your servers. Each voice is linked to the person's Discord account, so names are\n"
-                              "right from the first sentence and are kept between sessions.")
-        lay.addWidget(self.dc_en)
+        # ================= Discord
+        g, adv = page("discord")
+        self.dc_en = QCheckBox(tr("Names and who is talking from Discord"))
+        self.dc_en.setToolTip(tr("Uses Discord's own local connection (the Discord app on this PC) – no bot joins\n"
+                                 "your servers. Each voice is linked to the person's Discord account, so names are\n"
+                                 "right from the first sentence and are kept between sessions."))
         self.dc_id = QLineEdit()
-        self.dc_id.setPlaceholderText("Client ID (from discord.com/developers)")
+        self.dc_id.setPlaceholderText(tr("Client ID (from discord.com/developers)"))
         self.dc_secret = QLineEdit()
-        self.dc_secret.setPlaceholderText("Client Secret")
+        self.dc_secret.setPlaceholderText(tr("Client Secret"))
         self.dc_secret.setEchoMode(QLineEdit.Password)
-        for w in (self.dc_id, self.dc_secret):
-            w.setStyleSheet(f"QLineEdit {{ background: {SURF2}; border: 1px solid {BORDER}; border-radius: 6px; "
-                            f"padding: 7px 9px; color: {TEXT}; }} QLineEdit:focus {{ border-color: #5a5a62; }}")
-            lay.addWidget(w)
-        drow = QHBoxLayout()
-        self.dc_connect = QPushButton("Connect")
+        self.dc_connect = QPushButton(tr("Connect"))
         self.dc_connect.setObjectName("start")
-        self.dc_help = QPushButton("How to set it up")
-        self.dc_help.setObjectName("ghost")
-        self.dc_logout = QPushButton("Log out")
-        self.dc_logout.setObjectName("ghost")
-        lay.addWidget(self.dc_connect)
-        drow.addWidget(self.dc_help, 1)
-        drow.addWidget(self.dc_logout, 1)
-        lay.addLayout(drow)
-        self.dc_status = QLabel("Off")
-        self.dc_status.setObjectName("status")
-        self.dc_status.setWordWrap(True)
-        lay.addWidget(self.dc_status)
-        nrow = QHBoxLayout()
-        nl = QLabel("Name shown")
-        nl.setObjectName("status")
+        self.dc_help = ghost(tr("How to set it up"))
+        self.dc_logout = ghost(tr("Log out"))
+        self.dc_status = status(tr("Off"))
+        g.add(SetCard(tr("Connection"), tr("Uses the Discord app on this PC – no bot joins your servers.")).add(
+            self.dc_en, self.dc_id, self.dc_secret, self.dc_connect, row(self.dc_help, self.dc_logout), self.dc_status))
         self.dc_kind = QComboBox()
         for k, v in (("display", "Display name"), ("nick", "Server nickname"), ("username", "@username")):
-            self.dc_kind.addItem(v, k)
-        nrow.addWidget(nl)
-        nrow.addWidget(self.dc_kind, 1)
-        lay.addLayout(nrow)
+            self.dc_kind.addItem(tr(v), k)
+        g.add(SetCard(tr("Names"), tr("Which Discord name is shown on each line. A name you type yourself is kept.")).add(
+            status(tr("Name shown")), self.dc_kind))
+        self.ast = QCheckBox(tr("Start listening when a Discord call starts"))
+        self.ast.toggled.connect(lambda v: self._flag("auto_start", v))
+        self.asp = QCheckBox(tr("Stop when the call ends (frees the GPU)"))
+        self.asp.toggled.connect(lambda v: self._flag("auto_stop", v))
+        g.add(SetCard(tr("Calls"), tr("Start and stop together with your Discord calls.")).add(self.ast, self.asp))
         self.dc_help.clicked.connect(self._discord_help)
+        adv.hide()
 
-        section("Bad microphones")
-        self.en = QCheckBox("Noise suppression (hum, hiss, bad mics)")
-        self.en.toggled.connect(self._enh)
-        lay.addWidget(self.en)
-
-        section("Words to know")
-        self.vocab = QPlainTextEdit()
-        self.vocab.setPlaceholderText("Names, game terms, slang – one per line or separated by commas\ne.g. Gabry, War Thunder, Bismarck, GG")
-        self.vocab.setFixedHeight(84)
-        self.vocab.textChanged.connect(self._vocab)
-        lay.addWidget(self.vocab)
-        vt = QLabel("Used by the recogniser and the translator, so these words come out right.")
-        vt.setWordWrap(True)
-        vt.setObjectName("status")
-        lay.addWidget(vt)
-        self.lol = QCheckBox("League of Legends terms")
-        self.lol.setToolTip("Champions, spells, items, runes and slang (Riot's names in every language).\n"
-                            "Recognised better, and kept as the English game word in translations:\n"
-                            "Flash stays Flash, Hexflash stays Hexflash, \"destello\" becomes Flash.")
-        self.lol.toggled.connect(lambda v: self._flag("league_terms", v))
-        lay.addWidget(self.lol)
-        self.mu = QCheckBox("Show unsure words in grey")
-        self.mu.toggled.connect(self._mu)
-        lay.addWidget(self.mu)
-
-        section("Sentence detection")
-        self.vc = QCheckBox("Voice detector (ignores noise and clicks)")
-        self.vc.setToolTip("A speech detector decides where a sentence starts and ends, not only the volume.\n"
-                           "Noisy mics no longer keep a sentence open, clicks don't become fake lines.\n"
-                           "Applies from the next Start.")
-        self.vc.toggled.connect(lambda v: self._flag("vad_cut", v))
-        lay.addWidget(self.vc)
-        self.sil_lab = QLabel()
-        self.sil_lab.setObjectName("status")
-        self.sil = QSlider(Qt.Horizontal)
-        self.sil.setRange(300, 1500)
-        self.sil.valueChanged.connect(self._sil)
-        lay.addWidget(self.sil_lab)
-        lay.addWidget(self.sil)
-
-        section("Display")
-        self.so = QCheckBox("Original text in the feed (off = translation only)")
+        # ================= Overlay & display
+        g, adv = page("view")
+        self.so = QCheckBox(tr("Original text in the feed (off = translation only)"))
         self.so.toggled.connect(self._show_orig)
-        lay.addWidget(self.so)
-        self.oso = QCheckBox("Show original text in the overlay")
+        g.add(SetCard(tr("Live feed"), tr("The lines in this window.")).add(self.so))
+        self.oso = QCheckBox(tr("Show original text in the overlay"))
         self.oso.toggled.connect(self._ov_orig)
-        lay.addWidget(self.oso)
-        self.op_lab = QLabel()
-        self.op_lab.setObjectName("status")
-        self.op = QSlider(Qt.Horizontal)
-        self.op.setRange(20, 100)
-        self.op.valueChanged.connect(self._op)
-        self.fs_lab = QLabel()
-        self.fs_lab.setObjectName("status")
+        self.otime = QCheckBox(tr("Time in front of each line"))
+        self.otime.toggled.connect(lambda v: self._flag("overlay_time", v))
+        self.fs_lab = status()
         self.fs = QSlider(Qt.Horizontal)
         self.fs.setRange(11, 28)
         self.fs.valueChanged.connect(self._fs)
-        self.nl_lab = QLabel()
-        self.nl_lab.setObjectName("status")
+        self.nl_lab = status()
         self.nl = QSlider(Qt.Horizontal)
         self.nl.setRange(1, 8)
         self.nl.valueChanged.connect(self._nl)
-        self.to_lab = QLabel()
-        self.to_lab.setObjectName("status")
+        g.add(SetCard(tr("Overlay text"), tr("What the overlay over the game shows.")).add(
+            self.oso, self.otime, self.fs_lab, self.fs, self.nl_lab, self.nl))
+        self.op_lab = status()
+        self.op = QSlider(Qt.Horizontal)
+        self.op.setRange(20, 100)
+        self.op.valueChanged.connect(self._op)
+        self.to_lab = status()
         self.to = QSlider(Qt.Horizontal)
         self.to.setRange(30, 100)
         self.to.valueChanged.connect(self._to)
-        self.ah_lab = QLabel()
-        self.ah_lab.setObjectName("status")
+        self.ah_lab = status()
         self.ah = QSlider(Qt.Horizontal)
         self.ah.setRange(0, 30)
-        self.ah.setToolTip("When the overlay is locked (click-through) it fades away after this many quiet seconds. 0 = never.")
+        self.ah.setToolTip(tr("When the overlay is locked (click-through) it fades away after this many quiet seconds. 0 = never."))
         self.ah.valueChanged.connect(self._ah)
-        for w in (self.op_lab, self.op, self.to_lab, self.to, self.fs_lab, self.fs, self.nl_lab, self.nl, self.ah_lab, self.ah):
-            lay.addWidget(w)
-        ovt = QLabel("The overlay stays above games in windowed or borderless mode (not exclusive full screen).")
-        ovt.setWordWrap(True)
-        ovt.setObjectName("status")
-        lay.addWidget(ovt)
+        g.add(SetCard(tr("Overlay look"), tr("It stays above games in windowed or borderless mode (not exclusive full screen).")).add(
+            self.op_lab, self.op, self.to_lab, self.to, self.ah_lab, self.ah))
+        self.hk_en = QCheckBox(tr("Global hotkeys (work inside games)"))
+        self.hk_en.toggled.connect(lambda v: self._flag("hotkeys_enabled", v))
+        hk = status(tr("Ctrl+Alt+S start/stop · Ctrl+Alt+P pause · Ctrl+Alt+C copy last translation\n"
+                       "Ctrl+Alt+O overlay on/off · Ctrl+Alt+L lock/unlock overlay (click-through)"))
+        g.add(SetCard(tr("Hotkeys")).add(self.hk_en, hk))
+        adv.hide()
 
-        section("Reliability")
-        self.dr = QCheckBox("Reconnect when headphones / device change")
+        # ================= App
+        g, adv = page("app")
+        self.ui_lang = QComboBox()
+        for code, name, _f in i18n.LANGS:
+            self.ui_lang.addItem(flag_icon(code), name, code)
+        self.ui_lang.setIconSize(QSize(24, 16))
+        self.ui_lang.activated.connect(lambda _i: self.langPicked.emit(self.ui_lang.currentData() or "en"))
+        g.add(SetCard(tr("App language"), tr("Also on the flag button in the left bar. The app restarts to switch.")).add(self.ui_lang))
+        self.sww = QCheckBox(tr("Start with Windows (in the tray)"))
+        self.sww.toggled.connect(self._sww)
+        g.add(SetCard(tr("Windows")).add(self.sww))
+        self.dr = QCheckBox(tr("Reconnect when headphones / device change"))
         self.dr.toggled.connect(lambda v: self._flag("device_recover", v))
-        lay.addWidget(self.dr)
-        self.al = QCheckBox("Switch to a lighter model when it lags")
+        self.al = QCheckBox(tr("Switch to a lighter model when it lags"))
         self.al.toggled.connect(lambda v: self._flag("auto_lighter", v))
-        lay.addWidget(self.al)
-        self.lag_lab = QLabel()
-        self.lag_lab.setObjectName("status")
+        self.lag_lab = status()
         self.lag = QSlider(Qt.Horizontal)
         self.lag.setRange(2, 10)
         self.lag.valueChanged.connect(self._lag)
-        lay.addWidget(self.lag_lab)
-        lay.addWidget(self.lag)
+        g.add(SetCard(tr("Reliability"), tr("Keeps it running by itself.")).add(self.dr, self.al, self.lag_lab, self.lag))
+        self.export_btn = ghost(tr("Export .txt"))
+        self.clear_btn = ghost(tr("Clear feed"))
+        g.add(SetCard(tr("Transcript"), tr("Nothing is saved unless you export it.")).add(row(self.export_btn, self.clear_btn)))
+        adv.hide()
 
-        section("Discord")
-        self.ast = QCheckBox("Start listening when a Discord call starts")
-        self.ast.toggled.connect(lambda v: self._flag("auto_start", v))
-        lay.addWidget(self.ast)
-        self.asp = QCheckBox("Stop when the call ends (frees the GPU)")
-        self.asp.toggled.connect(lambda v: self._flag("auto_stop", v))
-        lay.addWidget(self.asp)
-        self.sww = QCheckBox("Start with Windows (in the tray)")
-        self.sww.toggled.connect(self._sww)
-        lay.addWidget(self.sww)
-
-        section("People")
-        prow2 = QHBoxLayout()
-        self.ign_lab = QLabel()
-        self.ign_lab.setObjectName("status")
-        self.unign_btn = QPushButton("Show everyone again")
-        self.unign_btn.setObjectName("ghost")
-        prow2.addWidget(self.ign_lab, 1)
-        prow2.addWidget(self.unign_btn)
-        lay.addLayout(prow2)
-        pt = QLabel("Click a name on any line to ignore that person or to fix the language they always speak.")
-        pt.setWordWrap(True)
-        pt.setObjectName("status")
-        lay.addWidget(pt)
-
-        section("Transcript")
-        row = QHBoxLayout()
-        self.export_btn = QPushButton("Export .txt")
-        self.export_btn.setObjectName("ghost")
-        self.clear_btn = QPushButton("Clear feed")
-        self.clear_btn.setObjectName("ghost")
-        row.addWidget(self.export_btn)
-        row.addWidget(self.clear_btn)
-        lay.addLayout(row)
-        section("Hotkeys")
-        self.hk_en = QCheckBox("Global hotkeys (work inside games)")
-        self.hk_en.toggled.connect(lambda v: self._flag("hotkeys_enabled", v))
-        lay.addWidget(self.hk_en)
-        hk = QLabel("Ctrl+Alt+S start/stop · Ctrl+Alt+P pause · Ctrl+Alt+C copy last translation\n"
-                    "Ctrl+Alt+O overlay on/off · Ctrl+Alt+L lock/unlock overlay (click-through)")
-        hk.setWordWrap(True)
-        hk.setObjectName("status")
-        lay.addWidget(hk)
-        lay.addStretch(1)
-        for c in (self.hw, self.wm, self.lm):
+        for c in self.findChildren(QComboBox):
             c.setSizeAdjustPolicy(QComboBox.AdjustToMinimumContentsLengthWithIcon)
-            c.setMinimumContentsLength(14)
-        self._wheel_guard = _NoWheelUnlessFocused(self, self._scroll.verticalScrollBar())
+            c.setMinimumContentsLength(12)
         for c in self.findChildren(QSlider) + self.findChildren(QComboBox) + self.findChildren(QAbstractSpinBox):
             c.setFocusPolicy(Qt.StrongFocus)          # the wheel alone doesn't give focus
             c.installEventFilter(self._wheel_guard)
+        self.go("rec")
         self.load()
+
+    # ---------------- navigation
+    def go(self, key):
+        if key in self.pages:
+            self.cat_btns[key].setChecked(True)
+            self.stack.setCurrentWidget(self.pages[key])
+
+    def show_widget(self, w):
+        """Open the category that holds w and scroll it into view."""
+        for key, sc in self.pages.items():
+            if sc.widget().isAncestorOf(w):
+                self.go(key)
+
+                def scroll(sc=sc):
+                    y = w.mapTo(sc.widget(), QPointF(0, 0).toPoint()).y()
+                    sc.verticalScrollBar().setValue(max(0, y - 60))
+                QTimer.singleShot(30, scroll)
+                return
 
     def load(self):
         s = self.s
@@ -1116,9 +1349,6 @@ class SettingsPanel(QFrame):
         self._ah(self.ah.value())
         self.dr.setChecked(s.device_recover)
         self.al.setChecked(s.auto_lighter)
-        self.lol.blockSignals(True)
-        self.lol.setChecked(getattr(s, "league_terms", True))
-        self.lol.blockSignals(False)
         self.dc_en.blockSignals(True)
         self.dc_en.setChecked(bool(s.discord_enabled))
         self.dc_en.blockSignals(False)
@@ -1127,7 +1357,9 @@ class SettingsPanel(QFrame):
         self.dc_kind.blockSignals(True)
         self._sel(self.dc_kind, s.discord_name or "display")
         self.dc_kind.blockSignals(False)
-        for cb, key in ((self.vc, "vad_cut"), (self.asl, "auto_speaker_lang")):
+        for cb, key in ((self.vc, "vad_cut"), (self.asl, "auto_speaker_lang"), (self.lol, "league_terms"),
+                        (self.dng, "denoise_gpu"), (self.fl, "fast_lang"), (self.ssl, "skip_same_lang"),
+                        (self.ip, "instant_phrases"), (self.otime, "overlay_time")):
             cb.blockSignals(True)
             cb.setChecked(bool(getattr(s, key, True)))
             cb.blockSignals(False)
@@ -1145,6 +1377,7 @@ class SettingsPanel(QFrame):
         self._fs(s.overlay_font)
         self.nl.setValue(s.overlay_lines)
         self._nl(s.overlay_lines)
+        self._sel(self.ui_lang, i18n.current())
 
     @staticmethod
     def _sel(combo, value, editable=False):
@@ -1160,11 +1393,13 @@ class SettingsPanel(QFrame):
         lw = self.people_list
         lw.blockSignals(True)
         lw.clear()
-        for row in people:
-            sid, name, n = row[0], row[1], row[2]
-            dc = row[3] if len(row) > 3 else False
-            tag = "Discord" + (f" · {n} sample{'s' if n != 1 else ''}" if n else " · no voice yet") if dc \
-                else f"{n} voice sample{'s' if n != 1 else ''}"
+        for r in people:
+            sid, name, n = r[0], r[1], r[2]
+            dc = r[3] if len(r) > 3 else False
+            if dc:
+                tag = "Discord · " + (tr("voice samples: {n}").format(n=n) if n else tr("no voice yet"))
+            else:
+                tag = tr("voice samples: {n}").format(n=n)
             it = QListWidgetItem(f"{name}    ·  {tag}")
             it.setData(Qt.UserRole, sid)
             lw.addItem(it)
@@ -1177,26 +1412,26 @@ class SettingsPanel(QFrame):
     def _people_ticked(self, *_):
         n = len(self.people_list.selectedItems())
         self.forget_sel_btn.setEnabled(n > 0)
-        self.forget_sel_btn.setText(f"Forget selected ({n})" if n else "Forget selected")
+        self.forget_sel_btn.setText(f"{tr('Forget selected')} ({n})" if n else tr("Forget selected"))
 
     def selected_people(self) -> list[int]:
         return [it.data(Qt.UserRole) for it in self.people_list.selectedItems()]
 
     def _discord_help(self):
         box = QMessageBox(self)
-        box.setWindowTitle("Discord names – setup (once, about 2 minutes)")
+        box.setWindowTitle(tr("Discord names – setup (once, about 2 minutes)"))
         box.setTextFormat(Qt.RichText)
-        box.setText(
+        box.setText(tr(
             "<b>1.</b> Open <b>discord.com/developers/applications</b> in your browser and log in.<br>"
             "<b>2.</b> <b>New Application</b> → name it <i>AudioTranscriber</i> → Create.<br>"
             "<b>3.</b> Left menu <b>OAuth2</b>: copy the <b>Client ID</b>. Click <b>Reset Secret</b> and copy the "
             "<b>Client Secret</b>.<br>"
             "<b>4.</b> Still in OAuth2 → <b>Redirects</b> → <b>Add Redirect</b>: <code>http://localhost</code> → "
             "<b>Save Changes</b>.<br>"
-            "<b>5.</b> Paste both codes here, tick <i>Read names…</i> and press <b>Connect</b>.<br>"
+            "<b>5.</b> Paste both codes here, tick <i>Names and who is talking from Discord</i> and press <b>Connect</b>.<br>"
             "<b>6.</b> Discord shows a window: click <b>Authorize</b>.<br><br>"
             "Done – it reconnects by itself every time. The codes and the login stay on this PC only "
-            "(settings.json and discord_token.json).")
+            "(settings.json and discord_token.json)."))
         box.exec()
 
     # ---------------- translator: where it runs
@@ -1221,8 +1456,7 @@ class SettingsPanel(QFrame):
 
     def _tr_vis(self):
         s = self.s
-        self.lm.setVisible(s.translate_local)
-        self.lm_hint.setVisible(s.translate_local)
+        self.local_card.setVisible(s.translate_local)
         self.on_box.setVisible(s.translate_online)
         self.update_gem_usage()
 
@@ -1231,11 +1465,12 @@ class SettingsPanel(QFrame):
         s = self.s
         used = int(s.online_used or 0) if s.online_day == _pacific_day() else 0
         lim = GEM_MODELS.get(s.gemini_model, ("", 0))[1]
-        mode = ("Both: online first, graphics card when online can't answer." if s.translate_local
-                else "Online only: if it can't answer, lines stay untranslated.")
-        key = "" if (s.gemini_key or "").strip() else "Paste a key first. "
-        self.g_usage.setText(f"{key}Used today: {used}" + (f" of about {lim:,} free" if lim else "") +
-                             f" (resets 09:00). {mode}")
+        mode = (tr("Both: online first, graphics card when online can't answer.") if s.translate_local
+                else tr("Online only: if it can't answer, lines stay untranslated."))
+        key = "" if (s.gemini_key or "").strip() else tr("Paste a key first.") + " "
+        use = (tr("Used today: {used} of about {lim} free").format(used=used, lim=f"{lim:,}") if lim
+               else tr("Used today: {used}").format(used=used))
+        self.g_usage.setText(f"{key}{use} ({tr('resets at 09:00')}). {mode}")
 
     def _gem_changed(self, *_):
         self.s.gemini_model = self.gm.currentData() or "gemma-3-27b-it"
@@ -1245,15 +1480,15 @@ class SettingsPanel(QFrame):
 
     def _gem_help(self):
         box = QMessageBox(self)
-        box.setWindowTitle("Gemini – free key (1 minute)")
+        box.setWindowTitle(tr("Gemini – free key (1 minute)"))
         box.setTextFormat(Qt.RichText)
-        box.setText(
+        box.setText(tr(
             "<b>1.</b> Open <b>aistudio.google.com/apikey</b> and log in with a Google account.<br>"
             "<b>2.</b> Click <b>Create API key</b> and copy it.<br>"
             "<b>3.</b> Paste it here. It stays on this PC (settings.json).<br><br>"
             "<b>Gemma 3 27B</b> has the biggest free daily allowance (about 14,400 sentences). "
             "Gemini Flash-Lite / Flash are smarter but their free allowance is small.<br>"
-            "On the free plan Google may use what is sent to improve its products; with billing turned on it doesn't.")
+            "On the free plan Google may use what is sent to improve its products; with billing turned on it doesn't."))
         box.exec()
 
     def _apply(self):
@@ -1273,7 +1508,7 @@ class SettingsPanel(QFrame):
 
     def _sil(self, v):
         self.s.silence_ms = int(v)
-        self.sil_lab.setText(f"Pause that ends a sentence: {v} ms")
+        self.sil_lab.setText(tr("Pause that ends a sentence: {ms} ms").format(ms=v))
 
     def _sp_en(self, v):
         self.s.speakers_enabled = v
@@ -1281,8 +1516,8 @@ class SettingsPanel(QFrame):
 
     def _sep(self, v):
         self.s.speaker_separation = v / 100
-        side = "merge more" if v < 40 else "split more" if v > 60 else "balanced"
-        self.sep_lab.setText(f"Speaker separation: {side} ({v})")
+        side = tr("merge more") if v < 40 else tr("split more") if v > 60 else tr("balanced")
+        self.sep_lab.setText(tr("Speaker separation: {side} ({v})").format(side=side, v=v))
         self.changed.emit()
 
     def _sp_rem(self, v):
@@ -1299,12 +1534,12 @@ class SettingsPanel(QFrame):
 
     def _op(self, v):
         self.s.overlay_opacity = v / 100
-        self.op_lab.setText(f"Overlay background opacity: {v}%")
+        self.op_lab.setText(tr("Overlay background opacity: {v}%").format(v=v))
         self.changed.emit()
 
     def _fs(self, v):
         self.s.overlay_font = v
-        self.fs_lab.setText(f"Overlay text size: {v}px")
+        self.fs_lab.setText(tr("Overlay text size: {v}px").format(v=v))
         self.changed.emit()
 
     def _flag(self, k, v):
@@ -1327,17 +1562,18 @@ class SettingsPanel(QFrame):
 
     def _to(self, v):
         self.s.overlay_text_opacity = v / 100
-        self.to_lab.setText(f"Overlay text opacity: {v}%")
+        self.to_lab.setText(tr("Overlay text opacity: {v}%").format(v=v))
         self.changed.emit()
 
     def _ah(self, v):
         self.s.overlay_autohide_s = int(v)
-        self.ah_lab.setText("Overlay hides when quiet: " + (f"after {v} s (when locked)" if v else "never"))
+        self.ah_lab.setText(tr("Overlay hides when quiet: after {v} s (when locked)").format(v=v) if v
+                            else tr("Overlay hides when quiet: never"))
         self.changed.emit()
 
     def _lag(self, v):
         self.s.lag_limit_s = float(v)
-        self.lag_lab.setText(f"…when a sentence takes more than {v} s")
+        self.lag_lab.setText(tr("…when a sentence takes more than {v} s").format(v=v))
         self.changed.emit()
 
     def _sww(self, v):
@@ -1351,7 +1587,7 @@ class SettingsPanel(QFrame):
 
     def _nl(self, v):
         self.s.overlay_lines = v
-        self.nl_lab.setText(f"Overlay lines: {v}")
+        self.nl_lab.setText(tr("Overlay lines: {v}").format(v=v))
         self.changed.emit()
 
 
@@ -1360,6 +1596,7 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__(None, Qt.FramelessWindowHint | Qt.Window)
         self.s = Settings.load()
+        self._set_language()
         if not self.s.bisaya_added:                     # new language: switched on once, untick it in Settings
             if "ceb" not in self.s.languages:
                 self.s.languages = list(self.s.languages) + ["ceb"]
@@ -1440,17 +1677,35 @@ class MainWindow(QWidget):
             rl.addWidget(b, 0, Qt.AlignHCenter)
             return b
 
-        self.live_btn = rail_btn("live", "Live – the conversation", True)
+        self.live_btn = rail_btn("live", tr("Live – the conversation"), True)
         self.live_btn.setChecked(True)
-        self.people_btn = rail_btn("people", "People – names, voices, Discord")
-        self.words_btn = rail_btn("words", "Words to know – names, game terms, slang")
-        self.overlay_btn = rail_btn("overlay", "Overlay on top of the game – Ctrl+Alt+O", True)
-        self.lock_btn = rail_btn("unlock", "Lock overlay (clicks go through to the game) – Ctrl+Alt+L")
+        self.people_btn = rail_btn("people", tr("People – names, voices, Discord"))
+        self.words_btn = rail_btn("words", tr("Words to know – names, game terms, slang"))
+        self.overlay_btn = rail_btn("overlay", tr("Overlay on top of the game – Ctrl+Alt+O"), True)
+        self.lock_btn = rail_btn("unlock", tr("Lock overlay (clicks go through to the game) – Ctrl+Alt+L"))
         self.lock_btn.clicked.connect(lambda: self.bridge.toggle_lock.emit())
-        self.clear_btn = rail_btn("clear", "Clear the whole chat (also the overlay)")
+        self.clear_btn = rail_btn("clear", tr("Clear the whole chat (also the overlay)"))
         self.clear_btn.clicked.connect(self.clear_feed)
         rl.addStretch(1)
-        self.set_btn = rail_btn("settings", "Settings", True)
+        self.flag_btn = QToolButton()
+        self.flag_btn.setObjectName("railbtn")
+        self.flag_btn.setFixedSize(44, 36)
+        self.flag_btn.setIcon(flag_icon(i18n.current()))
+        self.flag_btn.setIconSize(QSize(24, 16))
+        self.flag_btn.setCursor(Qt.PointingHandCursor)
+        self.flag_btn.setToolTip(tr("App language") + ": " + i18n.NAMES.get(i18n.current(), "English"))
+        self.flag_btn.setPopupMode(QToolButton.InstantPopup)
+        fm = QMenu(self.flag_btn)
+        for code, name, _f in i18n.LANGS:
+            act = fm.addAction(flag_icon(code), name)
+            act.setCheckable(True)
+            act.setChecked(code == i18n.current())
+            act.setData(code)
+        fm.triggered.connect(lambda a: self._pick_language(a.data()))
+        self.flag_btn.setMenu(fm)
+        self.flag_btn.setStyleSheet("QToolButton::menu-indicator { image: none; width: 0; }")
+        rl.addWidget(self.flag_btn, 0, Qt.AlignHCenter)
+        self.set_btn = rail_btn("settings", tr("Settings"), True)
         hl.addWidget(rail)
 
         # --- main column
@@ -1468,7 +1723,8 @@ class MainWindow(QWidget):
         tbl.setSpacing(8)
         tcol = QVBoxLayout()
         tcol.setSpacing(2)
-        t = QLabel("Live session")
+        t = QLabel(tr("Live session"))
+        self.title_lab = t
         t.setObjectName("title")
         st = QLabel()
         st.setObjectName("subtitle")
@@ -1494,23 +1750,28 @@ class MainWindow(QWidget):
         lay.addWidget(tb)
 
         # control row: waveform | auto | pause | language | start
+        self.live_top = QWidget()
+        lt = QVBoxLayout(self.live_top)
+        lt.setContentsMargins(0, 0, 0, 0)
+        lt.setSpacing(12)
+        lay.addWidget(self.live_top)
         row2 = QHBoxLayout()
         row2.setSpacing(10)
         self.meter = LevelMeter(self.s.threshold_db)
         self.meter.thresholdChanged.connect(self._threshold)
         row2.addWidget(self.meter, 1)
-        self.auto_btn = QPushButton("Auto")
+        self.auto_btn = QPushButton(tr("Auto"))
         self.auto_btn.setObjectName("ghost")
         self.auto_btn.setCheckable(True)
         self.auto_btn.setChecked(self.s.auto_threshold)
-        self.auto_btn.setToolTip("Auto threshold: follows each speaker's background noise\n"
-                                 "(helps with hissy / noisy microphones). Drag the line to set it by hand.")
+        self.auto_btn.setToolTip(tr("Auto threshold: follows each speaker's background noise\n"
+                                    "(helps with hissy / noisy microphones). Drag the line to set it by hand."))
         self.auto_btn.toggled.connect(self._auto)
         row2.addWidget(self.auto_btn)
         self.pause_btn = QPushButton("⏸")
         self.pause_btn.setObjectName("ghost")
         self.pause_btn.setFixedWidth(44)
-        self.pause_btn.setToolTip("Pause / resume listening – Ctrl+Alt+P\n(models stay loaded, nothing is transcribed)")
+        self.pause_btn.setToolTip(tr("Pause / resume listening – Ctrl+Alt+P\n(models stay loaded, nothing is transcribed)"))
         self.pause_btn.clicked.connect(self.toggle_pause)
         self.pause_btn.setEnabled(False)
         row2.addWidget(self.pause_btn)
@@ -1535,20 +1796,20 @@ class MainWindow(QWidget):
         self.llm_menu.triggered.connect(lambda a: self._set_llm(a.data()))
         self.llm_btn.setMenu(self.llm_menu)
         self.llm_btn.hide()                     # the translator is chosen in Settings
-        self.start_btn = QPushButton("▶  Start")
+        self.start_btn = QPushButton("▶  " + tr("Start"))
         self.start_btn.setObjectName("start")
         self.start_btn.setMinimumWidth(112)
         self.start_btn.setCursor(Qt.PointingHandCursor)
         self.start_btn.clicked.connect(self.toggle_run)
         row2.addWidget(self.start_btn)
-        lay.addLayout(row2)
+        lt.addLayout(row2)
         self._show_target()
         self._show_llm()
 
         # apps to listen to
         row = QHBoxLayout()
         row.setSpacing(8)
-        lab = QLabel("LISTEN TO")
+        lab = QLabel(tr("LISTEN TO"))
         lab.setObjectName("sectiontitle")
         row.addWidget(lab)
         self.app_row = QHBoxLayout()
@@ -1566,10 +1827,10 @@ class MainWindow(QWidget):
         ref = QToolButton()
         ref.setText("⟳")
         ref.setObjectName("ghost")
-        ref.setToolTip("Refresh app list")
+        ref.setToolTip(tr("Refresh app list"))
         ref.clicked.connect(self.refresh_apps)
         row.addWidget(ref)
-        lay.addLayout(row)
+        lt.addLayout(row)
         self.loading_bar = QProgressBar()
         self.loading_bar.setRange(0, 0)                 # indeterminate "working" animation
         self.loading_bar.setFixedHeight(2)
@@ -1579,7 +1840,7 @@ class MainWindow(QWidget):
         sep = QFrame()
         sep.setObjectName("hsep")
         sep.setFixedHeight(1)
-        lay.addWidget(sep)
+        lt.addWidget(sep)
 
         # --- feed | side panel (performance + people) or settings
         mid = QHBoxLayout()
@@ -1591,8 +1852,8 @@ class MainWindow(QWidget):
         self.feed = QVBoxLayout(feed_w)
         self.feed.setContentsMargins(0, 2, 8, 0)
         self.feed.setSpacing(10)
-        self.empty = QLabel("Pick an app above (Discord is selected automatically) and press Start.\n"
-                            "Lines appear here as people talk – what was said and its translation.")
+        self.empty = QLabel(tr("Pick an app above (Discord is selected automatically) and press Start.\n"
+                               "Lines appear here as people talk – what was said and its translation."))
         self.empty.setObjectName("empty")
         self.empty.setAlignment(Qt.AlignCenter)
         self.feed.addWidget(self.empty)
@@ -1607,14 +1868,14 @@ class MainWindow(QWidget):
         sl = QVBoxLayout(self.side)
         sl.setContentsMargins(16, 2, 0, 0)
         sl.setSpacing(10)
-        h1 = QLabel("PERFORMANCE")
+        h1 = QLabel(tr("PERFORMANCE"))
         h1.setObjectName("sectiontitle")
         sl.addWidget(h1)
         tg = QGridLayout()
         tg.setSpacing(8)
         self.tiles = {}
-        for i, (k, lab_) in enumerate((("lat", "Delay"), ("gpu", "GPU"), ("vram", "VRAM"), ("cpu", "CPU"),
-                                       ("ram", "RAM app"), ("lines", "Lines"))):
+        for i, (k, lab_) in enumerate((("lat", tr("Delay")), ("gpu", "GPU"), ("vram", "VRAM"), ("cpu", "CPU"),
+                                       ("ram", tr("RAM app")), ("lines", tr("Lines")))):
             f = QFrame()
             f.setObjectName("tile")
             fl = QVBoxLayout(f)
@@ -1631,28 +1892,28 @@ class MainWindow(QWidget):
             self.tiles[k + "_box"] = f
         sl.addLayout(tg)
         sl.addSpacing(8)
-        h2 = QLabel("PEOPLE")
+        h2 = QLabel(tr("PEOPLE"))
         h2.setObjectName("sectiontitle")
         sl.addWidget(h2)
         self.people_col = QVBoxLayout()
         self.people_col.setSpacing(8)
         sl.addLayout(self.people_col)
-        self.people_empty = QLabel("Names appear here as people talk.")
+        self.people_empty = QLabel(tr("Names appear here as people talk."))
         self.people_empty.setObjectName("status")
         self.people_empty.setWordWrap(True)
         sl.addWidget(self.people_empty)
         sl.addStretch(1)
-        self.side_overlay = QPushButton("Show overlay in game")
+        self.side_overlay = QPushButton(tr("Show overlay in game"))
         self.side_overlay.setObjectName("ghost")
         self.side_overlay.setCheckable(True)
         self.side_overlay.toggled.connect(lambda on: self.overlay_btn.setChecked(on))
         self.overlay_btn.toggled.connect(lambda on: (self.side_overlay.blockSignals(True), self.side_overlay.setChecked(on),
-                                                    self.side_overlay.setText("Hide overlay" if on else "Show overlay in game"),
+                                                    self.side_overlay.setText(tr("Hide overlay") if on else tr("Show overlay in game")),
                                                     self.side_overlay.blockSignals(False)))
         sl.addWidget(self.side_overlay)
-        self.side_move = QPushButton("Move overlay")
+        self.side_move = QPushButton(tr("Move overlay"))
         self.side_move.setObjectName("ghost")
-        self.side_move.setToolTip("Unlocks the overlay so you can drag it; it locks again by itself after you drop it")
+        self.side_move.setToolTip(tr("Unlocks the overlay so you can drag it; it locks again by itself after you drop it"))
         self.side_move.clicked.connect(self._move_overlay)
         sl.addWidget(self.side_move)
         mid.addWidget(self.side)
@@ -1662,6 +1923,7 @@ class MainWindow(QWidget):
         self.settings_panel.hide()
         self.settings_panel.applyRequested.connect(self._apply_models)
         self.settings_panel.llmPicked.connect(self._set_llm)
+        self.settings_panel.langPicked.connect(self._pick_language)
         self.settings_panel.changed.connect(self._display_changed)
         self.settings_panel.export_btn.clicked.connect(self.export)
         self.settings_panel.clear_btn.clicked.connect(self.clear_feed)
@@ -1686,14 +1948,15 @@ class MainWindow(QWidget):
         self.live_btn.clicked.connect(lambda: (self.set_btn.setChecked(False), self.live_btn.setChecked(True)))
         self.people_btn.clicked.connect(lambda: self._open_settings_at(sp_.sp_en))
         self.words_btn.clicked.connect(lambda: self._open_settings_at(sp_.vocab))
+        self.settings_panel.dc_en.setProperty("cat", "discord")
         mid.addWidget(self.settings_panel)
         lay.addLayout(mid, 1)
 
         # --- status bar
         sb = QHBoxLayout()
-        self.st_asr = QLabel("Whisper: idle")
+        self.st_asr = QLabel("Whisper: " + tr("idle"))
         self.st_asr.setObjectName("status")
-        self.st_llm = QLabel("Translator: idle")
+        self.st_llm = QLabel(tr("Translator") + ": " + tr("idle"))
         self.st_llm.setObjectName("status")
         self.st_spk = QLabel("")
         self.st_spk.setObjectName("status")
@@ -1736,13 +1999,13 @@ class MainWindow(QWidget):
         # tray
         self.tray = QSystemTrayIcon(app_icon(), self)
         m = QMenu()
-        a1 = QAction("Show window", self)
+        a1 = QAction(tr("Show window"), self)
         a1.triggered.connect(self.showNormal)
-        a2 = QAction("Toggle overlay", self)
+        a2 = QAction(tr("Toggle overlay"), self)
         a2.triggered.connect(lambda: self.overlay_btn.toggle())
-        a2b = QAction("Move overlay", self)
+        a2b = QAction(tr("Move overlay"), self)
         a2b.triggered.connect(self._move_overlay)
-        a3 = QAction("Quit", self)
+        a3 = QAction(tr("Quit"), self)
         a3.triggered.connect(self.close)
         for a in (a1, a2, a2b, a3):
             m.addAction(a)
@@ -1792,7 +2055,7 @@ class MainWindow(QWidget):
             self.app_row.addWidget(b)
             self.app_buttons[a.name] = b
         if not apps:
-            l = QLabel("No app is playing audio – join a Discord call, then ⟳")
+            l = QLabel(tr("No app is playing audio – join a Discord call, then ⟳"))
             l.setObjectName("status")
             self.app_row.addWidget(l)
         self.app_row.addStretch(1)
@@ -1801,8 +2064,8 @@ class MainWindow(QWidget):
     def _style_app_button(b, a: AppInfo):
         dot = "  🟢" if a.active else ""
         b.setText(f"{a.label}{dot}")
-        b.setToolTip(f"{a.exe}\nPID {a.pid} (+ child processes)\n" +
-                     ("Playing audio now" if a.active else "Not playing audio right now"))
+        b.setToolTip(f"{a.exe}\nPID {a.pid} (+ {tr('child processes')})\n" +
+                     (tr("Playing audio now") if a.active else tr("Not playing audio right now")))
 
     def _selected_apps(self) -> list[AppInfo]:
         return [a for a in self.apps if a.name in self.app_buttons and self.app_buttons[a.name].isChecked()]
@@ -1818,7 +2081,7 @@ class MainWindow(QWidget):
     def _set_state(self, state: str):
         self.state = state
         self.running = state != "idle"
-        txt = {"idle": "▶  Start", "loading": "■  Loading…", "running": "■  Stop"}[state]
+        txt = {"idle": "▶  " + tr("Start"), "loading": "■  " + tr("Loading…"), "running": "■  " + tr("Stop")}[state]
         self.start_btn.setText(txt)
         self.start_btn.setProperty("running", "true" if state != "idle" else "false")
         self.start_btn.style().unpolish(self.start_btn)
@@ -1836,7 +2099,7 @@ class MainWindow(QWidget):
         self.refresh_apps()
         apps = self._selected_apps()
         if not apps:
-            QMessageBox.information(self, "AudioTranscriber", "Select at least one app (e.g. Discord) first.")
+            QMessageBox.information(self, "AudioTranscriber", tr("Select at least one app (e.g. Discord) first."))
             return
         self.s.last_apps = [a.name for a in apps]
         self.s.save()
@@ -1848,7 +2111,7 @@ class MainWindow(QWidget):
         except Exception as e:
             log.exception("start")
             self._set_state("idle")
-            QMessageBox.warning(self, "AudioTranscriber", f"Could not start:\n{e}")
+            QMessageBox.warning(self, "AudioTranscriber", tr("Could not start:") + f"\n{e}")
 
     def _create_engine(self, first_id, apps):
         eng = Engine(self.s,
@@ -1884,9 +2147,9 @@ class MainWindow(QWidget):
         self._dev_id = default_output_id()
         for c in caps:
             if not c.process_specific:
-                self._on_status("asr", f"⚠ Windows refused per-app capture for {c.app.label} – capturing ALL system audio")
+                self._on_status("asr", "⚠ " + tr("Windows refused per-app capture for {app} – capturing ALL system audio").format(app=c.app.label))
         if errors:
-            QMessageBox.warning(self, "AudioTranscriber", "Could not capture:\n" + "\n".join(errors))
+            QMessageBox.warning(self, "AudioTranscriber", tr("Could not capture:") + "\n" + "\n".join(errors))
         if not caps:
             self.stop_capture()
 
@@ -1896,7 +2159,7 @@ class MainWindow(QWidget):
         self._set_state("running")
         log.info("Ready in %.1fs", time.time() - self._load_t0)
         if self.isMinimized():
-            self.tray.showMessage("AudioTranscriber", "Listening", app_icon(), 1500)
+            self.tray.showMessage("AudioTranscriber", tr("Listening"), app_icon(), 1500)
 
     def stop_capture(self):
         """Stops listening and frees the GPU memory (Whisper + translator)."""
@@ -1910,8 +2173,8 @@ class MainWindow(QWidget):
                 eng.stop()
         threading.Thread(target=shutdown, daemon=True, name="shutdown").start()
         self._set_state("idle")
-        self._on_status("asr", "stopped – memory freed")
-        self._on_status("llm", "stopped – memory freed")
+        self._on_status("asr", tr("stopped – memory freed"))
+        self._on_status("llm", tr("stopped – memory freed"))
         self._on_status("spk", "")
 
     def _apply_models(self):
@@ -1920,7 +2183,7 @@ class MainWindow(QWidget):
             self.stop_capture()
             QTimer.singleShot(800, self.start_capture)
         else:
-            self._on_status("asr", "settings applied – used on next Start")
+            self._on_status("asr", tr("settings applied – used on next Start"))
 
     def _threshold(self, db):
         # dragging the marker switches to manual
@@ -1938,13 +2201,13 @@ class MainWindow(QWidget):
     # ---------------------------------------------------------------- engine events
     def _on_status(self, which, msg):
         if which == "asr":
-            self.st_asr.setText(f"Whisper: {msg}" if msg else "Whisper: idle")
+            self.st_asr.setText(f"Whisper: {tr(msg)}" if msg else "Whisper: " + tr("idle"))
         elif which == "spk":
-            self.st_spk.setText(f"Speakers: {msg}" if msg else "")
+            self.st_spk.setText(f"{tr('Speakers')}: {tr(msg)}" if msg else "")
         elif which == "upd":
-            self.st_spk.setText(msg)
+            self.st_spk.setText(tr(msg))
         else:
-            self.st_llm.setText(f"Translator: {msg}" if msg else "Translator: idle")
+            self.st_llm.setText(f"{tr('Translator')}: {tr(msg)}" if msg else tr("Translator") + ": " + tr("idle"))
 
     def _on_level(self, _app, db, speaking, threshold):
         self.meter.set_level(db, speaking)
@@ -1953,7 +2216,7 @@ class MainWindow(QWidget):
 
     def _on_metrics(self, k, v):
         if k == "model_switch":
-            msg = "It was lagging, so it switched to a lighter speech model."
+            msg = tr("It was lagging, so it switched to a lighter speech model.")
             self._on_status("asr", msg)
             self.tray.showMessage("AudioTranscriber", msg, app_icon(), 3000)
             return
@@ -1993,7 +2256,7 @@ class MainWindow(QWidget):
         people = self.registry.all()
         self.settings_panel.set_people([(p.id, self.registry.name(p.id), p.count(), bool(p.discord_id)) for p in people])
         n = len(people)
-        self.settings_panel.sp_count.setText(f"{n} voice{'s' if n != 1 else ''} known")
+        self.settings_panel.sp_count.setText(tr("Voices known: {n}").format(n=n))
 
     def _refresh_speakers(self):
         for l in self.lines.values():
@@ -2011,48 +2274,48 @@ class MainWindow(QWidget):
         l = card.line
         sid, reg = l.speaker_id, self.registry
         m = QMenu(self)
-        a = m.addAction(f"Rename “{reg.name(sid)}”…")
+        a = m.addAction(tr("Rename “{name}”…").format(name=reg.name(sid)))
         a.triggered.connect(lambda: self._rename(sid))
         sp_obj = reg.speakers.get(sid)
         if sp_obj is not None and sp_obj.discord_id and sp_obj.name_custom:
-            dn = m.addAction("Use the Discord name again")
+            dn = m.addAction(tr("Use the Discord name again"))
             dn.triggered.connect(lambda: (reg.use_discord_name(sid), self._refresh_speakers()))
         if l.speaker_unsure:
-            ok = m.addAction(f"Yes, this is {reg.name(sid)}")
+            ok = m.addAction(tr("Yes, this is {name}").format(name=reg.name(sid)))
             ok.triggered.connect(lambda: self._confirm(l))
-        sub = m.addMenu("This is actually…")
+        sub = m.addMenu(tr("This is actually…"))
         for sp in reg.all():
             if sp.id != sid:
-                act = sub.addAction(sp.name)
+                act = sub.addAction(reg.name(sp.id))
                 act.triggered.connect(lambda _=False, to=sp.id: self._reassign(l, to))
         sub.addSeparator()
-        new = sub.addAction("Someone new…")
+        new = sub.addAction(tr("Someone new…"))
         new.triggered.connect(lambda: self._new_person(l))
         m.addSeparator()
-        lk = m.addMenu("Always speaks…")
+        lk = m.addMenu(tr("Always speaks…"))
         cur = reg.lang_of(sid)
-        auto = lk.addAction("Detect automatically" + ("  ✓" if not cur else ""))
+        auto = lk.addAction(tr("Detect automatically") + ("  ✓" if not cur else ""))
         auto.triggered.connect(lambda: self._lock_lang(sid, ""))
         lk.addSeparator()
         for code in self.s.languages or list(LANGUAGES):
-            act = lk.addAction(f"{LANGUAGES.get(code, code)}" + ("  ✓" if cur == code else ""))
+            act = lk.addAction(lname(code) + ("  ✓" if cur == code else ""))
             act.triggered.connect(lambda _=False, c=code: self._lock_lang(sid, c))
-        ig = m.addAction("Show this person again" if reg.is_ignored(sid) else f"Ignore {reg.name(sid)}")
+        ig = m.addAction(tr("Show this person again") if reg.is_ignored(sid) else tr("Ignore {name}").format(name=reg.name(sid)))
         ig.triggered.connect(lambda: self._ignore(sid, not reg.is_ignored(sid)))
         m.addSeparator()
         others = [sp for sp in reg.all() if sp.id != sid]
         if others:
-            mg = m.addMenu(f"Merge “{reg.name(sid)}” into…")
+            mg = m.addMenu(tr("Merge “{name}” into…").format(name=reg.name(sid)))
             for sp in others:
-                act = mg.addAction(sp.name)
+                act = mg.addAction(reg.name(sp.id))
                 act.triggered.connect(lambda _=False, keep=sp.id: self._merge(keep, sid))
         m.addSeparator()
-        fg = m.addAction(f"Forget {reg.name(sid)}'s voice…")
+        fg = m.addAction(tr("Forget the voice of {name}…").format(name=reg.name(sid)))
         fg.triggered.connect(lambda: self._forget_one(sid))
         m.exec(card.spk.mapToGlobal(card.spk.rect().bottomLeft()))
 
     def _rename(self, sid):
-        name, ok = QInputDialog.getText(self, "Rename speaker", "Name:", text=self.registry.name(sid))
+        name, ok = QInputDialog.getText(self, tr("Rename speaker"), tr("Name:"), text=self.registry.name(sid))
         if ok and name.strip():
             self.registry.rename(sid, name)
             self._refresh_speakers()
@@ -2068,7 +2331,7 @@ class MainWindow(QWidget):
         self._refresh_speakers()
 
     def _new_person(self, l):
-        name, ok = QInputDialog.getText(self, "New speaker", "Name (optional):")
+        name, ok = QInputDialog.getText(self, tr("New speaker"), tr("Name (optional):"))
         if not ok:
             return
         l.speaker_id = self.registry.new_from(l.embs, l.speaker_id, name)
@@ -2084,7 +2347,7 @@ class MainWindow(QWidget):
 
     def _lock_lang(self, sid, code):
         self.registry.set_lang(sid, code)
-        self._on_status("spk", f"{self.registry.name(sid)}: " + (f"always {LANGUAGES.get(code, code)}" if code else "language detected automatically"))
+        self._on_status("spk", f"{self.registry.name(sid)}: " + (tr("always {lang}").format(lang=lname(code)) if code else tr("language detected automatically")))
 
     def _ignore(self, sid, on):
         self.registry.set_ignored(sid, on)
@@ -2104,7 +2367,7 @@ class MainWindow(QWidget):
 
     def _update_ignored(self):
         n = sum(1 for sp in self.registry.all() if sp.ignored)
-        self.settings_panel.ign_lab.setText(f"{n} {'person' if n == 1 else 'people'} ignored" if n else "Nobody ignored")
+        self.settings_panel.ign_lab.setText(tr("People ignored: {n}").format(n=n) if n else tr("Nobody ignored"))
         self.settings_panel.unign_btn.setEnabled(n > 0)
 
     # ---------------------------------------------------------------- hotkeys, pause, copy
@@ -2123,16 +2386,16 @@ class MainWindow(QWidget):
         self.paused = not self.paused
         self.engine.paused = self.paused
         self.pause_btn.setText("▶" if self.paused else "⏸")
-        self._on_status("asr", "paused – press Ctrl+Alt+P to continue" if self.paused else "listening")
-        self.tray.showMessage("AudioTranscriber", "Paused" if self.paused else "Listening again", app_icon(), 1200)
+        self._on_status("asr", tr("paused – press Ctrl+Alt+P to continue") if self.paused else tr("listening"))
+        self.tray.showMessage("AudioTranscriber", tr("Paused") if self.paused else tr("Listening again"), app_icon(), 1200)
 
     def _show_target(self):
         t = getattr(self.s, "target", "en")
         if t not in TARGETS:
             t = "en"
         self.target_btn.setText(f"→ {TARGETS[t]}")
-        self.target_btn.setToolTip(f"Translating into {TARGETS[t]}.\n"
-                                   "Click to pick another language (works while running, from the next sentence).")
+        self.target_btn.setToolTip(tr("Translating into {lang}.").format(lang=TARGETS[t]) + "\n" +
+                                   tr("Click to pick another language (works while running, from the next sentence)."))
         self._update_subtitle()
         for a in self.target_menu.actions():
             a.setChecked(a.data() == t)
@@ -2154,7 +2417,7 @@ class MainWindow(QWidget):
             self.s.llm_model = model
         else:
             self.s.llm_model = model
-            self._on_status("llm", f"{model} will be used on Start")
+            self._on_status("llm", tr("{model} will be used on Start").format(model=model))
         self.s.save()
         self._show_llm()
         try:
@@ -2175,7 +2438,7 @@ class MainWindow(QWidget):
         l = done[-1]
         who = f"{l.speaker_name}: " if l.speaker_id else ""
         QApplication.clipboard().setText(f"{who}{next((v for v in l.tr.values() if v), '')}".strip())
-        self.tray.showMessage("AudioTranscriber", "Last translation copied", app_icon(), 1200)
+        self.tray.showMessage("AudioTranscriber", tr("Last translation copied"), app_icon(), 1200)
 
     # ---------------------------------------------------------------- capture health (device changes)
     def _health(self):
@@ -2188,13 +2451,13 @@ class MainWindow(QWidget):
         import psutil
         dead = [c for c in self.captures if not c.alive() or not psutil.pid_exists(c.app.pid)]
         if changed or dead:
-            self.restart_captures("audio device changed" if changed else "capture stopped")
+            self.restart_captures(tr("audio device changed") if changed else tr("capture stopped"))
         elif not self.captures:
             # lost the app earlier (e.g. Discord restarted): try again every few seconds
             self._retry = getattr(self, "_retry", 0) + 1
             if self._retry >= 3:
                 self._retry = 0
-                self.restart_captures("looking for the app again")
+                self.restart_captures(tr("looking for the app again"))
 
     def restart_captures(self, why: str):
         eng = self.engine
@@ -2203,7 +2466,7 @@ class MainWindow(QWidget):
         self._recovering = True
         names = [c.app.name for c in self.captures] or list(self.s.last_apps)
         old, self.captures = self.captures, []
-        self._on_status("asr", f"{why} – reconnecting…")
+        self._on_status("asr", f"{why} – " + tr("reconnecting…"))
         log.info("Restarting capture: %s", why)
 
         def run():
@@ -2221,7 +2484,7 @@ class MainWindow(QWidget):
             for n in names:
                 a = current.get(n)
                 if not a:
-                    errors.append(f"{n}: not running")
+                    errors.append(f"{n}: " + tr("not running"))
                     continue
                 cap = AppCapture(a, self.s, on_utterance=eng.submit, on_level=self.bridge.level.emit)
                 try:
@@ -2232,7 +2495,9 @@ class MainWindow(QWidget):
             if caps:
                 self.bridge.captures.emit(eng, caps, [])
             self._recovering = False
-            self.bridge.status.emit("asr", "reconnected – listening" if caps else "the app is gone – waiting for it to come back")
+            if eng is self.engine:                       # not stopped meanwhile
+                self.bridge.status.emit("asr", tr("reconnected – listening") if caps
+                                        else tr("the app is gone – waiting for it to come back"))
         threading.Thread(target=run, daemon=True, name="recover").start()
 
     # ---------------------------------------------------------------- Discord call → start / stop by itself
@@ -2255,14 +2520,14 @@ class MainWindow(QWidget):
                 for n, b in self.app_buttons.items():
                     b.setChecked(n.lower() in {a.name.lower() for a in in_call} or n in self.s.last_apps)
                 self._auto_started = True
-                self.tray.showMessage("AudioTranscriber", "Discord call – listening", app_icon(), 2000)
+                self.tray.showMessage("AudioTranscriber", tr("Discord call – listening"), app_icon(), 2000)
                 self.start_capture()
         elif self.state == "running" and self._auto_started and self.s.auto_stop:
             self._call_gone = 0 if in_call else self._call_gone + 1
             if self._call_gone >= 20:                 # about a minute without the call
                 self._call_gone = 0
                 self._auto_started = False
-                self.tray.showMessage("AudioTranscriber", "Call ended – stopped", app_icon(), 2000)
+                self.tray.showMessage("AudioTranscriber", tr("Call ended – stopped"), app_icon(), 2000)
                 self.stop_capture()
 
     def _forget_selected(self):
@@ -2270,7 +2535,7 @@ class MainWindow(QWidget):
         if not ids:
             return
         names = ", ".join(self.registry.name(i) for i in ids)
-        if QMessageBox.question(self, "AudioTranscriber", f"Forget these voices?\n{names}\n\nEveryone else is kept.") != QMessageBox.Yes:
+        if QMessageBox.question(self, "AudioTranscriber", tr("Forget these voices?") + f"\n{names}\n\n" + tr("Everyone else is kept.")) != QMessageBox.Yes:
             return
         for sid in ids:
             self._forget_one(sid, ask=False)
@@ -2278,8 +2543,7 @@ class MainWindow(QWidget):
     def _forget_one(self, sid, ask: bool = True):
         name = self.registry.name(sid)
         if ask and QMessageBox.question(self, "AudioTranscriber",
-                                        f"Forget {name}'s voice?\nThe other people are kept. If {name} talks again, "
-                                        "they get a new name.") != QMessageBox.Yes:
+                                        tr("Forget the voice of {name}?\nThe other people are kept. If {name} talks again, they get a new name.").format(name=name)) != QMessageBox.Yes:
             return
         self.registry.delete(sid)
         for x in self.lines.values():                  # their lines no longer show a name
@@ -2290,10 +2554,10 @@ class MainWindow(QWidget):
                 if x.speaker_id == sid:
                     x.speaker_id, x.speaker_unsure = None, False
         self._refresh_speakers()
-        self._on_status("spk", f"{name}'s voice forgotten")
+        self._on_status("spk", tr("Voice of {name} forgotten").format(name=name))
 
     def forget_voices(self):
-        if QMessageBox.question(self, "AudioTranscriber", "Forget all saved voices?") == QMessageBox.Yes:
+        if QMessageBox.question(self, "AudioTranscriber", tr("Forget all saved voices?")) == QMessageBox.Yes:
             self.registry.forget_all()
             self._update_voice_count()
 
@@ -2330,7 +2594,7 @@ class MainWindow(QWidget):
 
     def export(self):
         if not self.lines:
-            QMessageBox.information(self, "AudioTranscriber", "Nothing to export yet.")
+            QMessageBox.information(self, "AudioTranscriber", tr("Nothing to export yet."))
             return
         TRANSCRIPTS_DIR.mkdir(parents=True, exist_ok=True)
         path = TRANSCRIPTS_DIR / f"transcript_{dt.datetime.now():%Y-%m-%d_%H-%M}.txt"
@@ -2345,7 +2609,7 @@ class MainWindow(QWidget):
                     if v:
                         f.write(f"  {k.upper()}: {v}\n")
                 f.write("\n")
-        QMessageBox.information(self, "AudioTranscriber", f"Saved to\n{path}")
+        QMessageBox.information(self, "AudioTranscriber", tr("Saved to") + f"\n{path}")
 
     # ---------------------------------------------------------------- overlay
     def _toggle_overlay(self, on):
@@ -2373,8 +2637,8 @@ class MainWindow(QWidget):
         dc = getattr(self, "discord", None)
         if dc is not None and dc.connected and dc.channel_id:
             n = len(dc.members())
-            parts.append(f"{n} {'person' if n == 1 else 'people'} in {dc.channel_name or 'the call'}")
-        parts.append(f"translating into {TARGETS.get(t, 'English')}")
+            parts.append(tr("In {place}: {n}").format(place=dc.channel_name or tr("the call"), n=n))
+        parts.append(tr("translating into {lang}").format(lang=TARGETS.get(t, 'English')))
         self.subtitle.setText(" · ".join(parts))
 
     def _sync_lock_btn(self):
@@ -2382,25 +2646,91 @@ class MainWindow(QWidget):
         if getattr(self, "_lock_shown", None) != locked:
             self._lock_shown = locked
             self.lock_btn.setIcon(rail_icon("lock" if locked else "unlock", TEXT if locked else MUTED))
-            self.lock_btn.setToolTip("Overlay locked: clicks go through to the game – click or Ctrl+Alt+L to unlock"
-                                     if locked else "Lock overlay (clicks go through to the game) – Ctrl+Alt+L")
+            self.lock_btn.setToolTip(tr("Overlay locked: clicks go through to the game – click or Ctrl+Alt+L to unlock")
+                                     if locked else tr("Lock overlay (clicks go through to the game) – Ctrl+Alt+L"))
 
     # ---------------------------------------------------------------- side panel / settings
     def _show_settings(self, on):
         self.settings_panel.setVisible(on)
-        self.side.setVisible(not on)
+        for w in (self.side, self.feed_scroll, self.live_top):
+            w.setVisible(not on)
+        self.title_lab.setText(tr("Settings") if on else tr("Live session"))
+        self.subtitle.setVisible(not on)
         self.live_btn.setChecked(not on)
         if on:
             self._update_voice_count()                 # fresh sample counts
 
     def _open_settings_at(self, w):
         self.set_btn.setChecked(True)
+        self.settings_panel.show_widget(w)
 
-        def go():
-            sc = self.settings_panel._scroll
-            y = w.mapTo(sc.widget(), QPointF(0, 0).toPoint()).y()
-            sc.verticalScrollBar().setValue(max(0, y - 40))
-        QTimer.singleShot(30, go)
+    # ---------------------------------------------------------------- interface language
+    def _set_language(self):
+        """The installer leaves lang.txt with the language picked there; otherwise the saved one (English by default)."""
+        f = ROOT / "lang.txt"
+        try:
+            code = f.read_text(encoding="utf-8").strip()
+            f.unlink()
+        except Exception:
+            code = ""
+        if code in i18n.CODES:
+            self.s.ui_lang = code
+            self.s.save()
+        elif self.s.ui_lang not in i18n.CODES:
+            self.s.ui_lang = "en"
+            self.s.save()
+        self._shown_lang = i18n.set_lang(self.s.ui_lang)
+        self._qt_tr = []
+        qcode = {"pt-BR": "pt_BR", "pt-PT": "pt_PT", "es-ES": "es", "es-419": "es"}.get(self.s.ui_lang, self.s.ui_lang)
+        try:                                            # Qt's own buttons (Yes / No / Cancel…)
+            from PySide6.QtCore import QTranslator, QLibraryInfo
+            path = QLibraryInfo.path(QLibraryInfo.TranslationsPath)
+            for name in (f"qtbase_{qcode}", f"qt_{qcode}"):
+                t = QTranslator(QApplication.instance())
+                if qcode != "en" and t.load(name, path):
+                    QApplication.instance().installTranslator(t)
+                    self._qt_tr.append(t)
+                    break
+        except Exception:
+            log.exception("Qt translations")
+
+    def _pick_language(self, code):
+        if not code or code == i18n.current():
+            return
+        self.s.ui_lang = code
+        self.s.save()
+        msg = QMessageBox(self)
+        msg.setWindowTitle("AudioTranscriber")
+        i18n.set_lang(code)                              # the question already in the new language
+        msg.setText(tr("The app restarts to switch the language.") +
+                    ("\n" + tr("Listening stops for a moment.") if self.state != "idle" else ""))
+        now = msg.addButton(tr("Restart now"), QMessageBox.AcceptRole)
+        msg.addButton(tr("Later"), QMessageBox.RejectRole)
+        i18n.set_lang(self._shown_lang)                  # the rest of the window stays as it is until the restart
+        msg.exec()
+        if msg.clickedButton() is now:
+            self._restart()
+        else:
+            self.settings_panel._sel(self.settings_panel.ui_lang, code)
+
+    def _restart(self):
+        import subprocess
+        self._restarting = True
+        upd = getattr(self, "_updater_state", None)
+        if upd and upd.get("zip"):                       # an update is waiting: it restarts the app itself
+            self.close()
+            return
+        args = [a for a in sys.argv[1:] if a not in ("--tray", "--restart")] + ["--restart"]
+        exe = sys.executable
+        if exe.lower().endswith("python.exe"):          # no console window
+            w = exe[:-10] + "pythonw.exe"
+            exe = w if Path(w).exists() else exe
+        try:
+            subprocess.Popen([exe, sys.argv[0], *args], cwd=str(ROOT), close_fds=True)
+        except Exception:
+            log.exception("restart")
+            return
+        self.close()
 
     def _update_people_panel(self):
         """Side panel: the people heard in this session (newest first), plus who else is in the Discord call."""
@@ -2414,7 +2744,7 @@ class MainWindow(QWidget):
         rows = []
         for sid in order[:8]:
             lang = self.registry.lang_of(sid) or self.registry.usual_lang(sid) or seen[sid]
-            rows.append((spk_color(sid), self.registry.name(sid), LANGUAGES.get(lang, lang), True))
+            rows.append((spk_color(sid), self.registry.name(sid), lname(lang), True))
         if self.discord is not None and self.discord.connected:
             for uid, names in self.discord.members().items():
                 sid = self.registry.by_discord(uid)
@@ -2422,7 +2752,7 @@ class MainWindow(QWidget):
                     continue
                 lang = (self.registry.usual_lang(sid) if sid else "") or ""
                 rows.append((spk_color(sid) if sid else DIM, self.registry.name(sid) if sid else self.discord.name(uid),
-                             LANGUAGES.get(lang, "in call") if lang else "in call", False))
+                             lname(lang) if lang else tr("in call"), False))
         while self.people_col.count():
             it = self.people_col.takeAt(0)
             w = it.widget()
@@ -2460,7 +2790,7 @@ class MainWindow(QWidget):
             self.chips["vram"].hide()
         self.chips["cpu"].setText(f"CPU {d['cpu']:.0f}%")
         self.chips["ram"].setText(f"RAM app {d['app_ram'] / gb:.1f} GB")
-        self.chips["ram"].setToolTip(f"AudioTranscriber + Ollama memory\nSystem: {d['ram_used'] / gb:.1f}/{d['ram_total'] / gb:.0f} GB")
+        self.chips["ram"].setToolTip(tr("AudioTranscriber + Ollama memory") + f"\n{tr('System')}: {d['ram_used'] / gb:.1f}/{d['ram_total'] / gb:.0f} GB")
         a, l = self.metrics["asr_ms"], self.metrics["llm_ms"]
         self.chips["lat"].setText(f"⏱ {a / 1000:.1f}s + {l / 1000:.1f}s")
         tot = (a + l) / 1000
@@ -2469,7 +2799,7 @@ class MainWindow(QWidget):
         self.chips["lat"].setToolTip("Last sentence: transcription time + time until the first Italian words")
         tl = self.tiles
         tl["lat"].setText(f"{tot:.1f}s" if (a or l) else "–")
-        tl["lat_box"].setToolTip(f"Last sentence: {a / 1000:.1f}s recognition + {l / 1000:.1f}s until the translation started")
+        tl["lat_box"].setToolTip(tr("Last sentence: {a} recognition + {b} until the translation started").format(a=f"{a / 1000:.1f}s", b=f"{l / 1000:.1f}s"))
         if "vram_used" in d:
             tl["gpu"].setText(f"{d['gpu']}%")
             tl["vram"].setText(f"{d['vram_used'] / gb:.1f}<span style='font-size:12px;color:{MUTED}'> / {d['vram_total'] / gb:.0f} GB</span>")
@@ -2478,7 +2808,7 @@ class MainWindow(QWidget):
             tl["vram"].setText("–")
         tl["cpu"].setText(f"{d['cpu']:.0f}%")
         tl["ram"].setText(f"{d['app_ram'] / gb:.1f}<span style='font-size:12px;color:{MUTED}'> GB</span>")
-        tl["ram_box"].setToolTip(f"AudioTranscriber + Ollama memory\nSystem: {d['ram_used'] / gb:.1f}/{d['ram_total'] / gb:.0f} GB")
+        tl["ram_box"].setToolTip(tr("AudioTranscriber + Ollama memory") + f"\n{tr('System')}: {d['ram_used'] / gb:.1f}/{d['ram_total'] / gb:.0f} GB")
         tl["lines"].setText(str(len(self.lines)))
         if self.settings_panel.isVisible() and self.s.translate_online:
             self.settings_panel.update_gem_usage()
@@ -2502,14 +2832,14 @@ class MainWindow(QWidget):
         self.s.discord_client_id = sp.dc_id.text().strip()
         self.s.discord_client_secret = sp.dc_secret.text().strip()
         if not self.s.discord_client_id or not self.s.discord_client_secret:
-            self._discord_status("paste the Client ID and the Client Secret first (see “How to set it up”)")
+            self._discord_status(tr("paste the Client ID and the Client Secret first (see “How to set it up”)"))
             return
         self.s.discord_enabled = True
         sp.dc_en.blockSignals(True)
         sp.dc_en.setChecked(True)
         sp.dc_en.blockSignals(False)
         self.s.save()
-        self._discord_status("connecting…")
+        self._discord_status(tr("connecting…"))
         self._discord_start()
 
     def _discord_toggle(self, on):
@@ -2525,7 +2855,7 @@ class MainWindow(QWidget):
         from .discord_rpc import forget_login
         forget_login()
         if self.discord is not None and self.s.discord_enabled:
-            self._discord_status("logged out – press Connect to authorize again")
+            self._discord_status(tr("logged out – press Connect to authorize again"))
             self.discord.stop()
 
     def _discord_kind(self, _i):
@@ -2534,7 +2864,8 @@ class MainWindow(QWidget):
         self._refresh_speakers()
 
     def _discord_status(self, msg):
-        self.settings_panel.dc_status.setText(msg[:1].upper() + msg[1:] if msg else "Off")
+        msg = tr(msg) if msg else ""
+        self.settings_panel.dc_status.setText(msg[:1].upper() + msg[1:] if msg else tr("Off"))
         self.settings_panel.dc_status.setToolTip(msg)
         if msg and msg != "off":
             self.st_spk.setText(f"Discord: {msg}")
@@ -2548,7 +2879,7 @@ class MainWindow(QWidget):
             for x in self.lines.values():
                 x.speaker_id, x.speaker_unsure = None, False
             if n:
-                self._on_status("spk", f"Discord linked – {n} old voices moved to speakers_before_discord.json")
+                self._on_status("spk", tr("Discord linked – old voices moved to speakers_before_discord.json: {n}").format(n=n))
         self._discord_members()
 
     def _discord_members(self):
@@ -2564,7 +2895,8 @@ class MainWindow(QWidget):
         if upd and upd.get("zip") and upd.get("apply"):
             # an update was downloaded: install it now instead of on the next start
             from . import updater as _u
-            _u._launch_helper(__import__("pathlib").Path(upd["zip"]))
+            # closed by the user: it updates and stays closed; a restart (language switch) opens it again
+            _u._launch_helper(Path(upd["zip"]), restart=bool(getattr(self, "_restarting", False)))
             upd["zip"] = None
         if self.discord is not None:
             self.discord.stop()

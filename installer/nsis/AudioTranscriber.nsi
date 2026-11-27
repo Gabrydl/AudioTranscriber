@@ -12,7 +12,7 @@ RequestExecutionLevel user
 SetCompressor /SOLID lzma
 
 !define APP        "AudioTranscriber"
-!define VERSION    "1.5.4"
+!define VERSION    "1.6.0"
 !define PUBLISHER  "Gabrydl"
 !define EXE        "AudioTranscriber.exe"
 !define REGKEY     "Software\AudioTranscriber"
@@ -63,31 +63,33 @@ Var RadioRepair
 Var RadioRemove
 Var BestDrive
 Var BestFree
+Var LangCode      ; interface language picked here, handed to the app (lang.txt)
+Var LangAsked     ; 1 = the language was picked in this run
 
 ; ---------------------------------------------------------------- pages
 !define MUI_PAGE_CUSTOMFUNCTION_PRE SkipIfRepair
-!define MUI_WELCOMEPAGE_TITLE "Welcome to ${APP} ${VERSION}"
-!define MUI_WELCOMEPAGE_TEXT "${APP} listens to the apps you choose (like Discord), writes down what people say and translates it live into Italian and English.$\r$\n$\r$\nEverything runs on this PC: no account, no cloud, nothing recorded.$\r$\n$\r$\nSetup downloads the speech and translation models (about 8 GB) and takes 10-20 minutes. If an earlier copy of ${APP} is found, its models are reused instead.$\r$\n$\r$\nClick Next to continue."
+!define MUI_WELCOMEPAGE_TITLE "$(WELCOME_TITLE)"
+!define MUI_WELCOMEPAGE_TEXT "$(WELCOME_TEXT)"
 !insertmacro MUI_PAGE_WELCOME
 
 Page custom MaintenancePage MaintenanceLeave
 
 !define MUI_PAGE_CUSTOMFUNCTION_PRE SkipIfRepair
-!define MUI_DIRECTORYPAGE_TEXT_TOP "${APP} will be installed in this folder. The models (about 8 GB) are stored here too, so pick a drive with enough free space."
+!define MUI_DIRECTORYPAGE_TEXT_TOP "$(DIR_TEXT)"
 !insertmacro MUI_PAGE_DIRECTORY
 
-!define MUI_INSTFILESPAGE_FINISHHEADER_TEXT "Setup complete"
-!define MUI_INSTFILESPAGE_FINISHHEADER_SUBTEXT "${APP} is ready."
-!define MUI_INSTFILESPAGE_ABORTHEADER_TEXT "Setup did not finish"
-!define MUI_INSTFILESPAGE_ABORTHEADER_SUBTEXT "Nothing is lost: open ${APP} and choose Repair to continue. Full log: setup.log"
+!define MUI_INSTFILESPAGE_FINISHHEADER_TEXT "$(FIN_HEAD)"
+!define MUI_INSTFILESPAGE_FINISHHEADER_SUBTEXT "$(FIN_SUB)"
+!define MUI_INSTFILESPAGE_ABORTHEADER_TEXT "$(ABORT_HEAD)"
+!define MUI_INSTFILESPAGE_ABORTHEADER_SUBTEXT "$(ABORT_SUB)"
 !insertmacro MUI_PAGE_INSTFILES
 
-!define MUI_FINISHPAGE_TITLE "${APP} is ready"
-!define MUI_FINISHPAGE_TEXT "Shortcuts are on your desktop and in the Start menu.$\r$\n$\r$\nIf something ever stops working, open Settings > Apps > ${APP} > Modify, or run this setup again and choose Repair."
+!define MUI_FINISHPAGE_TITLE "$(FIN_TITLE)"
+!define MUI_FINISHPAGE_TEXT "$(FIN_TEXT)"
 !define MUI_FINISHPAGE_RUN "$INSTDIR\${EXE}"
-!define MUI_FINISHPAGE_RUN_TEXT "Start ${APP} now"
-!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\README.txt"
-!define MUI_FINISHPAGE_SHOWREADME_TEXT "Show the README"
+!define MUI_FINISHPAGE_RUN_TEXT "$(RUN_TEXT)"
+!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\readme\README_$LangCode.txt"
+!define MUI_FINISHPAGE_SHOWREADME_TEXT "$(README_TEXT)"
 !define MUI_FINISHPAGE_SHOWREADME_NOTCHECKED
 !insertmacro MUI_PAGE_FINISH
 
@@ -95,7 +97,24 @@ Page custom MaintenancePage MaintenanceLeave
 !insertmacro MUI_UNPAGE_INSTFILES
 !insertmacro MUI_UNPAGE_FINISH
 
-!insertmacro MUI_LANGUAGE "English"
+; interface languages: the first screen asks, with the Windows language already selected
+!define MUI_LANGDLL_ALLLANGUAGES
+!define MUI_LANGDLL_WINDOWTITLE "${APP}"
+!define MUI_LANGDLL_INFO "Language / Lingua / Idioma / Sprache / Langue / Wika / Pinulongan / Jazyk / Język"
+!insertmacro MUI_LANGUAGEEX "lang" "English"
+!insertmacro MUI_LANGUAGEEX "lang" "Italian"
+!insertmacro MUI_LANGUAGEEX "lang" "PortugueseBR"
+!insertmacro MUI_LANGUAGEEX "lang" "Portuguese"
+!insertmacro MUI_LANGUAGEEX "lang" "Spanish"
+!insertmacro MUI_LANGUAGEEX "lang" "SpanishLatAm"
+!insertmacro MUI_LANGUAGEEX "lang" "German"
+!insertmacro MUI_LANGUAGEEX "lang" "French"
+!insertmacro MUI_LANGUAGEEX "lang" "Tagalog"
+!insertmacro MUI_LANGUAGEEX "lang" "Cebuano"
+!insertmacro MUI_LANGUAGEEX "lang" "Czech"
+!insertmacro MUI_LANGUAGEEX "lang" "Polish"
+!insertmacro MUI_RESERVEFILE_LANGDLL
+!include "strings.nsh"
 
 ; ---------------------------------------------------------------- init
 ; GetDrives callback: the fixed drive (not the Windows drive) with the most free space
@@ -140,6 +159,27 @@ Function .onInit
         ${EndIf}
     ${EndIf}
 
+    ; language: Repair keeps the one picked at install, otherwise ask (Windows language preselected)
+    ReadRegStr $0 HKCU "${REGKEY}" "Language"
+    ${If} $0 != ""
+        StrCpy $LANGUAGE $0
+    ${Else}
+        ; Spanish outside Spain -> Latin American Spanish (NSIS would pick Spain's)
+        System::Call 'kernel32::GetUserDefaultUILanguage() i .r1'
+        IntOp $2 $1 & 0x3FF
+        ${If} $2 == 0x0A
+        ${AndIf} $1 != 1034
+        ${AndIf} $1 != 3082
+            StrCpy $LANGUAGE 2058
+        ${EndIf}
+    ${EndIf}
+    StrCpy $LangAsked 0
+    ${If} $Repair != 1
+        !insertmacro MUI_LANGDLL_DISPLAY
+        StrCpy $LangAsked 1
+    ${EndIf}
+    StrCpy $LangCode "$(LANG_CODE)"
+
     ${If} $Installed == ""
         ; keep the big downloads off the Windows drive when another drive has room (15 GB+)
         StrCpy $BestFree 0
@@ -149,6 +189,13 @@ Function .onInit
         ${AndIf} $BestFree >= 15
             StrCpy $INSTDIR "$BestDrive${APP}"
         ${EndIf}
+    ${EndIf}
+FunctionEnd
+
+Function un.onInit
+    ReadRegStr $0 HKCU "${REGKEY}" "Language"
+    ${If} $0 != ""
+        StrCpy $LANGUAGE $0
     ${EndIf}
 FunctionEnd
 
@@ -174,18 +221,18 @@ Function MaintenancePage
     ${OrIf} $Repair == 1
         Abort
     ${EndIf}
-    !insertmacro MUI_HEADER_TEXT "${APP} is already installed" "In $Installed"
+    !insertmacro MUI_HEADER_TEXT "$(MAINT_TITLE)" "$(MAINT_SUB)"
     nsDialogs::Create 1018
     Pop $0
-    ${NSD_CreateLabel} 0 0 100% 24u "Choose what to do:"
+    ${NSD_CreateLabel} 0 0 100% 24u "$(CHOOSE)"
     Pop $0
-    ${NSD_CreateRadioButton} 10u 28u 100% 12u "Repair (recommended)"
+    ${NSD_CreateRadioButton} 10u 28u 100% 12u "$(REPAIR)"
     Pop $RadioRepair
-    ${NSD_CreateLabel} 24u 41u 90% 20u "Updates the program files and checks Python, packages, Ollama and every model. Downloads only what is missing. Settings and saved voices are kept."
+    ${NSD_CreateLabel} 24u 41u 90% 20u "$(REPAIR_DESC)"
     Pop $0
-    ${NSD_CreateRadioButton} 10u 70u 100% 12u "Uninstall"
+    ${NSD_CreateRadioButton} 10u 70u 100% 12u "$(UNINSTALL)"
     Pop $RadioRemove
-    ${NSD_CreateLabel} 24u 83u 90% 20u "Removes ${APP}. You can choose to keep the downloaded models for a later reinstall."
+    ${NSD_CreateLabel} 24u 83u 90% 20u "$(UNINSTALL_DESC)"
     Pop $0
     ${NSD_Check} $RadioRepair
     nsDialogs::Show
@@ -210,7 +257,7 @@ Function ${UN}WaitAppClosed
     Pop $2
     ${If} $1 != 0
     ${OrIf} $2 == 121
-        MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "${APP} is running.$\r$\n$\r$\nClose it (right-click its tray icon > Quit), then click Retry." /SD IDCANCEL IDRETRY check
+        MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "$(RUNNING)" /SD IDCANCEL IDRETRY check
         Abort
     ${EndIf}
 FunctionEnd
@@ -266,11 +313,11 @@ FunctionEnd
 ; Stop with a clear message. The program files stay, so Repair can continue later.
 !macro FAIL MSG
     DetailPrint ""
-    DetailPrint "ERROR: ${MSG}"
+    DetailPrint "$(ERROR) ${MSG}"
     SetDetailsView show
     Push "$INSTDIR\setup.log"
     Call DumpLog
-    MessageBox MB_OK|MB_ICONSTOP "${MSG}$\r$\n$\r$\nNothing is lost. Check your internet connection, then open ${APP} (or run this setup again) and choose Repair: it continues from where it stopped.$\r$\n$\r$\nFull log: $INSTDIR\setup.log" /SD IDOK
+    MessageBox MB_OK|MB_ICONSTOP "${MSG}$\r$\n$\r$\n$(FAIL_TAIL)" /SD IDOK
     Abort
 !macroend
 
@@ -310,7 +357,7 @@ Section "Install"
 
     ; ------------------------------------------------ 1. program files
     DetailPrint ""
-    DetailPrint "[1/8] Program files"
+    DetailPrint "$(S1)"
     SetOutPath "$INSTDIR"
     File "${SRC}\${EXE}"
     File "${SRC}\README.txt"
@@ -318,6 +365,10 @@ Section "Install"
     SetOutPath "$INSTDIR\app"
     RMDir /r "$INSTDIR\app\__pycache__"
     File "${SRC}\app\*.py"
+    SetOutPath "$INSTDIR\app\locales"
+    File "${SRC}\app\locales\*.txt"
+    SetOutPath "$INSTDIR\readme"
+    File "${SRC}\readme\*.txt"
     SetOutPath "$INSTDIR\assets"
     File "${SRC}\assets\*.*"
     SetOutPath "$INSTDIR"
@@ -328,13 +379,19 @@ Section "Install"
     ${EndIf}
     WriteUninstaller "$INSTDIR\Uninstall.exe"
 
-    CreateShortcut "$SMPROGRAMS\${APP}.lnk" "$INSTDIR\${EXE}" "" "$INSTDIR\${EXE}" 0 SW_SHOWNORMAL "" "Live voice transcription and translation"
-    CreateShortcut "$DESKTOP\${APP}.lnk" "$INSTDIR\${EXE}" "" "$INSTDIR\${EXE}" 0 SW_SHOWNORMAL "" "Live voice transcription and translation"
+    CreateShortcut "$SMPROGRAMS\${APP}.lnk" "$INSTDIR\${EXE}" "" "$INSTDIR\${EXE}" 0 SW_SHOWNORMAL "" "$(SHORTCUT)"
+    CreateShortcut "$DESKTOP\${APP}.lnk" "$INSTDIR\${EXE}" "" "$INSTDIR\${EXE}" 0 SW_SHOWNORMAL "" "$(SHORTCUT)"
     ReadRegStr $0 HKCU "${RUNKEY}" "${APP}"
     ${If} $0 != ""
         WriteRegStr HKCU "${RUNKEY}" "${APP}" '"$INSTDIR\${EXE}" --tray'
     ${EndIf}
     WriteRegStr HKCU "${REGKEY}" "InstallDir" "$INSTDIR"
+    WriteRegStr HKCU "${REGKEY}" "Language" "$LANGUAGE"
+    ${If} $LangAsked == 1                   ; picked in this setup: the app opens in that language
+        FileOpen $0 "$INSTDIR\lang.txt" w
+        FileWrite $0 "$LangCode"
+        FileClose $0
+    ${EndIf}
     WriteRegStr HKCU "${UNINSTKEY}" "DisplayName" "${APP}"
     WriteRegStr HKCU "${UNINSTKEY}" "DisplayVersion" "${VERSION}"
     WriteRegStr HKCU "${UNINSTKEY}" "Publisher" "${PUBLISHER}"
@@ -345,7 +402,7 @@ Section "Install"
     WriteRegStr HKCU "${UNINSTKEY}" "ModifyPath" '"$INSTDIR\Setup.exe" /REPAIR'
     WriteRegDWORD HKCU "${UNINSTKEY}" "NoRepair" 1
     WriteRegDWORD HKCU "${UNINSTKEY}" "EstimatedSize" 8800000
-    DetailPrint "    done"
+    DetailPrint "$(DONE)"
 
     ; environment for every program started below
     System::Call 'kernel32::SetEnvironmentVariableW(w "PIP_CACHE_DIR", w "$Drive\pip_cache")'
@@ -356,12 +413,12 @@ Section "Install"
 
     ; ------------------------------------------------ 2. Python
     DetailPrint ""
-    DetailPrint "[2/8] Python environment"
+    DetailPrint "$(S2)"
     StrCpy $Py ""
     StrCpy $PyArgs ""
     !insertmacro TRY_PY "$VPy" ""
     ${If} $Py != ""
-        DetailPrint "    The app's Python environment is working"
+        DetailPrint "$(PY_OK)"
     ${Else}
         !insertmacro TRY_PY "$Drive\py311\python.exe" ""
         !insertmacro TRY_PY "$Drive\Python311\python.exe" ""
@@ -373,66 +430,66 @@ Section "Install"
         !insertmacro TRY_PY "$WINDIR\py.exe" "-3.11"
         !insertmacro TRY_PY "$WINDIR\py.exe" "-3.12"
         ${If} $Py == ""
-            DetailPrint "    No suitable Python found - installing Python ${PYVER} to $Drive\Python311"
+            DetailPrint "$(PY_NONE)"
             nsExec::ExecToLog '"$SYSDIR\curl.exe" -L --fail -s -S -o "$TEMP\python-${PYVER}-amd64.exe" "https://www.python.org/ftp/python/${PYVER}/python-${PYVER}-amd64.exe"'
             Pop $0
             ${If} $0 != 0
-                !insertmacro FAIL "Python could not be downloaded."
+                !insertmacro FAIL "$(F_PYDL)"
             ${EndIf}
             ExecWait '"$TEMP\python-${PYVER}-amd64.exe" /quiet InstallAllUsers=0 TargetDir="$Drive\Python311" Include_launcher=0 PrependPath=0 Shortcuts=0 Include_test=0 Include_doc=0' $0
             Delete "$TEMP\python-${PYVER}-amd64.exe"
             !insertmacro TRY_PY "$Drive\Python311\python.exe" ""
             ${If} $Py == ""
-                !insertmacro FAIL "Python could not be installed. Install Python 3.11 from python.org, then choose Repair."
+                !insertmacro FAIL "$(F_PYINST)"
             ${EndIf}
         ${EndIf}
-        DetailPrint "    Using $Py $PyArgs"
-        DetailPrint "    Creating the app's private Python environment (.venv)"
+        DetailPrint "$(PY_USE) $Py $PyArgs"
+        DetailPrint "$(PY_VENV)"
         nsExec::ExecToLog '"$Py" $PyArgs -m venv --clear "$INSTDIR\.venv"'
         Pop $0
         ${If} $0 != 0
-            !insertmacro FAIL "The Python environment could not be created."
+            !insertmacro FAIL "$(F_VENV)"
         ${EndIf}
     ${EndIf}
 
     ; ------------------------------------------------ 3. earlier copy
     DetailPrint ""
-    DetailPrint "[3/8] Looking for an earlier copy to reuse"
-    !insertmacro TASK "reuse" "The earlier copy could not be reused."
+    DetailPrint "$(S3)"
+    !insertmacro TASK "reuse" "$(F_REUSE)"
 
     ; ------------------------------------------------ 4. packages
     DetailPrint ""
-    DetailPrint "[4/8] Python packages (about 1.5 - 2 GB, faster if already in $Drive\pip_cache)"
+    DetailPrint "$(S4)"
     nsExec::ExecToLog '"$VPy" -m pip install --upgrade --progress-bar off pip wheel'
     Pop $0
     nsExec::ExecToLog '"$VPy" -m pip install --progress-bar off -r "$INSTDIR\requirements.txt"'
     Pop $0
     ${If} $0 != 0
-        !insertmacro FAIL "Some Python packages could not be installed (see the lines above)."
+        !insertmacro FAIL "$(F_PIP)"
     ${EndIf}
 
     ; ------------------------------------------------ 5. GPU
     DetailPrint ""
-    DetailPrint "[5/8] Graphics card (CUDA libraries for Whisper)"
-    !insertmacro TASK "cuda" "The CUDA libraries could not be installed."
+    DetailPrint "$(S5)"
+    !insertmacro TASK "cuda" "$(F_CUDA)"
 
     ; ------------------------------------------------ 6. translator
     DetailPrint ""
-    DetailPrint "[6/8] Translator (Ollama + gemma3:4b, about 3.3 GB)"
-    !insertmacro TASK "ollama" "The translator (Ollama) could not be set up."
+    DetailPrint "$(S6)"
+    !insertmacro TASK "ollama" "$(F_OLLAMA)"
 
     ; ------------------------------------------------ 7. models
     DetailPrint ""
-    DetailPrint "[7/8] Speech and voice models (about 1.9 GB)"
-    !insertmacro TASK "models" "The speech or voice models could not be downloaded."
+    DetailPrint "$(S7)"
+    !insertmacro TASK "models" "$(F_MODELS)"
 
     ; ------------------------------------------------ 8. check
     DetailPrint ""
-    DetailPrint "[8/8] Final check"
-    !insertmacro TASK "check" "Some parts are still missing."
+    DetailPrint "$(S8)"
+    !insertmacro TASK "check" "$(F_CHECK)"
 
     DetailPrint ""
-    DetailPrint "${APP} is ready."
+    DetailPrint "$(READY)"
     Push "$INSTDIR\setup.log"
     Call DumpLog
 SectionEnd
@@ -448,6 +505,8 @@ Section "Uninstall"
     Delete "$INSTDIR\setup.log"
     RMDir /r "$INSTDIR\app"
     RMDir /r "$INSTDIR\assets"
+    RMDir /r "$INSTDIR\readme"
+    Delete "$INSTDIR\lang.txt"
 
     Delete "$SMPROGRAMS\${APP}.lnk"
     Delete "$DESKTOP\${APP}.lnk"
@@ -455,7 +514,7 @@ Section "Uninstall"
     DeleteRegKey HKCU "${UNINSTKEY}"
     DeleteRegKey HKCU "${REGKEY}"
 
-    MessageBox MB_YESNO|MB_ICONQUESTION "Also delete the downloaded models, the Python environment, your settings and saved voices (about 8 GB)?$\r$\n$\r$\nChoose No to keep them for a later reinstall." /SD IDNO IDNO keep
+    MessageBox MB_YESNO|MB_ICONQUESTION "$(UN_ASK)" /SD IDNO IDNO keep
         RMDir /r "$INSTDIR\.venv"
         RMDir /r "$INSTDIR\models"
         RMDir /r "$INSTDIR\ollama_models"

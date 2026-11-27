@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import logging
+from .i18n import tr
 import os
 import re
 import subprocess
@@ -67,8 +68,9 @@ def _download(url: str, dest: Path, progress):
                 progress(int(got * 100 / total))
 
 
-def _launch_helper(zip_path: Path):
-    """Waits for this process to end, unpacks the zip over ROOT (keeping user data) and restarts the app."""
+def _launch_helper(zip_path: Path, restart: bool = True):
+    """Waits for this process to end, unpacks the zip over ROOT (keeping user data) and restarts the app
+    (restart=False: the user closed the app, so it stays closed after the update)."""
     tmp = zip_path.parent
     ps = tmp / "update.ps1"
     q = lambda s: "'" + str(s).replace("'", "''") + "'"  # noqa: E731
@@ -88,8 +90,10 @@ def _launch_helper(zip_path: Path):
         "if (($oldReq -ne $newReq) -and (Test-Path $py)) { & $py -m pip install -r (Join-Path $dst 'requirements.txt') | Out-Null }",
         "Get-ChildItem -LiteralPath $dst -Filter '*.bat' | Remove-Item -Force -ErrorAction SilentlyContinue",
         "$exe = Join-Path $dst 'AudioTranscriber.exe'",
-        "if (Test-Path $exe) { Start-Process -FilePath $exe -WorkingDirectory $dst }",
-        "else { Start-Process -FilePath (Join-Path $dst '.venv\\Scripts\\pythonw.exe') -ArgumentList ('\"' + (Join-Path $dst 'app\\main.py') + '\"') -WorkingDirectory $dst }",
+        *([
+            "if (Test-Path $exe) { Start-Process -FilePath $exe -WorkingDirectory $dst }",
+            "else { Start-Process -FilePath (Join-Path $dst '.venv\\Scripts\\pythonw.exe') -ArgumentList ('\"' + (Join-Path $dst 'app\\main.py') + '\"') -WorkingDirectory $dst }",
+        ] if restart else []),
         "Start-Sleep -Seconds 2",
         "Remove-Item -Recurse -Force $tmp -ErrorAction SilentlyContinue",
     ]), encoding="utf-8")
@@ -127,7 +131,7 @@ def start(qapp, window):
 
     def on_found(ver, url):
         state["ver"] = ver
-        say(f"Downloading update {ver}…")
+        say(tr("Downloading update {v}…").format(v=ver))
         tmp = Path(tempfile.mkdtemp(prefix="at-upd-"))
         zip_path = tmp / "update.zip"
 
@@ -146,12 +150,13 @@ def start(qapp, window):
         state["zip"] = None
         log.info("updating to %s", state["ver"])
         try:
-            window.tray.showMessage("AudioTranscriber", f"Updating to {state['ver']} – back in a few seconds", window.windowIcon(), 3000)
+            window.tray.showMessage("AudioTranscriber", tr("Updating to {v} – back in a few seconds").format(v=state['ver']), window.windowIcon(), 3000)
         except Exception:
             pass
         _launch_helper(Path(z))
         try:
             window.s.save()
+            window.close()            # stops Discord, the overlay and the tray icon cleanly before the swap
         except Exception:
             pass
         qapp.quit()
@@ -160,10 +165,10 @@ def start(qapp, window):
     def on_done(path):
         state["zip"] = path
         if not busy():
-            say(f"Update {state['ver']} ready – restarting…")
+            say(tr("Update {v} ready – restarting…").format(v=state['ver']))
             QTimer.singleShot(1500, lambda: apply_now() if not busy() else None)
         else:
-            say(f"Update {state['ver']} ready – it installs when you press Stop")
+            say(tr("Update {v} ready – it installs when you press Stop").format(v=state['ver']))
         # wait for the end of the session (Stop) if it was running
         t = QTimer(window)
         t.timeout.connect(lambda: apply_now() if (state.get("zip") and not busy()) else None)
@@ -173,7 +178,7 @@ def start(qapp, window):
 
     def on_failed(msg):
         log.warning("update download failed: %s", msg)
-        say("Update could not be downloaded – it retries next time the app opens")
+        say(tr("Update could not be downloaded – it retries next time the app opens"))
 
     b.found.connect(on_found)
     b.done.connect(on_done)

@@ -1,4 +1,4 @@
-"""AudioTranscriber – live per-app voice transcription + translation (Italiano / English)."""
+"""AudioTranscriber – live per-app voice transcription + translation."""
 from __future__ import annotations
 
 import logging
@@ -45,6 +45,15 @@ def main():
     # one copy only: opening it again just brings the running window to the front
     from PySide6.QtNetwork import QLocalServer, QLocalSocket
     key = "AudioTranscriber-" + os.environ.get("USERNAME", "user")
+    if "--restart" in sys.argv:          # language switch: wait for the old window to close first
+        import time
+        for _ in range(40):
+            p_ = QLocalSocket()
+            p_.connectToServer(key)
+            if not p_.waitForConnected(150):
+                break
+            p_.disconnectFromServer()
+            time.sleep(0.25)
     probe = QLocalSocket()
     probe.connectToServer(key)
     if probe.waitForConnected(400):
@@ -90,7 +99,8 @@ def main():
     except Exception:
         logging.exception("update check could not start")
     if "--tray" in sys.argv:          # started with Windows: wait in the tray
-        w.tray.showMessage("AudioTranscriber", "Ready in the tray", app_icon(), 1500)
+        from app.i18n import tr
+        w.tray.showMessage("AudioTranscriber", tr("Ready in the tray"), app_icon(), 1500)
     else:
         w.show()
     return app.exec()

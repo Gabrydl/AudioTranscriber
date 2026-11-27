@@ -1,1 +1,1 @@
-VERSION = "1.5.4"  # set by the release build
+VERSION = "1.6.0"  # set by the release build

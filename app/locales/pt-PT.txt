@@ -1,0 +1,363 @@
+1|clique em “Autorizar” no Discord…
+2|ligado · fora de uma chamada de voz
+3|ligado · em {place}: {n}
+4|a chamada
+5|à espera do Discord…
+6|a voltar a ligar…
+7|a iniciar o Ollama…
+8|a carregar '{name}'…
+9|'{name}' pronto no CPU ({t})
+10|a carregar {m}…
+11|{m} pronto ({where})
+12|com atraso ({t}) – a mudar de {a} para {b}…
+13|tradução indisponível – não foi possível iniciar o Ollama
+14|O Ollama não está a correr – só transcrição (tradução desligada)
+15|A transferir o modelo de tradução {m} (só uma vez)…
+16|reconhecimento de vozes indisponível
+17|falha ao carregar
+18|online (Gemini) – tradutor da placa gráfica desligado
+19|A transferir '{name}' (só uma vez)…
+20|'{name}' pronto (já carregado)
+21|'{name}' pronto na GPU ({t})
+22|a GPU falhou – a usar o CPU
+23|{m} não cabe todo na placa – a dividi-lo com o CPU…
+24|erro de transcrição
+25|a mudar para {m}…
+26|o tradutor parou – a reiniciar o Ollama…
+27|Não foi possível transferir {m}
+28|não foi possível carregar {m}
+29|{gb} GB na placa
+30|A transferir {m}
+31|Pronto na área de notificação
+32|reconhecimento de vozes pronto (modelos de voz: {n})
+33|Pessoa {n}
+34|a transferência falhou, a tentar de novo ({a}/{b})…
+35|a transferir {p} (só uma vez)
+36|modelo de voz
+37|modelo de voz {k} indisponível – a usar os outros
+38|Volume em direto da aplicação escolhida.\nArraste a linha branca para cima ou para baixo: o som acima dela conta como fala.
+39|FALA
+40|Quem disse isto – clique para mudar o nome ou corrigir
+41|DEDUZIDO DO CONTEXTO
+42|a traduzir…
+43|Bloquear
+44|Bloquear: os cliques passam para o jogo (Ctrl+Alt+L)
+45|GPU: o mais rápido, os modelos têm de caber na placa gráfica (se um não couber, é dividido automaticamente).\nMisto: o tradutor usa a placa gráfica até onde couber e o CPU para o resto.\nSó CPU: funciona sem placa gráfica, muito mais lento.
+46|Detetor de voz (ignora ruídos e cliques)
+47|Um detetor de fala decide onde a frase começa e acaba, não só o volume.\nOs microfones com ruído já não deixam a frase aberta, os cliques não viram linhas falsas.\nAplica-se a partir do próximo Iniciar.
+48|Nomes, termos de jogo, calão – um por linha ou separados por vírgulas\nex.: Gabry, War Thunder, Bismarck, GG
+49|Termos de League of Legends
+50|Campeões, feitiços, itens, runas e calão (os nomes da Riot em todas as línguas).\nReconhecidos melhor e mantidos como a palavra inglesa do jogo nas traduções:\nFlash continua Flash, Hexflash continua Hexflash, "destello" passa a Flash.
+51|Redução de ruído (zumbido, chiado, microfones fracos)
+52|Limpeza de ruído na placa gráfica
+53|Limpa vozes com muito ruído na placa gráfica; usa o CPU quando a placa não consegue.
+54|Mostrar a cinzento as palavras incertas
+55|Saltar a verificação de língua para quem tem língua conhecida
+56|Mais rápido: quando a língua de uma pessoa é certa, a passagem separada de língua é saltada.
+57|Traduzir + corrigir palavras mal ouvidas
+58|Placa gráfica – local, funciona offline
+59|Online – Gemini, quando há internet
+60|O modelo de tradução corre no seu PC (Ollama). Nada sai do PC.
+61|Quem traduz é a API Gemini da Google: mais rápida e inteligente do que cabe numa placa de 8 GB.\nAs duas marcadas: primeiro online, a placa gráfica assume quando o online não responde\n(sem internet, limite gratuito diário atingido, demasiado lento).
+62|Mais leve = menos memória gráfica e mais rápido · mais pesado = melhores traduções.
+63|Muda logo, também enquanto está a correr. Os modelos em falta são transferidos automaticamente.
+64|Chave da API Gemini (gratuita)
+65|Chave gratuita
+66|Não traduzir linhas que já estão na língua da tradução
+67|Frases curtas de imediato (gg, ok, espera…) sem o tradutor
+68|Reconhecer quem está a falar
+69|Lembrar as vozes (guardadas só neste PC)
+70|Aprender a língua de cada pessoa
+71|Depois de algumas linhas sabe a língua que cada pessoa costuma falar, por isso frases curtas ou\npouco claras já não são ouvidas na língua errada.\nUma mudança clara para outra língua continua a ser reconhecida.
+72|Ctrl+clique: escolher várias · Shift+clique: escolher um intervalo · Ctrl+A: todas\nA tecla Delete ou "Esquecer selecionadas" remove as pessoas escolhidas
+73|Esquecer selecionadas
+74|Esquecer todas as vozes
+75|Mostrar todos outra vez
+76|Esquerda: duas pessoas são juntadas mais vezes · Direita: uma pessoa é dividida mais vezes
+77|Nomes e quem está a falar a partir do Discord
+78|Usa a ligação local do próprio Discord (a aplicação Discord neste PC) – nenhum bot entra\nnos seus servidores. Cada voz fica ligada à conta Discord da pessoa, por isso os nomes estão\ncertos desde a primeira frase e mantêm-se entre sessões.
+79|Client ID (de discord.com/developers)
+80|Client Secret
+81|Ligar
+82|Como configurar
+83|Terminar sessão
+84|Desligado
+85|Começar a ouvir quando começa uma chamada do Discord
+86|Parar quando a chamada acaba (liberta a GPU)
+87|Texto original no feed (desligado = só a tradução)
+88|Mostrar o texto original no overlay
+89|Hora à frente de cada linha
+90|Quando o overlay está bloqueado (os cliques passam) desaparece após estes segundos de silêncio. 0 = nunca.
+91|Atalhos globais (funcionam dentro dos jogos)
+92|Ctrl+Alt+S iniciar/parar · Ctrl+Alt+P pausa · Ctrl+Alt+C copiar a última tradução\nCtrl+Alt+O overlay sim/não · Ctrl+Alt+L bloquear/desbloquear o overlay (cliques passam)
+93|Iniciar com o Windows (na área de notificação)
+94|Voltar a ligar quando mudam os auscultadores / dispositivo
+95|Mudar para um modelo mais leve quando houver atraso
+96|Exportar .txt
+97|Limpar o feed
+98|Nomes do Discord – configuração (uma vez, cerca de 2 minutos)
+99|<b>1.</b> Abra <b>discord.com/developers/applications</b> no navegador e inicie sessão.<br><b>2.</b> <b>New Application</b> → dê-lhe o nome <i>AudioTranscriber</i> → Create.<br><b>3.</b> No menu à esquerda <b>OAuth2</b>: copie o <b>Client ID</b>. Clique em <b>Reset Secret</b> e copie o <b>Client Secret</b>.<br><b>4.</b> Ainda em OAuth2 → <b>Redirects</b> → <b>Add Redirect</b>: <code>http://localhost</code> → <b>Save Changes</b>.<br><b>5.</b> Cole aqui os dois códigos, marque <i>Nomes e quem está a falar a partir do Discord</i> e carregue em <b>Ligar</b>.<br><b>6.</b> O Discord mostra uma janela: clique em <b>Autorizar</b>.<br><br>Pronto – volta a ligar-se sozinho sempre. Os códigos e a sessão ficam só neste PC (settings.json e discord_token.json).
+100|As duas: primeiro online, a placa gráfica quando o online não responde.
+101|Só online: se não responder, as linhas ficam sem tradução.
+102|Gemini – chave gratuita (1 minuto)
+103|<b>1.</b> Abra <b>aistudio.google.com/apikey</b> e inicie sessão com uma conta Google.<br><b>2.</b> Clique em <b>Create API key</b> e copie a chave.<br><b>3.</b> Cole-a aqui. Fica neste PC (settings.json).<br><br>O <b>Gemma 3 27B</b> tem a maior quota gratuita diária (cerca de 14 400 frases). Gemini Flash-Lite / Flash são mais inteligentes, mas a quota gratuita deles é pequena.<br>No plano gratuito a Google pode usar o que é enviado para melhorar os seus produtos; com a faturação ativada, não.
+104|junta mais
+105|Em direto – a conversa
+106|Pessoas – nomes, vozes, Discord
+107|Palavras a conhecer – nomes, termos de jogo, calão
+108|Overlay por cima do jogo – Ctrl+Alt+O
+109|Bloquear o overlay (os cliques passam para o jogo) – Ctrl+Alt+L
+110|Limpar a conversa toda (também o overlay)
+111|Definições
+112|Sessão em direto
+113|Auto
+114|Limiar automático: acompanha o ruído de fundo de cada pessoa\n(ajuda com microfones com chiado / ruído). Arraste a linha para o ajustar à mão.
+115|Pausar / retomar a escuta – Ctrl+Alt+P\n(os modelos continuam carregados, nada é transcrito)
+116|OUVIR
+117|Atualizar a lista de aplicações
+118|Escolha uma aplicação acima (o Discord é escolhido automaticamente) e carregue em Iniciar.\nAs linhas aparecem aqui enquanto as pessoas falam – o que foi dito e a tradução.
+119|DESEMPENHO
+120|PESSOAS
+121|Os nomes aparecem aqui enquanto as pessoas falam.
+122|Mostrar o overlay no jogo
+123|Mover o overlay
+124|Desbloqueia o overlay para o poder arrastar; volta a bloquear-se sozinho quando o larga
+125|Mostrar a janela
+126|Overlay sim/não
+127|Sair
+128|parado – memória libertada
+129|Estava com atraso, por isso mudou para um modelo de fala mais leve.
+130|Na verdade é…
+131|Alguém novo…
+132|Fala sempre…
+133|Mudar o nome da pessoa
+134|Nome:
+135|Nova pessoa
+136|Nome (opcional):
+137|Última tradução copiada
+138|Reiniciar agora
+139|Mais tarde
+140|a ligar…
+141|tradução indisponível – o Ollama está a correr?
+142|Arraste para mover · canto para redimensionar
+143|As atualizações são verificadas quando a aplicação abre.
+144|Cole primeiro uma chave.
+145|divide mais
+146|equilibrado
+147|O overlay esconde-se no silêncio: nunca
+148|Iniciar
+149|inativo
+150|Nenhuma aplicação está a tocar áudio – entre numa chamada do Discord e depois ⟳
+151|Escolha primeiro pelo menos uma aplicação (ex.: Discord).
+152|A ouvir
+153|definições aplicadas – usadas no próximo Iniciar
+154|Usar outra vez o nome do Discord
+155|Detetar automaticamente
+156|Mostrar esta pessoa outra vez
+157|Ninguém ignorado
+158|em pausa – carregue em Ctrl+Alt+P para continuar
+159|a ouvir
+160|Em pausa
+161|A ouvir outra vez
+162|Clique para escolher outra língua (funciona enquanto está a correr, a partir da frase seguinte).
+163|Esquecer todas as vozes guardadas?
+164|Ainda não há nada para exportar.
+165|Guardado em
+166|A aplicação reinicia para mudar a língua.
+167|Memória do AudioTranscriber + Ollama
+168|cole primeiro o Client ID e o Client Secret (veja “Como configurar”)
+169|sessão terminada – carregue em Ligar para autorizar outra vez
+170|Clique para mudar o nome ou corrigir
+171|online
+172|esperou {a} · primeiras palavras {b} · concluído {c}
+173|Confiança do reconhecimento {p}%
+174|Palavras a cinzento: o reconhecedor não tinha a certeza delas
+175|Avançado
+176|Aplicar
+177|Carrega os modelos escolhidos (também enquanto está a correr).
+178|Correr em
+179|Nome mostrado
+180|Usadas hoje: {used} de cerca de {lim} gratuitas
+181|Usadas hoje: {used}
+182|repõe às 09:00
+183|Pausa que termina uma frase: {ms} ms
+184|Separação das vozes: {side} ({v})
+185|Opacidade do fundo do overlay: {v}%
+186|Tamanho do texto do overlay: {v}px
+187|Opacidade do texto do overlay: {v}%
+188|…quando uma frase demora mais de {v} s
+189|Linhas do overlay: {v}
+190|Língua da aplicação
+191|Atraso
+192|RAM da aplicação
+193|Linhas
+194|Tradutor
+195|A tocar áudio agora
+196|Não está a tocar áudio agora
+197|A carregar…
+198|Parar
+199|Vozes conhecidas: {n}
+200|Mudar o nome de “{name}”…
+201|Esquecer a voz de {name}…
+202|língua detetada automaticamente
+203|o dispositivo de áudio mudou
+204|captura parada
+205|novamente ligado – a ouvir
+206|a aplicação desapareceu – à espera que volte
+207|Chamada do Discord – a ouvir
+208|Todos os outros são mantidos.
+209|Voz de {name} esquecida
+210|a traduzir para {lang}
+211|Overlay bloqueado: os cliques passam para o jogo – clique ou Ctrl+Alt+L para desbloquear
+212|Última frase: {a} de reconhecimento + {b} até a tradução começar
+213|incerto
+214|{name} – clique para mudar o nome ou corrigir
+215|placa gráfica
+216|Ouvido: “{text}”
+217|Modelo de fala
+218|Maior é mais preciso, menor é mais rápido.
+219|Línguas a reconhecer
+220|Só as marcadas são ouvidas.
+221|Frases
+222|Quando uma frase começa e acaba.
+223|Palavras a conhecer
+224|Usadas pelo reconhecedor e pelo tradutor, para que estas palavras saiam certas.
+225|Onde corre
+226|As duas marcadas: primeiro online, a placa gráfica como reserva.
+227|Modelo na placa gráfica
+228|Corre neste PC com o Ollama.
+229|Online – Gemini
+230|O tradutor da Google, usado quando há internet.
+231|Vozes
+232|Clique num nome em qualquer linha para lhe mudar o nome ou corrigir a pessoa – cada correção torna-o mais preciso.
+233|Pessoas conhecidas
+234|Ctrl ou Shift + clique para escolher várias.
+235|Pessoas ignoradas
+236|Clique num nome em qualquer linha para ignorar essa pessoa ou fixar a língua que fala sempre.
+237|Ligação
+238|Usa a aplicação Discord neste PC – nenhum bot entra nos seus servidores.
+239|Nomes
+240|Que nome do Discord aparece em cada linha. Um nome escrito por si é mantido.
+241|Chamadas
+242|Iniciar e parar junto com as suas chamadas do Discord.
+243|Feed em direto
+244|As linhas desta janela.
+245|Texto do overlay
+246|O que o overlay por cima do jogo mostra.
+247|Aspeto do overlay
+248|Fica por cima dos jogos em modo janela ou sem margens (não em ecrã inteiro exclusivo).
+249|Atalhos
+250|Também no botão da bandeira na barra à esquerda. A aplicação reinicia para mudar.
+251|Windows
+252|Fiabilidade
+253|Mantém tudo a correr sozinho.
+254|Transcrição
+255|Nada é guardado se não o exportar.
+256|ainda sem voz
+257|amostras de voz: {n}
+258|O overlay esconde-se no silêncio: após {v} s (quando bloqueado)
+259|processos filhos
+260|Não foi possível iniciar:
+261|Não foi possível capturar:
+262|Sim, é {name}
+263|Ignorar {name}
+264|Juntar “{name}” a…
+265|Pessoas ignoradas: {n}
+266|{model} será usado ao Iniciar
+267|a procurar a aplicação outra vez
+268|Chamada terminada – parado
+269|Esquecer estas vozes?
+270|Em {place}: {n}
+271|A escuta para por um momento.
+272|Sistema
+273|Versão {v}
+274|Esconder o overlay
+275|sempre {lang}
+276|A traduzir para {lang}.
+277|não está a correr
+278|Esquecer a voz de {name}?\nAs outras pessoas são mantidas. Se {name} voltar a falar, recebe um nome novo.
+279|na chamada
+280|Discord ligado – vozes antigas movidas para speakers_before_discord.json: {n}
+281|Mais opções: {n}
+282|O Windows recusou a captura por aplicação de {app} – a capturar TODO o áudio do sistema
+283|Pessoas
+284|Semelhança da voz {p}%
+285|Esperou {q} · reconhecimento {w} · vozes +{v}
+286|dito às {t}
+287|Não foi possível transferir a atualização – tenta outra vez quando a aplicação abrir
+288|A transferir a atualização {v}…
+289|A atualizar para {v} – de volta dentro de segundos
+290|Atualização {v} pronta – a reiniciar…
+291|Atualização {v} pronta – instala-se quando carregar em Parar
+292|Português
+293|Espanhol
+294|Alemão
+295|Tagalo
+296|Francês
+297|Inglês
+298|Checo
+299|Polaco
+300|Italiano
+301|Bisaya (Cebuano)
+302|precisão máxima
+303|precisão máxima · ~3 GB VRAM (1,7 GB ao lado de gemma3:12b) · mais lento
+304|rápido e muito bom
+305|rápido e muito bom · ~1,6 GB VRAM
+306|bom
+307|bom · ~1,5 GB
+308|leve
+309|leve · ~0,8 GB
+310|mínimo
+311|mínimo · ~0,3 GB
+312|GPU – tudo na placa gráfica (o mais rápido)
+313|Misto – placa gráfica + CPU (para modelos maiores do que a placa)
+314|Só CPU – sem placa gráfica (lento)
+315|Leve – qwen2.5:3b
+316|~2,5 GB de memória gráfica
+317|Leve – qwen2.5:3b · ~2,5 GB de memória gráfica · o mais rápido
+318|Médio – gemma3:4b
+319|~4 GB de memória gráfica
+320|Médio – gemma3:4b · ~4 GB de memória gráfica · rápido, bom
+321|Pesado – gemma3:12b
+322|~8 GB de memória gráfica
+323|Pesado – gemma3:12b · ~8 GB de memória gráfica · o melhor, 10–20 s em placas de 8 GB
+324|Gemma 3 27B
+325|Gemma 3 27B – gratuito, cerca de 14 400 frases por dia
+326|Gemini Flash-Lite
+327|Gemini Flash-Lite – mais rápido/inteligente, limite gratuito diário pequeno
+328|Gemini Flash
+329|Gemini Flash – o mais inteligente, limite gratuito diário muito pequeno
+330|Reconhecimento
+331|Como a fala é ouvida e passada a texto
+332|Tradução
+333|Onde e como as linhas são traduzidas
+334|Pessoas
+335|Quem está a falar: vozes, nomes, pessoas ignoradas
+336|Discord
+337|Nomes e chamadas diretamente da aplicação Discord
+338|Overlay e ecrã
+339|O feed em direto e o overlay por cima do jogo
+340|Aplicação
+341|Língua, Windows, fiabilidade e atualizações
+342|Nome a mostrar
+343|Alcunha no servidor
+344|@utilizador
+345|Client Secret em falta - cole-o em Definições > Discord
+346|adicione http://localhost em OAuth2 > Redirects
+347|verifique o Client Secret
+348|O início de sessão no Discord falhou
+349|O Discord recusou o Client ID ({why}) - verifique-o nas Definições
+350|o acesso não foi permitido no Discord
+351|não foi possível transferir {m} – a continuar no turbo (verifique a ligação)
+352|tradução indisponível – o tradutor online não respondeu
+353|{m} transferido – carregue em Parar e Iniciar para o usar
+354|{m} transferido – escolha-o em Definições > Tradução
+355|a transferir {m} em segundo plano (usado a partir do próximo Iniciar)
+356|não foi possível transferir {m} – tenta outra vez no próximo Iniciar
+357|{m} pronto · a transferir {x} em segundo plano
+358|sem resposta (internet?)
+359|a usar a placa gráfica
+360|limite gratuito diário atingido (repõe às 09:00)
+361|demasiados pedidos por minuto
+362|chave da API ou modelo recusados – verifique as Definições
+363|erro da Google {c}

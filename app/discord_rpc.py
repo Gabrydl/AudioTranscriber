@@ -14,6 +14,8 @@ from __future__ import annotations
 
 import json
 import logging
+from .i18n import tr
+from .config import write_atomic
 import os
 import socket
 import struct
@@ -224,7 +226,7 @@ class DiscordVoice:
             except Exception as e:
                 if not self._stop.is_set():
                     log.info("Discord connection: %s", e)
-                    self._say("waiting for Discord…" if "not running" in str(e) else f"reconnecting… ({str(e)[:60]})")
+                    self._say(tr("waiting for Discord…") if "not running" in str(e) else tr("reconnecting…") + f" ({str(e)[:60]})")
             finally:
                 self.connected = False
                 if self._pipe:
@@ -242,7 +244,7 @@ class DiscordVoice:
         p.send(OP_HANDSHAKE, {"v": 1, "client_id": cid})
         op, msg = p.recv()
         if op == OP_CLOSE:
-            raise RpcError(f"Discord refused the Client ID ({msg.get('message', 'invalid')}) - check it in Settings",
+            raise RpcError(tr("Discord refused the Client ID ({why}) - check it in Settings").format(why=msg.get('message', 'invalid')),
                            msg.get("code", 4000))
         token = self._token(cid)
         try:
@@ -347,9 +349,9 @@ class DiscordVoice:
                 args = {"channel_id": ch["id"]}
                 self._cmd("SUBSCRIBE", args, evt=evt, timeout=10)
                 self._subs.append((evt, args))
-            self._say(f"connected · {len(self._members)} in {self.channel_name or 'call'}")
+            self._say(tr("connected · in {place}: {n}").format(place=self.channel_name or tr("the call"), n=len(self._members)))
         else:
-            self._say("connected · not in a voice call")
+            self._say(tr("connected · not in a voice call"))
         self._changed()
 
     def _add_member(self, vs: dict):
@@ -365,7 +367,7 @@ class DiscordVoice:
 
     def _changed(self):
         if self.channel_id:
-            self._say(f"connected · {len(self._members)} in {self.channel_name or 'call'}")
+            self._say(tr("connected · in {place}: {n}").format(place=self.channel_name or tr("the call"), n=len(self._members)))
         try:
             self.on_members()
         except Exception:
@@ -385,13 +387,13 @@ class DiscordVoice:
                 except Exception as e:
                     log.info("token refresh failed (%s) - authorizing again", e)
         if not secret:
-            raise RpcError("Client Secret missing - paste it in Settings > Discord", "auth")
-        self._say("click “Authorize” in Discord…")
+            raise RpcError(tr("Client Secret missing - paste it in Settings > Discord"), "auth")
+        self._say(tr("click “Authorize” in Discord…"))
         try:
             data = self._cmd("AUTHORIZE", {"client_id": cid, "scopes": SCOPES}, timeout=300)
         except RpcError as e:
             if e.code == 5000:
-                raise RpcError("access was not allowed in Discord", 5000)
+                raise RpcError(tr("access was not allowed in Discord"), 5000)
             raise
         return self._exchange(cid, secret, {"grant_type": "authorization_code", "code": data["code"]})
 
@@ -407,9 +409,9 @@ class DiscordVoice:
                 if "redirect" not in str(e).lower():
                     break
         if j is None:
-            hint = "add http://localhost under OAuth2 > Redirects" if last and "redirect" in str(last).lower() \
-                else "check the Client Secret"
-            raise RpcError(f"Discord login failed: {last} ({hint})", "auth")
+            hint = tr("add http://localhost under OAuth2 > Redirects") if last and "redirect" in str(last).lower() \
+                else tr("check the Client Secret")
+            raise RpcError(tr("Discord login failed") + f": {last} ({hint})", "auth")
         _save_token({"client_id": cid, "access_token": j["access_token"], "refresh_token": j.get("refresh_token"),
                      "expires_at": time.time() + float(j.get("expires_in", 604800))})
         return j["access_token"]
@@ -432,7 +434,7 @@ def _save_token(tok: Optional[dict]):
         if tok is None:
             TOKEN_FILE.unlink(missing_ok=True)
         else:
-            TOKEN_FILE.write_text(json.dumps(tok), encoding="utf-8")
+            write_atomic(TOKEN_FILE, json.dumps(tok))
     except Exception:
         log.exception("save token")
 

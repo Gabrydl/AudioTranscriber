@@ -15,6 +15,8 @@ from __future__ import annotations
 
 import json
 import logging
+from .i18n import tr
+from .config import write_atomic
 import threading
 from dataclasses import dataclass, field
 from typing import Optional
@@ -80,7 +82,7 @@ def download_model_file(fname: str, path, status, tries: int = 3):
                     if time.time() - t_last > 0.5:
                         t_last = time.time()
                         pct = f"{done / total * 100:.0f}%" if total else f"{done / 1e6:.0f} MB"
-                        status(f"downloading {pct} (one time)")
+                        status(tr("downloading {p} (one time)").format(p=pct))
             if total and done != total:
                 raise IOError(f"incomplete download ({done}/{total} bytes)")
             part.replace(path)
@@ -89,7 +91,7 @@ def download_model_file(fname: str, path, status, tries: int = 3):
         except Exception as e:
             last_err = e
             log.warning("Download %s attempt %d failed: %s", fname, attempt, e)
-            status(f"download failed, retrying ({attempt}/{tries})…")
+            status(tr("download failed, retrying ({a}/{b})…").format(a=attempt, b=tries))
             time.sleep(2)
     raise last_err
 
@@ -113,16 +115,16 @@ class Embedder:
             path = d / fname
             try:
                 if not path.exists():
-                    download_model_file(fname, path, lambda m, k=key: self.status(f"voice model {k}: {m}"))
+                    download_model_file(fname, path, lambda m, k=key: self.status(tr("voice model") + f" {k}: {m}"))
                 cfg = sherpa_onnx.SpeakerEmbeddingExtractorConfig(model=str(path), num_threads=3, provider="cpu")
                 self.ext[key] = sherpa_onnx.SpeakerEmbeddingExtractor(cfg)
             except Exception as e:
                 log.exception("voice model %s", key)
-                self.status(f"voice model {key} unavailable ({str(e)[:60]}) – using the others")
+                self.status(tr("voice model {k} unavailable – using the others").format(k=key) + f" ({str(e)[:60]})")
         if not self.ext:
             raise RuntimeError("no voice model could be loaded")
         log.info("Speaker models loaded: %s", list(self.ext))
-        self.status(f"speaker recognition ready ({len(self.ext)} voice models)")
+        self.status(tr("speaker recognition ready (voice models: {n})").format(n=len(self.ext)))
 
     def unload(self):
         self.ext = {}
@@ -361,6 +363,8 @@ class SpeakerRegistry:
         if sp.discord_id and sp.discord_names and not sp.name_custom:
             from .discord_rpc import pick_name
             return pick_name(sp.discord_names, getattr(self.s, "discord_name", "display")) or sp.name
+        if sp.name == f"Speaker {sp.id}":            # automatic name: shown in the interface language
+            return tr("Speaker {n}").format(n=sp.id)
         return sp.name
 
     def rename(self, sid: int, name: str):
@@ -607,7 +611,7 @@ class SpeakerRegistry:
                  "samples": {k: [v.round(5).tolist() for v in lst] for k, lst in sp.samples.items()}}
                 for sp in self.speakers.values()]}
         try:
-            SPEAKERS_FILE.write_text(json.dumps(data), encoding="utf-8")
+            write_atomic(SPEAKERS_FILE, json.dumps(data))
         except Exception:
             log.exception("save speakers")
 

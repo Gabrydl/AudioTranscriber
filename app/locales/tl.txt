@@ -1,0 +1,363 @@
+1|i-click ang “Authorize” sa Discord…
+2|nakakonekta · wala sa voice call
+3|nakakonekta · sa {place}: {n}
+4|tawag
+5|hinihintay ang Discord…
+6|kumokonekta ulit…
+7|sinisimulan ang Ollama…
+8|nilo-load ang '{name}'…
+9|handa na ang '{name}' sa CPU ({t})
+10|nilo-load ang {m}…
+11|handa na ang {m} ({where})
+12|bumabagal ({t}) – lilipat mula {a} papuntang {b}…
+13|hindi available ang pagsasalin – hindi masimulan ang Ollama
+14|Hindi tumatakbo ang Ollama – transcription lang (naka-off ang pagsasalin)
+15|Dina-download ang translation model na {m} (isang beses lang)…
+16|hindi available ang pagkilala ng boses
+17|hindi na-load
+18|online (Gemini) – naka-off ang translator sa graphics card
+19|Dina-download ang '{name}' (isang beses lang)…
+20|handa na ang '{name}' (naka-load na)
+21|handa na ang '{name}' sa GPU ({t})
+22|pumalya ang GPU – lilipat sa CPU
+23|hindi kasya nang buo ang {m} sa card – hinahati ito sa CPU…
+24|error sa transcription
+25|lumilipat sa {m}…
+26|huminto ang translator – nire-restart ang Ollama…
+27|Hindi ma-download ang {m}
+28|hindi ma-load ang {m}
+29|{gb} GB sa card
+30|Dina-download ang {m}
+31|Handa na sa system tray
+32|handa na ang pagkilala ng boses (mga voice model: {n})
+33|Tao {n}
+34|pumalya ang download, sinusubukan ulit ({a}/{b})…
+35|dina-download {p} (isang beses lang)
+36|voice model
+37|hindi available ang voice model na {k} – ginagamit ang iba
+38|Live na lakas ng tunog ng napiling app.\nI-drag pataas o pababa ang puting linya: ang tunog sa itaas nito ay bibilangin bilang salita.
+39|SALITA
+40|Sino ang nagsabi nito – i-click para palitan ang pangalan o itama
+41|HINULA MULA SA KONTEKSTO
+42|isinasalin…
+43|I-lock
+44|I-lock: tatagos sa laro ang mga click (Ctrl+Alt+L)
+45|GPU: pinakamabilis, dapat kasya ang mga model sa graphics card (kung may hindi kasya, kusa itong hinahati).\nMix: ginagamit ng translator ang graphics card hangga't kasya, at ang CPU sa natitira.\nCPU lang: gumagana kahit walang graphics card, pero mas mabagal.
+46|Voice detector (hindi pinapansin ang ingay at click)
+47|May speech detector na nagpapasya kung saan nagsisimula at nagtatapos ang pangungusap, hindi lang ang lakas ng tunog.\nHindi na pinapanatiling bukas ng maingay na mic ang pangungusap, at hindi na nagiging pekeng linya ang mga click.\nMagagamit mula sa susunod na Simulan.
+48|Mga pangalan, termino sa laro, slang – isa bawat linya o pinaghihiwalay ng kuwit\nhal. Gabry, War Thunder, Bismarck, GG
+49|Mga termino ng League of Legends
+50|Mga champion, spell, item, rune at slang (mga pangalan ng Riot sa bawat wika).\nMas nakikilala, at iniiwan bilang Ingles na salita ng laro sa mga salin:\nFlash ay mananatiling Flash, Hexflash ay Hexflash pa rin, ang "destello" ay magiging Flash.
+51|Pagbawas ng ingay (ugong, sitsit, pangit na mic)
+52|Pagtanggal ng ingay sa graphics card
+53|Nililinis ang napakaingay na boses sa graphics card; CPU ang gagamitin kapag hindi kaya ng card.
+54|Gawing kulay abo ang mga salitang hindi sigurado
+55|Laktawan ang pagsuri ng wika para sa mga taong alam na ang wika
+56|Mas mabilis: kapag sigurado na ang wika ng isang tao, nilalaktawan ang hiwalay na pagsuri ng wika.
+57|Isalin + itama ang mga salitang mali ang pagkakarinig
+58|Graphics card – lokal, gumagana kahit offline
+59|Online – Gemini, kapag may internet
+60|Tumatakbo sa PC mo ang translation model (Ollama). Walang lumalabas sa PC.
+61|Ang Gemini API ng Google ang magsasalin: mas mabilis at mas matalino kaysa sa kasya sa 8 GB na card.\nKapag parehong naka-check: online muna, at sasalo ang graphics card kapag hindi sumagot ang online\n(walang internet, naubos ang libreng limit sa araw, masyadong mabagal).
+62|Mas magaan = mas kaunting graphics memory at mas mabilis · mas mabigat = mas magandang salin.
+63|Agad na lilipat, kahit tumatakbo. Kusang dina-download ang mga kulang na model.
+64|Gemini API key (libre)
+65|Libreng key
+66|Huwag isalin ang mga linyang nasa wika na ng salin
+67|Maiikling parirala agad (gg, ok, wait…) nang walang translator
+68|Kilalanin kung sino ang nagsasalita
+69|Tandaan ang mga boses (sa PC na ito lang naka-save)
+70|Alamin ang wika ng bawat tao
+71|Pagkalipas ng ilang linya, alam na nito ang wikang karaniwang gamit ng bawat tao, kaya ang maiikli o\nmalabong pangungusap ay hindi na naririnig sa maling wika.\nNakikilala pa rin ang malinaw na paglipat sa ibang wika.
+72|Ctrl+click: pumili ng ilan · Shift+click: pumili ng sunod-sunod · Ctrl+A: lahat\nAng Delete key o "Kalimutan ang napili" ay nag-aalis ng mga napiling tao
+73|Kalimutan ang napili
+74|Kalimutan ang lahat ng boses
+75|Ipakita ulit ang lahat
+76|Kaliwa: mas madalas pagsamahin ang dalawang tao · Kanan: mas madalas hatiin ang isang tao
+77|Mga pangalan at kung sino ang nagsasalita mula sa Discord
+78|Ginagamit ang sariling lokal na koneksyon ng Discord (ang Discord app sa PC na ito) – walang bot na papasok\nsa mga server mo. Nakakabit ang bawat boses sa Discord account ng tao, kaya tama ang mga pangalan\nmula sa unang pangungusap at naitatago sa pagitan ng mga session.
+79|Client ID (mula sa discord.com/developers)
+80|Client Secret
+81|Kumonekta
+82|Paano ito i-set up
+83|Mag-log out
+84|Naka-off
+85|Magsimulang makinig kapag nagsimula ang tawag sa Discord
+86|Huminto kapag natapos ang tawag (pinalalaya ang GPU)
+87|Orihinal na teksto sa feed (naka-off = salin lang)
+88|Ipakita ang orihinal na teksto sa overlay
+89|Oras sa unahan ng bawat linya
+90|Kapag naka-lock ang overlay (tumatagos ang mga click), maglalaho ito pagkatapos ng ganitong segundo ng katahimikan. 0 = hindi kailanman.
+91|Mga global hotkey (gumagana sa loob ng laro)
+92|Ctrl+Alt+S simulan/ihinto · Ctrl+Alt+P i-pause · Ctrl+Alt+C kopyahin ang huling salin\nCtrl+Alt+O overlay on/off · Ctrl+Alt+L i-lock/i-unlock ang overlay (tumatagos ang click)
+93|Simulan kasabay ng Windows (sa tray)
+94|Kumonekta ulit kapag nagpalit ng headphones / device
+95|Lumipat sa mas magaang model kapag bumabagal
+96|I-export ang .txt
+97|Linisin ang feed
+98|Mga pangalan mula sa Discord – setup (isang beses, mga 2 minuto)
+99|<b>1.</b> Buksan ang <b>discord.com/developers/applications</b> sa browser at mag-log in.<br><b>2.</b> <b>New Application</b> → pangalanan itong <i>AudioTranscriber</i> → Create.<br><b>3.</b> Sa kaliwang menu <b>OAuth2</b>: kopyahin ang <b>Client ID</b>. I-click ang <b>Reset Secret</b> at kopyahin ang <b>Client Secret</b>.<br><b>4.</b> Nasa OAuth2 pa rin → <b>Redirects</b> → <b>Add Redirect</b>: <code>http://localhost</code> → <b>Save Changes</b>.<br><b>5.</b> I-paste dito ang dalawang code, i-check ang <i>Mga pangalan at kung sino ang nagsasalita mula sa Discord</i> at pindutin ang <b>Kumonekta</b>.<br><b>6.</b> Magpapakita ang Discord ng window: i-click ang <b>Authorize</b>.<br><br>Tapos na – kusa itong kumokonekta ulit tuwina. Ang mga code at ang login ay nasa PC na ito lang (settings.json at discord_token.json).
+100|Pareho: online muna, ang graphics card kapag hindi sumagot ang online.
+101|Online lang: kapag hindi sumagot, mananatiling walang salin ang mga linya.
+102|Gemini – libreng key (1 minuto)
+103|<b>1.</b> Buksan ang <b>aistudio.google.com/apikey</b> at mag-log in gamit ang Google account.<br><b>2.</b> I-click ang <b>Create API key</b> at kopyahin ito.<br><b>3.</b> I-paste dito. Mananatili ito sa PC na ito (settings.json).<br><br>Ang <b>Gemma 3 27B</b> ang may pinakamalaking libreng limit bawat araw (mga 14,400 pangungusap). Mas matalino ang Gemini Flash-Lite / Flash pero maliit ang libreng limit nila.<br>Sa libreng plan, puwedeng gamitin ng Google ang ipinapadala para pagandahin ang mga produkto nito; kapag naka-on ang billing, hindi.
+104|mas pinagsasama
+105|Live – ang usapan
+106|Mga tao – pangalan, boses, Discord
+107|Mga salitang dapat alam – pangalan, termino sa laro, slang
+108|Overlay sa ibabaw ng laro – Ctrl+Alt+O
+109|I-lock ang overlay (tatagos sa laro ang mga click) – Ctrl+Alt+L
+110|Linisin ang buong chat (pati ang overlay)
+111|Mga Setting
+112|Live na session
+113|Auto
+114|Awtomatikong threshold: sinusundan ang ingay sa background ng bawat tao\n(nakakatulong sa mic na sumisitsit / maingay). I-drag ang linya para ikaw ang mag-ayos.
+115|I-pause / ituloy ang pakikinig – Ctrl+Alt+P\n(nananatiling naka-load ang mga model, walang tina-transcribe)
+116|PAKINGGAN
+117|I-refresh ang listahan ng app
+118|Pumili ng app sa itaas (kusang napipili ang Discord) at pindutin ang Simulan.\nLalabas dito ang mga linya habang nagsasalita ang mga tao – ang sinabi at ang salin nito.
+119|PERFORMANCE
+120|MGA TAO
+121|Lalabas dito ang mga pangalan habang nagsasalita ang mga tao.
+122|Ipakita ang overlay sa laro
+123|Ilipat ang overlay
+124|Ina-unlock ang overlay para ma-drag mo; kusa itong nagla-lock ulit pagbitaw mo
+125|Ipakita ang window
+126|Overlay on/off
+127|Lumabas
+128|huminto – napalaya ang memory
+129|Bumabagal ito, kaya lumipat sa mas magaang speech model.
+130|Ang totoo, ito ay si…
+131|Bagong tao…
+132|Laging nagsasalita ng…
+133|Palitan ang pangalan
+134|Pangalan:
+135|Bagong tao
+136|Pangalan (opsyonal):
+137|Nakopya ang huling salin
+138|I-restart ngayon
+139|Mamaya
+140|kumokonekta…
+141|hindi available ang pagsasalin – tumatakbo ba ang Ollama?
+142|I-drag para ilipat · sulok para baguhin ang laki
+143|Tinitingnan ang mga update tuwing binubuksan ang app.
+144|Mag-paste muna ng key.
+145|mas hinahati
+146|balanse
+147|Nagtatago ang overlay kapag tahimik: hindi kailanman
+148|Simulan
+149|nakatigil
+150|Walang app na nagpapatugtog ng audio – sumali sa tawag sa Discord, tapos ⟳
+151|Pumili muna ng kahit isang app (hal. Discord).
+152|Nakikinig
+153|nailapat ang mga setting – gagamitin sa susunod na Simulan
+154|Gamitin ulit ang pangalan sa Discord
+155|Kusang alamin
+156|Ipakita ulit ang taong ito
+157|Walang binabalewala
+158|naka-pause – pindutin ang Ctrl+Alt+P para ituloy
+159|nakikinig
+160|Naka-pause
+161|Nakikinig ulit
+162|I-click para pumili ng ibang wika (gumagana kahit tumatakbo, mula sa susunod na pangungusap).
+163|Kalimutan ang lahat ng naka-save na boses?
+164|Wala pang mai-e-export.
+165|Na-save sa
+166|Magre-restart ang app para palitan ang wika.
+167|Memory ng AudioTranscriber + Ollama
+168|i-paste muna ang Client ID at ang Client Secret (tingnan ang “Paano ito i-set up”)
+169|naka-log out – pindutin ang Kumonekta para mag-authorize ulit
+170|I-click para palitan ang pangalan o itama
+171|online
+172|naghintay {a} · unang salita {b} · tapos {c}
+173|Katiyakan ng pagkilala {p}%
+174|Mga salitang kulay abo: hindi sigurado ang recognizer sa mga ito
+175|Advanced
+176|Ilapat
+177|Nilo-load ang mga napiling model (kahit tumatakbo).
+178|Patakbuhin sa
+179|Pangalang ipinapakita
+180|Nagamit ngayon: {used} sa mga {lim} na libre
+181|Nagamit ngayon: {used}
+182|nare-reset ng 09:00
+183|Paghintong tumatapos sa pangungusap: {ms} ms
+184|Paghihiwalay ng boses: {side} ({v})
+185|Opacity ng background ng overlay: {v}%
+186|Laki ng teksto ng overlay: {v}px
+187|Opacity ng teksto ng overlay: {v}%
+188|…kapag lumampas sa {v} s ang isang pangungusap
+189|Mga linya sa overlay: {v}
+190|Wika ng app
+191|Delay
+192|RAM ng app
+193|Mga linya
+194|Translator
+195|Nagpapatugtog ng audio ngayon
+196|Hindi nagpapatugtog ng audio ngayon
+197|Nilo-load…
+198|Ihinto
+199|Mga kilalang boses: {n}
+200|Palitan ang pangalan ni “{name}”…
+201|Kalimutan ang boses ni {name}…
+202|kusang inaalam ang wika
+203|nagpalit ng audio device
+204|huminto ang pagkuha ng audio
+205|nakakonekta ulit – nakikinig
+206|nawala ang app – hinihintay itong bumalik
+207|Tawag sa Discord – nakikinig
+208|Mananatili ang lahat ng iba.
+209|Nakalimutan na ang boses ni {name}
+210|isinasalin sa {lang}
+211|Naka-lock ang overlay: tumatagos sa laro ang mga click – i-click o Ctrl+Alt+L para i-unlock
+212|Huling pangungusap: {a} pagkilala + {b} bago nagsimula ang salin
+213|hindi sigurado
+214|{name} – i-click para palitan ang pangalan o itama
+215|graphics card
+216|Narinig: “{text}”
+217|Speech model
+218|Mas malaki ay mas tumpak, mas maliit ay mas mabilis.
+219|Mga wikang kikilalanin
+220|Ang mga naka-check lang ang pinakikinggan.
+221|Mga pangungusap
+222|Kailan nagsisimula at nagtatapos ang pangungusap.
+223|Mga salitang dapat alam
+224|Ginagamit ng recognizer at ng translator, para tama ang paglabas ng mga salitang ito.
+225|Saan tumatakbo
+226|Parehong naka-check: online muna, graphics card bilang reserba.
+227|Model sa graphics card
+228|Tumatakbo sa PC na ito gamit ang Ollama.
+229|Online – Gemini
+230|Ang translator ng Google, ginagamit kapag may internet.
+231|Mga boses
+232|I-click ang pangalan sa kahit anong linya para palitan ito o itama ang tao – bawat pagtama ay nagpapatumpak dito.
+233|Mga kilalang tao
+234|Ctrl o Shift + click para pumili ng ilan.
+235|Mga binabalewalang tao
+236|I-click ang pangalan sa kahit anong linya para balewalain ang taong iyon o itakda ang wikang lagi niyang gamit.
+237|Koneksyon
+238|Ginagamit ang Discord app sa PC na ito – walang bot na papasok sa mga server mo.
+239|Mga pangalan
+240|Aling pangalan sa Discord ang ipapakita sa bawat linya. Mananatili ang pangalang ikaw mismo ang nag-type.
+241|Mga tawag
+242|Magsimula at huminto kasabay ng mga tawag mo sa Discord.
+243|Live na feed
+244|Ang mga linya sa window na ito.
+245|Teksto ng overlay
+246|Ang ipinapakita ng overlay sa ibabaw ng laro.
+247|Itsura ng overlay
+248|Nananatili ito sa ibabaw ng laro sa windowed o borderless mode (hindi sa exclusive full screen).
+249|Mga hotkey
+250|Nasa flag button din sa kaliwang bar. Magre-restart ang app para lumipat.
+251|Windows
+252|Pagiging maaasahan
+253|Kusa nitong pinananatiling tumatakbo.
+254|Transcript
+255|Walang nase-save hangga't hindi mo ini-export.
+256|wala pang boses
+257|mga sample ng boses: {n}
+258|Nagtatago ang overlay kapag tahimik: pagkalipas ng {v} s (kapag naka-lock)
+259|mga child process
+260|Hindi masimulan:
+261|Hindi makuha ang audio:
+262|Oo, si {name} ito
+263|Balewalain si {name}
+264|Isama si “{name}” kay…
+265|Mga binabalewala: {n}
+266|Gagamitin ang {model} sa Simulan
+267|hinahanap ulit ang app
+268|Tapos na ang tawag – huminto
+269|Kalimutan ang mga boses na ito?
+270|Sa {place}: {n}
+271|Sandaling hihinto ang pakikinig.
+272|System
+273|Bersyon {v}
+274|Itago ang overlay
+275|laging {lang}
+276|Isinasalin sa {lang}.
+277|hindi tumatakbo
+278|Kalimutan ang boses ni {name}?\nMananatili ang ibang tao. Kapag nagsalita ulit si {name}, bibigyan siya ng bagong pangalan.
+279|nasa tawag
+280|Naka-link na ang Discord – inilipat ang mga lumang boses sa speakers_before_discord.json: {n}
+281|Iba pang opsyon: {n}
+282|Tinanggihan ng Windows ang per-app na pagkuha ng audio para sa {app} – kinukuha ang LAHAT ng audio ng system
+283|Mga tao
+284|Pagkakatugma ng boses {p}%
+285|Naghintay {q} · pagkilala {w} · mga boses +{v}
+286|sinabi noong {t}
+287|Hindi ma-download ang update – susubukan ulit sa susunod na pagbukas ng app
+288|Dina-download ang update {v}…
+289|Ina-update sa {v} – babalik sa ilang segundo
+290|Handa na ang update {v} – nagre-restart…
+291|Handa na ang update {v} – mai-install ito kapag pinindot mo ang Ihinto
+292|Portuges
+293|Espanyol
+294|Aleman
+295|Tagalog
+296|Pranses
+297|Ingles
+298|Czech
+299|Polish
+300|Italyano
+301|Bisaya (Cebuano)
+302|pinakatumpak
+303|pinakatumpak · ~3 GB VRAM (1.7 GB kasama ang gemma3:12b) · mas mabagal
+304|mabilis at napakahusay
+305|mabilis at napakahusay · ~1.6 GB VRAM
+306|mahusay
+307|mahusay · ~1.5 GB
+308|magaan
+309|magaan · ~0.8 GB
+310|pinakamaliit
+311|pinakamaliit · ~0.3 GB
+312|GPU – lahat sa graphics card (pinakamabilis)
+313|Mix – graphics card + CPU (para sa mga model na mas malaki sa card)
+314|CPU lang – walang graphics card (mabagal)
+315|Magaan – qwen2.5:3b
+316|~2.5 GB graphics memory
+317|Magaan – qwen2.5:3b · ~2.5 GB graphics memory · pinakamabilis
+318|Katamtaman – gemma3:4b
+319|~4 GB graphics memory
+320|Katamtaman – gemma3:4b · ~4 GB graphics memory · mabilis, mahusay
+321|Mabigat – gemma3:12b
+322|~8 GB graphics memory
+323|Mabigat – gemma3:12b · ~8 GB graphics memory · pinakamahusay, 10–20 s sa 8 GB na card
+324|Gemma 3 27B
+325|Gemma 3 27B – libre, mga 14,400 pangungusap bawat araw
+326|Gemini Flash-Lite
+327|Gemini Flash-Lite – mas mabilis/matalino, maliit na libreng limit bawat araw
+328|Gemini Flash
+329|Gemini Flash – pinakamatalino, napakaliit na libreng limit bawat araw
+330|Pagkilala
+331|Paano naririnig ang pananalita at ginagawang teksto
+332|Pagsasalin
+333|Saan at paano isinasalin ang mga linya
+334|Mga tao
+335|Sino ang nagsasalita: boses, pangalan, binabalewalang tao
+336|Discord
+337|Mga pangalan at tawag diretso mula sa Discord app
+338|Overlay at display
+339|Ang live na feed at ang overlay sa ibabaw ng laro
+340|App
+341|Wika, Windows, pagiging maaasahan at mga update
+342|Display name
+343|Nickname sa server
+344|@username
+345|Kulang ang Client Secret - i-paste ito sa Mga Setting > Discord
+346|idagdag ang http://localhost sa OAuth2 > Redirects
+347|tingnan ang Client Secret
+348|Pumalya ang login sa Discord
+349|Tinanggihan ng Discord ang Client ID ({why}) - tingnan ito sa Mga Setting
+350|hindi pinayagan ang access sa Discord
+351|hindi ma-download ang {m} – mananatili sa turbo (tingnan ang koneksyon)
+352|hindi available ang pagsasalin – hindi sumagot ang online translator
+353|na-download na ang {m} – pindutin ang Ihinto at Simulan para gamitin ito
+354|na-download na ang {m} – piliin ito sa Mga Setting > Pagsasalin
+355|dina-download ang {m} sa background (gagamitin mula sa susunod na Simulan)
+356|hindi ma-download ang {m} – susubukan ulit sa susunod na Simulan
+357|handa na ang {m} · dina-download ang {x} sa background
+358|walang sagot (internet?)
+359|ginagamit ang graphics card
+360|naubos ang libreng limit sa araw (nare-reset ng 09:00)
+361|sobrang daming request bawat minuto
+362|tinanggihan ang API key o model – tingnan ang Mga Setting
+363|error ng Google {c}

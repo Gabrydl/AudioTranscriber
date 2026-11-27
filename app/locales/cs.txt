@@ -1,0 +1,363 @@
+1|klikněte v Discordu na „Autorizovat“…
+2|připojeno · mimo hlasový hovor
+3|připojeno · v {place}: {n}
+4|hovoru
+5|čekám na Discord…
+6|znovu se připojuji…
+7|spouštím Ollamu…
+8|načítám '{name}'…
+9|'{name}' připraven na CPU ({t})
+10|načítám {m}…
+11|{m} připraven ({where})
+12|zpožďuje se ({t}) – přepínám z {a} na {b}…
+13|překlad není k dispozici – Ollamu se nepodařilo spustit
+14|Ollama neběží – jen přepis (překlad vypnut)
+15|Stahuji překladový model {m} (jen jednou)…
+16|rozpoznávání hlasů není k dispozici
+17|načtení selhalo
+18|online (Gemini) – překladač na grafické kartě vypnut
+19|Stahuji '{name}' (jen jednou)…
+20|'{name}' připraven (už načtený)
+21|'{name}' připraven na GPU ({t})
+22|GPU selhala – přecházím na CPU
+23|{m} se celý nevejde na kartu – dělím ho s CPU…
+24|chyba přepisu
+25|přepínám na {m}…
+26|překladač se zastavil – restartuji Ollamu…
+27|{m} se nepodařilo stáhnout
+28|{m} se nepodařilo načíst
+29|{gb} GB na kartě
+30|Stahuji {m}
+31|Připraveno v oznamovací oblasti
+32|rozpoznávání hlasů připraveno (hlasové modely: {n})
+33|Osoba {n}
+34|stahování selhalo, zkouším znovu ({a}/{b})…
+35|stahuji {p} (jen jednou)
+36|hlasový model
+37|hlasový model {k} není k dispozici – používám ostatní
+38|Živá hlasitost vybrané aplikace.\nTáhněte bílou čáru nahoru nebo dolů: zvuk nad ní se počítá jako řeč.
+39|ŘEČ
+40|Kdo to řekl – kliknutím přejmenujete nebo opravíte
+41|ODHADNUTO Z KONTEXTU
+42|překládám…
+43|Zamknout
+44|Zamknout: kliknutí projdou do hry (Ctrl+Alt+L)
+45|GPU: nejrychlejší, modely se musí vejít na grafickou kartu (když se některý nevejde, rozdělí se sám).\nMix: překladač používá grafickou kartu, kam se vejde, a na zbytek CPU.\nJen CPU: funguje bez grafické karty, mnohem pomaleji.
+46|Detektor hlasu (ignoruje šum a cvakání)
+47|Detektor řeči rozhoduje, kde věta začíná a končí, nejen hlasitost.\nŠumivé mikrofony už nedrží větu otevřenou, cvakání nevytváří falešné řádky.\nPlatí od příštího Spustit.
+48|Jména, herní výrazy, slang – jeden na řádek nebo oddělené čárkami\nnapř. Gabry, War Thunder, Bismarck, GG
+49|Výrazy z League of Legends
+50|Šampioni, kouzla, předměty, runy a slang (názvy od Riotu ve všech jazycích).\nLépe se rozpoznají a v překladech zůstanou jako anglické herní slovo:\nFlash zůstane Flash, Hexflash zůstane Hexflash, "destello" se změní na Flash.
+51|Potlačení šumu (brum, syčení, špatné mikrofony)
+52|Odstranění šumu na grafické kartě
+53|Čistí velmi zašuměné hlasy na grafické kartě; když karta nemůže, použije CPU.
+54|Nejistá slova zobrazit šedě
+55|Přeskočit kontrolu jazyka u lidí se známým jazykem
+56|Rychlejší: když je jazyk člověka jistý, samostatný průchod pro jazyk se přeskočí.
+57|Překládat + opravovat špatně slyšená slova
+58|Grafická karta – lokálně, funguje offline
+59|Online – Gemini, když je internet
+60|Překladový model běží na vašem PC (Ollama). Nic neopouští PC.
+61|Místo toho překládá Gemini API od Googlu: rychlejší a chytřejší, než co se vejde na 8GB kartu.\nObě zaškrtnuté: nejdřív online, grafická karta převezme, když online neodpoví\n(bez internetu, denní limit zdarma vyčerpán, příliš pomalé).
+62|Lehčí = méně grafické paměti a rychlejší · těžší = lepší překlady.
+63|Přepne hned, i za běhu. Chybějící modely se stáhnou samy.
+64|API klíč Gemini (zdarma)
+65|Klíč zdarma
+66|Nepřekládat řádky, které už jsou v jazyce překladu
+67|Krátké fráze hned (gg, ok, počkej…) bez překladače
+68|Rozpoznávat, kdo mluví
+69|Pamatovat si hlasy (uložené jen na tomto PC)
+70|Naučit se jazyk každého člověka
+71|Po pár řádcích ví, jakým jazykem kdo obvykle mluví, takže krátké nebo\nnejasné věty už neslyší ve špatném jazyce.\nJasný přechod do jiného jazyka se přesto rozpozná.
+72|Ctrl+klik: vybrat více · Shift+klik: vybrat rozsah · Ctrl+A: všechny\nKlávesa Delete nebo "Zapomenout vybrané" odebere vybrané lidi
+73|Zapomenout vybrané
+74|Zapomenout všechny hlasy
+75|Zobrazit znovu všechny
+76|Vlevo: dva lidé se častěji sloučí · Vpravo: jeden člověk se častěji rozdělí
+77|Jména a kdo mluví z Discordu
+78|Používá vlastní místní připojení Discordu (aplikace Discord na tomto PC) – na vaše servery\nse nepřipojí žádný bot. Každý hlas je propojen s účtem Discord dané osoby, takže jména\nsedí od první věty a zůstávají mezi relacemi.
+79|Client ID (z discord.com/developers)
+80|Client Secret
+81|Připojit
+82|Jak to nastavit
+83|Odhlásit
+84|Vypnuto
+85|Začít poslouchat, když začne hovor na Discordu
+86|Zastavit, když hovor skončí (uvolní GPU)
+87|Původní text ve výpisu (vypnuto = jen překlad)
+88|Zobrazit původní text v překryvu
+89|Čas před každým řádkem
+90|Když je překryv zamčený (kliknutí procházejí), zmizí po tolika sekundách ticha. 0 = nikdy.
+91|Globální zkratky (fungují i ve hrách)
+92|Ctrl+Alt+S spustit/zastavit · Ctrl+Alt+P pauza · Ctrl+Alt+C kopírovat poslední překlad\nCtrl+Alt+O překryv zap/vyp · Ctrl+Alt+L zamknout/odemknout překryv (kliknutí procházejí)
+93|Spouštět s Windows (v oznamovací oblasti)
+94|Znovu připojit při změně sluchátek / zařízení
+95|Při zpoždění přejít na lehčí model
+96|Exportovat .txt
+97|Vymazat výpis
+98|Jména z Discordu – nastavení (jednou, asi 2 minuty)
+99|<b>1.</b> Otevřete v prohlížeči <b>discord.com/developers/applications</b> a přihlaste se.<br><b>2.</b> <b>New Application</b> → pojmenujte ji <i>AudioTranscriber</i> → Create.<br><b>3.</b> Levé menu <b>OAuth2</b>: zkopírujte <b>Client ID</b>. Klikněte na <b>Reset Secret</b> a zkopírujte <b>Client Secret</b>.<br><b>4.</b> Stále v OAuth2 → <b>Redirects</b> → <b>Add Redirect</b>: <code>http://localhost</code> → <b>Save Changes</b>.<br><b>5.</b> Vložte sem oba kódy, zaškrtněte <i>Jména a kdo mluví z Discordu</i> a klikněte na <b>Připojit</b>.<br><b>6.</b> Discord ukáže okno: klikněte na <b>Autorizovat</b>.<br><br>Hotovo – pokaždé se připojí samo. Kódy a přihlášení zůstanou jen na tomto PC (settings.json a discord_token.json).
+100|Obě: nejdřív online, grafická karta, když online neodpoví.
+101|Jen online: když neodpoví, řádky zůstanou nepřeložené.
+102|Gemini – klíč zdarma (1 minuta)
+103|<b>1.</b> Otevřete <b>aistudio.google.com/apikey</b> a přihlaste se účtem Google.<br><b>2.</b> Klikněte na <b>Create API key</b> a zkopírujte ho.<br><b>3.</b> Vložte ho sem. Zůstane na tomto PC (settings.json).<br><br><b>Gemma 3 27B</b> má největší denní příděl zdarma (asi 14 400 vět). Gemini Flash-Lite / Flash jsou chytřejší, ale jejich příděl zdarma je malý.<br>U bezplatného tarifu může Google odeslaný obsah použít ke zlepšení svých produktů; se zapnutou fakturací ne.
+104|více slučovat
+105|Živě – rozhovor
+106|Lidé – jména, hlasy, Discord
+107|Slova, která má znát – jména, herní výrazy, slang
+108|Překryv nad hrou – Ctrl+Alt+O
+109|Zamknout překryv (kliknutí projdou do hry) – Ctrl+Alt+L
+110|Vymazat celý chat (i překryv)
+111|Nastavení
+112|Živá relace
+113|Auto
+114|Automatický práh: sleduje šum v pozadí u každého člověka\n(pomáhá u syčivých / šumivých mikrofonů). Táhnutím čáry ho nastavíte ručně.
+115|Pozastavit / pokračovat v poslechu – Ctrl+Alt+P\n(modely zůstanou načtené, nic se nepřepisuje)
+116|POSLOUCHAT
+117|Obnovit seznam aplikací
+118|Vyberte nahoře aplikaci (Discord se vybere sám) a klikněte na Spustit.\nŘádky se tu objevují, jak lidé mluví – co zaznělo a jeho překlad.
+119|VÝKON
+120|LIDÉ
+121|Jména se tu objeví, jak lidé mluví.
+122|Zobrazit překryv ve hře
+123|Přesunout překryv
+124|Odemkne překryv, abyste ho mohli přetáhnout; po puštění se sám zase zamkne
+125|Zobrazit okno
+126|Překryv zap/vyp
+127|Ukončit
+128|zastaveno – paměť uvolněna
+129|Zpožďovalo se to, proto se přepnulo na lehčí model řeči.
+130|Ve skutečnosti je to…
+131|Někdo nový…
+132|Mluví vždy…
+133|Přejmenovat osobu
+134|Jméno:
+135|Nová osoba
+136|Jméno (nepovinné):
+137|Poslední překlad zkopírován
+138|Restartovat teď
+139|Později
+140|připojuji…
+141|překlad není k dispozici – běží Ollama?
+142|Táhnutím přesunete · rohem změníte velikost
+143|Aktualizace se kontrolují při otevření aplikace.
+144|Nejdřív vložte klíč.
+145|více rozdělovat
+146|vyváženě
+147|Překryv se v tichu skryje: nikdy
+148|Spustit
+149|nečinný
+150|Žádná aplikace nepřehrává zvuk – připojte se k hovoru na Discordu, pak ⟳
+151|Nejdřív vyberte aspoň jednu aplikaci (např. Discord).
+152|Poslouchám
+153|nastavení použito – platí od příštího Spustit
+154|Znovu použít jméno z Discordu
+155|Rozpoznat automaticky
+156|Znovu zobrazit tuto osobu
+157|Nikdo není ignorován
+158|pozastaveno – pokračujte klávesami Ctrl+Alt+P
+159|poslouchám
+160|Pozastaveno
+161|Znovu poslouchám
+162|Kliknutím vyberete jiný jazyk (funguje i za běhu, od další věty).
+163|Zapomenout všechny uložené hlasy?
+164|Zatím není co exportovat.
+165|Uloženo do
+166|Aplikace se kvůli změně jazyka restartuje.
+167|Paměť AudioTranscriber + Ollama
+168|nejdřív vložte Client ID a Client Secret (viz „Jak to nastavit“)
+169|odhlášeno – klikněte na Připojit a autorizujte znovu
+170|Kliknutím přejmenujete nebo opravíte
+171|online
+172|čekání {a} · první slova {b} · hotovo {c}
+173|Jistota rozpoznání {p} %
+174|Šedá slova: rozpoznávač si jimi nebyl jistý
+175|Pokročilé
+176|Použít
+177|Načte vybrané modely (i za běhu).
+178|Spouštět na
+179|Zobrazené jméno
+180|Dnes použito: {used} z asi {lim} zdarma
+181|Dnes použito: {used}
+182|nuluje se v 09:00
+183|Pauza, která ukončí větu: {ms} ms
+184|Oddělení hlasů: {side} ({v})
+185|Průhlednost pozadí překryvu: {v} %
+186|Velikost textu v překryvu: {v} px
+187|Průhlednost textu v překryvu: {v} %
+188|…když věta trvá déle než {v} s
+189|Řádky v překryvu: {v}
+190|Jazyk aplikace
+191|Zpoždění
+192|RAM aplikace
+193|Řádky
+194|Překladač
+195|Teď přehrává zvuk
+196|Teď nepřehrává zvuk
+197|Načítám…
+198|Zastavit
+199|Známé hlasy: {n}
+200|Přejmenovat „{name}“…
+201|Zapomenout hlas osoby {name}…
+202|jazyk se rozpozná automaticky
+203|zvukové zařízení se změnilo
+204|zachytávání se zastavilo
+205|znovu připojeno – poslouchám
+206|aplikace zmizela – čekám, až se vrátí
+207|Hovor na Discordu – poslouchám
+208|Všichni ostatní zůstanou.
+209|Hlas osoby {name} zapomenut
+210|překlad do: {lang}
+211|Překryv zamčený: kliknutí projdou do hry – klikněte nebo Ctrl+Alt+L pro odemčení
+212|Poslední věta: {a} rozpoznávání + {b}, než začal překlad
+213|nejisté
+214|{name} – kliknutím přejmenujete nebo opravíte
+215|grafická karta
+216|Slyšeno: „{text}“
+217|Model řeči
+218|Větší je přesnější, menší je rychlejší.
+219|Jazyky k rozpoznání
+220|Poslouchá se jen na zaškrtnuté.
+221|Věty
+222|Kdy věta začíná a končí.
+223|Slova, která má znát
+224|Používá je rozpoznávač i překladač, aby tato slova vyšla správně.
+225|Kde běží
+226|Obě zaškrtnuté: nejdřív online, grafická karta jako záloha.
+227|Model na grafické kartě
+228|Běží na tomto PC s Ollamou.
+229|Online – Gemini
+230|Překladač od Googlu, používá se, když je internet.
+231|Hlasy
+232|Kliknutím na jméno v libovolném řádku ho přejmenujete nebo opravíte osobu – každá oprava zvyšuje přesnost.
+233|Známí lidé
+234|Ctrl nebo Shift + klik pro výběr více.
+235|Ignorovaní lidé
+236|Kliknutím na jméno v libovolném řádku tu osobu ignorujete nebo nastavíte jazyk, kterým vždy mluví.
+237|Připojení
+238|Používá aplikaci Discord na tomto PC – na vaše servery se nepřipojí žádný bot.
+239|Jména
+240|Jaké jméno z Discordu se ukáže u každého řádku. Jméno, které napíšete sami, zůstane.
+241|Hovory
+242|Spouštět a zastavovat spolu s vašimi hovory na Discordu.
+243|Živý výpis
+244|Řádky v tomto okně.
+245|Text překryvu
+246|Co ukazuje překryv nad hrou.
+247|Vzhled překryvu
+248|Zůstává nad hrami v okně nebo bez okrajů (ne v exkluzivním režimu celé obrazovky).
+249|Klávesové zkratky
+250|Také přes tlačítko s vlajkou v levém pruhu. Aplikace se kvůli změně restartuje.
+251|Windows
+252|Spolehlivost
+253|Udrží vše v chodu samo.
+254|Přepis
+255|Nic se neukládá, pokud to neexportujete.
+256|zatím bez hlasu
+257|vzorky hlasu: {n}
+258|Překryv se v tichu skryje: po {v} s (když je zamčený)
+259|podřízené procesy
+260|Nelze spustit:
+261|Nelze zachytávat:
+262|Ano, to je {name}
+263|Ignorovat: {name}
+264|Sloučit „{name}“ s…
+265|Ignorovaní lidé: {n}
+266|{model} se použije při Spustit
+267|znovu hledám aplikaci
+268|Hovor skončil – zastaveno
+269|Zapomenout tyto hlasy?
+270|V {place}: {n}
+271|Poslech se na chvíli zastaví.
+272|Systém
+273|Verze {v}
+274|Skrýt překryv
+275|vždy {lang}
+276|Překlad do: {lang}.
+277|neběží
+278|Zapomenout hlas osoby {name}?\nOstatní lidé zůstanou. Když {name} znovu promluví, dostane nové jméno.
+279|v hovoru
+280|Discord propojen – staré hlasy přesunuty do speakers_before_discord.json: {n}
+281|Další možnosti: {n}
+282|Windows odmítl zachytávání pro aplikaci {app} – zachytávám VEŠKERÝ zvuk systému
+283|Lidé
+284|Shoda hlasu {p} %
+285|Čekání {q} · rozpoznávání {w} · hlasy +{v}
+286|řečeno v {t}
+287|Aktualizaci se nepodařilo stáhnout – zkusí to znovu při příštím otevření aplikace
+288|Stahuji aktualizaci {v}…
+289|Aktualizuji na {v} – zpátky za pár sekund
+290|Aktualizace {v} připravena – restartuji…
+291|Aktualizace {v} připravena – nainstaluje se, až kliknete na Zastavit
+292|Portugalština
+293|Španělština
+294|Němčina
+295|Tagalština
+296|Francouzština
+297|Angličtina
+298|Čeština
+299|Polština
+300|Italština
+301|Bisajština (cebuánština)
+302|nejvyšší přesnost
+303|nejvyšší přesnost · ~3 GB VRAM (1,7 GB vedle gemma3:12b) · pomalejší
+304|rychlý a velmi dobrý
+305|rychlý a velmi dobrý · ~1,6 GB VRAM
+306|dobrý
+307|dobrý · ~1,5 GB
+308|lehký
+309|lehký · ~0,8 GB
+310|nejmenší
+311|nejmenší · ~0,3 GB
+312|GPU – vše na grafické kartě (nejrychlejší)
+313|Mix – grafická karta + CPU (pro modely větší než karta)
+314|Jen CPU – bez grafické karty (pomalé)
+315|Lehký – qwen2.5:3b
+316|~2,5 GB grafické paměti
+317|Lehký – qwen2.5:3b · ~2,5 GB grafické paměti · nejrychlejší
+318|Střední – gemma3:4b
+319|~4 GB grafické paměti
+320|Střední – gemma3:4b · ~4 GB grafické paměti · rychlý, dobrý
+321|Těžký – gemma3:12b
+322|~8 GB grafické paměti
+323|Těžký – gemma3:12b · ~8 GB grafické paměti · nejlepší, 10–20 s na 8GB kartách
+324|Gemma 3 27B
+325|Gemma 3 27B – zdarma, asi 14 400 vět denně
+326|Gemini Flash-Lite
+327|Gemini Flash-Lite – rychlejší/chytřejší, malý denní limit zdarma
+328|Gemini Flash
+329|Gemini Flash – nejchytřejší, velmi malý denní limit zdarma
+330|Rozpoznávání
+331|Jak se řeč slyší a mění na text
+332|Překlad
+333|Kde a jak se řádky překládají
+334|Lidé
+335|Kdo mluví: hlasy, jména, ignorovaní lidé
+336|Discord
+337|Jména a hovory přímo z aplikace Discord
+338|Překryv a zobrazení
+339|Živý výpis a překryv nad hrou
+340|Aplikace
+341|Jazyk, Windows, spolehlivost a aktualizace
+342|Zobrazované jméno
+343|Přezdívka na serveru
+344|@uživatelské jméno
+345|Chybí Client Secret - vložte ho v Nastavení > Discord
+346|přidejte http://localhost v OAuth2 > Redirects
+347|zkontrolujte Client Secret
+348|Přihlášení do Discordu selhalo
+349|Discord odmítl Client ID ({why}) - zkontrolujte ho v Nastavení
+350|přístup nebyl v Discordu povolen
+351|{m} se nepodařilo stáhnout – zůstávám u turbo (zkontrolujte připojení)
+352|překlad není k dispozici – online překladač neodpověděl
+353|{m} staženo – použijete ho přes Zastavit a Spustit
+354|{m} staženo – vyberte ho v Nastavení > Překlad
+355|stahuji {m} na pozadí (použije se od příštího Spustit)
+356|{m} se nepodařilo stáhnout – zkusí to znovu při příštím Spustit
+357|{m} připraven · na pozadí stahuji {x}
+358|žádná odpověď (internet?)
+359|používám grafickou kartu
+360|denní limit zdarma vyčerpán (nuluje se v 09:00)
+361|příliš mnoho požadavků za minutu
+362|API klíč nebo model odmítnut – zkontrolujte Nastavení
+363|chyba Googlu {c}
