@@ -100,7 +100,7 @@
 100|Both: online first, graphics card when online can't answer.
 101|Online only: if it can't answer, lines stay untranslated.
 102|Gemini – free key (1 minute)
-103|<b>1.</b> Open <b>aistudio.google.com/apikey</b> and log in with a Google account.<br><b>2.</b> Click <b>Create API key</b> and copy it.<br><b>3.</b> Paste it here. It stays on this PC (settings.json).<br><br><b>Gemma 3 27B</b> has the biggest free daily allowance (about 14,400 sentences). Gemini Flash-Lite / Flash are smarter but their free allowance is small.<br>On the free plan Google may use what is sent to improve its products; with billing turned on it doesn't.
+103|<b>1.</b> Open <b>aistudio.google.com/apikey</b> and log in with a Google account.<br><b>2.</b> Click <b>Create API key</b> and copy it.<br><b>3.</b> Paste it here. It stays on this PC (settings.json).<br><br><b>Gemma 4 31B</b> has the biggest free daily allowance. Gemini Flash-Lite / Flash are smarter but their free allowance is small.<br>On the free plan Google may use what is sent to improve its products; with billing turned on it doesn't.
 104|merge more
 105|Live – the conversation
 106|People – names, voices, Discord
@@ -321,8 +321,8 @@
 321|Heavy – gemma3:12b
 322|~8 GB graphics memory
 323|Heavy – gemma3:12b · ~8 GB graphics memory · best, 10–20 s on 8 GB cards
-324|Gemma 3 27B
-325|Gemma 3 27B – free, about 14,400 sentences a day
+324|Gemma 4 31B
+325|Gemma 4 31B – free
 326|Gemini Flash-Lite
 327|Gemini Flash-Lite – faster/smarter, small daily free limit
 328|Gemini Flash

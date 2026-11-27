@@ -27,11 +27,12 @@ API = "https://generativelanguage.googleapis.com/v1beta/models/{model}:streamGen
 
 # model id -> (label, free requests per day as Google lists them for the free plan; shown as a guide only)
 MODELS = {
-    "gemma-3-27b-it": ("Gemma 3 27B – free, about 14,400 sentences a day", 14400),
+    "gemma-4-31b-it": ("Gemma 4 31B – free", 14400),
     "gemini-flash-lite-latest": ("Gemini Flash-Lite – faster/smarter, small daily free limit", 1000),
     "gemini-flash-latest": ("Gemini Flash – smartest, very small daily free limit", 250),
 }
-DEFAULT_MODEL = "gemma-3-27b-it"
+DEFAULT_MODEL = "gemma-4-31b-it"
+RETIRED = {"gemma-3-27b-it": "gemma-4-31b-it"}      # Google took Gemma 3 off the API
 
 
 class OnlineUnavailable(Exception):
@@ -80,6 +81,7 @@ class GeminiTranslator:
         from .engine import partial_json_string
         key = str(self.s.gemini_key or "").strip()
         model = str(self.s.gemini_model or DEFAULT_MODEL)
+        model = RETIRED.get(model, model)
         user = self.build_user(line, context, target)
         sysp = self.system_prompt(target)
         if model.startswith("gemma"):

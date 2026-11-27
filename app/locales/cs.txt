@@ -100,7 +100,7 @@
 100|Obě: nejdřív online, grafická karta, když online neodpoví.
 101|Jen online: když neodpoví, řádky zůstanou nepřeložené.
 102|Gemini – klíč zdarma (1 minuta)
-103|<b>1.</b> Otevřete <b>aistudio.google.com/apikey</b> a přihlaste se účtem Google.<br><b>2.</b> Klikněte na <b>Create API key</b> a zkopírujte ho.<br><b>3.</b> Vložte ho sem. Zůstane na tomto PC (settings.json).<br><br><b>Gemma 3 27B</b> má největší denní příděl zdarma (asi 14 400 vět). Gemini Flash-Lite / Flash jsou chytřejší, ale jejich příděl zdarma je malý.<br>U bezplatného tarifu může Google odeslaný obsah použít ke zlepšení svých produktů; se zapnutou fakturací ne.
+103|<b>1.</b> Otevřete <b>aistudio.google.com/apikey</b> a přihlaste se účtem Google.<br><b>2.</b> Klikněte na <b>Create API key</b> a zkopírujte ho.<br><b>3.</b> Vložte ho sem. Zůstane na tomto PC (settings.json).<br><br><b>Gemma 4 31B</b> má největší denní příděl zdarma. Gemini Flash-Lite / Flash jsou chytřejší, ale jejich příděl zdarma je malý.<br>U bezplatného tarifu může Google odeslaný obsah použít ke zlepšení svých produktů; se zapnutou fakturací ne.
 104|více slučovat
 105|Živě – rozhovor
 106|Lidé – jména, hlasy, Discord
@@ -321,8 +321,8 @@
 321|Těžký – gemma3:12b
 322|~8 GB grafické paměti
 323|Těžký – gemma3:12b · ~8 GB grafické paměti · nejlepší, 10–20 s na 8GB kartách
-324|Gemma 3 27B
-325|Gemma 3 27B – zdarma, asi 14 400 vět denně
+324|Gemma 4 31B
+325|Gemma 4 31B – zdarma
 326|Gemini Flash-Lite
 327|Gemini Flash-Lite – rychlejší/chytřejší, malý denní limit zdarma
 328|Gemini Flash

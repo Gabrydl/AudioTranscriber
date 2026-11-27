@@ -100,7 +100,7 @@
 100|Oboje: prvo online, grafička kartica kad online ne odgovori.
 101|Samo online: ako ne odgovori, redovi ostaju neprevedeni.
 102|Gemini – besplatan ključ (1 minuta)
-103|<b>1.</b> Otvori <b>aistudio.google.com/apikey</b> i prijavi se Google računom.<br><b>2.</b> Klikni <b>Create API key</b> i kopiraj ga.<br><b>3.</b> Nalijepi ga ovdje. Ostaje na ovom računaru (settings.json).<br><br><b>Gemma 3 27B</b> ima najveću besplatnu dnevnu kvotu (oko 14.400 rečenica). Gemini Flash-Lite / Flash su pametniji, ali im je besplatna kvota mala.<br>U besplatnom planu Google smije koristiti poslano za poboljšanje svojih proizvoda; s uključenim plaćanjem ne smije.
+103|<b>1.</b> Otvori <b>aistudio.google.com/apikey</b> i prijavi se Google računom.<br><b>2.</b> Klikni <b>Create API key</b> i kopiraj ga.<br><b>3.</b> Nalijepi ga ovdje. Ostaje na ovom računaru (settings.json).<br><br><b>Gemma 4 31B</b> ima najveću besplatnu dnevnu kvotu. Gemini Flash-Lite / Flash su pametniji, ali im je besplatna kvota mala.<br>U besplatnom planu Google smije koristiti poslano za poboljšanje svojih proizvoda; s uključenim plaćanjem ne smije.
 104|više spaja
 105|Uživo – razgovor
 106|Osobe – imena, glasovi, Discord
@@ -321,8 +321,8 @@
 321|Teški – gemma3:12b
 322|~8 GB grafičke memorije
 323|Teški – gemma3:12b · ~8 GB grafičke memorije · najbolji, 10–20 s na karticama od 8 GB
-324|Gemma 3 27B
-325|Gemma 3 27B – besplatno, oko 14.400 rečenica dnevno
+324|Gemma 4 31B
+325|Gemma 4 31B – besplatno
 326|Gemini Flash-Lite
 327|Gemini Flash-Lite – brži/pametniji, malo dnevno besplatno ograničenje
 328|Gemini Flash

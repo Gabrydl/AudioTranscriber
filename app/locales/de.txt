@@ -100,7 +100,7 @@
 100|Beide: zuerst online, die Grafikkarte, wenn online nicht antwortet.
 101|Nur online: Antwortet es nicht, bleiben die Zeilen unübersetzt.
 102|Gemini – Gratis-Schlüssel (1 Minute)
-103|<b>1.</b> Öffne <b>aistudio.google.com/apikey</b> und melde dich mit einem Google-Konto an.<br><b>2.</b> Klicke auf <b>Create API key</b> und kopiere ihn.<br><b>3.</b> Füge ihn hier ein. Er bleibt auf diesem PC (settings.json).<br><br><b>Gemma 3 27B</b> hat das größte tägliche Gratiskontingent (etwa 14.400 Sätze). Gemini Flash-Lite / Flash sind klüger, aber ihr Gratiskontingent ist klein.<br>Im Gratistarif darf Google das Gesendete zur Verbesserung seiner Produkte nutzen; mit aktivierter Abrechnung nicht.
+103|<b>1.</b> Öffne <b>aistudio.google.com/apikey</b> und melde dich mit einem Google-Konto an.<br><b>2.</b> Klicke auf <b>Create API key</b> und kopiere ihn.<br><b>3.</b> Füge ihn hier ein. Er bleibt auf diesem PC (settings.json).<br><br><b>Gemma 4 31B</b> hat das größte tägliche Gratiskontingent. Gemini Flash-Lite / Flash sind klüger, aber ihr Gratiskontingent ist klein.<br>Im Gratistarif darf Google das Gesendete zur Verbesserung seiner Produkte nutzen; mit aktivierter Abrechnung nicht.
 104|mehr zusammenlegen
 105|Live – das Gespräch
 106|Personen – Namen, Stimmen, Discord
@@ -321,8 +321,8 @@
 321|Schwer – gemma3:12b
 322|~8 GB Grafikspeicher
 323|Schwer – gemma3:12b · ~8 GB Grafikspeicher · am besten, 10–20 s auf 8-GB-Karten
-324|Gemma 3 27B
-325|Gemma 3 27B – gratis, etwa 14.400 Sätze pro Tag
+324|Gemma 4 31B
+325|Gemma 4 31B – gratis
 326|Gemini Flash-Lite
 327|Gemini Flash-Lite – schneller/klüger, kleines tägliches Gratislimit
 328|Gemini Flash

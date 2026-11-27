@@ -69,7 +69,10 @@ class _Pipe:
     def _read(self, n: int) -> bytes:
         buf = b""
         while len(buf) < n:
-            chunk = self.f.read(n - len(buf)) if self.f else self.sock.recv(n - len(buf))
+            f, sock = self.f, self.sock
+            if f is None and sock is None:
+                raise ConnectionError("Discord connection closed")
+            chunk = f.read(n - len(buf)) if f else sock.recv(n - len(buf))
             if not chunk:
                 raise ConnectionError("Discord closed the connection")
             buf += chunk
@@ -78,11 +81,14 @@ class _Pipe:
     def send(self, op: int, payload: dict):
         data = json.dumps(payload).encode()
         raw = struct.pack("<II", op, len(data)) + data
-        if self.f:
-            self.f.write(raw)
-            self.f.flush()
+        f, sock = self.f, self.sock
+        if f:
+            f.write(raw)
+            f.flush()
+        elif sock:
+            sock.sendall(raw)
         else:
-            self.sock.sendall(raw)
+            raise ConnectionError("Discord connection closed")
 
     def recv(self) -> tuple[int, dict]:
         op, n = struct.unpack("<II", self._read(8))
@@ -93,10 +99,31 @@ class _Pipe:
             return op, {}
 
     def close(self):
-        for x in (self.f, self.sock):
+        """Never blocks the caller. On Windows, closing a pipe while another thread is waiting in a read
+        hangs until Discord sends something: the waiting read is cancelled first, and the close runs aside."""
+        f, self.f = self.f, None
+        if f is not None and sys.platform == "win32":
             try:
-                if x:
-                    x.close()
+                import ctypes
+                import msvcrt
+                ctypes.windll.kernel32.CancelIoEx(ctypes.c_void_p(msvcrt.get_osfhandle(f.fileno())), None)
+            except Exception:
+                pass
+        if f is not None:
+            def _close():
+                try:
+                    f.close()
+                except Exception:
+                    pass
+            threading.Thread(target=_close, daemon=True, name="discord-pipe-close").start()
+        sock, self.sock = self.sock, None
+        if sock is not None:
+            try:
+                sock.shutdown(socket.SHUT_RDWR)          # wakes a thread waiting in recv
+            except Exception:
+                pass
+            try:
+                sock.close()
             except Exception:
                 pass
 

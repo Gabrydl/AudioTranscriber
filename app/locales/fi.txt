@@ -100,7 +100,7 @@
 100|Molemmat: ensin verkossa, näytönohjain kun verkkopalvelu ei vastaa.
 101|Vain verkossa: jos se ei vastaa, rivit jäävät kääntämättä.
 102|Gemini – ilmainen avain (1 minuutti)
-103|<b>1.</b> Avaa <b>aistudio.google.com/apikey</b> ja kirjaudu Google-tilillä.<br><b>2.</b> Napsauta <b>Create API key</b> ja kopioi avain.<br><b>3.</b> Liitä se tähän. Se pysyy tällä koneella (settings.json).<br><br><b>Gemma 3 27B</b>:llä on suurin päivittäinen ilmaiskiintiö (noin 14 400 lausetta). Gemini Flash-Lite / Flash ovat älykkäämpiä, mutta niiden ilmaiskiintiö on pieni.<br>Ilmaisversiossa Google voi käyttää lähetettyä sisältöä tuotteidensa parantamiseen; laskutuksen ollessa päällä ei voi.
+103|<b>1.</b> Avaa <b>aistudio.google.com/apikey</b> ja kirjaudu Google-tilillä.<br><b>2.</b> Napsauta <b>Create API key</b> ja kopioi avain.<br><b>3.</b> Liitä se tähän. Se pysyy tällä koneella (settings.json).<br><br><b>Gemma 4 31B</b>:llä on suurin päivittäinen ilmaiskiintiö. Gemini Flash-Lite / Flash ovat älykkäämpiä, mutta niiden ilmaiskiintiö on pieni.<br>Ilmaisversiossa Google voi käyttää lähetettyä sisältöä tuotteidensa parantamiseen; laskutuksen ollessa päällä ei voi.
 104|yhdistää enemmän
 105|Livenä – keskustelu
 106|Henkilöt – nimet, äänet, Discord
@@ -321,8 +321,8 @@
 321|Raskas – gemma3:12b
 322|~8 Gt näyttömuistia
 323|Raskas – gemma3:12b · ~8 Gt näyttömuistia · paras, 10–20 s 8 Gt:n näytönohjaimilla
-324|Gemma 3 27B
-325|Gemma 3 27B – ilmainen, noin 14 400 lausetta päivässä
+324|Gemma 4 31B
+325|Gemma 4 31B – ilmainen
 326|Gemini Flash-Lite
 327|Gemini Flash-Lite – nopeampi/älykkäämpi, pieni päivittäinen ilmaisraja
 328|Gemini Flash

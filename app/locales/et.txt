@@ -100,7 +100,7 @@
 100|Mõlemad: kõigepealt võrgus, graafikakaart siis, kui võrguteenus ei vasta.
 101|Ainult võrgus: kui see ei vasta, jäävad read tõlkimata.
 102|Gemini – tasuta võti (1 minut)
-103|<b>1.</b> Ava <b>aistudio.google.com/apikey</b> ja logi sisse Google'i kontoga.<br><b>2.</b> Klõpsa <b>Create API key</b> ja kopeeri see.<br><b>3.</b> Kleebi see siia. See jääb sellesse arvutisse (settings.json).<br><br><b>Gemma 3 27B</b> on suurim tasuta päevakvoot (umbes 14 400 lauset). Gemini Flash-Lite / Flash on nutikamad, kuid nende tasuta kvoot on väike.<br>Tasuta paketis võib Google saadetut oma toodete parandamiseks kasutada; sisselülitatud arveldusega mitte.
+103|<b>1.</b> Ava <b>aistudio.google.com/apikey</b> ja logi sisse Google'i kontoga.<br><b>2.</b> Klõpsa <b>Create API key</b> ja kopeeri see.<br><b>3.</b> Kleebi see siia. See jääb sellesse arvutisse (settings.json).<br><br><b>Gemma 4 31B</b> on suurim tasuta päevakvoot. Gemini Flash-Lite / Flash on nutikamad, kuid nende tasuta kvoot on väike.<br>Tasuta paketis võib Google saadetut oma toodete parandamiseks kasutada; sisselülitatud arveldusega mitte.
 104|liidab rohkem
 105|Otse – vestlus
 106|Inimesed – nimed, hääled, Discord
@@ -321,8 +321,8 @@
 321|Raske – gemma3:12b
 322|~8 GB graafikamälu
 323|Raske – gemma3:12b · ~8 GB graafikamälu · parim, 10–20 s 8 GB kaartidel
-324|Gemma 3 27B
-325|Gemma 3 27B – tasuta, umbes 14 400 lauset päevas
+324|Gemma 4 31B
+325|Gemma 4 31B – tasuta
 326|Gemini Flash-Lite
 327|Gemini Flash-Lite – kiirem/nutikam, väike tasuta päevapiirang
 328|Gemini Flash

@@ -100,7 +100,7 @@
 100|Pareho: online muna, ang graphics card kapag hindi sumagot ang online.
 101|Online lang: kapag hindi sumagot, mananatiling walang salin ang mga linya.
 102|Gemini – libreng key (1 minuto)
-103|<b>1.</b> Buksan ang <b>aistudio.google.com/apikey</b> at mag-log in gamit ang Google account.<br><b>2.</b> I-click ang <b>Create API key</b> at kopyahin ito.<br><b>3.</b> I-paste dito. Mananatili ito sa PC na ito (settings.json).<br><br>Ang <b>Gemma 3 27B</b> ang may pinakamalaking libreng limit bawat araw (mga 14,400 pangungusap). Mas matalino ang Gemini Flash-Lite / Flash pero maliit ang libreng limit nila.<br>Sa libreng plan, puwedeng gamitin ng Google ang ipinapadala para pagandahin ang mga produkto nito; kapag naka-on ang billing, hindi.
+103|<b>1.</b> Buksan ang <b>aistudio.google.com/apikey</b> at mag-log in gamit ang Google account.<br><b>2.</b> I-click ang <b>Create API key</b> at kopyahin ito.<br><b>3.</b> I-paste dito. Mananatili ito sa PC na ito (settings.json).<br><br>Ang <b>Gemma 4 31B</b> ang may pinakamalaking libreng limit bawat araw. Mas matalino ang Gemini Flash-Lite / Flash pero maliit ang libreng limit nila.<br>Sa libreng plan, puwedeng gamitin ng Google ang ipinapadala para pagandahin ang mga produkto nito; kapag naka-on ang billing, hindi.
 104|mas pinagsasama
 105|Live – ang usapan
 106|Mga tao – pangalan, boses, Discord
@@ -321,8 +321,8 @@
 321|Mabigat – gemma3:12b
 322|~8 GB graphics memory
 323|Mabigat – gemma3:12b · ~8 GB graphics memory · pinakamahusay, 10–20 s sa 8 GB na card
-324|Gemma 3 27B
-325|Gemma 3 27B – libre, mga 14,400 pangungusap bawat araw
+324|Gemma 4 31B
+325|Gemma 4 31B – libre
 326|Gemini Flash-Lite
 327|Gemini Flash-Lite – mas mabilis/matalino, maliit na libreng limit bawat araw
 328|Gemini Flash

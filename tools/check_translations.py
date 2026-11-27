@@ -20,7 +20,42 @@ NAMES = {"it": "Italian", "pt-BR": "Brazilian Portuguese", "pt-PT": "European Po
          "tl": "Tagalog (Filipino)", "ceb": "Cebuano (Bisaya)", "cs": "Czech", "pl": "Polish",
          "fi": "Finnish", "et": "Estonian", "sr": "Serbian (Cyrillic, ekavian)", "hr": "Croatian",
          "cnr": "Montenegrin (Latin script)", "bs": "Bosnian", "bg": "Bulgarian", "ru": "Russian", "el": "Greek"}
-MODEL = "gemma-3-27b-it"               # the big free daily allowance (Flash kept answering "busy")
+# first one Google answers is used (Gemma 3 was taken off the API; Gemma 4 has the big free allowance)
+CANDIDATES = ["gemma-4-31b-it", "gemma-4-26b-a4b-it", "gemini-flash-lite-latest", "gemini-flash-latest"]
+MODEL = CANDIDATES[0]
+
+
+class Fatal(Exception):
+    """Wrong key or model: no point going on with the other languages."""
+
+
+def _err_text(e) -> str:
+    try:
+        return json.loads(e.read() or b"{}").get("error", {}).get("message", "")[:200]
+    except Exception:
+        return ""
+
+
+def pick_model(key: str) -> str:
+    for m in CANDIDATES:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent"
+        body = {"contents": [{"role": "user", "parts": [{"text": "Say OK."}]}]}
+        req = urllib.request.Request(url, json.dumps(body).encode(), method="POST",
+                                     headers={"Content-Type": "application/json", "x-goog-api-key": key})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                r.read()
+            return m
+        except urllib.error.HTTPError as e:
+            msg = _err_text(e)
+            print(f"   {m}: {e.code} {msg}", flush=True)
+            if e.code in (401, 403) or (e.code == 400 and "key" in msg.lower()):
+                raise Fatal(f"the Gemini key was refused: {msg}")
+            if e.code in (429, 503):          # exists, just busy or over today's limit: still usable later
+                return m
+        except Exception as e:
+            print(f"   {m}: {e}", flush=True)
+    raise Fatal("Google answered none of the models")
 
 
 def read(p: Path) -> dict[int, str]:
@@ -44,11 +79,14 @@ def ask(key: str, prompt: str) -> str:
                 d = json.loads(r.read())
             return d["candidates"][0]["content"]["parts"][0]["text"]
         except urllib.error.HTTPError as e:
+            msg = _err_text(e)
             if e.code in (429, 500, 503) and attempt < 5:
-                print(f"   Google busy ({e.code}), waiting…", flush=True)
+                print(f"   Google busy ({e.code} {msg[:80]}), waiting…", flush=True)
                 time.sleep(30 * (attempt + 1))
                 continue
-            raise
+            if e.code in (400, 401, 403, 404):
+                raise Fatal(f"{e.code} {msg}")
+            raise RuntimeError(f"{e.code} {msg}")
         except (TimeoutError, OSError):
             if attempt < 5:
                 print("   no answer yet, retrying…", flush=True)
@@ -105,6 +143,13 @@ def main():
             report = {}
     # languages already checked without errors are skipped, so it can be stopped and started again
     only = [c for c in only if not (c in report and not any("error" in x for x in report[c]["app"]))]
+    global MODEL
+    try:
+        MODEL = pick_model(key)
+    except Fatal as e:
+        input(f"Stopped: {e}\nPress Enter to close.")
+        return
+    print(f"using {MODEL}", flush=True)
     for code in only:
         lang = NAMES[code]
         tr = read(ROOT / "app" / "locales" / f"{code}.txt")
@@ -116,6 +161,9 @@ def main():
                               for n in nums[i:i + 50])
             try:
                 found += parse(ask(key, PROMPT.format(lang=lang, items=items)))
+            except Fatal as e:
+                input(f"Stopped: {e}\nPress Enter to close.")
+                return
             except Exception as e:
                 found.append({"error": str(e)[:200]})
             time.sleep(3)
@@ -131,6 +179,7 @@ def main():
         out_path.write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
         print(f"{code}: {len(found)} app lines, {len(rfound)} README lines to look at", flush=True)
     print("report:", out_path)
+    input("Done. Press Enter to close.")
 
 
 if __name__ == "__main__":

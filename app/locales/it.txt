@@ -100,7 +100,7 @@
 100|Entrambi: prima online, la scheda video quando online non risponde.
 101|Solo online: se non risponde, le righe restano senza traduzione.
 102|Gemini – chiave gratis (1 minuto)
-103|<b>1.</b> Apri <b>aistudio.google.com/apikey</b> e accedi con un account Google.<br><b>2.</b> Clicca <b>Create API key</b> e copiala.<br><b>3.</b> Incollala qui. Resta su questo PC (settings.json).<br><br><b>Gemma 3 27B</b> ha la quota gratuita giornaliera più grande (circa 14.400 frasi). Gemini Flash-Lite / Flash sono più intelligenti ma la loro quota gratuita è piccola.<br>Con il piano gratuito Google può usare ciò che viene inviato per migliorare i suoi prodotti; con la fatturazione attiva no.
+103|<b>1.</b> Apri <b>aistudio.google.com/apikey</b> e accedi con un account Google.<br><b>2.</b> Clicca <b>Create API key</b> e copiala.<br><b>3.</b> Incollala qui. Resta su questo PC (settings.json).<br><br><b>Gemma 4 31B</b> ha la quota gratuita giornaliera più grande. Gemini Flash-Lite / Flash sono più intelligenti ma la loro quota gratuita è piccola.<br>Con il piano gratuito Google può usare ciò che viene inviato per migliorare i suoi prodotti; con la fatturazione attiva no.
 104|unisce di più
 105|Dal vivo – la conversazione
 106|Persone – nomi, voci, Discord
@@ -321,8 +321,8 @@
 321|Pesante – gemma3:12b
 322|~8 GB di memoria video
 323|Pesante – gemma3:12b · ~8 GB di memoria video · il migliore, 10–20 s su schede da 8 GB
-324|Gemma 3 27B
-325|Gemma 3 27B – gratis, circa 14.400 frasi al giorno
+324|Gemma 4 31B
+325|Gemma 4 31B – gratis
 326|Gemini Flash-Lite
 327|Gemini Flash-Lite – più veloce/intelligente, piccolo limite gratuito giornaliero
 328|Gemini Flash

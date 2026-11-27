@@ -112,4 +112,7 @@ if __name__ == "__main__":
     except Exception:
         logging.exception("AudioTranscriber could not start")
         code = 1
-    sys.exit(code)
+    # leave for sure: a thread stuck on the network or a pipe must never keep the closed app alive
+    # (it would hold the single-copy lock, so a restart or the next start would find "it's already open")
+    logging.shutdown()
+    os._exit(code or 0)

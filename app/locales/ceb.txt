@@ -100,7 +100,7 @@
 100|Pareho: online una, ang graphics card kung dili motubag ang online.
 101|Online ra: kung dili motubag, magpabilin nga walay hubad ang mga linya.
 102|Gemini – libre nga key (1 minuto)
-103|<b>1.</b> Ablihi ang <b>aistudio.google.com/apikey</b> ug mag-log in gamit ang Google account.<br><b>2.</b> I-click ang <b>Create API key</b> ug kopyaha kini.<br><b>3.</b> I-paste dinhi. Magpabilin kini niini nga PC (settings.json).<br><br>Ang <b>Gemma 3 27B</b> ang adunay pinakadako nga libre nga limit matag adlaw (mga 14,400 ka pulong). Mas maalamon ang Gemini Flash-Lite / Flash pero gamay ang ilang libre nga limit.<br>Sa libre nga plan, mahimong gamiton sa Google ang gipadala aron mapaayo ang ilang mga produkto; kung naka-on ang billing, dili.
+103|<b>1.</b> Ablihi ang <b>aistudio.google.com/apikey</b> ug mag-log in gamit ang Google account.<br><b>2.</b> I-click ang <b>Create API key</b> ug kopyaha kini.<br><b>3.</b> I-paste dinhi. Magpabilin kini niini nga PC (settings.json).<br><br>Ang <b>Gemma 4 31B</b> ang adunay pinakadako nga libre nga limit matag adlaw. Mas maalamon ang Gemini Flash-Lite / Flash pero gamay ang ilang libre nga limit.<br>Sa libre nga plan, mahimong gamiton sa Google ang gipadala aron mapaayo ang ilang mga produkto; kung naka-on ang billing, dili.
 104|mas hiusahon
 105|Live – ang istorya
 106|Mga tawo – ngalan, tingog, Discord
@@ -321,8 +321,8 @@
 321|Bug-at – gemma3:12b
 322|~8 GB graphics memory
 323|Bug-at – gemma3:12b · ~8 GB graphics memory · pinakamaayo, 10–20 s sa 8 GB nga card
-324|Gemma 3 27B
-325|Gemma 3 27B – libre, mga 14,400 ka pulong matag adlaw
+324|Gemma 4 31B
+325|Gemma 4 31B – libre
 326|Gemini Flash-Lite
 327|Gemini Flash-Lite – mas paspas/maalamon, gamay nga libre nga limit matag adlaw
 328|Gemini Flash

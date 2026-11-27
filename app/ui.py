@@ -1393,7 +1393,7 @@ class SettingsPanel(QFrame):
             cb.setChecked(bool(v))
             cb.blockSignals(False)
         self.gm.blockSignals(True)
-        self._sel(self.gm, s.gemini_model or "gemma-3-27b-it")
+        self._sel(self.gm, {"gemma-3-27b-it": "gemma-4-31b-it"}.get(s.gemini_model, s.gemini_model) or "gemma-4-31b-it")
         self.gm.blockSignals(False)
         self.gkey.setText(s.gemini_key or "")
         self._tr_vis()
@@ -1544,7 +1544,7 @@ class SettingsPanel(QFrame):
         self.g_usage.setText(f"{key}{use} ({tr('resets at 09:00')}). {mode}")
 
     def _gem_changed(self, *_):
-        self.s.gemini_model = self.gm.currentData() or "gemma-3-27b-it"
+        self.s.gemini_model = self.gm.currentData() or "gemma-4-31b-it"
         self.s.gemini_key = self.gkey.text().strip()
         self.s.save()
         self.update_gem_usage()
@@ -1557,7 +1557,7 @@ class SettingsPanel(QFrame):
             "<b>1.</b> Open <b>aistudio.google.com/apikey</b> and log in with a Google account.<br>"
             "<b>2.</b> Click <b>Create API key</b> and copy it.<br>"
             "<b>3.</b> Paste it here. It stays on this PC (settings.json).<br><br>"
-            "<b>Gemma 3 27B</b> has the biggest free daily allowance (about 14,400 sentences). "
+            "<b>Gemma 4 31B</b> has the biggest free daily allowance. "
             "Gemini Flash-Lite / Flash are smarter but their free allowance is small.<br>"
             "On the free plan Google may use what is sent to improve its products; with billing turned on it doesn't."))
         box.exec()
