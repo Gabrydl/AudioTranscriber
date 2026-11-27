@@ -1,6 +1,6 @@
 # AudioTranscriber
 
-Windows app that listens to another app (Discord by default), transcribes what people say and translates it live into the language you pick. Everything runs locally: Whisper for speech recognition, a local Ollama model for translation, nothing sent to the cloud.
+Windows app that listens to another app (Discord by default), transcribes what people say and translates it live into the language you pick. Speech recognition runs locally (Whisper). Translation runs on your graphics card (Ollama), online with Google's Gemini API, or both (online first, local as backup).
 
 ## What it does
 - Live transcription + translation of an app's audio (Discord, games, browsers…), with an in-game overlay

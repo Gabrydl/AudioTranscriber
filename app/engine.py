@@ -86,6 +86,7 @@ class Line:
     whisper_ms: int = 0                      # Whisper (language + transcription)
     voice_ms: int = 0                        # extra wait for the voice print after Whisper
     llm_wait_ms: int = 0                     # waited for the translator to be free
+    via: str = ""                            # "online" (Gemini) or "local" (graphics card)
     t_ready: float = 0.0                     # when it was handed to the translator
     speaker_name: str = ""
     usual_lang: str = ""                     # the language this person usually speaks (learned)
@@ -894,8 +895,8 @@ class Translator:
         except Exception:
             pass
 
-    def translate_stream(self, line: Line, context: list[Line], on_partial: Callable[[str], None],
-                         target: str = "it") -> dict:
+    def build_user(self, line: Line, context: list[Line], target: str = "it") -> str:
+        """The message the translator gets (same for the local and the online one)."""
         ctx = [{"speaker": c.speaker_name, "lang": c.lang, "text": c.corrected or c.text} for c in context]
         vocab = [w.strip() for w in (self.s.vocabulary or []) if str(w).strip()][:80]
         terms = []
@@ -918,6 +919,11 @@ class Translator:
                          "asr_text": line.marked or line.text,
                          "asr_confidence": round(line.confidence, 2)},
         }, ensure_ascii=False)
+        return user
+
+    def translate_stream(self, line: Line, context: list[Line], on_partial: Callable[[str], None],
+                         target: str = "it") -> dict:
+        user = self.build_user(line, context, target)
         payload = {
             "model": self.s.llm_model, "stream": True, "format": "json", "keep_alive": "30m",
             "options": self._options(),
@@ -956,6 +962,7 @@ class Engine:
     def __init__(self, settings, on_status, on_line, on_update, on_metrics, on_ready=None, registry=None):
         self.s = settings
         self.registry = registry
+        self.online = None                       # Gemini (online translator), created below if ticked
         self.discord = None                      # DiscordVoice (names + who is talking), set by the window
         self.embedder = None
         self._spk_ready = threading.Event()
@@ -969,6 +976,9 @@ class Engine:
         self._stop = threading.Event()
         self.transcriber = Transcriber(settings, lambda m: on_status("asr", m))
         self.translator = Translator(settings, lambda m: on_status("llm", m))
+        from .online import GeminiTranslator
+        self.online = GeminiTranslator(settings, self.translator.build_user, system_prompt,
+                                       lambda m: on_status("llm", m))
         self.translator.cancelled = lambda: self._stop.is_set()       # a stopped session doesn't load anything
         self._reviving = False
         self._last_revive = 0.0
@@ -1170,9 +1180,9 @@ class Engine:
                     self.on_update(line)
                     self._remember(line)
                     continue
-                if self.s.llm_enabled and not self.translator.available:
+                if self.s.llm_enabled and self._local_on() and not self.translator.available:
                     self._revive_llm()
-                if self.s.llm_enabled and (self.translator.available or self._reviving):
+                if self.s.llm_enabled and (self.translator.available or self._reviving or self._online_ok()):
                     line.t_ready = time.time()
                     self.llm_q.put(line)
                 else:
@@ -1273,7 +1283,9 @@ class Engine:
             self._llm_ready.wait()
         else:
             try:
-                if self.s.llm_enabled and self.translator.ensure() and not self._stop.is_set():
+                if self.s.llm_enabled and not self._local_on():
+                    self.on_status("llm", "online (Gemini) – graphics card translator off")
+                elif self.s.llm_enabled and self.translator.ensure() and not self._stop.is_set():
                     self.translator.load()
                 elif self.s.llm_enabled:
                     log.warning("Translator not available at start")
@@ -1294,7 +1306,7 @@ class Engine:
             while self._reviving and waited < 30 and not self._stop.is_set():
                 time.sleep(0.25)
                 waited += 0.25
-            if not self.translator.available:
+            if not self.translator.available and not self._online_ok():
                 line.state = "llm-off"
                 self.on_update(line)
                 self._remember(line)
@@ -1319,11 +1331,11 @@ class Engine:
                     ctx = [h for h in self.history if h.state != "skipped" and line.t - h.t <= 20.0][-3:]
                     if self.llm_q.qsize() >= 2:
                         ctx = ctx[-1:]                   # falling behind: shorter prompt, faster answer
-                    data = self.translator.translate_stream(line, ctx, partial, tgt)
+                    data = self._translate(line, ctx, partial, tgt)
                     break
                 except Exception as e:
                     log.warning("translate attempt %d failed: %s", attempt, e)
-                    if attempt == 1:
+                    if attempt == 1 and self._local_on():
                         # Ollama closed or crashed -> start it again and retry this line once
                         self.on_status("llm", "translator stopped – restarting Ollama…")
                         self.translator.available = False
@@ -1370,14 +1382,36 @@ class Engine:
             line.state = "done"
             self.on_update(line)
             self._remember(line)
-            log.info("line %d timing: waited %.1fs · whisper %.1fs · voices +%.1fs · translator queue %.1fs · "
-                     "first words %.1fs · done %.1fs", line.id, line.q_ms / 1000, line.whisper_ms / 1000,
+            log.info("line %d timing (%s): waited %.1fs · whisper %.1fs · voices +%.1fs · translator queue %.1fs · "
+                     "first words %.1fs · done %.1fs", line.id, line.via, line.q_ms / 1000, line.whisper_ms / 1000,
                      line.voice_ms / 1000, line.llm_wait_ms / 1000, line.llm_first_ms / 1000, line.llm_ms / 1000)
+
+    def _local_on(self) -> bool:
+        return bool(getattr(self.s, "translate_local", True)) or not getattr(self.s, "translate_online", False)
+
+    def _online_ok(self) -> bool:
+        return self.online is not None and self.online.usable()
+
+    def _translate(self, line, ctx, partial, tgt) -> dict:
+        """Online first (if ticked and reachable), the graphics card otherwise or when online fails."""
+        if self._online_ok():
+            try:
+                d = self.online.translate_stream(line, ctx, partial, tgt)
+                line.via = "online"
+                return d
+            except Exception as e:
+                log.info("online translator: %s", e)
+                if not self._local_on():
+                    raise
+        if not self._local_on():
+            raise RuntimeError("online translator unavailable: " + (self.online.block_reason if self.online else ""))
+        line.via = "local"
+        return self.translator.translate_stream(line, ctx, partial, tgt)
 
     def _revive_llm(self):
         """Ollama missing/crashed mid-session -> restart it in the background (at most every 15 s)."""
         now = time.time()
-        if not self.s.llm_enabled or self._reviving or now - self._last_revive < 15:
+        if not self.s.llm_enabled or not self._local_on() or self._reviving or now - self._last_revive < 15:
             return
         self._reviving, self._last_revive = True, now
 

@@ -444,7 +444,8 @@ class Card(QFrame):
         self.when.setText(dt.datetime.fromtimestamp(l.t).strftime("%H:%M:%S"))
         tip = (f"{l.source.rsplit('.', 1)[0]} · said at " + dt.datetime.fromtimestamp(l.t).strftime("%H:%M:%S") +
                f"\nWaited {l.q_ms / 1000:.1f}s · recognition {l.whisper_ms / 1000:.1f}s · voices +{l.voice_ms / 1000:.1f}s"
-               f"\nTranslator: waited {l.llm_wait_ms / 1000:.1f}s · first words {l.llm_first_ms / 1000:.1f}s · done {l.llm_ms / 1000:.1f}s")
+               f"\nTranslator{' (online)' if l.via == 'online' else ' (graphics card)' if l.via == 'local' else ''}: "
+               f"waited {l.llm_wait_ms / 1000:.1f}s · first words {l.llm_first_ms / 1000:.1f}s · done {l.llm_ms / 1000:.1f}s")
         self.meta.setToolTip(tip)
         self.when.setToolTip(tip)
         c = l.confidence
@@ -710,8 +711,46 @@ class SettingsPanel(QFrame):
         self.lm_hint.setObjectName("status")
         self.lm_hint.setWordWrap(True)
         lay.addWidget(self.le)
+        # where it runs: graphics card (local), online (Gemini), or both (online first, card as backup)
+        self.tr_gpu = QCheckBox("Graphics card – local, works offline")
+        self.tr_on = QCheckBox("Online – Gemini, when internet is on")
+        self.tr_gpu.setToolTip("The translator model below runs on your PC (Ollama). Nothing leaves the PC.")
+        self.tr_on.setToolTip("Google's Gemini API translates instead: faster and smarter than what fits on an 8 GB card.\n"
+                              "Both ticked: online first, the graphics card takes over when online can't answer\n"
+                              "(no internet, daily free limit reached, too slow).")
+        lay.addWidget(self.tr_gpu)
         lay.addWidget(self.lm)
         lay.addWidget(self.lm_hint)
+        lay.addWidget(self.tr_on)
+        from .online import MODELS as GEM_MODELS
+        self.gm = QComboBox()
+        for k, (lab_, _n) in GEM_MODELS.items():
+            self.gm.addItem(lab_.split(" – ")[0], k)
+            self.gm.setItemData(self.gm.count() - 1, lab_, Qt.ToolTipRole)
+        self.gkey = QLineEdit()
+        self.gkey.setPlaceholderText("Gemini API key (free)")
+        self.gkey.setEchoMode(QLineEdit.Password)
+        grow = QHBoxLayout()
+        self.gkey_help = QPushButton("Get a free key")
+        self.gkey_help.setObjectName("ghost")
+        grow.addWidget(self.gkey, 1)
+        grow.addWidget(self.gkey_help)
+        self.g_usage = QLabel()
+        self.g_usage.setObjectName("status")
+        self.g_usage.setWordWrap(True)
+        self.on_box = QWidget()
+        ob = QVBoxLayout(self.on_box)
+        ob.setContentsMargins(0, 0, 0, 0)
+        ob.setSpacing(6)
+        ob.addWidget(self.gm)
+        ob.addLayout(grow)
+        ob.addWidget(self.g_usage)
+        lay.addWidget(self.on_box)
+        self.tr_gpu.toggled.connect(lambda v: self._tr_where("local", v))
+        self.tr_on.toggled.connect(lambda v: self._tr_where("online", v))
+        self.gm.currentIndexChanged.connect(self._gem_changed)
+        self.gkey.editingFinished.connect(self._gem_changed)
+        self.gkey_help.clicked.connect(self._gem_help)
 
         apply = QPushButton("Apply model changes")
         apply.setObjectName("start")
@@ -975,6 +1014,15 @@ class SettingsPanel(QFrame):
         self._sel(self.hw, getattr(s, "compute", "gpu") or "gpu")
         self._sel(self.lm, s.llm_model)
         self.le.setChecked(s.llm_enabled)
+        for cb, v in ((self.tr_gpu, s.translate_local), (self.tr_on, s.translate_online)):
+            cb.blockSignals(True)
+            cb.setChecked(bool(v))
+            cb.blockSignals(False)
+        self.gm.blockSignals(True)
+        self._sel(self.gm, s.gemini_model or "gemma-3-27b-it")
+        self.gm.blockSignals(False)
+        self.gkey.setText(s.gemini_key or "")
+        self._tr_vis()
         for c, cb in self.lang_boxes.items():
             cb.blockSignals(True)
             cb.setChecked(c in s.languages)
@@ -1079,6 +1127,63 @@ class SettingsPanel(QFrame):
             "<b>6.</b> Discord shows a window: click <b>Authorize</b>.<br><br>"
             "Done – it reconnects by itself every time. The codes and the login stay on this PC only "
             "(settings.json and discord_token.json).")
+        box.exec()
+
+    # ---------------- translator: where it runs
+    def _tr_where(self, which, v):
+        s = self.s
+        if which == "local":
+            s.translate_local = bool(v)
+        else:
+            s.translate_online = bool(v)
+        if not s.translate_local and not s.translate_online:     # at least one
+            other = self.tr_on if which == "local" else self.tr_gpu
+            other.blockSignals(True)
+            other.setChecked(True)
+            other.blockSignals(False)
+            if which == "local":
+                s.translate_online = True
+            else:
+                s.translate_local = True
+        s.save()
+        self._tr_vis()
+        self.changed.emit()
+
+    def _tr_vis(self):
+        s = self.s
+        self.lm.setVisible(s.translate_local)
+        self.lm_hint.setVisible(s.translate_local)
+        self.on_box.setVisible(s.translate_online)
+        self.update_gem_usage()
+
+    def update_gem_usage(self):
+        from .online import MODELS as GEM_MODELS, _pacific_day
+        s = self.s
+        used = int(s.online_used or 0) if s.online_day == _pacific_day() else 0
+        lim = GEM_MODELS.get(s.gemini_model, ("", 0))[1]
+        mode = ("Both: online first, graphics card when online can't answer." if s.translate_local
+                else "Online only: if it can't answer, lines stay untranslated.")
+        key = "" if (s.gemini_key or "").strip() else "Paste a key first. "
+        self.g_usage.setText(f"{key}Used today: {used}" + (f" of about {lim:,} free" if lim else "") +
+                             f" (resets 09:00). {mode}")
+
+    def _gem_changed(self, *_):
+        self.s.gemini_model = self.gm.currentData() or "gemma-3-27b-it"
+        self.s.gemini_key = self.gkey.text().strip()
+        self.s.save()
+        self.update_gem_usage()
+
+    def _gem_help(self):
+        box = QMessageBox(self)
+        box.setWindowTitle("Gemini – free key (1 minute)")
+        box.setTextFormat(Qt.RichText)
+        box.setText(
+            "<b>1.</b> Open <b>aistudio.google.com/apikey</b> and log in with a Google account.<br>"
+            "<b>2.</b> Click <b>Create API key</b> and copy it.<br>"
+            "<b>3.</b> Paste it here. It stays on this PC (settings.json).<br><br>"
+            "<b>Gemma 3 27B</b> has the biggest free daily allowance (about 14,400 sentences). "
+            "Gemini Flash-Lite / Flash are smarter but their free allowance is small.<br>"
+            "On the free plan Google may use what is sent to improve its products; with billing turned on it doesn't.")
         box.exec()
 
     def _apply(self):
@@ -2292,6 +2397,8 @@ class MainWindow(QWidget):
         tl["ram"].setText(f"{d['app_ram'] / gb:.1f}<span style='font-size:12px;color:{MUTED}'> GB</span>")
         tl["ram_box"].setToolTip(f"AudioTranscriber + Ollama memory\nSystem: {d['ram_used'] / gb:.1f}/{d['ram_total'] / gb:.0f} GB")
         tl["lines"].setText(str(len(self.lines)))
+        if self.settings_panel.isVisible() and self.s.translate_online:
+            self.settings_panel.update_gem_usage()
         self._sync_lock_btn()
 
     # ---------------------------------------------------------------- Discord names

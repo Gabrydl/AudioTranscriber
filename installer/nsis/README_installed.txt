@@ -1,4 +1,4 @@
-AudioTranscriber 1.4.3 - live voice -> Italiano + English (100% local)
+AudioTranscriber 1.5.0 - live voice -> Italiano + English (100% local)
 ====================================================================
 
 START
@@ -52,6 +52,9 @@ USE
     game term you know ("flesh" -> Flash, "Marko" -> Marco) are offered to the translator to fix.
   - Each person's language is learned after a few lines, so short or unclear sentences aren't heard
     in the wrong language (Settings > Speakers > "Learn each person's language").
+  - Translator: Settings > Translator model. Tick "Graphics card" (local, offline), "Online – Gemini"
+    (free Google key, faster and smarter) or both (online first, graphics card as backup when there is
+    no internet or the free daily limit is reached; the limit resets at 09:00 Italian time).
   - Bisaya (Cebuano): Whisper has no Bisaya model, so it is heard with the Tagalog one and told apart
     from Tagalog by its everyday words (unsa, dili, naa, kaayo...). The translator is told it is Bisaya,
     so it fixes misspellings. Also as a translation language and in "Always speaks…" per person.
