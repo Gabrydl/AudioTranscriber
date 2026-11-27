@@ -18,7 +18,28 @@ from typing import Callable, Optional
 
 import numpy as np
 
-from .config import MODELS_DIR, LANGUAGES, ROOT
+from .config import MODELS_DIR, LANGUAGES, ROOT, WHISPER_CODE, AUSTRONESIAN
+
+
+def wcode(lang: str) -> str:
+    """The language token Whisper is run with (Bisaya -> Tagalog, its closest relative Whisper knows)."""
+    return WHISPER_CODE.get(lang, lang)
+
+
+def lang_probs(probs, allowed) -> dict:
+    """Whisper's language probabilities -> {our language: probability} for the enabled languages.
+    Bisaya has no Whisper token: it gets the probability Whisper puts on its relatives (Tagalog, Indonesian,
+    Malay...); when Tagalog is enabled too, the two share it and the words decide afterwards."""
+    raw = {l: p for l, p in probs}
+    pm = {l: raw.get(l, 0.0) for l in allowed if l not in WHISPER_CODE}
+    if "ceb" in allowed:
+        group = sum(raw.get(l, 0.0) for l in AUSTRONESIAN)
+        if "tl" in allowed:
+            pm["tl"] = pm["ceb"] = group / 2
+        else:
+            pm["ceb"] = group
+    tot = sum(pm.values()) or 1e-9
+    return {l: p / tot for l, p in pm.items()}
 
 log = logging.getLogger("engine")
 
@@ -370,6 +391,7 @@ class Transcriber:
         language instead of a wrong guess, while a clear switch to another language still wins."""
         allowed = [l for l in self.s.languages if l in LANGUAGES] or ["en"]
         self.skipped_detect = False
+        self._locked = False
         if len(allowed) == 1:
             return allowed[0], 1.0
         quick = None
@@ -379,6 +401,7 @@ class Transcriber:
             except Exception:
                 log.exception("language prior")
         if quick and quick.get("__force__") and str(quick["__force__"]) in LANGUAGES:
+            self._locked = True
             self.last_lang_prob = 1.0
             return str(quick["__force__"]), 1.0
         if quick and getattr(self.s, "fast_lang", True) and quick.get("__n__", 0) >= 6:
@@ -391,9 +414,7 @@ class Transcriber:
                 self.last_lang_prob = top[1]
                 return top[0], top[1]
         _, _, probs = self.model.detect_language(audio)
-        pm = {l: p for l, p in probs if l in allowed}
-        total = sum(pm.values()) or 1e-9
-        pm = {l: p / total for l, p in pm.items()}
+        pm = lang_probs(probs, allowed)
         det = max(pm, key=pm.get) if pm else allowed[0]
         prior = quick
         if prior is None and prior_fn is not None and getattr(self.s, "auto_speaker_lang", True):
@@ -402,6 +423,7 @@ class Transcriber:
             except Exception:
                 log.exception("language prior")
         if prior and prior.get("__force__") and str(prior["__force__"]) in LANGUAGES:
+            self._locked = True
             self.last_lang_prob = pm.get(prior["__force__"], 0.0)
             return str(prior["__force__"]), 1.0
         if prior:
@@ -457,7 +479,7 @@ class Transcriber:
             kw["hotwords"] = vocab                     # names and game terms the user added
         try:
             segs, _info = self.model.transcribe(
-                audio, language=lang, task="transcribe",
+                audio, language=wcode(lang), task="transcribe",
                 beam_size=8 if self.device == "cuda" else 2, best_of=5, patience=2.0,   # weighs more alternatives
                 vad_filter=True, vad_parameters=dict(min_silence_duration_ms=500, threshold=0.3, speech_pad_ms=400),
                 condition_on_previous_text=False, initial_prompt=prompt, word_timestamps=True,
@@ -468,7 +490,7 @@ class Transcriber:
         except TypeError:                              # older faster-whisper without hotwords
             p2 = (f"{vocab}. " + (prompt or "")).strip() if vocab else prompt
             segs, _info = self.model.transcribe(
-                audio, language=lang, task="transcribe",
+                audio, language=wcode(lang), task="transcribe",
                 beam_size=8 if self.device == "cuda" else 2, best_of=5, patience=2.0,
                 vad_filter=True, vad_parameters=dict(min_silence_duration_ms=500, threshold=0.3, speech_pad_ms=400),
                 condition_on_previous_text=False, initial_prompt=p2, word_timestamps=True,
@@ -481,15 +503,20 @@ class Transcriber:
         if not text or looks_hallucinated(text):
             return None
         conf = math.exp(sum(s.avg_logprob for s in keep) / len(keep))
+        if lang in ("tl", "ceb") and "tl" in self.s.languages and "ceb" in self.s.languages \
+                and force_lang is None and not getattr(self, "_locked", False):
+            # same recogniser for both: tell Bisaya and Tagalog apart by their everyday words
+            from .langid import bisaya_or_tagalog
+            lang = bisaya_or_tagalog(text, prior=lang) or lang
         if getattr(self, "skipped_detect", False) and force_lang is None and conf < 0.5:
             # the usual language didn't fit this sentence well: check the language after all
             self.skipped_detect = False
             try:
                 _, _, probs = self.model.detect_language(audio)
                 allowed = [l for l in self.s.languages if l in LANGUAGES]
-                pm = {l: p for l, p in probs if l in allowed}
+                pm = lang_probs(probs, allowed)
                 det = max(pm, key=pm.get) if pm else lang
-                if det != lang and pm.get(det, 0) / (sum(pm.values()) or 1) > 0.6:
+                if wcode(det) != wcode(lang) and pm.get(det, 0) > 0.6:
                     log.info("usual language %s didn't fit (conf %.2f) - heard %s", lang, conf, det)
                     r2 = self.transcribe(audio[4800:-4800], source, force_lang=det, cleaned=True)
                     if r2 and r2[2] > conf:
@@ -601,7 +628,7 @@ Reply with JSON only, keys in EXACTLY this order:
 
 
 TARGET_NAMES = {"en": "English", "it": "Italian", "pt": "Portuguese", "es": "Spanish", "de": "German",
-                "fr": "French", "tl": "Tagalog", "cs": "Czech", "pl": "Polish"}
+                "fr": "French", "tl": "Tagalog", "cs": "Czech", "pl": "Polish", "ceb": "Bisaya (Cebuano)"}
 
 
 def target_of(settings) -> str:
@@ -875,6 +902,9 @@ class Translator:
             "new_line": {"speaker": line.speaker_name, "lang_label": line.lang, "lang_name": LANGUAGES.get(line.lang, line.lang),
                          **({"speaker_usually_speaks": LANGUAGES.get(line.usual_lang, line.usual_lang)}
                             if line.usual_lang and line.usual_lang != line.lang else {}),
+                         **({"asr_note": "Whisper has no Bisaya model: this was recognised with the Tagalog one, so "
+                                        "Bisaya words may be misspelled or look Tagalog. Read it as Bisaya (Cebuano)."}
+                            if line.lang == "ceb" else {}),
                          "asr_text": line.marked or line.text,
                          "asr_confidence": round(line.confidence, 2)},
         }, ensure_ascii=False)
@@ -1307,8 +1337,9 @@ class Engine:
                 log.info("corrected text discarded (%d words vs %d heard)", corr_n, heard_n)
                 line.corrected = line.text
             line.estimated = bool(data.get("estimated")) and line.corrected.lower() != line.text.lower()
-            lang = str(data.get("lang") or line.lang).lower()[:2]
-            if lang in LANGUAGES:
+            lang = str(data.get("lang") or line.lang).lower().strip()
+            lang = lang if lang in LANGUAGES else lang[:2]
+            if lang in LANGUAGES and not ({lang, line.lang} <= {"tl", "ceb"}):
                 line.lang = lang
             line.tr = {tgt: str(data.get("tr") or line.tr.get(tgt, "")).strip()}
             line.state = "done"

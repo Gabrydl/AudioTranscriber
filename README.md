@@ -4,7 +4,7 @@ Windows app that listens to another app (Discord by default), transcribes what p
 
 ## What it does
 - Live transcription + translation of an app's audio (Discord, games, browsers…), with an in-game overlay
-- Recognises Portuguese, Spanish, German, Tagalog, French, English, Czech and Polish (and more)
+- Recognises Portuguese, Spanish, German, Tagalog, Bisaya (Cebuano), French, English, Czech and Polish (and more)
 - Knows who is talking: by voice, and with **Discord names** through Discord's local RPC connection (no bot)
 - Learns the language each person usually speaks; League of Legends terms kept as they are
 - Voice detector for sentence cutting, noise removal for bad microphones (CPU or graphics card)

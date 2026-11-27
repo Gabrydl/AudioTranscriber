@@ -27,8 +27,12 @@ LANGUAGES = {
     "cs": "Czech",
     "pl": "Polish",
     "it": "Italian",
+    "ceb": "Bisaya (Cebuano)",
 }
-DEFAULT_LANGS = ["pt", "es", "de", "tl", "fr", "en", "cs", "pl"]
+DEFAULT_LANGS = ["pt", "es", "de", "tl", "fr", "en", "cs", "pl", "ceb"]
+# languages Whisper has no token for: recognised with the closest one, then labelled by their own words
+WHISPER_CODE = {"ceb": "tl"}
+AUSTRONESIAN = ("tl", "id", "ms", "jw", "su", "haw", "mi")   # where Whisper puts Bisaya speech
 
 WHISPER_MODELS = {
     "large-v3": "max accuracy · ~3 GB VRAM (1.7 GB next to gemma3:12b) · slower",
@@ -113,6 +117,7 @@ class Settings:
     discord_client_secret: str = ""
     discord_name: str = "display"         # display | nick | username
     discord_fresh_done: bool = False      # old voices were moved to speakers_before_discord.json once
+    bisaya_added: bool = False            # 1.4.2: Bisaya added once to the recognised languages
     # 1.1 – control
     hotkeys_enabled: bool = True          # Ctrl+Alt+S start/stop · P pause · C copy · O overlay · L lock
     overlay_show_original: bool = False   # overlay: heard text above the translation

@@ -75,7 +75,11 @@ HEARD = {
 
 # words that mean something else in one language ("no" = "yeah" in Polish and Czech, "ja" = "I" in Polish)
 BY_LANG = {"pl": {"no": "yes", "ja": None, "tak": "yes"}, "cs": {"no": "yes", "jo": "yes"},
-           "es": {"ya": "ok"}, "tl": {"oo": "yes", "go": None}}
+           "es": {"ya": "ok"}, "tl": {"oo": "yes", "go": None},
+           "ceb": {"oo": "yes", "o": "yes", "dili": "no", "sige": "ok", "sige sige": "ok", "hulat": "wait",
+                   "hulat sa": "wait", "adto ta": "letsgo", "tara": "letsgo", "tabang": "help", "dagan": "run",
+                   "amping": "careful", "kumusta": "hello", "babay": "bye", "salamat": "thanks", "nindot": "nice",
+                   "pasayloa": "sorry", "go": None}}
 
 
 def _norm(text: str) -> str:

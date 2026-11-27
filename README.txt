@@ -1,4 +1,4 @@
-AudioTranscriber 1.4.1 - live voice -> Italiano + English (100% local)
+AudioTranscriber 1.4.2 - live voice -> Italiano + English (100% local)
 ====================================================================
 
 START
@@ -52,6 +52,9 @@ USE
     game term you know ("flesh" -> Flash, "Marko" -> Marco) are offered to the translator to fix.
   - Each person's language is learned after a few lines, so short or unclear sentences aren't heard
     in the wrong language (Settings > Speakers > "Learn each person's language").
+  - Bisaya (Cebuano): Whisper has no Bisaya model, so it is heard with the Tagalog one and told apart
+    from Tagalog by its everyday words (unsa, dili, naa, kaayo...). The translator is told it is Bisaya,
+    so it fixes misspellings. Also as a translation language and in "Always speaks…" per person.
   - Updates itself: when the app opens it checks GitHub (Gabrydl/AudioTranscriber); a newer version
     downloads quietly and the app restarts on it (if you are transcribing, as soon as you press Stop).
     Settings, voices, Discord login and models are never touched.

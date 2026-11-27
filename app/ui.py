@@ -485,7 +485,7 @@ LLM_SHORT = {"qwen2.5:3b": "Light", "gemma3:4b": "Medium", "gemma3:12b": "Heavy"
 
 # translation languages shown in the → menu (native names)
 TARGETS = {"en": "English", "it": "Italiano", "pt": "Português", "es": "Español", "de": "Deutsch",
-           "fr": "Français", "tl": "Tagalog", "cs": "Čeština", "pl": "Polski"}
+           "fr": "Français", "tl": "Tagalog", "cs": "Čeština", "pl": "Polski", "ceb": "Bisaya"}
 
 
 # ----------------------------------------------------------------------------- overlay
@@ -1175,6 +1175,11 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__(None, Qt.FramelessWindowHint | Qt.Window)
         self.s = Settings.load()
+        if not self.s.bisaya_added:                     # new language: switched on once, untick it in Settings
+            if "ceb" not in self.s.languages:
+                self.s.languages = list(self.s.languages) + ["ceb"]
+            self.s.bisaya_added = True
+            self.s.save()
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setWindowTitle("AudioTranscriber")
         self.setWindowIcon(app_icon())
