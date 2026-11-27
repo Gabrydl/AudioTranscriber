@@ -4,6 +4,7 @@ from __future__ import annotations
 import datetime as dt
 import logging
 import threading
+import sys
 import time
 
 from PySide6.QtCore import (Qt, QObject, Signal, QTimer, QPropertyAnimation, QEasingCurve, QRectF,
@@ -584,13 +585,36 @@ class Overlay(QWidget):
     def set_locked(self, locked: bool):
         self._temp_unlock = False if locked else self._temp_unlock
         self.s.overlay_locked = locked
-        vis = self.isVisible()
-        self.setWindowFlag(Qt.WindowTransparentForInput, locked)
         self.hint.setVisible(not locked)
         self.grip.setVisible(not locked)
-        if vis:
-            self.show()
+        if sys.platform == "win32":
+            # Qt can't reliably REMOVE "clicks go through" on Windows once set (the box stayed unclickable
+            # after unlocking): switch the window's click-through style directly
+            self._apply_click_through()
+        else:
+            vis = self.isVisible()
+            self.setWindowFlag(Qt.WindowTransparentForInput, locked)
+            if vis:
+                self.show()
         self.update()
+
+    def _apply_click_through(self):
+        try:
+            import ctypes
+            u = ctypes.windll.user32
+            hwnd = int(self.winId())
+            GWL_EXSTYLE, WS_EX_TRANSPARENT, WS_EX_LAYERED = -20, 0x20, 0x80000
+            ex = u.GetWindowLongW(hwnd, GWL_EXSTYLE)
+            ex = (ex | WS_EX_TRANSPARENT | WS_EX_LAYERED) if self.s.overlay_locked else (ex & ~WS_EX_TRANSPARENT)
+            u.SetWindowLongW(hwnd, GWL_EXSTYLE, ex)
+            u.SetWindowPos(hwnd, 0, 0, 0, 0, 0, 0x0002 | 0x0001 | 0x0004 | 0x0010 | 0x0020)  # refresh frame
+        except Exception:
+            log.exception("overlay click-through")
+
+    def showEvent(self, e):
+        super().showEvent(e)
+        if sys.platform == "win32":
+            QTimer.singleShot(0, self._apply_click_through)   # the window handle exists now
 
     def resizeEvent(self, e):
         self.grip.move(self.width() - 18, self.height() - 18)
