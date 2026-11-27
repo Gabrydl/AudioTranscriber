@@ -1,0 +1,5713 @@
+{
+"source": "Riot Data Dragon 16.23.1 (en, pt, es, de, fr, pl, cs, it) + common League slang",
+"hotwords": [
+"Flash",
+"Hexflash",
+"Ignite",
+"Teleport",
+"TP",
+"Exhaust",
+"Smite",
+"Barrier",
+"Cleanse",
+"Ghost",
+"Heal",
+"Baron",
+"Drake",
+"Elder",
+"Herald",
+"Void Grubs",
+"Atakhan",
+"Scuttle",
+"Blue Buff",
+"Red Buff",
+"Nexus",
+"inhib",
+"gank",
+"ult",
+"CS",
+"cooldown",
+"OOM",
+"jungler",
+"ADC",
+"support",
+"roam",
+"recall",
+"split push",
+"teamfight",
+"all-in",
+"engage",
+"peel",
+"kite",
+"dive",
+"poke",
+"int",
+"feed",
+"ward",
+"control ward",
+"sweeper",
+"stun",
+"knockup",
+"lethality",
+"AP",
+"AD",
+"MR",
+"plates",
+"wave",
+"cannon",
+"ff",
+"gg",
+"Conqueror",
+"Electrocute",
+"Lethal Tempo",
+"Press the Attack",
+"Fleet Footwork",
+"Phase Rush",
+"Arcane Comet",
+"Grasp",
+"Aftershock",
+"Dark Harvest",
+"First Strike"
+],
+"terms": [
+{
+"term": "Aatrox",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Ahri",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Akali",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Akshan",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Alistar",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Ambessa",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Amumu",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Anivia",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Annie",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Aphelios",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Ashe",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Aurelion Sol",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Aurora",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Azir",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Bard",
+"kind": "champion",
+"aliases": [
+"Bardo"
+]
+},
+{
+"term": "Bel'Veth",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Blitzcrank",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Brand",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Braum",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Briar",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Caitlyn",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Camille",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Cassiopeia",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Cho'Gath",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Corki",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Darius",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Diana",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Dr. Mundo",
+"kind": "champion",
+"aliases": [
+"Dr Mundo"
+]
+},
+{
+"term": "Draven",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Ekko",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Elise",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Evelynn",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Ezreal",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Fiddlesticks",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Fiora",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Fizz",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Galio",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Gangplank",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Garen",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Gnar",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Gragas",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Graves",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Gwen",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Hecarim",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Heimerdinger",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Hwei",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Illaoi",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Irelia",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Ivern",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Janna",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Jarvan IV",
+"kind": "champion",
+"aliases": [
+"Jarvan IV."
+]
+},
+{
+"term": "Jax",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Jayce",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Jhin",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Jinx",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "K'Sante",
+"kind": "champion",
+"aliases": [
+"K'Santé"
+]
+},
+{
+"term": "Kai'Sa",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Kalista",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Karma",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Karthus",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Kassadin",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Katarina",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Kayle",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Kayn",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Kennen",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Kha'Zix",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Kindred",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Kled",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Kog'Maw",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "LeBlanc",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Lee Sin",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Leona",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Lillia",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Lissandra",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Locke",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Lucian",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Lulu",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Lux",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Malphite",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Malzahar",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Maokai",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Master Yi",
+"kind": "champion",
+"aliases": [
+"Maestro Yi",
+"Maître Yi",
+"Mistr Yi"
+]
+},
+{
+"term": "Mel",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Milio",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Miss Fortune",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Mordekaiser",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Morgana",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Naafiri",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Nami",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Nasus",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Nautilus",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Neeko",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Nidalee",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Nilah",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Nocturne",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Nunu & Willump",
+"kind": "champion",
+"aliases": [
+"Nunu a Willump",
+"Nunu e Willump",
+"Nunu et Willump",
+"Nunu i Willump",
+"Nunu y Willump"
+]
+},
+{
+"term": "Olaf",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Orianna",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Ornn",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Pantheon",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Poppy",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Pyke",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Qiyana",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Quinn",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Rakan",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Rammus",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Rek'Sai",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Rell",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Renata Glasc",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Renekton",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Rengar",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Riven",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Rumble",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Ryze",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Samira",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Sejuani",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Senna",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Seraphine",
+"kind": "champion",
+"aliases": [
+"Séraphine"
+]
+},
+{
+"term": "Sett",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Shaco",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Shen",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Shyvana",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Singed",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Sion",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Sivir",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Skarner",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Smolder",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Sona",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Soraka",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Swain",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Sylas",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Syndra",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Tahm Kench",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Taliyah",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Talon",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Taric",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Teemo",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Thresh",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Tristana",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Trundle",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Tryndamere",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Twisted Fate",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Twitch",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Udyr",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Urgot",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Varus",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Vayne",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Veigar",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Vel'Koz",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Vex",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Vi",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Viego",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Viktor",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Vladimir",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Volibear",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Warwick",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Wukong",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Xayah",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Xerath",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Xin Zhao",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Yasuo",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Yone",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Yorick",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Yunara",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Yuumi",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Zaahen",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Zac",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Zed",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Zeri",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Ziggs",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Zilean",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Zoe",
+"kind": "champion",
+"aliases": [
+"Zoé"
+]
+},
+{
+"term": "Zyra",
+"kind": "champion",
+"aliases": []
+},
+{
+"term": "Abyssal Mask",
+"kind": "item",
+"aliases": [
+"Höllenmaske",
+"Maschera dell'abisso",
+"Maska Otchłani",
+"Maska z hlubin",
+"Masque abyssal",
+"Máscara Abisal",
+"Máscara abisal",
+"Máscara Abissal"
+]
+},
+{
+"term": "Actualizer",
+"kind": "item",
+"aliases": [
+"Actualisateur",
+"Actualizador",
+"Aktualizator",
+"Concretizador",
+"Realizzatore",
+"Spouštěč",
+"Verwirklicher"
+]
+},
+{
+"term": "Aether Wisp",
+"kind": "item",
+"aliases": [
+"Brisa de éter",
+"Brisa de Éter",
+"Cintilação Etérea",
+"Eteryczny Duszek",
+"Feu follet éthéré",
+"Fiamma eterea",
+"Ätherhauch",
+"Éterická bludička"
+]
+},
+{
+"term": "Amplifying Tome",
+"kind": "item",
+"aliases": [
+"Libro Amplificador",
+"Tome d'amplification",
+"Tomo amplificador",
+"Tomo Amplificador",
+"Tomo del potenziamento",
+"Verstärkender Wälzer",
+"Wzmacniająca Księga",
+"Zesilující kniha"
+]
+},
+{
+"term": "Archangel's Staff",
+"kind": "item",
+"aliases": [
+"Archandělova hůl",
+"Bastón del arcángel",
+"Báculo del Arcángel",
+"Bâton de l'archange",
+"Cajado do Arcanjo",
+"Kostur Archanioła",
+"Scettro dell'arcangelo",
+"Stab des Erzengels"
+]
+},
+{
+"term": "Ardent Censer",
+"kind": "item",
+"aliases": [
+"Encensoir ardent",
+"Incensario ardiente",
+"Incensiere ardente",
+"Ognisty Trybularz",
+"Pebetero Ardiente",
+"Thymiaterion",
+"Turíbulo Ardente",
+"Žhnoucí kadidelnice"
+]
+},
+{
+"term": "Armored Advance",
+"kind": "item",
+"aliases": [
+"Avance blindado",
+"Avancée blindée",
+"Avanzata corazzata",
+"Blindadas de Avance",
+"Gepanzerter Vormarsch",
+"Mobilização Blindada",
+"Opancerzone Natarcie",
+"Opancéřovaný postup"
+]
+},
+{
+"term": "Atma's Reckoning",
+"kind": "item",
+"aliases": [
+"Acerto de Contas de Atma",
+"Atmas Abrechnung",
+"Atmovo zúčtování",
+"Giudizio di Atma",
+"Jugement d'Atma",
+"Juicio de Atma",
+"Osąd Atmy"
+]
+},
+{
+"term": "Axiom Arc",
+"kind": "item",
+"aliases": [
+"Aksjomatyczny Łuk",
+"Arc axiomatique",
+"Arco axiomático",
+"Arco Axiomático",
+"Arco di Assioma",
+"Arco do Axioma",
+"Axiomatický oblouk",
+"Axiombogen"
+]
+},
+{
+"term": "B. F. Sword",
+"kind": "item",
+"aliases": [
+"BF Glaive",
+"Espada G. p. C.",
+"Espadón",
+"K. V. meč",
+"K. W. Miecz",
+"M.C. Spada",
+"Riesenschwert"
+]
+},
+{
+"term": "Bami's Cinder",
+"kind": "item",
+"aliases": [
+"Bamiho uhlík",
+"Bamis Glutstein",
+"Brasa de Bami",
+"Cendres de Bami",
+"Ceniza de Bami",
+"Rescoldo de Bami",
+"Tizzone di Bami",
+"Żar Bami"
+]
+},
+{
+"term": "Bandleglass Mirror",
+"kind": "item",
+"aliases": [
+"Bandleglas-Spiegel",
+"Espejo de cristal de Bandle",
+"Espejo de Vitrobandle",
+"Espelho de Bandópolis",
+"Lustro ze Szkła Bandle",
+"Miroir en verre de Bandle",
+"Specchi di vetro di Bandle",
+"Zrcadlo z bandlovského skla"
+]
+},
+{
+"term": "Bandlepipes",
+"kind": "item",
+"aliases": [
+"Bandlemusa",
+"Bandlesack",
+"Bandlovské dudy",
+"Bandocanos",
+"Cornafusa",
+"Dudy Bandle",
+"Flautas de Bandle",
+"Flûtes de Bandle"
+]
+},
+{
+"term": "Banshee's Veil",
+"kind": "item",
+"aliases": [
+"Całun Banshee",
+"Schleier der Todesfee",
+"Velo de la Banshee",
+"Velo del hada de la muerte",
+"Velo della Banshee",
+"Voile de la banshee",
+"Véu da Banshee",
+"Závoj Paní smrti"
+]
+},
+{
+"term": "Bastionbreaker",
+"kind": "item",
+"aliases": [
+"Bastionsbrecher",
+"Briseur de bastion",
+"Lamač opevnění",
+"Quebra-Bastião",
+"Quiebrabastiones",
+"Rompebastiones",
+"Spezzabastioni",
+"Łamacz Bastionów"
+]
+},
+{
+"term": "Berserker's Greaves",
+"kind": "item",
+"aliases": [
+"Beinschienen des Berserkers",
+"Gambali del berserker",
+"Grebas de berserker",
+"Grebas del Berserker",
+"Grevas do Berserker",
+"Jambières du berzerker",
+"Nagolenniki Berserkera",
+"Šílencovy boty"
+]
+},
+{
+"term": "Black Cleaver",
+"kind": "item",
+"aliases": [
+"Couperet noir",
+"Cuchilla negra",
+"Cuchilla Oscura",
+"Cutelo Negro",
+"Czarny Tasak",
+"Mannaia oscura",
+"Schwarzes Beil",
+"Černá sekera"
+]
+},
+{
+"term": "Blackfire Torch",
+"kind": "item",
+"aliases": [
+"Antorcha de fuego negro",
+"Antorcha de Fuegoscuro",
+"Pochodnia Mrocznego Ognia",
+"Schwarzfeuer-Fackel",
+"Tocha de Chamas Negras",
+"Torche noire",
+"Torcia del fuoco tetro",
+"Černá pochodeň"
+]
+},
+{
+"term": "Blade of The Ruined King",
+"kind": "item",
+"aliases": [
+"Espada del Rey Arruinado",
+"Espada do Rei Destruído",
+"Hoja del rey arruinado",
+"Klinge des gestürzten Königs",
+"Lama del re in rovina",
+"Lame du roi déchu",
+"Ostrze Zniszczonego Króla",
+"Čepel Padlého krále"
+]
+},
+{
+"term": "Blasting Wand",
+"kind": "item",
+"aliases": [
+"Bacchetta distruttiva",
+"Baguette explosive",
+"Razantní hůlka",
+"Różdżka Zniszczenia",
+"Vara explosiva",
+"Varinha Explosiva",
+"Varita Explosiva",
+"Zauberstab"
+]
+},
+{
+"term": "Blighting Jewel",
+"kind": "item",
+"aliases": [
+"Gioiello della rovina",
+"Joia da Ruína",
+"Joya de la plaga",
+"Joya Maldita",
+"Joyau putréfiant",
+"Klejnot Rozpadu",
+"Klenot nákazy",
+"Pestjuwel"
+]
+},
+{
+"term": "Bloodletter's Curse",
+"kind": "item",
+"aliases": [
+"Fluch des Aderlassers",
+"Kletba vykrvovače",
+"Klątwa Krwawego Listu",
+"Maldición de la Vampiresa",
+"Maldición sanguinolenta",
+"Maldição Sanguinária",
+"Maledizione della lettera insanguinata",
+"Malédiction du sanguinaire"
+]
+},
+{
+"term": "Bloodsong",
+"kind": "item",
+"aliases": [
+"Blutgesang",
+"Canción de Sangre",
+"Canto di sangue",
+"Canção de Sangue",
+"Krwawa Pieśń",
+"Mélodie du sang",
+"Píseň krve",
+"Tonada sanguina"
+]
+},
+{
+"term": "Bloodthirster",
+"kind": "item",
+"aliases": [
+"Blutdürster",
+"Bramasangue",
+"Krvežíznivec",
+"Krwiopijec",
+"La Sanguinaria",
+"Sanguinaria",
+"Sedenta por Sangue",
+"Soif-de-sang"
+]
+},
+{
+"term": "Boots",
+"kind": "item",
+"aliases": [
+"Botas",
+"Bottes",
+"Boty",
+"Buty",
+"Stiefel",
+"Stivali"
+]
+},
+{
+"term": "Boots of Swiftness",
+"kind": "item",
+"aliases": [
+"Botas da Rapidez",
+"Botas de rapidez",
+"Botas de Rapidez",
+"Bottes de célérité",
+"Buty Prędkości",
+"Spěšné boty",
+"Stiefel der Wendigkeit",
+"Stivali della rapidità"
+]
+},
+{
+"term": "Bramble Vest",
+"kind": "item",
+"aliases": [
+"Armure roncière",
+"Chaleco de zarzas",
+"Colete Espinhoso",
+"Corpetto di rovi",
+"Dornenweste",
+"Kamizelka Cierniowa",
+"Ostnatá vesta",
+"Vesta Espinosa"
+]
+},
+{
+"term": "Cappa Juice",
+"kind": "item",
+"aliases": [
+"Cappa-Trank",
+"Juguito de Gorrito",
+"Jus chapi-chapo",
+"Sok Cappa",
+"Succo Cappa",
+"Suco de Chapéu",
+"Zumito de la risa",
+"Šťáva Cappa"
+]
+},
+{
+"term": "Catalyst of Aeons",
+"kind": "item",
+"aliases": [
+"Ametista degli eoni",
+"Catalisador das Eras",
+"Catalizador de eones",
+"Catalizador de Eones",
+"Catalyseur de l'éternité",
+"Katalizator Eonów",
+"Katalysator der Äonen",
+"Odvěký urychlovač"
+]
+},
+{
+"term": "Caulfield's Warhammer",
+"kind": "item",
+"aliases": [
+"Caulfieldovo válečné kladivo",
+"Caulfields Kriegshammer",
+"Marteau de Caulfield",
+"Martello da guerra di Caulfield",
+"Martelo de Guerra de Caulfield",
+"Martillo de guerra de Caulfield",
+"Martillo de Guerra de Caulfield",
+"Młot Bojowy Caulfielda"
+]
+},
+{
+"term": "Celestial Opposition",
+"kind": "item",
+"aliases": [
+"Astralny Sprzeciw",
+"Detracción celestial",
+"Himmlischer Widerstand",
+"Nebeská opozice",
+"Oposición Celestial",
+"Oposição Celestial",
+"Opposition céleste",
+"Opposizione celestiale"
+]
+},
+{
+"term": "Chain Vest",
+"kind": "item",
+"aliases": [
+"Chaleco de cadenas",
+"Cota de Malha",
+"Cota de Malla",
+"Cotta di maglia",
+"Cotte de mailles",
+"Kamizelka Kolcza",
+"Kettenweste",
+"Kroužková vesta"
+]
+},
+{
+"term": "Chainlaced Crushers",
+"kind": "item",
+"aliases": [
+"Broyeuses à chaînes",
+"Distruttori in catene",
+"Esmagadores Acorrentados",
+"Kettenbrecher",
+"Kroužkové drtiče",
+"Spętane Kruszyciele",
+"Trituradoras Aceradas",
+"Trituradoras encadenadas"
+]
+},
+{
+"term": "Chempunk Chainsword",
+"kind": "item",
+"aliases": [
+"Chem-syčácký řetězový meč",
+"Chempunk-Kettenschwert",
+"Chempunkowy Łańcuchowy Miecz",
+"Mecanoespada punki",
+"Serrespada Quimiopunk",
+"Sierraespada Quimpunk",
+"Spada a catena Chempunk",
+"Épée dentelée chimico-punk"
+]
+},
+{
+"term": "Cloak of Agility",
+"kind": "item",
+"aliases": [
+"Capa da Agilidade",
+"Capa de Agilidad",
+"Capa de agilidad",
+"Cape d'agilité",
+"Cappa dell'agilità",
+"Kápě hbitosti",
+"Mantel des Geschicks",
+"Płaszcz Zręczności"
+]
+},
+{
+"term": "Cloak of Starry Night",
+"kind": "item",
+"aliases": [
+"Capa de la noche estrellada",
+"Kápě hvězdné noci",
+"Manteau de nuit étoilée",
+"Mantel der Sternennacht",
+"Mantello della notte stellata",
+"Manto da Noite Estrelada",
+"Manto de la Noche Estrellada",
+"Peleryna Gwieździstej Nocy"
+]
+},
+{
+"term": "Cloth Armor",
+"kind": "item",
+"aliases": [
+"Armadura de tela",
+"Armadura de Tela",
+"Armatura di stoffa",
+"Armure d'étoffe",
+"Couraça de Pano",
+"Lekka Szata",
+"Lněná vesta",
+"Stoffrüstung"
+]
+},
+{
+"term": "Control Ward",
+"kind": "item",
+"aliases": [
+"Balise de contrôle",
+"Centinela de Control",
+"Guardián de control",
+"Kontroll-Auge",
+"Lume di controllo",
+"Ovládací totem",
+"pink",
+"pink ward",
+"Sentinela de Controle",
+"Totem Kontroli"
+]
+},
+{
+"term": "Cosmic Drive",
+"kind": "item",
+"aliases": [
+"Impulso cósmico",
+"Impulso Cósmico",
+"Kosmický pohon",
+"Kosmiczny Impuls",
+"Kosmischer Antrieb",
+"Spirito cosmico",
+"Volonté cosmique",
+"Ímpeto Cósmico"
+]
+},
+{
+"term": "Crimson Lucidity",
+"kind": "item",
+"aliases": [
+"Blutrote Erkenntnis",
+"Botas de Lucidez Carmesí",
+"Karmazynowa Klarowność",
+"Lucidez carmesí",
+"Lucidez Escarlate",
+"Lucidità cremisi",
+"Lucidité pourpre",
+"Šarlatová jasnost"
+]
+},
+{
+"term": "Crown of the Shattered Queen",
+"kind": "item",
+"aliases": [
+"Coroa da Rainha Despedaçada",
+"Corona de la Reina Fragmentada",
+"Corona de la reina quebrada",
+"Corona della regina infranta",
+"Couronne de la Reine brisée",
+"Korona Roztrzaskanej Królowej",
+"Koruna roztříštěné královny",
+"Krone der gefallenen Königin"
+]
+},
+{
+"term": "Cruelty",
+"kind": "item",
+"aliases": [
+"Cruauté",
+"Crudeltà",
+"Crueldad",
+"Crueldade",
+"Grausamkeit",
+"Krutost",
+"Okrucieństwo"
+]
+},
+{
+"term": "Cryptbloom",
+"kind": "item",
+"aliases": [
+"Bocciolo della cripta",
+"Criptoflora",
+"Criptorretoño",
+"Fleur de crypte",
+"Florescencia sepulcral",
+"Hřbitovní květ",
+"Kryptablume",
+"Kryptokwiat"
+]
+},
+{
+"term": "Crystalline Bracer",
+"kind": "item",
+"aliases": [
+"Bracciale cristallino",
+"Bracelet cristallin",
+"Brazal cristalino",
+"Brazal Cristalino",
+"Braçadeira Cristalina",
+"Kristalliner Armschutz",
+"Kryształowy Karwasz",
+"Křišťálový chránič"
+]
+},
+{
+"term": "Cull",
+"kind": "item",
+"aliases": [
+"Abatedora",
+"Abatteur",
+"Kosa",
+"Mietitore",
+"Preferencia",
+"Sacrificar",
+"Sichel"
+]
+},
+{
+"term": "Dagger",
+"kind": "item",
+"aliases": [
+"Adaga",
+"Daga",
+"Dague",
+"Dolch",
+"Dýka",
+"Sztylet"
+]
+},
+{
+"term": "Dark Seal",
+"kind": "item",
+"aliases": [
+"Dunkles Siegel",
+"El Sello de la Oscuridad",
+"Lacre Sombrio",
+"Sceau noir",
+"Sello oscuro",
+"Sigillo oscuro",
+"Tajemnicza Pieczęć",
+"Temná pečeť"
+]
+},
+{
+"term": "Dawncore",
+"kind": "item",
+"aliases": [
+"Auronúcleo",
+"Cœur de l'aube",
+"Dämmerkern",
+"Esfera del Amanecer",
+"Jádro úsvitu",
+"Nucleo dell'alba",
+"Núcleo albar",
+"Rdzeń Świtu"
+]
+},
+{
+"term": "Dead Man's Plate",
+"kind": "item",
+"aliases": [
+"Coraza del muerto",
+"Corazza dell'uomo morto",
+"Couraça do Defunto",
+"Kyrys mrtvého muže",
+"Pancerz Umrzyka",
+"Panzer des toten Mannes",
+"Placa del Hombre Muerto",
+"Plaque du mort"
+]
+},
+{
+"term": "Death's Dance",
+"kind": "item",
+"aliases": [
+"Baile de la muerte",
+"Danse de la mort",
+"Danza de la Muerte",
+"Danza della Morte",
+"Dança da Morte",
+"Tanec smrti",
+"Taniec Śmierci",
+"Tanz des Todes"
+]
+},
+{
+"term": "Demon King's Crown",
+"kind": "item",
+"aliases": [
+"Coroa do Rei Demoníaco",
+"Corona del re demone",
+"Corona del rey demonio",
+"Couronne du Roi-démon",
+"Korona Demonicznego Króla",
+"Koruna krále démonů",
+"Krone des Dämonenkönigs",
+"La Corona del Rey Demonio"
+]
+},
+{
+"term": "Doran's Blade",
+"kind": "item",
+"aliases": [
+"Dorans Klinge",
+"Doranův meč",
+"Espada de Doran",
+"Lama di Doran",
+"Lame de Doran",
+"Lâmina de Doran",
+"Ostrze Dorana"
+]
+},
+{
+"term": "Doran's Bow",
+"kind": "item",
+"aliases": [
+"Arc de Doran",
+"Arco de Doran",
+"Arco di Doran",
+"Dorans Bogen",
+"Doranův luk",
+"Łuk Dorana"
+]
+},
+{
+"term": "Doran's Helm",
+"kind": "item",
+"aliases": [
+"Casco de Doran",
+"Casque de Doran",
+"Doranova přilba",
+"Dorans Helm",
+"Elmo de Doran",
+"Elmo di Doran",
+"Hełm Dorana",
+"Yelmo de Doran"
+]
+},
+{
+"term": "Doran's Ring",
+"kind": "item",
+"aliases": [
+"Anel de Doran",
+"Anello di Doran",
+"Anillo de Doran",
+"Anneau de Doran",
+"Dorans Ring",
+"Doranův prsten",
+"Pierścień Dorana",
+"Sortija de Doran"
+]
+},
+{
+"term": "Doran's Shield",
+"kind": "item",
+"aliases": [
+"Bouclier de Doran",
+"Dorans Schild",
+"Doranův štít",
+"Escudo de Doran",
+"Scudo di Doran",
+"Tarcza Dorana"
+]
+},
+{
+"term": "Dream Maker",
+"kind": "item",
+"aliases": [
+"Criassonhos",
+"Plasmasogni",
+"Rêve éveillé",
+"Spełniacz Marzeń",
+"Tejesueños",
+"Traumweber",
+"Tvůrce snů"
+]
+},
+{
+"term": "Dusk and Dawn",
+"kind": "item",
+"aliases": [
+"Amanecer y anochecer",
+"Aube et crépuscule",
+"Aurora e Crepúsculo",
+"Crepuscolo e Alba",
+"Ocaso y Alba",
+"Soumrak a úsvit",
+"Tag und Nacht",
+"Zmierzch i Brzask"
+]
+},
+{
+"term": "Echoes of Helia",
+"kind": "item",
+"aliases": [
+"Echa Helii",
+"Echi di Helia",
+"Echos von Helia",
+"Ecos de Helia",
+"Ozvěny Helie",
+"Échos d'Helia"
+]
+},
+{
+"term": "Eclipse",
+"kind": "item",
+"aliases": [
+"Eclissi",
+"Eklipse",
+"Zatmění",
+"Zaćmienie",
+"Éclipse"
+]
+},
+{
+"term": "Edge of Night",
+"kind": "item",
+"aliases": [
+"Filo de la noche",
+"Filo de la Noche",
+"Fine della notte",
+"Limiar da Noite",
+"Manteau de la nuit",
+"Ostrze Nocy",
+"Přelom noci",
+"Saum der Nacht"
+]
+},
+{
+"term": "Elixir of Iron",
+"kind": "item",
+"aliases": [
+"Eliksir Żelaza",
+"Elisir del ferro",
+"Elixier des Metalls",
+"Elixir de Ferro",
+"Elixir de Hierro",
+"Elixir de hierro",
+"Elixír železa",
+"Élixir de fer"
+]
+},
+{
+"term": "Elixir of Sorcery",
+"kind": "item",
+"aliases": [
+"Eliksir Czarnoksięstwa",
+"Elisir della stregoneria",
+"Elixier der Zauberei",
+"Elixir da Feitiçaria",
+"Elixir de brujería",
+"Elixir de Brujería",
+"Elixír čarodějnictví",
+"Élixir de sorcellerie"
+]
+},
+{
+"term": "Elixir of Wrath",
+"kind": "item",
+"aliases": [
+"Eliksir Gniewu",
+"Elisir dell'ira",
+"Elixier des Zorns",
+"Elixir da Ira",
+"Elixir de cólera",
+"Elixir de Furia",
+"Elixír zloby",
+"Élixir de rage"
+]
+},
+{
+"term": "Endless Hunger",
+"kind": "item",
+"aliases": [
+"Bezustanny Głód",
+"Endloser Hunger",
+"Faim insatiable",
+"Fame perenne",
+"Fome Eterna",
+"Hambre Infinita",
+"Hambre insaciable",
+"Nekonečný hlad"
+]
+},
+{
+"term": "Essence Reaver",
+"kind": "item",
+"aliases": [
+"Colhedor de Essência",
+"Essenzräuber",
+"Faux spectrale",
+"Lovec esence",
+"Predatore d'essenza",
+"Saqueador de Esencias",
+"Segador de esencia",
+"Złodziej Esencji"
+]
+},
+{
+"term": "Executioner's Calling",
+"kind": "item",
+"aliases": [
+"Chamado do Carrasco",
+"Chiamata del carnefice",
+"El Llamado del Verdugo",
+"Katovo poslání",
+"Llamada del verdugo",
+"Marque du bourreau",
+"Ruf des Henkers",
+"Wezwanie Kata"
+]
+},
+{
+"term": "Experimental Hexplate",
+"kind": "item",
+"aliases": [
+"Eksperymentalny Hexpierśnik",
+"Experimentelle Hexpanzerung",
+"Experimento de hexarmadura",
+"Experimentální magiplát",
+"Hexcorazza sperimentale",
+"Hexoplaca Experimental",
+"Hexplaque expérimentale",
+"Placa Hexperimental"
+]
+},
+{
+"term": "Faerie Charm",
+"kind": "item",
+"aliases": [
+"Amulet Wróżki",
+"Amuleto da Fada",
+"Amuleto de las hadas",
+"Amuleto de las Hadas",
+"Amuleto della fata",
+"Charme féérique",
+"Feenamulett",
+"Čarovný přívěsek"
+]
+},
+{
+"term": "Farsight Alteration",
+"kind": "item",
+"aliases": [
+"Alteración de Visión Lejana",
+"Alteração Vidente",
+"Altération divinatoire",
+"Dalekozraká úprava",
+"Modifica lungavisione",
+"Visión lejana modificada",
+"Weitsicht-Modifikation",
+"Zmiana Dalekowidzenia"
+]
+},
+{
+"term": "Fated Ashes",
+"kind": "item",
+"aliases": [
+"Cendres fatidiques",
+"Ceneri predestinate",
+"Cenizas predestinadas",
+"Cenizas Predestinadas",
+"Cinzas do Destino",
+"Osudový popel",
+"Popioły Przeznaczenia",
+"Schicksalhafte Asche"
+]
+},
+{
+"term": "Fiendhunter Bolts",
+"kind": "item",
+"aliases": [
+"Bełty Łowcy Diabłów",
+"Chasseur de monstres",
+"Dardi del Cacciademoni",
+"Dardos de Caça-Demônios",
+"Dardos rastreademonios",
+"Proyectiles Cazademonios",
+"Unholdjägerbolzen",
+"Šipky lovce démonů"
+]
+},
+{
+"term": "Fiendish Codex",
+"kind": "item",
+"aliases": [
+"Boshafter Kodex",
+"Codex méphitique",
+"Codice del diavolo",
+"Czarci Kodeks",
+"Códex Demoníaco",
+"Códice Diabólico",
+"Códice diabólico",
+"Zrůdný kodex"
+]
+},
+{
+"term": "Flesheater",
+"kind": "item",
+"aliases": [
+"Caníbal",
+"Comecarne",
+"Fleischfresser",
+"Masožrout",
+"Mięsożerca",
+"Nécrophage",
+"Strappacarni"
+]
+},
+{
+"term": "Forbidden Idol",
+"kind": "item",
+"aliases": [
+"Bluźnierczy Bożek",
+"Idole interdite",
+"Idolo proibito",
+"Verbotener Götze",
+"Zapovězená modla",
+"Ídolo Prohibido",
+"Ídolo prohibido",
+"Ídolo Proibido"
+]
+},
+{
+"term": "Force of Nature",
+"kind": "item",
+"aliases": [
+"Force de la nature",
+"Forza della natura",
+"Força da Natureza",
+"Fuerza de la naturaleza",
+"Fuerza de la Naturaleza",
+"Naturgewalt",
+"Siła Natury",
+"Síla přírody"
+]
+},
+{
+"term": "Frozen Heart",
+"kind": "item",
+"aliases": [
+"Corazón de hielo",
+"Corazón de Hielo",
+"Coração Congelado",
+"Cœur gelé",
+"Fulcro dei geli",
+"Gefrorenes Herz",
+"Ledové srdce",
+"Mroźne Serce"
+]
+},
+{
+"term": "Gambler's Blade",
+"kind": "item",
+"aliases": [
+"Espada del apostador",
+"Espada del Apostador",
+"Hráčova čepel",
+"Klinge des Glücksspielers",
+"Lama del giocatore d'azzardo",
+"Lame du parieur",
+"Lâmina do Apostador",
+"Ostrze Hazardzisty"
+]
+},
+{
+"term": "Gargoyle Stoneplate",
+"kind": "item",
+"aliases": [
+"Armadura Pétrea",
+"Chrličův kamenný plát",
+"Kamienna Płyta Gargulca",
+"Lastrapietra del gargoyle",
+"Lithoplastron de gargouille",
+"Placa Gargolítica",
+"Protector pétreo de gárgola",
+"Steinpanzer des Wasserspeiers"
+]
+},
+{
+"term": "Giant's Belt",
+"kind": "item",
+"aliases": [
+"Ceinture du géant",
+"Cinto do Gigante",
+"Cintura del gigante",
+"Cinturón de Gigante",
+"Cinturón de gigante",
+"Gürtel des Riesen",
+"Obrův opasek",
+"Pas Giganta"
+]
+},
+{
+"term": "Glacial Buckler",
+"kind": "item",
+"aliases": [
+"Bouclier glacial",
+"Brocchiero glaciale",
+"Broquel glacial",
+"Broquel Glacial",
+"Eisiger Faustschild",
+"Escudo Glacial",
+"Ledovcový štít",
+"Mroźny Puklerz"
+]
+},
+{
+"term": "Glowing Mote",
+"kind": "item",
+"aliases": [
+"Glühendes Partikel",
+"Granello luminoso",
+"Lśniąca Cząstka",
+"Mena Brillante",
+"Mota brillante",
+"Partícula Brilhante",
+"Poussière luisante",
+"Zářící zrnko"
+]
+},
+{
+"term": "Gluttonous Greaves",
+"kind": "item",
+"aliases": [
+"Gambali del goloso",
+"Grebas codiciosas",
+"Grebas Glotonas",
+"Grevas Vorazes",
+"Jambières gloutonnes",
+"Nagolenniki Pasibrzucha",
+"Nenasytné chrániče",
+"Unersättliche Beinschienen"
+]
+},
+{
+"term": "Guardian Angel",
+"kind": "item",
+"aliases": [
+"Anděl strážný",
+"Ange gardien",
+"Angelo custode",
+"Anioł Stróż",
+"Anjo Guardião",
+"Schutzengel",
+"Ángel de la guarda",
+"Ángel Guardián"
+]
+},
+{
+"term": "Guardian's Blade",
+"kind": "item",
+"aliases": [
+"Espada del guardián",
+"Espada del Guardián",
+"Klinge des Beschützers",
+"Lama del Guardiano",
+"Lame du gardien",
+"Lâmina do Guardião",
+"Ostrze Strażnika",
+"Strážcova čepel"
+]
+},
+{
+"term": "Guardian's Hammer",
+"kind": "item",
+"aliases": [
+"Hammer des Beschützers",
+"Marteau du gardien",
+"Martello del guardiano",
+"Martelo do Guardião",
+"Martillo del Guardián",
+"Martillo del guardián",
+"Młot Strażnika",
+"Strážcovo kladivo"
+]
+},
+{
+"term": "Guardian's Horn",
+"kind": "item",
+"aliases": [
+"Berrante do Guardião",
+"Corne du gardien",
+"Corno del guardiano",
+"Cuerno del guardián",
+"Cuerno del Guardián",
+"Horn des Beschützers",
+"Róg Strażnika",
+"Strážcův roh"
+]
+},
+{
+"term": "Guardian's Orb",
+"kind": "item",
+"aliases": [
+"Globo del guardiano",
+"Kugel des Beschützers",
+"Kula Strażnika",
+"Orbe del Guardián",
+"Orbe del guardián",
+"Orbe do Guardião",
+"Orbe du gardien",
+"Strážcovo oko"
+]
+},
+{
+"term": "Guinsoo's Rageblade",
+"kind": "item",
+"aliases": [
+"Espadafuria de Guinsoo",
+"Furia di Guinsoo",
+"Guinsoos Wutklinge",
+"Guinsoova zuřivá čepel",
+"Hoja de furia de Guinsoo",
+"Lame enragée de Guinsoo",
+"Lâmina da Fúria de Guinsoo",
+"Ostrze Gniewu Guinsoo"
+]
+},
+{
+"term": "Gunmetal Greaves",
+"kind": "item",
+"aliases": [
+"Dělové boty",
+"Gambali di metallo",
+"Grebas de Armacero",
+"Grebas de metal",
+"Grevas Bélicas",
+"Jambières de métal",
+"Spiżowe Nagolenniki",
+"Waffenmetall-Beinschienen"
+]
+},
+{
+"term": "Gustwalker Hatchling",
+"kind": "item",
+"aliases": [
+"Bébé Saute-nuages",
+"Cria de Andabrisas",
+"Cría de Caminabrisas",
+"Cría de Trotabrisas",
+"Mládě vichrotlapa",
+"Pisklę Podmuszka",
+"Pulcino di Passavento",
+"Windläuferschlüpfling"
+]
+},
+{
+"term": "Haunting Guise",
+"kind": "item",
+"aliases": [
+"Antifaz Embrujado",
+"Disfraz encantado",
+"Déguisement hanté",
+"Děsivá maska",
+"Geisterhafte Erscheinung",
+"Maschera stregata",
+"Máscara Assustadora",
+"Nawiedzona Maska"
+]
+},
+{
+"term": "Health Potion",
+"kind": "item",
+"aliases": [
+"Heiltrank",
+"Léčivý lektvar",
+"Mikstura Zdrowia",
+"Poción de Vida",
+"Poción de vida",
+"Potion de soin",
+"Pozione di salute",
+"Poção de Vida"
+]
+},
+{
+"term": "Hearthbound Axe",
+"kind": "item",
+"aliases": [
+"Ascia del focolare",
+"Axt der Herdgebundenen",
+"Hacha hogareña",
+"Hacha Hogareña",
+"Hache d'Âtrinsèque",
+"Machado Termestre",
+"Ogniolubny Topór",
+"Sekera Krborozených"
+]
+},
+{
+"term": "Heartsteel",
+"kind": "item",
+"aliases": [
+"Corazón de Acero",
+"Corazón de acero",
+"Coração de Aço",
+"Cuore d'acciaio",
+"Cœuracier",
+"Herzstahl",
+"Srdcová ocel",
+"Stalowe Serce"
+]
+},
+{
+"term": "Hexdrinker",
+"kind": "item",
+"aliases": [
+"Hexterminateur",
+"Hextrinker",
+"Kletbosaj",
+"Mangiamagia",
+"Pochłaniacz Uroków",
+"Sorbechizos",
+"Sorbemaleficios"
+]
+},
+{
+"term": "Hexoptics C44",
+"kind": "item",
+"aliases": [
+"Hexoptik C44",
+"Hexoptyka C44",
+"Hexóptica C44",
+"Hexótica C44",
+"Lunettes Hextech C44",
+"Magioptika C44",
+"Ottica Hextech C44",
+"Óptica hextech C44"
+]
+},
+{
+"term": "Hextech Alternator",
+"kind": "item",
+"aliases": [
+"Alternador Hextec",
+"Alternador Hextech",
+"Alternador hextech",
+"Alternateur Hextech",
+"Alternator Hextech",
+"Alternatore Hextech",
+"Hextech-Generator",
+"Magitechnický alternátor"
+]
+},
+{
+"term": "Hextech Gunblade",
+"kind": "item",
+"aliases": [
+"Hextech-Gunblade",
+"Magitechnická puškočepel",
+"Miecz-Pistolet Hextech",
+"Pistola a lame hextech",
+"Pistola Laminar Hextec",
+"Pistolame Hextech",
+"Sable-pistola hextech",
+"Sablepistola Hextech"
+]
+},
+{
+"term": "Hextech Rocketbelt",
+"kind": "item",
+"aliases": [
+"Ceinture-roquette Hextech",
+"Cintomisil hextech",
+"Cintura a razzo Hextech",
+"Cinturón Cohete Hextech",
+"Explocinturão Hextec",
+"Hextech-Raketengürtel",
+"Hextechowy Pas Rakietowy",
+"Magitechnický raketový pás"
+]
+},
+{
+"term": "Hollow Radiance",
+"kind": "item",
+"aliases": [
+"Dutá záře",
+"Fulgor vano",
+"Głucha Poświata",
+"Hohler Glanz",
+"Luce vana",
+"Rayonnement du vide",
+"Resplandor Vacío",
+"Resplendor Vazio"
+]
+},
+{
+"term": "Horizon Focus",
+"kind": "item",
+"aliases": [
+"Concentration lointaine",
+"Concentrazione dell'orizzonte",
+"Enfoque al Horizonte",
+"Foco do Horizonte",
+"Horizontfokus",
+"Precisión infalible",
+"Skupienie Horyzontalne",
+"Soustředěný horizont"
+]
+},
+{
+"term": "Hubris",
+"kind": "item",
+"aliases": [
+"Arrogancia",
+"Húbris",
+"Namyšlenost",
+"Orgueil",
+"Pycha",
+"Soberbia",
+"Tracotanza",
+"Überheblichkeit"
+]
+},
+{
+"term": "Hullbreaker",
+"kind": "item",
+"aliases": [
+"Brise-coques",
+"Kadłubołamacz",
+"Ničitel trupu",
+"Quebracascos",
+"Rompecascos",
+"Rumpfbrecher",
+"Spaccascafo"
+]
+},
+{
+"term": "Iceborn Gauntlet",
+"kind": "item",
+"aliases": [
+"Eisgeborenen-Handschuh",
+"Gantelet givrant",
+"Guantelete de hielo",
+"Guantelete del Hijo del Hielo",
+"Guanto del gelo",
+"Lodowa Rękawica",
+"Manopla dos Glacinatas",
+"Pěstnice Ledorozených"
+]
+},
+{
+"term": "Immortal Path",
+"kind": "item",
+"aliases": [
+"Caminho Imortal",
+"Camino Inmortal",
+"Cesta nesmrtelných",
+"Nieśmiertelna Ścieżka",
+"Senda inmortal",
+"Sentiero immortale",
+"Unsterblicher Pfad",
+"Voie immortelle"
+]
+},
+{
+"term": "Immortal Shieldbow",
+"kind": "item",
+"aliases": [
+"Arc-bouclier immortel",
+"Arco-escudo Imortal",
+"Arcoescudo Inmortal",
+"Arcoescudo inmortal",
+"Arcoscudo immortale",
+"Nesmrtelný štítový luk",
+"Nieśmiertelny Łuklerz",
+"Schildbogen der Unsterblichkeit"
+]
+},
+{
+"term": "Imperial Mandate",
+"kind": "item",
+"aliases": [
+"Imperiale Verfügung",
+"Imperialny Mandat",
+"Mandat impérial",
+"Mandato Imperial",
+"Mandato imperial",
+"Mandato imperiale",
+"Říšský rozkaz"
+]
+},
+{
+"term": "Infinity Edge",
+"kind": "item",
+"aliases": [
+"Filo del Infinito",
+"Filo infinito",
+"Frammento d'infinito",
+"Gume do Infinito",
+"Klinge der Unendlichkeit",
+"Lame d'infini",
+"Ostrze Nieskończoności",
+"Ostří nekonečna"
+]
+},
+{
+"term": "Ionian Boots of Lucidity",
+"kind": "item",
+"aliases": [
+"Botas Ionianas da Lucidez",
+"Botas jonias de la lucidez",
+"Botas Jonias de la Lucidez",
+"Bottes de lucidité",
+"Ioniańskie Buty Jasności Umysłu",
+"Ionische Stiefel der Deutlichkeit",
+"Ionské boty jasnosti",
+"Stivali dell'acume di Ionia"
+]
+},
+{
+"term": "Jak'Sho, The Protean",
+"kind": "item",
+"aliases": [
+"Jak'Sho el Proteico",
+"Jak'Sho Zmienny",
+"Jak'Sho, der Proteaner",
+"Jak'Sho, el Proteico",
+"Jak'Sho, il Mutevole",
+"Jak'Sho, le Protéiforme",
+"Jak'Sho, o Inconstante",
+"Proměnlivý Jak'Sho"
+]
+},
+{
+"term": "Kaenic Rookern",
+"kind": "item",
+"aliases": [
+"Kaeniczna Powłoka",
+"Kaenischer Rookern",
+"Rookern kaenico",
+"Rookern kaénico",
+"Rookern kaénique",
+"Rookern Lamúrico",
+"Rukerno Kaénico"
+]
+},
+{
+"term": "Kalista's Black Spear",
+"kind": "item",
+"aliases": [
+"Czarna Włócznia Kalisty",
+"Kalistas Schwarzer Speer",
+"Kalistin Černý oštěp",
+"La lanza negra de Kalista",
+"Lance noire de Kalista",
+"Lancia oscura di Kalista",
+"Lanza Negra de Kalista",
+"Lança Negra da Kalista"
+]
+},
+{
+"term": "Kindlegem",
+"kind": "item",
+"aliases": [
+"Gema Ardente",
+"Gema avivadora",
+"Gemaluz",
+"Gemma infuocata",
+"Gemme exaltante",
+"Rozgrzany Klejnot",
+"Zápalokam",
+"Zündjuwel"
+]
+},
+{
+"term": "Knight's Vow",
+"kind": "item",
+"aliases": [
+"Juramento do Cavaleiro",
+"Promesa de caballero",
+"Promesa del Caballero",
+"Przysięga Rycerska",
+"Ritterschwur",
+"Rytířský slib",
+"Voto del cavaliere",
+"Vœu du chevalier"
+]
+},
+{
+"term": "Kraken Slayer",
+"kind": "item",
+"aliases": [
+"Krakenbezwinger",
+"Mata-Cráquens",
+"Matakrakens",
+"Pogromca Krakenów",
+"Tueur de krakens",
+"Uccisore di Kraken",
+"Verdugo de krakens",
+"Zabiják krakenů"
+]
+},
+{
+"term": "Last Whisper",
+"kind": "item",
+"aliases": [
+"Dernier souffle",
+"Letzter Atemzug",
+"Ostatni Szept",
+"Poslední zašeptání",
+"Sussurro fatale",
+"Últimas palabras",
+"Último Suspiro",
+"Último Sussurro"
+]
+},
+{
+"term": "Liandry's Torment",
+"kind": "item",
+"aliases": [
+"El Tormento de Liandry",
+"Liandryho utrpení",
+"Liandrys Qual",
+"Tormento de Liandry",
+"Tormento di Liandry",
+"Tourment de Liandry",
+"Udręka Liandry'ego"
+]
+},
+{
+"term": "Lich Bane",
+"kind": "item",
+"aliases": [
+"Fluch des Lichs",
+"Fléau de liche",
+"Maldición del Liche",
+"Perdición del liche",
+"Perdição de Lich",
+"Terrore dei lich",
+"Zhouba lichů",
+"Zmora Licza"
+]
+},
+{
+"term": "Locket of the Iron Solari",
+"kind": "item",
+"aliases": [
+"Amulett der eisernen Solari",
+"Medaglione dei Solari di ferro",
+"Medailónek železných Solari",
+"Medalhão dos Solari de Ferro",
+"Medallón de los Solari de Hierro",
+"Médaillon de l'Iron Solari",
+"Naszyjnik Żelaznych Solari",
+"Relicario de los Solari de Hierro"
+]
+},
+{
+"term": "Long Sword",
+"kind": "item",
+"aliases": [
+"Dlouhý meč",
+"Długi Miecz",
+"Espada larga",
+"Espada Larga",
+"Espada Longa",
+"Langschwert",
+"Spada lunga",
+"Épée longue"
+]
+},
+{
+"term": "Lord Dominik's Regards",
+"kind": "item",
+"aliases": [
+"Lembranças do Lorde Dominik",
+"Lord Dominiks Grüße",
+"Pozdrav od lorda Dominika",
+"Pozdrowienia Lorda Dominika",
+"Recuerdos de Lord Dominik",
+"Recuerdos de lord Dominik",
+"Salutations de Dominik",
+"Saluti di Lord Dominik"
+]
+},
+{
+"term": "Lost Chapter",
+"kind": "item",
+"aliases": [
+"Capitolo perduto",
+"Capítulo perdido",
+"Capítulo Perdido",
+"Chapitre perdu",
+"Verlorenes Kapitel",
+"Zaginiony Rozdział",
+"Ztracená kapitola"
+]
+},
+{
+"term": "Luden's Echo",
+"kind": "item",
+"aliases": [
+"Echo Luden",
+"Eco de Luden",
+"Eco di Luden",
+"Ludenova ozvěna",
+"Ludens Echo",
+"Écho de Luden"
+]
+},
+{
+"term": "Malignance",
+"kind": "item",
+"aliases": [
+"Bösartigkeit",
+"Maldad",
+"Malevolência",
+"Malfaisance",
+"Malignidad",
+"Malignità",
+"Zhoubnost",
+"Złowrogość"
+]
+},
+{
+"term": "Manamune",
+"kind": "item",
+"aliases": []
+},
+{
+"term": "Maw of Malmortius",
+"kind": "item",
+"aliases": [
+"Fauces de Malmortius",
+"Fauci di Malmortius",
+"Gueule de Malmortius",
+"Malmortiův chřtán",
+"Mandíbula de Malmortius",
+"Paszcza Malmortiusa",
+"Schlund von Malmortius"
+]
+},
+{
+"term": "Mejai's Soulstealer",
+"kind": "item",
+"aliases": [
+"Ladrão de Almas de Mejai",
+"Mejais Seelenstehler",
+"Mejaiův zloděj duší",
+"Robaalmas de Mejai",
+"Tomo Mejai ruba-anime",
+"Voleur d'âmes de Mejai",
+"Wykradacz Dusz Mejai"
+]
+},
+{
+"term": "Mercurial Scimitar",
+"kind": "item",
+"aliases": [
+"Cimeterre mercuriel",
+"Cimitarra mercurial",
+"Cimitarra Mercurial",
+"Flinker Krummsäbel",
+"Rtuťová šavle",
+"Rtęciowy Bułat",
+"Scimitarra di Mercurio"
+]
+},
+{
+"term": "Mercury's Treads",
+"kind": "item",
+"aliases": [
+"Botas de Mercurio",
+"Botas de mercurio",
+"Calzari di Mercurio",
+"Merkurovy boty",
+"Merkurs Schuhe",
+"Obuwie Merkurego",
+"Passos de Mercúrio",
+"Sandales de Mercure"
+]
+},
+{
+"term": "Mikael's Blessing",
+"kind": "item",
+"aliases": [
+"Bendición de Mikael",
+"Benedizione di Mikael",
+"Bénédiction de Mikael",
+"Bênção de Mikael",
+"Błogosławieństwo Mikaela",
+"Mikaelovo požehnání",
+"Mikaels Segen"
+]
+},
+{
+"term": "Moonstone Renewer",
+"kind": "item",
+"aliases": [
+"Mondstein-Erneuerer",
+"Měsíční obnovovač",
+"Odnowienie Kamienia Księżycowego",
+"Pietra di luna rinnovata",
+"Regenerador de Pedra Lunar",
+"Renovación de piedra lunar",
+"Renovador de Piedra Lunar",
+"Régénérateur de pierre de lune"
+]
+},
+{
+"term": "Morellonomicon",
+"kind": "item",
+"aliases": [
+"Morellonomicón",
+"Morellonomikon"
+]
+},
+{
+"term": "Mortal Reminder",
+"kind": "item",
+"aliases": [
+"Lembrete Mortal",
+"Memento mori",
+"Připomínka smrtelnosti",
+"Rappel mortel",
+"Recordatorio letal",
+"Recordatorio Mortal",
+"Sterbliche Mahnung",
+"Śmiertelne Przypomnienie"
+]
+},
+{
+"term": "Mosstomper Seedling",
+"kind": "item",
+"aliases": [
+"Brote de Brincamontes",
+"Broto de Esmagamusgo",
+"Bébé Ixamandre",
+"Germoglio di Calcamuschio",
+"Mládě mechodupa",
+"Mooshüpfersetzling",
+"Retoño de Pisamusgo",
+"Sadzonka Mchściciela"
+]
+},
+{
+"term": "Nashor's Tooth",
+"kind": "item",
+"aliases": [
+"Dent de Nashor",
+"Dente de Na'Shor",
+"Dente di Nashor",
+"Diente de Nashor",
+"Nashors Zahn",
+"Nashorův tesák",
+"Ząb Nashora"
+]
+},
+{
+"term": "Navori Flickerblade",
+"kind": "item",
+"aliases": [
+"Adaga Oscilante Navori",
+"Blikavá čepel Navori",
+"Cuchilla Rauda de Navori",
+"Filofugaz de Navori",
+"Flimmerklinge der Navori",
+"Lama rotante Navori",
+"Migoczące Ostrze Navori",
+"Tremblelame navori"
+]
+},
+{
+"term": "Needlessly Large Rod",
+"kind": "item",
+"aliases": [
+"Absurdalnie Wielka Różdżka",
+"Baguette trop grosse",
+"Bastone colossale",
+"Bastão Desnecessariamente Grande",
+"Vara Innecesariamente Grande",
+"Vara innecesariamente grande",
+"Zbytečně dlouhá hůl",
+"Übergroßer Stab"
+]
+},
+{
+"term": "Negatron Cloak",
+"kind": "item",
+"aliases": [
+"Capa de Negatrones",
+"Capa Negatron",
+"Capa negatrón",
+"Manteau de Négatron",
+"Mantello di Negatron",
+"Negatron-Mantel",
+"Negatronový plášť",
+"Płaszcz Negacji"
+]
+},
+{
+"term": "Noonquiver",
+"kind": "item",
+"aliases": [
+"Aljava Vespertina",
+"Carcaj de Mediodía",
+"Carcaj del mediodía",
+"Carquois zénithien",
+"Faretra solare",
+"Kołczan Południa",
+"Polední toulec",
+"Sonnenköcher"
+]
+},
+{
+"term": "Null-Magic Mantle",
+"kind": "item",
+"aliases": [
+"Cape de néant",
+"Cappa anti-magia",
+"Kouzluodolná kápě",
+"Manto Anula-Magia",
+"Manto Anulamagia",
+"Manto de anulación de magia",
+"Nullmagie-Mantel",
+"Opończa Antymagiczna"
+]
+},
+{
+"term": "Oblivion Orb",
+"kind": "item",
+"aliases": [
+"Kugel des Untergangs",
+"Kula Zagłady",
+"Oko zapomnění",
+"Orbe de l'oubli",
+"Orbe del Olvido",
+"Orbe del olvido",
+"Orbe do Oblívio",
+"Sfera dell'oblio"
+]
+},
+{
+"term": "Oracle Lens",
+"kind": "item",
+"aliases": [
+"Brouilleur oraculaire",
+"Lente del oráculo",
+"Lente del Oráculo",
+"Lente dell'oracolo",
+"Lente do Oráculo",
+"Linse des Orakels",
+"Soczewka Wyroczni",
+"Věštecká čočka"
+]
+},
+{
+"term": "Overlord's Bloodmail",
+"kind": "item",
+"aliases": [
+"Armadura Sangrenta do Suserano",
+"Armure sanguine",
+"Blutpanzer des Gebieters",
+"Cota Sangrienta del Soberano",
+"Cotta di maglia del signore supremo",
+"Krwawa Kolczuga Władcy",
+"Sangría del soberano",
+"Vládcovo krvavé brnění"
+]
+},
+{
+"term": "Phage",
+"kind": "item",
+"aliases": [
+"Bacteriófago",
+"Fago",
+"Flagello",
+"Fág",
+"Pożeracz"
+]
+},
+{
+"term": "Phantom Dancer",
+"kind": "item",
+"aliases": [
+"Bailarín espectral",
+"Bailarín Espectral",
+"Danseur fantôme",
+"Danzatore fantasma",
+"Dançarina Fantasma",
+"Phantomtänzer",
+"Tančící přízrak",
+"Widmowy Tancerz"
+]
+},
+{
+"term": "Pickaxe",
+"kind": "item",
+"aliases": [
+"Kilof",
+"Krumpáč",
+"Picacha",
+"Picareta",
+"Piccone",
+"Pico",
+"Pioche",
+"Spitzhacke"
+]
+},
+{
+"term": "Plated Steelcaps",
+"kind": "item",
+"aliases": [
+"Beschichtete Stahlkappen",
+"Botas blindadas",
+"Botas Galvanizadas de Aço",
+"Coques en acier",
+"Ocelové chrániče",
+"Pancerniaki",
+"Piastre d'acciaio",
+"Punteras de Acero Revestidas"
+]
+},
+{
+"term": "Profane Hydra",
+"kind": "item",
+"aliases": [
+"Bluźniercza Hydra",
+"Gottlose Hydra",
+"Hidra profana",
+"Hidra Profana",
+"Hydre profane",
+"Idra profana",
+"Rouhavá hydra"
+]
+},
+{
+"term": "Protoplasm Harness",
+"kind": "item",
+"aliases": [
+"Arnés de Protoplasma",
+"Arnés de protoplasma",
+"Cintura protoplasmatica",
+"Couraça Protoplasmática",
+"Harnais protoplasmique",
+"Protoplasma-Gurt",
+"Protoplazmový postroj",
+"Uprząż Protoplazmowa"
+]
+},
+{
+"term": "Quicksilver Sash",
+"kind": "item",
+"aliases": [
+"Bandana de Mercúrio",
+"Ceinture de mercure",
+"Fajín de mercurio",
+"Fajín de Mercurio",
+"Fascia d'argento vivo",
+"Quecksilberschärpe",
+"Rtuťový pás",
+"Rtęciowa Szarfa"
+]
+},
+{
+"term": "Rabadon's Deathcap",
+"kind": "item",
+"aliases": [
+"Capuz da Morte de Rabadon",
+"Coiffe de Rabadon",
+"Copricapo di Rabadon",
+"Rabadons Todeshaube",
+"Rabadonův smrtící klobouk",
+"Sombrero mortal de Rabadon",
+"Sombrero Mortífero de Rabadon",
+"Zabójczy Kapelusz Rabadona"
+]
+},
+{
+"term": "Randuin's Omen",
+"kind": "item",
+"aliases": [
+"Omen Randuina",
+"Orgoglio di Randuin",
+"Presagio de Randuin",
+"Presságio de Randuin",
+"Présage de Randuin",
+"Randuinovo znamení",
+"Randuins Omen"
+]
+},
+{
+"term": "Rapid Firecannon",
+"kind": "item",
+"aliases": [
+"Archibugio a ripetizione",
+"Canhão Fumegante",
+"Canon ultrarapide",
+"Cañón de fuego rápido",
+"Cañón de Fuego Rápido",
+"Ognista Armata",
+"Rychlopalné ohnivé dělo",
+"Schnellfeuer-Geschütz"
+]
+},
+{
+"term": "Ravenous Hydra",
+"kind": "item",
+"aliases": [
+"Gefräßige Hydra",
+"Hidra Raivosa",
+"Hidra Voraz",
+"Hidra voraz",
+"Hladová hydra",
+"Hydre vorace",
+"Idra famelica",
+"Krwiożercza Hydra"
+]
+},
+{
+"term": "Rectrix",
+"kind": "item",
+"aliases": [
+"Peruť",
+"Rectriz",
+"Rektrix",
+"Retriz",
+"Rettrice",
+"Réctrice",
+"Sterówka"
+]
+},
+{
+"term": "Recurve Bow",
+"kind": "item",
+"aliases": [
+"Arc courbe",
+"Arco curvo",
+"Arco Recurvado",
+"Arco Recurvo",
+"Arco ricurvo",
+"Reflexní luk",
+"Rekursivbogen",
+"Wygięty Łuk"
+]
+},
+{
+"term": "Redemption",
+"kind": "item",
+"aliases": [
+"Befreiungsschlag",
+"Odkupienie",
+"Odplata",
+"Redención",
+"Redenzione",
+"Redenção",
+"Rédemption"
+]
+},
+{
+"term": "Refillable Potion",
+"kind": "item",
+"aliases": [
+"Doplnitelný lektvar",
+"Nachfüllbarer Trank",
+"Odnawialna Mikstura",
+"Poción reutilizable",
+"Poción Reutilizable",
+"Potion rechargeable",
+"Pozione ricaricabile",
+"Poção com Refil"
+]
+},
+{
+"term": "Rejuvenation Bead",
+"kind": "item",
+"aliases": [
+"Collier rafraîchissant",
+"Koralik Odrodzenia",
+"Korálek života",
+"Perla de Rejuvenecimiento",
+"Perla de rejuvenecimiento",
+"Perla del rinvigorimento",
+"Perle der Verjüngung",
+"Pérola do Rejuvenescimento"
+]
+},
+{
+"term": "Riftmaker",
+"kind": "item",
+"aliases": [
+"Agrietador",
+"Araldo del Vuoto",
+"Creagrietas",
+"Criafendas",
+"Créateur de failles",
+"Kluftformer",
+"Szczelinotwórca",
+"Tvůrce Žlebu"
+]
+},
+{
+"term": "Rod of Ages",
+"kind": "item",
+"aliases": [
+"Bastone secolare",
+"Bastão das Eras",
+"Bâton séculaire",
+"Hůl věků",
+"Różdżka Wieków",
+"Stab der Zeitalter",
+"Vara de las Edades",
+"Vara de las edades"
+]
+},
+{
+"term": "Ruby Crystal",
+"kind": "item",
+"aliases": [
+"Cristal de Rubi",
+"Cristal de rubis",
+"Cristal de Rubí",
+"Cristal de rubí",
+"Rubinkristall",
+"Rubino di cristallo",
+"Rubinowy Kryształ",
+"Rubínový krystal"
+]
+},
+{
+"term": "Runaan's Hurricane",
+"kind": "item",
+"aliases": [
+"Furacão de Runaan",
+"Huracán de Runaan",
+"Huragan Runaana",
+"Ouragan de Runaan",
+"Runaanin hurikán",
+"Runaans Wirbelsturm",
+"Uragano di Runaan"
+]
+},
+{
+"term": "Rylai's Crystal Scepter",
+"kind": "item",
+"aliases": [
+"Cetro de Cristal de Rylai",
+"Cetro de cristal de Rylai",
+"Kryształowy Kostur Rylai",
+"Rylaino křišťálové žezlo",
+"Rylais Kristallzepter",
+"Sceptre de Rylai",
+"Scettro di cristallo di Rylai"
+]
+},
+{
+"term": "Sapphire Crystal",
+"kind": "item",
+"aliases": [
+"Cristal de Safira",
+"Cristal de saphir",
+"Cristal de zafiro",
+"Cristal de Zafiro",
+"Safírový krystal",
+"Saphirkristall",
+"Szafirowy Kryształ",
+"Zaffiro di cristallo"
+]
+},
+{
+"term": "Scarecrow Effigy",
+"kind": "item",
+"aliases": [
+"Abbild einer Vogelscheuche",
+"Effige dello spaventapasseri",
+"Effigie d'épouvantail",
+"Efigie de Espantapájaros",
+"Efígie do Espantalho",
+"Figura de espantapájaros",
+"Kukła Stracha na Wróble",
+"Strašák"
+]
+},
+{
+"term": "Scorchclaw Pup",
+"kind": "item",
+"aliases": [
+"Brandklauenwelpe",
+"Bébé Chardent",
+"Cachorro de Garra ígnea",
+"Cachorro de Rasgafuegos",
+"Cucciolo di Artigliardente",
+"Filhote de Garrabrasa",
+"Mládě ohňodrápa",
+"Szczeniak Żaroszpona"
+]
+},
+{
+"term": "Scout's Slingshot",
+"kind": "item",
+"aliases": [
+"Estilingue do Patrulheiro",
+"Fionda dell'esploratore",
+"Fronde de l'éclaireur",
+"Honda de explorador",
+"Honda del Explorador",
+"Proca Zwiadowcy",
+"Schleuder des Spähers",
+"Zvědův prak"
+]
+},
+{
+"term": "Seeker's Armguard",
+"kind": "item",
+"aliases": [
+"Armaguarda da Caçadora",
+"Armschutz des Suchenden",
+"Brazalete de la buscadora",
+"Guardabrazo del Buscador",
+"Naramiennik Poszukiwacza",
+"Parabraccia del cercatore",
+"Protège-bras du savant",
+"Stopařčin chránič"
+]
+},
+{
+"term": "Serpent's Fang",
+"kind": "item",
+"aliases": [
+"Colmillo de serpiente",
+"Colmillo de Serpiente",
+"Crochet de serpent",
+"Giftzahn der Schlange",
+"Hadí tesák",
+"Presa da Serpente",
+"Wężowy Kieł",
+"Zanna del serpente"
+]
+},
+{
+"term": "Serrated Dirk",
+"kind": "item",
+"aliases": [
+"Daga dentada",
+"Dague dentelée",
+"Gezackter Langdolch",
+"Lungo pugnale seghettato",
+"Punhal Serrilhado",
+"Puñal Serrado",
+"Zubatá dýka",
+"Ząbkowany Sztylet"
+]
+},
+{
+"term": "Serylda's Grudge",
+"kind": "item",
+"aliases": [
+"Rancor de Serylda",
+"Rancore di Serylda",
+"Rancune de Serylda",
+"Rencor de Serylda",
+"Seryldas Bitterkeit",
+"Seryldina zášť",
+"Uraza Seryldy"
+]
+},
+{
+"term": "Shadowflame",
+"kind": "item",
+"aliases": [
+"Chama Sombria",
+"Flamme-ombre",
+"Llamasombría",
+"Lumbría",
+"Ombrofiamma",
+"Płomień Cienia",
+"Schattenflamme",
+"Stínový plamen"
+]
+},
+{
+"term": "Shattered Armguard",
+"kind": "item",
+"aliases": [
+"Armaguarda Despedaçada",
+"Brazalete quebrado",
+"Guardabrazo Fragmentado",
+"Parabraccia distrutto",
+"Protège-bras pulvérisé",
+"Roztříštěný chránič",
+"Strzaskany Naramiennik",
+"Zerbrochener Armschutz"
+]
+},
+{
+"term": "Sheen",
+"kind": "item",
+"aliases": [
+"Blask",
+"Brillance",
+"Brillo",
+"Fulgor",
+"Fulgore",
+"Glanz",
+"Lesk"
+]
+},
+{
+"term": "Shield of Molten Stone",
+"kind": "item",
+"aliases": [
+"Bouclier de roche en fusion",
+"Escudo de roca fundida",
+"Escudo de Roca Fundida",
+"Escudo de Rocha Fundida",
+"Schild aus Vulkangestein",
+"Scudo di roccia fusa",
+"Tarcza Płynnego Kamienia",
+"Štít z roztaveného kamene"
+]
+},
+{
+"term": "Shurelya's Battlesong",
+"kind": "item",
+"aliases": [
+"Canción de batalla de Shurelya",
+"Canto de Guerra de Shurelya",
+"Canto di guerra di Shurelya",
+"Chant de guerre de Shurelya",
+"Hino Bélico de Shurelya",
+"Pieśń Bitewna Shurelyi",
+"Shurelyas Kampfhymne",
+"Shurelyina bitevní píseň"
+]
+},
+{
+"term": "Solstice Sleigh",
+"kind": "item",
+"aliases": [
+"Sanie Przesilenia",
+"Slitta del solstizio",
+"Sonnwendschlitten",
+"Sáně slunovratu",
+"Traîneau du solstice",
+"Trenó do Solstício",
+"Trineo del solsticio",
+"Trineo del Solsticio"
+]
+},
+{
+"term": "Sorcerer's Shoes",
+"kind": "item",
+"aliases": [
+"Botas de hechicero",
+"Botas del Hechicero",
+"Calzari del mago",
+"Chaussures de sorcier",
+"Kouzelníkovy boty",
+"Obuwie Maga",
+"Sapatos do Feiticeiro",
+"Zaubererschuhe"
+]
+},
+{
+"term": "Spear of Shojin",
+"kind": "item",
+"aliases": [
+"Lance de Shojin",
+"Lancia di Shojin",
+"Lanza de Shojin",
+"Lança de Shojin",
+"Oštěp Šódžinu",
+"Speer von Shojin",
+"Włócznia Shojin"
+]
+},
+{
+"term": "Spectre's Cowl",
+"kind": "item",
+"aliases": [
+"Cappuccio spettrale",
+"Capuz do Espectro",
+"Geisterkutte",
+"Hábito del Espectro",
+"Hábito del espectro",
+"Manteau de spectre",
+"Přízračná kápě",
+"Widmowa Osłona"
+]
+},
+{
+"term": "Spellslinger's Shoes",
+"kind": "item",
+"aliases": [
+"Botas del lanzahechizos",
+"Boty vrhače kouzel",
+"Buty Miotacza Zaklęć",
+"Chaussures de lanceur de sorts",
+"Sapatos Enfeitiçados",
+"Scarpe del mago",
+"Schuhe des Zauberkünstlers",
+"Zapatos de Lanzahechizos"
+]
+},
+{
+"term": "Spirit Visage",
+"kind": "item",
+"aliases": [
+"Apariencia Espiritual",
+"Corazza spirituale",
+"Geistessicht",
+"Oblicze Ducha",
+"Otisk duše",
+"Rostro espiritual",
+"Semblante Espiritual",
+"Visage spirituel"
+]
+},
+{
+"term": "Staff of Flowing Water",
+"kind": "item",
+"aliases": [
+"Bastón de aguas fluidas",
+"Báculo de Agua Fluyente",
+"Bâton des flots",
+"Cajado Aquafluxo",
+"Hůl plynoucí vody",
+"Kostur Płynącej Wody",
+"Stab des fließenden Wassers",
+"Staffa delle correnti"
+]
+},
+{
+"term": "Statikk Shiv",
+"kind": "item",
+"aliases": [
+"Faca de Statikk",
+"Kosa Statikka",
+"Navaja de Statikk",
+"Poignard de Statikk",
+"Pugnale di Statikk",
+"Puñal de Statikk",
+"Statikkova kudla",
+"Statikks Stich"
+]
+},
+{
+"term": "Stealth Ward",
+"kind": "item",
+"aliases": [
+"Balise camouflée",
+"Centinela Invisible",
+"Getarntes Auge",
+"Guardián invisible",
+"Lume invisibile",
+"Neviditelný totem",
+"Sentinela Invisível",
+"Totem Ukrycia"
+]
+},
+{
+"term": "Steel Sigil",
+"kind": "item",
+"aliases": [
+"Ocelový symbol",
+"Sceau d'acier",
+"Sello de acero",
+"Sello de Acero",
+"Sigillo d'acciaio",
+"Sigilo de Aço",
+"Stahlsiegel",
+"Stalowy Znak"
+]
+},
+{
+"term": "Sterak's Gage",
+"kind": "item",
+"aliases": [
+"Calibrador de Sterak",
+"Gage de Sterak",
+"Gruboskórność Steraka",
+"Guantelete de Sterak",
+"Pegno di Sterak",
+"Sinal de Sterak",
+"Sterakova zástava",
+"Steraks Pegel"
+]
+},
+{
+"term": "Stormrazor",
+"kind": "item",
+"aliases": [
+"Chuva de Canivete",
+"Filo de la Tormenta",
+"Klinga Burzy",
+"Lame tempête",
+"Navaja de asalto",
+"Ostří bouře",
+"Rasoio della tempesta",
+"Sturmschneide"
+]
+},
+{
+"term": "Stormsurge",
+"kind": "item",
+"aliases": [
+"Apice della tempesta",
+"Descarga Tormentosa",
+"Nával bouře",
+"Onde orageuse",
+"Przepływ Burzy",
+"Sobrecarga tormentosa",
+"Sturmblitz",
+"Ápice da Tempestade"
+]
+},
+{
+"term": "Stridebreaker",
+"kind": "item",
+"aliases": [
+"Cortasendas",
+"Estropieur",
+"Krokolam",
+"Quebrapassos",
+"Rompeavances",
+"Schikane",
+"Spezzapassi",
+"Łamacz Falangi"
+]
+},
+{
+"term": "Sundered Sky",
+"kind": "item",
+"aliases": [
+"Ciel éventré",
+"Cielo Desgarrado",
+"Cielo infranto",
+"Céu Dividido",
+"Firmamento desgarrado",
+"Gespaltener Himmel",
+"Rozdarte Niebo",
+"Rozpolcené nebe"
+]
+},
+{
+"term": "Sunfire Aegis",
+"kind": "item",
+"aliases": [
+"Egida del Sole",
+"Sonnenfeuer-Ägide",
+"Słoneczna Egida",
+"Záštita slunečního žáru",
+"Égida de fuego solar",
+"Égida de Fuego Solar",
+"Égide de Fogo Solar",
+"Égide solaire"
+]
+},
+{
+"term": "Swiftmarch",
+"kind": "item",
+"aliases": [
+"Botas de Marcha Rápida",
+"Célérité martiale",
+"Marcha Célere",
+"Marcha veloz",
+"Marcia rapida",
+"Schnellmarsch",
+"Zrychlený pochod",
+"Żwawy Marsz"
+]
+},
+{
+"term": "Sword of Blossoming Dawn",
+"kind": "item",
+"aliases": [
+"Espada da Alvorada Florescente",
+"Espada del Amanecer Floreciente",
+"Espada del amanecer floreciente",
+"Meč rozpuku úsvitu",
+"Miecz Kwitnącego Świtu",
+"Schwert des aufblühenden Morgens",
+"Spada dell'Alba fiorente",
+"Épée de l'aube"
+]
+},
+{
+"term": "Sword of the Divine",
+"kind": "item",
+"aliases": [
+"Boski Miecz",
+"Espada de los Dioses",
+"Espada de los dioses",
+"Espada do Divino",
+"Meč boží",
+"Schwert der Göttlichen",
+"Spada del Divino",
+"Épée du divin"
+]
+},
+{
+"term": "Tear of the Goddess",
+"kind": "item",
+"aliases": [
+"Lacrima della dea",
+"Larme de la déesse",
+"Lágrima da Deusa",
+"Lágrima de la diosa",
+"Lágrima de la Diosa",
+"Slza bohyně",
+"Träne der Göttin",
+"Łza Bogini"
+]
+},
+{
+"term": "Terminus",
+"kind": "item",
+"aliases": [
+"El final",
+"Ostatni Przystanek"
+]
+},
+{
+"term": "The Brutalizer",
+"kind": "item",
+"aliases": [
+"Brutaliseur",
+"Brutalizador",
+"Brutalizzatore",
+"Brutalizér",
+"Der Brutalisierer",
+"El Brutalizador",
+"Embrutecedor",
+"Tłuczek"
+]
+},
+{
+"term": "The Collector",
+"kind": "item",
+"aliases": [
+"A Coletora",
+"Der Sammler",
+"El Coleccionista",
+"Il Collezionista",
+"Kolekcjoner",
+"Percepteur",
+"Recaudadora",
+"Výběrčí"
+]
+},
+{
+"term": "Thornmail",
+"kind": "item",
+"aliases": [
+"Armadura de Espinhos",
+"Corazza spinata",
+"Cota de Espinas",
+"Cotte épineuse",
+"Dornenpanzer",
+"Kolczasta Kolczuga",
+"Malla de espinas",
+"Trnobrnění"
+]
+},
+{
+"term": "Tiamat",
+"kind": "item",
+"aliases": []
+},
+{
+"term": "Titanic Hydra",
+"kind": "item",
+"aliases": [
+"Hidra Titánica",
+"Hidra titánica",
+"Hidra Titânica",
+"Hydre titanesque",
+"Idra titanica",
+"Kolosalna Hydra",
+"Titanische Hydra",
+"Titánská hydra"
+]
+},
+{
+"term": "Trinity Force",
+"kind": "item",
+"aliases": [
+"Force de la trinité",
+"Força da Trindade",
+"Fuerza de la Trinidad",
+"Fuerza de trinidad",
+"Moc Trójcy",
+"Stärke der Dreieinigkeit",
+"Trojsíla",
+"Virtù della Triade"
+]
+},
+{
+"term": "Tunneler",
+"kind": "item",
+"aliases": [
+"Excavador de Túneles",
+"Foreuse",
+"Scavatore",
+"Tuneladora",
+"Tunelizador",
+"Tunelowiec",
+"Tunelář",
+"Tunnelgräber"
+]
+},
+{
+"term": "Umbral Glaive",
+"kind": "item",
+"aliases": [
+"Espada de la Penumbra",
+"Glaive d'ombre",
+"Glaive Sombria",
+"Glewia Umbry",
+"Guja sombría",
+"Ombra tagliente",
+"Polostínová gléva",
+"Schattengleve"
+]
+},
+{
+"term": "Unending Despair",
+"kind": "item",
+"aliases": [
+"Desesperación Eterna",
+"Desesperanza eterna",
+"Desespero Eterno",
+"Disperazione eterna",
+"Désespoir infini",
+"Endlose Verzweiflung",
+"Nekonečné zoufalství",
+"Nieskończona Rozpacz"
+]
+},
+{
+"term": "Vampiric Scepter",
+"kind": "item",
+"aliases": [
+"Cetro vampírico",
+"Cetro Vampírico",
+"Sceptre vampirique",
+"Scettro vampirico",
+"Upírské žezlo",
+"Vampirisches Zepter",
+"Wampiryczny Kostur"
+]
+},
+{
+"term": "Veigar's Talisman of Ascension",
+"kind": "item",
+"aliases": [
+"Emblema de la ascensión de Veigar",
+"Talisman de l'ascension de Veigar",
+"Talismano dell'ascensione di Veigar",
+"Talismán de Ascensión de Veigar",
+"Talismã da Ascensão de Veigar",
+"Talizman Wstąpienia Veigara",
+"Veigars Amulett des Aufstiegs",
+"Veigarův amulet Vyzdvižení"
+]
+},
+{
+"term": "Verdant Barrier",
+"kind": "item",
+"aliases": [
+"Barreira Verdejante",
+"Barrera Esmeralda",
+"Barrera frondosa",
+"Barriera rigogliosa",
+"Barrière verdoyante",
+"Košatá bariéra",
+"Roślinna Bariera",
+"Tiefgrüne Barriere"
+]
+},
+{
+"term": "Void Staff",
+"kind": "item",
+"aliases": [
+"Bastone del Vuoto",
+"Bastón del Vacío",
+"Báculo del Vacío",
+"Bâton du vide",
+"Cajado do Vazio",
+"Hůl Prázdnoty",
+"Kostur Pustki",
+"Leerenstab"
+]
+},
+{
+"term": "Voltaic Cyclosword",
+"kind": "item",
+"aliases": [
+"Cicloespada Voltaica",
+"Ciclospada voltaica",
+"Cyclosabre voltaïque",
+"Energetický cyklomeč",
+"Espada ciclovoltaica",
+"Voltaisches Zykloschwert",
+"Woltaiczny Cyklomiecz"
+]
+},
+{
+"term": "Warden's Mail",
+"kind": "item",
+"aliases": [
+"Armatura del custode",
+"Carapaça do Vigia",
+"Cota del Guardabosques",
+"Dozorcovo brnění",
+"Mailles du gardien",
+"Malla del guardián",
+"Rüstung des Beschützers",
+"Zbroja Strażnika"
+]
+},
+{
+"term": "Warmog's Armor",
+"kind": "item",
+"aliases": [
+"Armadura de Warmog",
+"Armatura di Warmog",
+"Armure de Warmog",
+"Plemienna Zbroja",
+"Warmogova zbroj",
+"Warmogs Rüstung"
+]
+},
+{
+"term": "Whispering Circlet",
+"kind": "item",
+"aliases": [
+"Diadema del Sussurro",
+"Diadema susurrante",
+"Diadème des murmures",
+"Flüsterreif",
+"Szepczący Diadem",
+"Tiara Sussurrante",
+"Tiara Susurrante",
+"Šepotající čelenka"
+]
+},
+{
+"term": "Winged Moonplate",
+"kind": "item",
+"aliases": [
+"Armadura lunar alada",
+"Couraça Lunar Alada",
+"Geflügelter Mondpanzer",
+"Lastra lunare alata",
+"Okřídlený měsíční plát",
+"Placa Lunar Alada",
+"Plaque de lune ailée",
+"Skrzydlaty Księżycowy Pancerz"
+]
+},
+{
+"term": "Winter's Approach",
+"kind": "item",
+"aliases": [
+"Approche de l'hiver",
+"Aproximação Invernal",
+"Avvento dell'Inverno",
+"Llegada del invierno",
+"Nadejście Zimy",
+"Nahender Winter",
+"Nástup zimy",
+"Umbral del Invierno"
+]
+},
+{
+"term": "Wit's End",
+"kind": "item",
+"aliases": [
+"Al Filo de la Cordura",
+"Au bout du rouleau",
+"Ende der Weisheit",
+"Final del ingenio",
+"Koniec Rozumu",
+"Limite da Razão",
+"Nouzová",
+"Speranza perduta"
+]
+},
+{
+"term": "World Atlas",
+"kind": "item",
+"aliases": [
+"Atlante del mondo",
+"Atlas",
+"Atlas mundial",
+"Atlas Mundial",
+"Atlas světa",
+"Atlas Świata",
+"Mapamundi",
+"Weltatlas"
+]
+},
+{
+"term": "Youmuu's Ghostblade",
+"kind": "item",
+"aliases": [
+"Espada Fantasma de Youmuu",
+"Filo fantasmal de Youmuu",
+"Lama di Youmuu",
+"Lame spectre de Youmuu",
+"Lâmina Fantasma de Youmuu",
+"Widmowe Ostrze Youmuu",
+"Youmus Geistklinge",
+"Youmuuina přízračná čepel"
+]
+},
+{
+"term": "Yun Tal Wildarrows",
+"kind": "item",
+"aliases": [
+"Divoké šípy Yun Talu",
+"Flechas de los Yun Tal",
+"Flechas Salvajes de Yun Tal",
+"Flechatroz de Yun Tal",
+"Flèches des Yun Tal",
+"Frecce Yun Tal",
+"Nieokiełznane Strzały Yun Tal",
+"Yun Tal-Wildpfeile"
+]
+},
+{
+"term": "Zaz'Zak's Realmspike",
+"kind": "item",
+"aliases": [
+"Espina Dimensional de Zaz'Zak",
+"Invadomínio de Zaz'Zak",
+"Invasione di Zak'Zak",
+"Kolec Królestwa Zaz'Zaka",
+"Perforaplanos de Zaz'Zak",
+"Pique dimensionnelle de Zaz'Zak",
+"Zaz'Zaks Weltenstachel",
+"Zaz'Zakův světohrot"
+]
+},
+{
+"term": "Zeal",
+"kind": "item",
+"aliases": [
+"Eifer",
+"Fervor",
+"Fervore",
+"Horlivost",
+"Zapał",
+"Zelo",
+"Zèle"
+]
+},
+{
+"term": "Zeke's Convergence",
+"kind": "item",
+"aliases": [
+"Convergence de Zeke",
+"Convergencia de Zeke",
+"Convergenza di Zeke",
+"Convergência de Zeke",
+"Konwergencja Zeke'a",
+"Zekeovo provázání",
+"Zekes Konvergenz"
+]
+},
+{
+"term": "Zephyr",
+"kind": "item",
+"aliases": [
+"Céfiro",
+"Vánek",
+"Zefir",
+"Zefiro",
+"Zephir",
+"Zéfiro",
+"Zéphyr"
+]
+},
+{
+"term": "Zhonya's Hourglass",
+"kind": "item",
+"aliases": [
+"Ampulheta de Zhonya",
+"Clessidra di Zhonya",
+"Klepsydra Zhonyi",
+"Reloj de Arena de Zhonya",
+"Reloj de arena de Zhonya",
+"Sablier de Zhonya",
+"Zhonyas Stundenglas",
+"Zhonyiny přesýpací hodiny"
+]
+},
+{
+"term": "Absolute Focus",
+"kind": "rune",
+"aliases": [
+"Absoluter Fokus",
+"Absolutní soustředění",
+"Całkowite Skupienie",
+"Concentración Absoluta",
+"Concentración absoluta",
+"Concentration absolue",
+"Concentrazione assoluta",
+"Foco Absoluto"
+]
+},
+{
+"term": "Absorb Life",
+"kind": "rune",
+"aliases": [
+"Absorber vida",
+"Absorber Vida",
+"Absorption vitale",
+"Absorção Vital",
+"Assorbi vita",
+"Leben absorbieren",
+"Pochłonięcie Życia",
+"Čerpání života"
+]
+},
+{
+"term": "Aftershock",
+"kind": "rune",
+"aliases": [
+"Après-coup",
+"Nachbeben",
+"Následný otřes",
+"Pós-choque",
+"Reperkusje",
+"Reverberacción",
+"Réplica",
+"Scossa di assestamento"
+]
+},
+{
+"term": "Approach Velocity",
+"kind": "rune",
+"aliases": [
+"Anziehungskraft",
+"Náběhová rychlost",
+"Prędkość Zbliżeniowa",
+"Velocidad de acercamiento",
+"Velocidad de Aproximación",
+"Velocidade de Aproximação",
+"Velocità di avvicinamento",
+"Vitesse d'approche"
+]
+},
+{
+"term": "Arcane Comet",
+"kind": "rune",
+"aliases": [
+"Arkaner Komet",
+"Cometa arcana",
+"Cometa arcano",
+"Cometa Arcano",
+"Comète arcanique",
+"Ezoteryczna Kometa",
+"Magická kometa"
+]
+},
+{
+"term": "Axiom Arcanist",
+"kind": "rune",
+"aliases": [
+"Aksjomatyczny Adept Arkanów",
+"Arcanista Axiomático",
+"Arcanista di Assioma",
+"Arcanista do Axioma",
+"Arcaniste axiomatique",
+"Arcanólogo axiomático",
+"Axiom-Arkanist",
+"Axiomatický znalec arkán"
+]
+},
+{
+"term": "Biscuit Delivery",
+"kind": "rune",
+"aliases": [
+"Consegna biscotti",
+"Dostawa Ciastek",
+"Entrega de Biscoitos",
+"Entrega de Galletas",
+"Entrega de galletas",
+"Kekslieferung",
+"Livraison de biscuits",
+"Zásilka sušenek"
+]
+},
+{
+"term": "Bone Plating",
+"kind": "rune",
+"aliases": [
+"Coraza Ósea",
+"Corazza ossea",
+"Knochenpanzerung",
+"Kostěná zbroj",
+"Kościana Zbroja",
+"Osso Revestido",
+"Plaque d'os",
+"Revestimiento de huesos"
+]
+},
+{
+"term": "Cash Back",
+"kind": "rune",
+"aliases": [
+"Reembolso",
+"Remise immédiate",
+"Rimborso",
+"Rückzahlung",
+"Vratné peníze",
+"Zwrot Gotówki"
+]
+},
+{
+"term": "Celerity",
+"kind": "rune",
+"aliases": [
+"Celeridad",
+"Celeridade",
+"Celerità",
+"Chyżość",
+"Célérité",
+"Flinkheit",
+"Rychlost"
+]
+},
+{
+"term": "Cheap Shot",
+"kind": "rune",
+"aliases": [
+"Cios Poniżej Pasa",
+"Colpo basso",
+"Coup bas",
+"Golpe Bajo",
+"Golpe bajo",
+"Golpe Desleal",
+"Perfider Trick",
+"Rána pod pás"
+]
+},
+{
+"term": "Conditioning",
+"kind": "rune",
+"aliases": [
+"Acondicionamiento",
+"Condicionamento",
+"Condicionamiento",
+"Conditionnement",
+"Konditionierung",
+"Preparazione fisica",
+"Szkolenie Sprawnościowe",
+"Udržování kondice"
+]
+},
+{
+"term": "Conqueror",
+"kind": "rune",
+"aliases": [
+"Conquistador",
+"Conquistatore",
+"Conquérant",
+"Dobyvatel",
+"Eroberer",
+"Zdobywca"
+]
+},
+{
+"term": "Cosmic Insight",
+"kind": "rune",
+"aliases": [
+"Intuito cosmico",
+"Kosmické porozumění",
+"Kosmiczna Przenikliwość",
+"Kosmische Einsicht",
+"Perspicacia Cósmica",
+"Perspicacia cósmica",
+"Perspicácia Cósmica",
+"Savoir cosmique"
+]
+},
+{
+"term": "Coup de Grace",
+"kind": "rune",
+"aliases": [
+"Colpo di grazia",
+"Coup de grâce",
+"Gnadenstoß",
+"Golpe de Gracia",
+"Golpe de gracia",
+"Golpe de Misericórdia",
+"Ostateczny Cios",
+"Rána z milosti"
+]
+},
+{
+"term": "Cut Down",
+"kind": "rune",
+"aliases": [
+"Abattage",
+"Corte",
+"Derribado",
+"Dilacerar",
+"Niedermäher",
+"Odcięcie",
+"Podseknutí",
+"Taglio profondo"
+]
+},
+{
+"term": "Dark Harvest",
+"kind": "rune",
+"aliases": [
+"Colheita Sombria",
+"Cosecha Oscura",
+"Cosecha oscura",
+"Dunkle Seelenernte",
+"Moisson noire",
+"Mroczne Żniwa",
+"Raccolto oscuro",
+"Temné žně"
+]
+},
+{
+"term": "Deathfire Touch",
+"kind": "rune",
+"aliases": [
+"Berührung des Todesfeuers",
+"Dotyk smrtícího ohně",
+"Ognisty Dotyk",
+"Tocco della morte bruciante",
+"Toque de la Muerte Ígnea",
+"Toque de muerte ígnea",
+"Toque Ígneo",
+"Toucher de feu mortel"
+]
+},
+{
+"term": "Deep Ward",
+"kind": "rune",
+"aliases": [
+"Balise de profondeur",
+"Centinela profundo",
+"Guardián de profundidad",
+"Głęboki Totem",
+"Hlubinný totem",
+"Lume profondo",
+"Sentinela Profunda",
+"Tiefes Auge"
+]
+},
+{
+"term": "Demolish",
+"kind": "rune",
+"aliases": [
+"Abriss",
+"Demoler",
+"Demolición",
+"Demolir",
+"Demolire",
+"Demolka",
+"Démolition",
+"Zničit"
+]
+},
+{
+"term": "Domination",
+"kind": "rune",
+"aliases": [
+"Dominación",
+"Dominacja",
+"Dominance",
+"Dominanz",
+"Dominazione",
+"Dominação"
+]
+},
+{
+"term": "Electrocute",
+"kind": "rune",
+"aliases": [
+"Electrocutar",
+"Elektrisieren",
+"Elektryzacja",
+"Eletrocutar",
+"Elettroshock",
+"Zásah proudem",
+"Électrocution"
+]
+},
+{
+"term": "First Strike",
+"kind": "rune",
+"aliases": [
+"Erstschlag",
+"Pierwsze Uderzenie",
+"Premier coup",
+"Primeiro Ataque",
+"Primer Golpe",
+"Primer golpe",
+"Primo attacco",
+"První úder"
+]
+},
+{
+"term": "Fleet Footwork",
+"kind": "rune",
+"aliases": [
+"Agilidade nos Pés",
+"Hbité nohy",
+"Jeu de jambes",
+"Leichtfüßigkeit",
+"Piede lesto",
+"Pies veloces",
+"Sobre la Marcha",
+"Zwinne Nogi"
+]
+},
+{
+"term": "Font of Life",
+"kind": "rune",
+"aliases": [
+"Fontaine de vie",
+"Fonte da Vida",
+"Fonte vitale",
+"Fuente de Vida",
+"Fuente de vida",
+"Lebensquelle",
+"Pramen života",
+"Przypływ Życia"
+]
+},
+{
+"term": "Gathering Storm",
+"kind": "rune",
+"aliases": [
+"Aufziehender Sturm",
+"Nadchodząca Burza",
+"Se avecina tormenta",
+"Tempesta incombente",
+"Tempestade Crescente",
+"Tempête menaçante",
+"Tormenta Creciente",
+"Ženoucí se bouře"
+]
+},
+{
+"term": "Glacial Augment",
+"kind": "rune",
+"aliases": [
+"Aprimoramento Glacial",
+"Aumento Glacial",
+"Eiszeit",
+"Ledovcové vylepšení",
+"Lodowcowe Ulepszenie",
+"Mejora glacial",
+"Optimisation glaciale",
+"Potenziamento glaciale"
+]
+},
+{
+"term": "Grasp of the Undying",
+"kind": "rune",
+"aliases": [
+"Agarre del Perpetuo",
+"Aperto dos Mortos-Vivos",
+"Garras del inmortal",
+"Poigne de l'immortel",
+"Presa dell'immortale",
+"Spáry nehynoucích",
+"Umklammerung der Untoten",
+"Uścisk Nieumarłego"
+]
+},
+{
+"term": "Grisly Mementos",
+"kind": "rune",
+"aliases": [
+"Grässliche Mementos",
+"Lembranças Aterrorizantes",
+"Makabryczne Pamiątki",
+"Recuerdo macabro",
+"Recuerdos Macabros",
+"Ricordi macabri",
+"Souvenirs épouvantables",
+"Strašlivá upomínka"
+]
+},
+{
+"term": "Guardian",
+"kind": "rune",
+"aliases": [
+"Bewahrer",
+"Gardien",
+"Guardián",
+"Guardião",
+"Opiekun",
+"Protector",
+"Sorvegliante",
+"Strážce"
+]
+},
+{
+"term": "Hail of Blades",
+"kind": "rune",
+"aliases": [
+"Chuva de Lâminas",
+"Déluge de lames",
+"Klingenhagel",
+"Lluvia de cuchillas",
+"Lluvia de Espadas",
+"Nawałnica Mieczy",
+"Pioggia di lame",
+"Smršť mečů"
+]
+},
+{
+"term": "Hextech Flashtraption",
+"kind": "rune",
+"aliases": [
+"Canaliportation Hextech",
+"Destello hextech",
+"Destello Hextech",
+"Flashtração Hextec",
+"Hextech-Blitzfalle",
+"Hextechowy Błyskalazek",
+"Magitechnický skokostroj",
+"Marchingegno Hexflash"
+]
+},
+{
+"term": "Inspiration",
+"kind": "rune",
+"aliases": [
+"Inspiración",
+"Inspiracja",
+"Inspiração",
+"Ispirazione",
+"Povzbuzení"
+]
+},
+{
+"term": "Jack Of All Trades",
+"kind": "rune",
+"aliases": [
+"Alleskönner",
+"Comodín",
+"Manitas",
+"Polyvalence",
+"Quebra-galho",
+"Spec od Wszystkiego",
+"Tuttofare",
+"Všeuměl"
+]
+},
+{
+"term": "Last Stand",
+"kind": "rune",
+"aliases": [
+"Até a Morte",
+"Baroud d'honneur",
+"L'ultima sfida",
+"La Última Batalla",
+"Letztes Gefecht",
+"Ostatni Bastion",
+"Poslední vzdor",
+"Último esfuerzo"
+]
+},
+{
+"term": "Legend: Alacrity",
+"kind": "rune",
+"aliases": [
+"Legenda: Horlivost",
+"Legenda: Żwawość",
+"Legende: Eifer",
+"Leggenda: Alacrità",
+"Lenda: Espontaneidade",
+"Leyenda: Celeridad",
+"Leyenda: Presteza",
+"Légende : alacrité"
+]
+},
+{
+"term": "Legend: Bloodline",
+"kind": "rune",
+"aliases": [
+"Legenda: Pokrevní linie",
+"Legenda: Rodowód",
+"Legende: Blutdurst",
+"Leggenda: Stirpe",
+"Lenda: Linhagem",
+"Leyenda: Linaje",
+"Légende : sangsue"
+]
+},
+{
+"term": "Legend: Haste",
+"kind": "rune",
+"aliases": [
+"Legenda: Przyspieszenie",
+"Legenda: Zrychlení",
+"Legende: Hast",
+"Leggenda: velocità",
+"Lenda: Aceleração",
+"Leyenda: Aceleración",
+"Leyenda: Velocidad",
+"Légende : accélération"
+]
+},
+{
+"term": "Lethal Tempo",
+"kind": "rune",
+"aliases": [
+"Cadencia Letal",
+"Compás letal",
+"Ritmo Fatal",
+"Smrtící tempo",
+"Tempo letale",
+"Tempo mortel",
+"Tödliches Tempo",
+"Zabójcze Tempo"
+]
+},
+{
+"term": "Magical Footwear",
+"kind": "rune",
+"aliases": [
+"Calzado Mágico",
+"Calzado mágico",
+"Calzature magiche",
+"Calçados Mágicos",
+"Chaussures magiques",
+"Magické boty",
+"Magiczne Obuwie",
+"Magisches Schuhwerk"
+]
+},
+{
+"term": "Manaflow Band",
+"kind": "rune",
+"aliases": [
+"Anillo de Flujo de Maná",
+"Banda de maná",
+"Faixa de Fluxo de Mana",
+"Fascia del Flusso",
+"Manafluss",
+"Opaska Przepływu Many",
+"Prsten manového proudu",
+"Ruban de mana"
+]
+},
+{
+"term": "Nimbus Cloak",
+"kind": "rune",
+"aliases": [
+"Capa del nimbo",
+"Capa del Nimbo",
+"Cappa della nuvola",
+"Manteau nuageux",
+"Manto de Nimbus",
+"Nimbus-Umhang",
+"Oblačný plášť",
+"Płaszcz Nimbu"
+]
+},
+{
+"term": "Overgrowth",
+"kind": "rune",
+"aliases": [
+"Crecimiento Excesivo",
+"Crescimento Excessivo",
+"Crescita eccessiva",
+"Przerost",
+"Přehnaný růst",
+"Sobrecrecimiento",
+"Surcroissance",
+"Zuwachs"
+]
+},
+{
+"term": "Precision",
+"kind": "rune",
+"aliases": [
+"Precisione",
+"Precisión",
+"Precisão",
+"Precyzja",
+"Präzision",
+"Précision",
+"Přesnost"
+]
+},
+{
+"term": "Presence of Mind",
+"kind": "rune",
+"aliases": [
+"Claridad mental",
+"Concentración Profunda",
+"Duchapřítomnost",
+"Geistesgegenwart",
+"Presenza di spirito",
+"Presença de Espírito",
+"Présence d'esprit",
+"Rozwój Myśli"
+]
+},
+{
+"term": "Press the Attack",
+"kind": "rune",
+"aliases": [
+"Ataque intensificado",
+"Attacco sostenuto",
+"Attaque soutenue",
+"Do Ataku",
+"Estrategia Ofensiva",
+"Fokussierter Angriff",
+"Nepolevující útok",
+"Pressione o Ataque"
+]
+},
+{
+"term": "Relentless Hunter",
+"kind": "rune",
+"aliases": [
+"Bezwzględny Łowca",
+"Cacciatore implacabile",
+"Cazador Implacable",
+"Cazador incesante",
+"Caça Incansável",
+"Chasseur acharné",
+"Erbarmungsloser Jäger",
+"Neúnavný lovec"
+]
+},
+{
+"term": "Resolve",
+"kind": "rune",
+"aliases": [
+"Determinacja",
+"Determinazione",
+"Determinação",
+"Entschlossenheit",
+"Odhodlání",
+"Valor",
+"Volonté"
+]
+},
+{
+"term": "Revitalize",
+"kind": "rune",
+"aliases": [
+"Frische",
+"Oživit",
+"Revitalisation",
+"Revitalizar",
+"Rewitalizacja",
+"Rivitalizzare"
+]
+},
+{
+"term": "Scorch",
+"kind": "rune",
+"aliases": [
+"Bruciare",
+"Brûlure",
+"Chamuscar",
+"Hitzewelle",
+"Piroláser",
+"Poparzenie",
+"Quemadura",
+"Sežehnutí"
+]
+},
+{
+"term": "Second Wind",
+"kind": "rune",
+"aliases": [
+"Aufschwung",
+"Drugi Oddech",
+"Druhý dech",
+"Fuerzas renovadas",
+"Second souffle",
+"Secondo fiato",
+"Segundo Aire",
+"Ventos Revigorantes"
+]
+},
+{
+"term": "Shield Bash",
+"kind": "rune",
+"aliases": [
+"Colpo di scudo",
+"Coup de bouclier",
+"Golpe de Escudo",
+"Golpe de escudo",
+"Grzmotnięcie Tarczą",
+"Schildschlag",
+"Úder štítem"
+]
+},
+{
+"term": "Sixth Sense",
+"kind": "rune",
+"aliases": [
+"Sechster Sinn",
+"Sesto senso",
+"Sexto Sentido",
+"Sexto sentido",
+"Sixième sens",
+"Szósty Zmysł",
+"Šestý smysl"
+]
+},
+{
+"term": "Sorcery",
+"kind": "rune",
+"aliases": [
+"Brujería",
+"Czarnoksięstwo",
+"Feitiçaria",
+"Sorcellerie",
+"Stregoneria",
+"Zauberei",
+"Čarodějnictví"
+]
+},
+{
+"term": "Stormraider's Surge",
+"kind": "rune",
+"aliases": [
+"Arrebato del Cabalgatormentas",
+"Assaut du maraudeur",
+"Avanço da Tempestade",
+"Nával lovce bouří",
+"Przypływ Jeźdźca Fal",
+"Scatto del razziatore della tempesta",
+"Tensión del saqueador de tormentas",
+"Woge des Sturmräubers"
+]
+},
+{
+"term": "Sudden Impact",
+"kind": "rune",
+"aliases": [
+"Impacto Repentino",
+"Impacto repentino",
+"Impacto Súbito",
+"Impatto improvviso",
+"Niespodziewane Uderzenie",
+"Náhlý dopad",
+"Plötzlicher Einschlag",
+"Ruée offensive"
+]
+},
+{
+"term": "Summon Aery",
+"kind": "rune",
+"aliases": [
+"Benefee-Beschwörung",
+"Evoca Aery",
+"Invocación: Aery",
+"Invocar a Aery",
+"Invocar Aery",
+"Invocation d'Aery",
+"Przywołanie Aery",
+"Vyvolat Aery"
+]
+},
+{
+"term": "Taste of Blood",
+"kind": "rune",
+"aliases": [
+"Assaggio di sangue",
+"Chuť krve",
+"Geschmack von Blut",
+"Gosto de Sangue",
+"Goût du sang",
+"Sabor a Sangre",
+"Sabor a sangre",
+"Smak Krwi"
+]
+},
+{
+"term": "Time Warp Tonic",
+"kind": "rune",
+"aliases": [
+"Nápoj zakřivení času",
+"Philtre de chronodistorsion",
+"Tonico temporale",
+"Tonikum der Zeitkrümmung",
+"Tónico de distorsión temporal",
+"Tónico de Distorsión Temporal",
+"Tônico de Distorção no Tempo",
+"Zaginający Czas Tonik"
+]
+},
+{
+"term": "Transcendence",
+"kind": "rune",
+"aliases": [
+"Prostoupení",
+"Transcendance",
+"Transcendencja",
+"Transcendência",
+"Trascendencia",
+"Trascendenza",
+"Überlegenheit"
+]
+},
+{
+"term": "Treasure Hunter",
+"kind": "rune",
+"aliases": [
+"Cacciatore di tesori",
+"Cazador de Tesoros",
+"Cazador de tesoros",
+"Caçador de Tesouros",
+"Chasseur de trésors",
+"Lovec pokladů",
+"Schatzjäger",
+"Łowca Skarbów"
+]
+},
+{
+"term": "Triple Tonic",
+"kind": "rune",
+"aliases": [
+"Dreifach-Tonikum",
+"Potrójny Tonik",
+"Tonico triplo",
+"Triple tonique",
+"Trojitý lektvar",
+"Tónico Triple",
+"Tónico triple",
+"Tônico Triplo"
+]
+},
+{
+"term": "Triumph",
+"kind": "rune",
+"aliases": [
+"Triomphe",
+"Trionfo",
+"Triumf",
+"Triunfo"
+]
+},
+{
+"term": "Ultimate Hunter",
+"kind": "rune",
+"aliases": [
+"Cacciatore supremo",
+"Cazador definitivo",
+"Cazador Definitivo",
+"Caça Suprema",
+"Chasseur ultime",
+"Superłowca",
+"Ultimativer Jäger",
+"Ultimátní lovec"
+]
+},
+{
+"term": "Unflinching",
+"kind": "rune",
+"aliases": [
+"Inabalável",
+"Inquebrantable",
+"Inébranlable",
+"Neochvějnost",
+"Niezachwiany",
+"Risoluto",
+"Unerschrocken"
+]
+},
+{
+"term": "Unsealed Spellbook",
+"kind": "rune",
+"aliases": [
+"Entsiegeltes Zauberbuch",
+"Grimoire déchaîné",
+"Libro de hechizos",
+"Libro de Hechizos Abierto",
+"Libro incantesimi non sigillato",
+"Livro de Feitiços Deslacrado",
+"Odpečetěná kniha kouzel",
+"Rozpieczętowana Księga Czarów"
+]
+},
+{
+"term": "Waterwalking",
+"kind": "rune",
+"aliases": [
+"Caminar sobre agua",
+"Caminata Sobre Agua",
+"Caminhar Sobre as Águas",
+"Camminare sull'acqua",
+"Chůze po vodě",
+"Kroczący po Wodzie",
+"Marche sur l'eau",
+"Wasserlauf"
+]
+},
+{
+"term": "Barrier",
+"kind": "spell",
+"aliases": [
+"Bariera",
+"Bariéra",
+"Barreira",
+"Barrera",
+"Barriera",
+"Barriere",
+"Barrière"
+]
+},
+{
+"term": "Clarity",
+"kind": "spell",
+"aliases": [
+"Bystrost",
+"Chiarezza",
+"Clareza",
+"Claridad",
+"Clarté",
+"Czystość",
+"Klarheit"
+]
+},
+{
+"term": "Cleanse",
+"kind": "spell",
+"aliases": [
+"Limpiar",
+"Läuterung",
+"Oczyszczenie",
+"Očista",
+"Purge",
+"Purificación",
+"Purificar",
+"Purificazione"
+]
+},
+{
+"term": "Exhaust",
+"kind": "spell",
+"aliases": [
+"Erschöpfen",
+"Exaustão",
+"Extenuación",
+"Fatigue",
+"Sfinimento",
+"Vyčerpat",
+"Wyczerpanie"
+]
+},
+{
+"term": "Flash",
+"kind": "spell",
+"aliases": [
+"Blitz",
+"Błysk",
+"Destello",
+"Saut éclair",
+"Skok"
+]
+},
+{
+"term": "Ghost",
+"kind": "spell",
+"aliases": [
+"Duch",
+"Fantasma",
+"Fantasmal",
+"Fantôme",
+"Geist",
+"Spettralità"
+]
+},
+{
+"term": "Heal",
+"kind": "spell",
+"aliases": [
+"Curación",
+"Curar",
+"Guarigione",
+"Heilen",
+"Soins",
+"Uzdrowienie",
+"Vyléčit"
+]
+},
+{
+"term": "Ignite",
+"kind": "spell",
+"aliases": [
+"Embrasement",
+"Entzünden",
+"Ignición",
+"Incendiar",
+"Podpalenie",
+"Prender",
+"Ustione",
+"Vznítit"
+]
+},
+{
+"term": "Mark",
+"kind": "spell",
+"aliases": [
+"Boule de neige",
+"Marca",
+"Marchio",
+"Markieren",
+"Naznaczenie",
+"Označení"
+]
+},
+{
+"term": "Smite",
+"kind": "spell",
+"aliases": [
+"Aplastar",
+"Castigo",
+"Châtiment",
+"Golpear",
+"Porażenie",
+"Punizione",
+"Udeřit",
+"Zerschmettern"
+]
+},
+{
+"term": "Teleport",
+"kind": "spell",
+"aliases": [
+"Teleportación",
+"Teleportacja",
+"Teleportar",
+"Teleportation",
+"Teleporte",
+"Teletrasporto",
+"Téléportation"
+]
+},
+{
+"term": "Hexflash",
+"kind": "jargon",
+"aliases": [
+"hex flash",
+"hextech flash",
+"flashtraption"
+]
+},
+{
+"term": "Baron",
+"kind": "jargon",
+"aliases": [
+"Baron Nashor",
+"Nashor",
+"barão",
+"barón",
+"barone"
+]
+},
+{
+"term": "Drake",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "dragon",
+"kind": "jargon",
+"aliases": [
+"dragão",
+"dragón",
+"drago",
+"smok",
+"drak",
+"Drache"
+]
+},
+{
+"term": "Elder",
+"kind": "jargon",
+"aliases": [
+"Elder Dragon",
+"elder drake",
+"ancião"
+]
+},
+{
+"term": "Herald",
+"kind": "jargon",
+"aliases": [
+"Rift Herald",
+"arauto",
+"heraldo",
+"araldo"
+]
+},
+{
+"term": "Void Grubs",
+"kind": "jargon",
+"aliases": [
+"grubs",
+"larvas do vazio"
+]
+},
+{
+"term": "Atakhan",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "Scuttle",
+"kind": "jargon",
+"aliases": [
+"Scuttle Crab"
+]
+},
+{
+"term": "Blue Buff",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "Red Buff",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "Gromp",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "Krugs",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "Raptors",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "Nexus",
+"kind": "jargon",
+"aliases": [
+"nexo",
+"nesso"
+]
+},
+{
+"term": "inhib",
+"kind": "jargon",
+"aliases": [
+"inhibitor",
+"inibidor",
+"inhibidor",
+"inibitore"
+]
+},
+{
+"term": "gank",
+"kind": "jargon",
+"aliases": [
+"ganking",
+"ganked",
+"gankar",
+"gankear",
+"gankare",
+"gankato"
+]
+},
+{
+"term": "ult",
+"kind": "jargon",
+"aliases": [
+"ulti",
+"ulty",
+"ultimate"
+]
+},
+{
+"term": "TP",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "CS",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "cooldown",
+"kind": "jargon",
+"aliases": [
+"CD"
+]
+},
+{
+"term": "OOM",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "CC",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "jungle",
+"kind": "jargon",
+"aliases": [
+"jg"
+]
+},
+{
+"term": "jungler",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "ADC",
+"kind": "jargon",
+"aliases": [
+"AD carry"
+]
+},
+{
+"term": "support",
+"kind": "jargon",
+"aliases": [
+"supp",
+"suporte",
+"soporte"
+]
+},
+{
+"term": "top",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "mid",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "bot",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "toplaner",
+"kind": "jargon",
+"aliases": [
+"top laner"
+]
+},
+{
+"term": "midlaner",
+"kind": "jargon",
+"aliases": [
+"mid laner"
+]
+},
+{
+"term": "botlane",
+"kind": "jargon",
+"aliases": [
+"bot lane"
+]
+},
+{
+"term": "roam",
+"kind": "jargon",
+"aliases": [
+"roaming",
+"roamar"
+]
+},
+{
+"term": "recall",
+"kind": "jargon",
+"aliases": [
+"recallar"
+]
+},
+{
+"term": "push",
+"kind": "jargon",
+"aliases": [
+"pushar",
+"pushear",
+"pushing"
+]
+},
+{
+"term": "freeze",
+"kind": "jargon",
+"aliases": [
+"freezar",
+"freezing"
+]
+},
+{
+"term": "split push",
+"kind": "jargon",
+"aliases": [
+"splitpush",
+"splitpushing"
+]
+},
+{
+"term": "teamfight",
+"kind": "jargon",
+"aliases": [
+"team fight"
+]
+},
+{
+"term": "all-in",
+"kind": "jargon",
+"aliases": [
+"all in"
+]
+},
+{
+"term": "engage",
+"kind": "jargon",
+"aliases": [
+"engajar"
+]
+},
+{
+"term": "disengage",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "peel",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "kite",
+"kind": "jargon",
+"aliases": [
+"kiting",
+"kitar"
+]
+},
+{
+"term": "dive",
+"kind": "jargon",
+"aliases": [
+"tower dive",
+"divar"
+]
+},
+{
+"term": "poke",
+"kind": "jargon",
+"aliases": [
+"pokar"
+]
+},
+{
+"term": "burst",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "combo",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "outplay",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "bait",
+"kind": "jargon",
+"aliases": [
+"baitar"
+]
+},
+{
+"term": "int",
+"kind": "jargon",
+"aliases": [
+"inting",
+"inter",
+"intando"
+]
+},
+{
+"term": "feed",
+"kind": "jargon",
+"aliases": [
+"feeding",
+"feeder",
+"fedar"
+]
+},
+{
+"term": "carry",
+"kind": "jargon",
+"aliases": [
+"carrying"
+]
+},
+{
+"term": "gap",
+"kind": "jargon",
+"aliases": [
+"gapped"
+]
+},
+{
+"term": "diff",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "smurf",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "elo",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "LP",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "soloQ",
+"kind": "jargon",
+"aliases": [
+"solo queue",
+"solo q"
+]
+},
+{
+"term": "duo",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "ARAM",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "ranked",
+"kind": "jargon",
+"aliases": [
+"rankeada",
+"ranqueada"
+]
+},
+{
+"term": "nerf",
+"kind": "jargon",
+"aliases": [
+"nerfed",
+"nerfar"
+]
+},
+{
+"term": "buff",
+"kind": "jargon",
+"aliases": [
+"buffed",
+"buffar"
+]
+},
+{
+"term": "meta",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "OP",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "ace",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "first blood",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "shutdown",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "pentakill",
+"kind": "jargon",
+"aliases": [
+"penta"
+]
+},
+{
+"term": "quadra",
+"kind": "jargon",
+"aliases": [
+"quadrakill"
+]
+},
+{
+"term": "ward",
+"kind": "jargon",
+"aliases": [
+"wards",
+"wardar",
+"wardear"
+]
+},
+{
+"term": "pink",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "sweeper",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "trinket",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "stun",
+"kind": "jargon",
+"aliases": [
+"stunned"
+]
+},
+{
+"term": "root",
+"kind": "jargon",
+"aliases": [
+"rooted"
+]
+},
+{
+"term": "knockup",
+"kind": "jargon",
+"aliases": [
+"knock up"
+]
+},
+{
+"term": "lifesteal",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "lethality",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "AP",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "AD",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "MR",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "tank",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "bruiser",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "enchanter",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "plates",
+"kind": "jargon",
+"aliases": [
+"plating"
+]
+},
+{
+"term": "wave",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "cannon",
+"kind": "jargon",
+"aliases": [
+"cannon minion"
+]
+},
+{
+"term": "ff",
+"kind": "jargon",
+"aliases": [
+"ff15"
+]
+},
+{
+"term": "gg",
+"kind": "jargon",
+"aliases": []
+},
+{
+"term": "wp",
+"kind": "jargon",
+"aliases": []
+}
+]
+}

@@ -1,0 +1,26 @@
+# ---- personal data: NEVER upload ----
+# Discord Client Secret and app settings
+settings.json
+# Discord login token
+discord_token.json
+# voice prints and names of the people in your calls
+speakers.json
+speakers_before_discord.json
+# app and setup logs (names, folder paths)
+*.log
+# exported conversations
+transcripts/
+*.secret
+.env
+
+# ---- big or generated: not source ----
+.venv/
+models/
+ollama_models/
+gpu/
+__pycache__/
+*.pyc
+installer/payload/
+# built launcher and installer: publish them as release files instead
+*.exe
+*.zip

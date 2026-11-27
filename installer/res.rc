@@ -1,0 +1,29 @@
+
+1 ICON "icon.ico"
+1 24 "app.manifest"
+1 VERSIONINFO
+FILEVERSION 1,1,1,0
+PRODUCTVERSION 1,1,1,0
+FILEOS 0x40004L
+FILETYPE 0x1L
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904b0"
+    BEGIN
+      VALUE "CompanyName", "Gabrydl"
+      VALUE "FileDescription", "AudioTranscriber"
+      VALUE "FileVersion", "1.1.1"
+      VALUE "InternalName", "AudioTranscriber"
+      VALUE "OriginalFilename", "AudioTranscriber.exe"
+      VALUE "ProductName", "AudioTranscriber"
+      VALUE "ProductVersion", "1.1.1"
+      VALUE "LegalCopyright", "Copyright (C) 2026 Gabrydl"
+      VALUE "Comments", "Live voice transcription and translation, 100% local"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END
