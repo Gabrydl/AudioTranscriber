@@ -1,4 +1,4 @@
-AudioTranscriber 1.5.0 - live voice -> Italiano + English (100% local)
+AudioTranscriber 1.5.1 - live voice -> Italiano + English (100% local)
 ====================================================================
 
 START

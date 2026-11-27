@@ -510,8 +510,23 @@ class Overlay(QWidget):
         lay = QVBoxLayout(self)
         lay.setContentsMargins(18, 12, 18, 14)
         lay.setSpacing(8)
-        self.hint = QLabel("Overlay unlocked – drag to move, corner to resize · Ctrl+Alt+L lock · Ctrl+Alt+O hide")
-        self.hint.setStyleSheet(f"color:{MUTED};font-size:11px;")
+        # drag bar (shown while unlocked): grab here – or anywhere on the box – to move it
+        self.hint = QWidget()
+        hb = QHBoxLayout(self.hint)
+        hb.setContentsMargins(0, 0, 0, 0)
+        hb.setSpacing(8)
+        handle = QLabel("⠿  Drag to move · corner to resize")
+        handle.setStyleSheet(f"color:{TEXT};font-size:11px;font-weight:700;")
+        handle.setCursor(Qt.SizeAllCursor)
+        hb.addWidget(handle, 1)
+        self.lock_now = QPushButton("Lock")
+        self.lock_now.setCursor(Qt.PointingHandCursor)
+        self.lock_now.setToolTip("Lock: clicks go through to the game (Ctrl+Alt+L)")
+        self.lock_now.setStyleSheet(f"QPushButton {{ background: {ACCENT}; color: white; border: none; border-radius: 3px;"
+                                    f" padding: 3px 12px; font-size: 11px; font-weight: 700; }}"
+                                    f"QPushButton:hover {{ background: {ACCENT_HI}; }}")
+        self.lock_now.clicked.connect(lambda: self.set_locked(True))
+        hb.addWidget(self.lock_now)
         lay.addWidget(self.hint)
         # one text area for all phrases: newest at the bottom, oldest dropped when the window is full
         # (separate boxes per phrase got squeezed and drew over each other)
@@ -526,6 +541,7 @@ class Overlay(QWidget):
         self.grip.setFixedSize(16, 16)
         self.lines: list[Line] = []
         self._drag = None
+        self._temp_unlock = False
         self._last_new = time.time()
         self._fade = QPropertyAnimation(self, b"windowOpacity", self)
         self._fade.setDuration(600)
@@ -539,7 +555,10 @@ class Overlay(QWidget):
             return
         keep_on_top(self)                    # games in borderless/windowed mode can cover it otherwise
         hide_after = int(self.s.overlay_autohide_s or 0)
-        quiet = hide_after > 0 and self.s.overlay_locked and time.time() - self._last_new > hide_after
+        # fades only after real silence: nothing new AND nothing still being translated
+        busy = any(l.state in ("transcribed", "streaming") for l in self.lines[-2:])
+        quiet = (hide_after > 0 and self.s.overlay_locked and not busy and self._drag is None
+                 and time.time() - self._last_new > hide_after)
         target = 0.0 if quiet else 1.0
         if abs(self.windowOpacity() - target) > 0.01 and self._fade.state() != QAbstractAnimation.State.Running:
             self._fade.setStartValue(self.windowOpacity())
@@ -552,7 +571,18 @@ class Overlay(QWidget):
             self._fade.stop()
             self.setWindowOpacity(1.0)
 
+    def move_mode(self):
+        """'Move overlay' button: unlock for a moment; it locks again by itself after you drop it."""
+        was_locked = self.s.overlay_locked
+        if not self.isVisible():
+            self.show()
+        self.set_locked(False)
+        self._temp_unlock = was_locked
+        self.wake()
+        self.raise_()
+
     def set_locked(self, locked: bool):
+        self._temp_unlock = False if locked else self._temp_unlock
         self.s.overlay_locked = locked
         vis = self.isVisible()
         self.setWindowFlag(Qt.WindowTransparentForInput, locked)
@@ -574,9 +604,23 @@ class Overlay(QWidget):
         g = self.geometry()
         self.s.overlay_geometry = [g.x(), g.y(), g.width(), g.height()]
 
+    # dragging: done by hand (works from anywhere on the box, also where the system move doesn't)
     def mousePressEvent(self, e):
-        if e.button() == Qt.LeftButton and self.windowHandle():
-            self.windowHandle().startSystemMove()
+        if e.button() == Qt.LeftButton and not self.s.overlay_locked:
+            self._drag = e.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            self.wake()
+
+    def mouseMoveEvent(self, e):
+        if self._drag is not None and e.buttons() & Qt.LeftButton:
+            self.move(e.globalPosition().toPoint() - self._drag)
+
+    def mouseReleaseEvent(self, e):
+        if self._drag is not None:
+            self._drag = None
+            self._save_geo()
+            self.s.save()
+            if self._temp_unlock:                     # opened with "Move overlay": lock again after the drop
+                QTimer.singleShot(2500, lambda: self._temp_unlock and self._drag is None and self.set_locked(True))
 
     def paintEvent(self, _):
         p = QPainter(self)
@@ -595,6 +639,8 @@ class Overlay(QWidget):
                 return                          # an older line being updated (e.g. speaker fixed): don't bring it back
             self.lines.append(line)
             self.wake()
+        elif line.state in ("streaming", "done"):
+            self.wake()                                # its translation arrived: keep it visible
         self.lines = self.lines[-self.s.overlay_lines:]
         self.render_lines()
 
@@ -1580,6 +1626,11 @@ class MainWindow(QWidget):
                                                     self.side_overlay.setText("Hide overlay" if on else "Show overlay in game"),
                                                     self.side_overlay.blockSignals(False)))
         sl.addWidget(self.side_overlay)
+        self.side_move = QPushButton("Move overlay")
+        self.side_move.setObjectName("ghost")
+        self.side_move.setToolTip("Unlocks the overlay so you can drag it; it locks again by itself after you drop it")
+        self.side_move.clicked.connect(self._move_overlay)
+        sl.addWidget(self.side_move)
         mid.addWidget(self.side)
         self.overlay_btn.toggled.connect(self._toggle_overlay)
 
@@ -1665,9 +1716,11 @@ class MainWindow(QWidget):
         a1.triggered.connect(self.showNormal)
         a2 = QAction("Toggle overlay", self)
         a2.triggered.connect(lambda: self.overlay_btn.toggle())
+        a2b = QAction("Move overlay", self)
+        a2b.triggered.connect(self._move_overlay)
         a3 = QAction("Quit", self)
         a3.triggered.connect(self.close)
-        for a in (a1, a2, a3):
+        for a in (a1, a2, a2b, a3):
             m.addAction(a)
         self.tray.setContextMenu(m)
         self.tray.setToolTip("AudioTranscriber")
@@ -2280,6 +2333,12 @@ class MainWindow(QWidget):
         else:
             self.overlay.hide()
         self.s.save()
+
+    def _move_overlay(self):
+        if not self.overlay_btn.isChecked():
+            self.overlay_btn.setChecked(True)
+        self.overlay.move_mode()
+        self._sync_lock_btn()
 
     def _update_subtitle(self):
         t = getattr(self.s, "target", "en")
