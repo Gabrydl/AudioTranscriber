@@ -44,7 +44,7 @@ AJUSTES (categorías a la izquierda, opciones poco usadas en "Avanzado")
 
 OVERLAY
   Un recuadro transparente encima del juego (modo ventana o sin bordes; no en pantalla completa
-  exclusiva). "Mover el overlay" lo desbloquea para arrastrarlo; se vuelve a bloquear solo al soltarlo.
+  exclusiva). Arrástralo con el ratón para moverlo; bloquéalo (candado o Ctrl+Alt+L) antes de jugar.
   Bloqueado, los clics pasan al juego y se desvanece tras unos segundos de silencio.
 
 ATAJOS (funcionan dentro de los juegos)

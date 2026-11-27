@@ -43,7 +43,7 @@ CONFIGURAÇÕES (categorias à esquerda, opções raras em "Avançado")
 
 OVERLAY
   Uma caixa transparente por cima do jogo (modo janela ou sem bordas; não em tela cheia exclusiva).
-  "Mover o overlay" destrava para você arrastar; ele trava de novo sozinho quando você solta.
+  Arraste com o mouse para mover; trave (cadeado ou Ctrl+Alt+L) antes de jogar.
   Travado, os cliques passam para o jogo e ele some depois de alguns segundos de silêncio.
 
 ATALHOS (funcionam dentro dos jogos)

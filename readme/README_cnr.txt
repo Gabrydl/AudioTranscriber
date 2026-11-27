@@ -45,7 +45,7 @@ PODEŠAVANJA (kategorije lijevo, rijetke opcije pod "Napredno")
 
 OVERLAY
   Prozirni okvir iznad igre (prozorski način ili bez okvira; ne u ekskluzivnom cijelom ekranu).
-  "Pomjeri overlay" ga otključava da ga možeš povući; nakon što ga pustiš, sam se ponovo zaključa.
+  Povuci ga mišem da ga pomjeriš; prije igranja ga zaključaj (katanac ili Ctrl+Alt+L).
   Zaključan propušta klikove do igre i nestaje nakon nekoliko sekundi tišine.
 
 PREČACI (rade i u igrama)

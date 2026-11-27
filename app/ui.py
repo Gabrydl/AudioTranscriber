@@ -235,6 +235,56 @@ def _check_png() -> str:
 
 
 # ----------------------------------------------------------------------------- thread bridge
+class Poller(QObject):
+    """Slow system checks (process list, audio sessions, GPU, default device) in a thread of their own.
+    Done on the window thread they froze the window for a moment every few seconds: random stutters and
+    clicks that seemed to land late."""
+    sampled = Signal(object)        # ResourceMonitor.sample()
+    apps = Signal(object)           # list_audio_apps()
+    device = Signal(str)            # default_output_id()
+
+    def __init__(self, monitor):
+        super().__init__()
+        self.monitor = monitor
+        self.want_device = False                     # only while listening
+        self._stop = threading.Event()
+        self._kick = threading.Event()
+        threading.Thread(target=self._run, daemon=True, name="poller").start()
+
+    def apps_now(self):
+        """Ask for a fresh app list right away (the ⟳ button, Start)."""
+        self._kick.set()
+
+    def stop(self):
+        self._stop.set()
+        self._kick.set()
+
+    def _run(self):
+        try:
+            import comtypes
+            comtypes.CoInitialize()                  # audio sessions are COM: this thread needs its own
+        except Exception:
+            pass
+        last = {"s": 0.0, "a": 0.0, "d": 0.0}
+        while not self._stop.is_set():
+            now = time.monotonic()
+            kicked = self._kick.is_set()
+            self._kick.clear()
+            try:
+                if now - last["s"] >= 1.5:
+                    last["s"] = now
+                    self.sampled.emit(self.monitor.sample())
+                if kicked or now - last["a"] >= 3.0:
+                    last["a"] = now
+                    self.apps.emit(list_audio_apps())
+                if self.want_device and now - last["d"] >= 2.0:
+                    last["d"] = now
+                    self.device.emit(default_output_id())
+            except Exception:
+                log.exception("background checks")
+            self._kick.wait(0.5)
+
+
 class Bridge(QObject):
     status = Signal(str, str)
     line = Signal(object)
@@ -351,6 +401,32 @@ def unsure_html(marked: str) -> str:
     return " ".join(out)
 
 
+class WrapLabel(QLabel):
+    """Word-wrapped label that remembers its height for a given width. Qt asks every line in the chat box
+    for it on each change anywhere in the list; working it out again each time made the window sluggish."""
+
+    def __init__(self, *a):
+        super().__init__(*a)
+        self._hfw = {}
+
+    def setText(self, text):
+        if text != self.text():
+            self._hfw.clear()
+            super().setText(text)
+
+    def heightForWidth(self, w):
+        h = self._hfw.get(w)
+        if h is None:
+            if len(self._hfw) > 8:
+                self._hfw.clear()
+            h = self._hfw[w] = super().heightForWidth(w)
+        return h
+
+    def changeEvent(self, e):
+        self._hfw.clear()
+        super().changeEvent(e)
+
+
 class Card(QFrame):
     """One sentence: initial square | name · language · time | translation (big) | what was heard (small)."""
     mark_unsure = True
@@ -401,14 +477,14 @@ class Card(QFrame):
 
         self.tr_tag = QLabel()                      # kept for compatibility (target language), not shown
         self.tr_tag.hide()
-        self.tr_txt = QLabel()
+        self.tr_txt = WrapLabel()
         self.tr_txt.setObjectName("tr_it")
         self.tr_txt.setWordWrap(True)
         self.tr_txt.setTextInteractionFlags(Qt.TextSelectableByMouse)
         self.tr_txt.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         col.addWidget(self.tr_txt)
 
-        self.orig = QLabel()
+        self.orig = WrapLabel()
         self.orig.setObjectName("orig")
         self.orig.setWordWrap(True)
         self.orig.setTextInteractionFlags(Qt.TextSelectableByMouse)
@@ -581,14 +657,14 @@ class Overlay(QWidget):
         self.grip.setFixedSize(16, 16)
         self.lines: list[Line] = []
         self._drag = None
-        self._temp_unlock = False
         self._last_new = time.time()
         self._fade = QPropertyAnimation(self, b"windowOpacity", self)
         self._fade.setDuration(600)
         self._quiet_timer = QTimer(self)
         self._quiet_timer.timeout.connect(self._tick)
         self._quiet_timer.start(1000)
-        self.set_locked(settings.overlay_locked)
+        # it opens unlocked, so it can be dragged straight away; the padlock (or Ctrl+Alt+L) locks it for playing
+        self.set_locked(False)
 
     def _tick(self):
         if not self.isVisible():
@@ -611,18 +687,7 @@ class Overlay(QWidget):
             self._fade.stop()
             self.setWindowOpacity(1.0)
 
-    def move_mode(self):
-        """'Move overlay' button: unlock for a moment; it locks again by itself after you drop it."""
-        was_locked = self.s.overlay_locked
-        if not self.isVisible():
-            self.show()
-        self.set_locked(False)
-        self._temp_unlock = was_locked
-        self.wake()
-        self.raise_()
-
     def set_locked(self, locked: bool):
-        self._temp_unlock = False if locked else self._temp_unlock
         self.s.overlay_locked = locked
         self.hint.setVisible(not locked)
         self.grip.setVisible(not locked)
@@ -682,8 +747,6 @@ class Overlay(QWidget):
             self._drag = None
             self._save_geo()
             self.s.save()
-            if self._temp_unlock:                     # opened with "Move overlay": lock again after the drop
-                QTimer.singleShot(2500, lambda: self._temp_unlock and self._drag is None and self.set_locked(True))
 
     def paintEvent(self, _):
         p = QPainter(self)
@@ -1664,6 +1727,8 @@ class SettingsPanel(QFrame):
 
 # ----------------------------------------------------------------------------- main window
 class MainWindow(QWidget):
+    MAX_CARDS = 200                 # lines kept in the chat box (the transcript file has them all)
+
     def __init__(self):
         super().__init__(None, Qt.FramelessWindowHint | Qt.Window)
         self.s = Settings.load()
@@ -1684,6 +1749,11 @@ class MainWindow(QWidget):
         self.bridge.status.connect(self._on_status)
         self.bridge.line.connect(self._on_line)
         self.bridge.update.connect(self._on_update)
+        self._pending_upd = {}
+        self._upd_timer = QTimer(self)
+        self._upd_timer.setSingleShot(True)
+        self._upd_timer.setInterval(66)
+        self._upd_timer.timeout.connect(self._flush_updates)
         self.bridge.metrics.connect(self._on_metrics)
         self.bridge.level.connect(self._on_level)
         self.bridge.ready.connect(self._on_ready)
@@ -1990,11 +2060,6 @@ class MainWindow(QWidget):
                                                     self.side_overlay.setText(tr("Hide overlay") if on else tr("Show overlay in game")),
                                                     self.side_overlay.blockSignals(False)))
         sl.addWidget(self.side_overlay)
-        self.side_move = QPushButton(tr("Move overlay"))
-        self.side_move.setObjectName("ghost")
-        self.side_move.setToolTip(tr("Unlocks the overlay so you can drag it; it locks again by itself after you drop it"))
-        self.side_move.clicked.connect(self._move_overlay)
-        sl.addWidget(self.side_move)
         mid.addWidget(self.side)
         self.overlay_btn.toggled.connect(self._toggle_overlay)
 
@@ -2054,26 +2119,18 @@ class MainWindow(QWidget):
         self.overlay_btn.setChecked(self.s.overlay_enabled)
         self._sync_lock_btn()
         self.monitor = ResourceMonitor()
-        self.mon_timer = QTimer(self)
-        self.mon_timer.timeout.connect(self._sample)
-        self.mon_timer.start(1500)
-        self._sample()
         self.hotkeys = None
         self._start_hotkeys()
-        # headphones changed, Discord restarted…: capture comes back by itself
-        self.health_timer = QTimer(self)
-        self.health_timer.timeout.connect(self._health)
-        self.health_timer.start(2000)
-        # Discord call started / ended
-        self.call_timer = QTimer(self)
-        self.call_timer.timeout.connect(self._watch_call)
-        self.call_timer.start(3000)
         self._stick_bottom = True
         self.feed_scroll.verticalScrollBar().valueChanged.connect(self._scrolled)
         self.refresh_apps()
-        self.app_timer = QTimer(self)
-        self.app_timer.timeout.connect(self._refresh_apps_quiet)
-        self.app_timer.start(8000)
+        # process list, audio sessions, GPU and default device are read in the background (see Poller);
+        # here only the results are shown: app list, Discord call started / ended, headphones changed…
+        self._apps_shown_at = time.monotonic()
+        self.poller = Poller(self.monitor)
+        self.poller.sampled.connect(self._sample)
+        self.poller.apps.connect(self._on_apps)
+        self.poller.device.connect(self._health)
 
         # tray
         self.tray = QSystemTrayIcon(app_icon(), self)
@@ -2082,11 +2139,9 @@ class MainWindow(QWidget):
         a1.triggered.connect(self.showNormal)
         a2 = QAction(tr("Toggle overlay"), self)
         a2.triggered.connect(lambda: self.overlay_btn.toggle())
-        a2b = QAction(tr("Move overlay"), self)
-        a2b.triggered.connect(self._move_overlay)
         a3 = QAction(tr("Quit"), self)
         a3.triggered.connect(self.close)
-        for a in (a1, a2, a2b, a3):
+        for a in (a1, a2, a3):
             m.addAction(a)
         self.tray.setContextMenu(m)
         self.tray.setToolTip("AudioTranscriber")
@@ -2098,16 +2153,20 @@ class MainWindow(QWidget):
             self.windowHandle().startSystemMove()
 
     # ---------------------------------------------------------------- apps
-    def _refresh_apps_quiet(self):
-        if not self.running:
-            self.refresh_apps()
+    def _on_apps(self, apps):
+        """Fresh app list from the background (every few seconds)."""
+        self._watch_call(apps)
+        if not self.running and time.monotonic() - self._apps_shown_at >= 8:
+            self.refresh_apps(apps)
 
-    def refresh_apps(self):
-        try:
-            apps = list_audio_apps()
-        except Exception as e:
-            log.exception("list apps")
-            apps = []
+    def refresh_apps(self, apps=None):
+        self._apps_shown_at = time.monotonic()
+        if apps is None:
+            try:
+                apps = list_audio_apps()
+            except Exception:
+                log.exception("list apps")
+                apps = []
         prev_checked = {n for n, b in self.app_buttons.items() if b.isChecked()} or set(self.s.last_apps)
         if [a.name for a in apps] == [a.name for a in self.apps] and self.app_buttons:
             for a in apps:
@@ -2160,6 +2219,8 @@ class MainWindow(QWidget):
     def _set_state(self, state: str):
         self.state = state
         self.running = state != "idle"
+        if getattr(self, "poller", None) is not None:
+            self.poller.want_device = state == "running"
         txt = {"idle": "▶  " + tr("Start"), "loading": "■  " + tr("Loading…"), "running": "■  " + tr("Stop")}[state]
         self.start_btn.setText(txt)
         self.start_btn.setProperty("running", "true" if state != "idle" else "false")
@@ -2310,13 +2371,26 @@ class MainWindow(QWidget):
         self.feed.insertWidget(self.feed.count() - 1, card)
         if line.speaker_id is not None and line.speaker_id not in [c.line.speaker_id for c in list(self.cards.values())[:-1]]:
             self._update_voice_count()
-        while len(self.cards) > 200:
+        # the chat box keeps the last lines only: every line on screen costs layout time on each update
+        # (200 made every click and every translated word noticeably slow); all of it is still in the transcript
+        while len(self.cards) > self.MAX_CARDS:
             oldest = min(self.cards)
             self.cards.pop(oldest).deleteLater()
         if self.overlay.isVisible():
             self.overlay.push(line)
 
     def _on_update(self, line: Line):
+        """Translations arrive word by word: the screen is refreshed at most ~15 times a second, not per word."""
+        self._pending_upd[line.id] = line
+        if not self._upd_timer.isActive():
+            self._upd_timer.start()
+
+    def _flush_updates(self):
+        pend, self._pending_upd = self._pending_upd, {}
+        for line in pend.values():
+            self._apply_update(line)
+
+    def _apply_update(self, line: Line):
         if line.id not in self.lines:
             return                      # a line that was cleared (or never shown): don't bring it back
         card = self.cards.get(line.id)
@@ -2327,8 +2401,7 @@ class MainWindow(QWidget):
         elif card:
             card.refresh()
         if self.overlay.isVisible():
-            self.overlay.push(line)
-            self.overlay.render_lines()
+            self.overlay.push(line)               # it redraws itself
 
     # ---------------------------------------------------------------- speakers
     def _update_voice_count(self):
@@ -2569,10 +2642,9 @@ class MainWindow(QWidget):
         self.tray.showMessage("AudioTranscriber", tr("Last translation copied"), app_icon(), 1200)
 
     # ---------------------------------------------------------------- capture health (device changes)
-    def _health(self):
+    def _health(self, dev: str):
         if self.state != "running" or not self.s.device_recover or self._recovering:
             return
-        dev = default_output_id()
         changed = bool(dev and self._dev_id and dev != self._dev_id)
         if dev:
             self._dev_id = dev
@@ -2631,12 +2703,8 @@ class MainWindow(QWidget):
     # ---------------------------------------------------------------- Discord call → start / stop by itself
     VOICE = ("discord.exe", "discordptb.exe", "discordcanary.exe")
 
-    def _watch_call(self):
+    def _watch_call(self, apps):
         if not (self.s.auto_start or (self._auto_started and self.s.auto_stop)):
-            return
-        try:
-            apps = list_audio_apps()
-        except Exception:
             return
         wanted = {n.lower() for n in self.s.last_apps} | set(self.VOICE)
         in_call = [a for a in apps if a.active and a.name.lower() in wanted and a.name.lower() in self.VOICE]
@@ -2644,7 +2712,7 @@ class MainWindow(QWidget):
             self._call_seen = self._call_seen + 1 if in_call else 0
             if self._call_seen >= 2:                  # active for a few seconds: not just a notification sound
                 self._call_seen = 0
-                self.refresh_apps()
+                self.refresh_apps(apps)
                 for n, b in self.app_buttons.items():
                     b.setChecked(n.lower() in {a.name.lower() for a in in_call} or n in self.s.last_apps)
                 self._auto_started = True
@@ -2750,12 +2818,6 @@ class MainWindow(QWidget):
         else:
             self.overlay.hide()
         self.s.save()
-
-    def _move_overlay(self):
-        if not self.overlay_btn.isChecked():
-            self.overlay_btn.setChecked(True)
-        self.overlay.move_mode()
-        self._sync_lock_btn()
 
     def _update_subtitle(self):
         t = getattr(self.s, "target", "en")
@@ -2908,8 +2970,7 @@ class MainWindow(QWidget):
             self.tiles["lines"].setText(str(len(self.lines)))
 
     # ---------------------------------------------------------------- resources
-    def _sample(self):
-        d = self.monitor.sample()
+    def _sample(self, d: dict):
         gb = 1024 ** 3
         if "vram_used" in d:
             self.chips["gpu"].setText(f"GPU {d['gpu']}%")
@@ -3020,6 +3081,8 @@ class MainWindow(QWidget):
 
     # ---------------------------------------------------------------- close
     def closeEvent(self, e):
+        if getattr(self, "poller", None) is not None:
+            self.poller.stop()
         upd = getattr(self, "_updater_state", None)
         if upd and upd.get("zip") and upd.get("apply"):
             # an update was downloaded: install it now instead of on the next start

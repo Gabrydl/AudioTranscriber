@@ -45,7 +45,7 @@ POSTAVKE (kategorije lijevo, rijetke opcije pod "Napredno")
 
 OVERLAY
   Prozirni okvir iznad igre (prozorski način ili bez okvira; ne u ekskluzivnom cijelom zaslonu).
-  "Pomakni overlay" ga otključava da ga možeš povući; nakon što ga pustiš, sam se ponovno zaključa.
+  Povuci ga mišem da ga pomakneš; prije igranja ga zaključaj (lokot ili Ctrl+Alt+L).
   Zaključan propušta klikove do igre i nestaje nakon nekoliko sekundi tišine.
 
 PREČACI (rade i u igrama)

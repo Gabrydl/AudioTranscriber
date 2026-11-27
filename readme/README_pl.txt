@@ -44,7 +44,7 @@ USTAWIENIA (kategorie po lewej, rzadkie opcje w "Zaawansowane")
 
 NAKŁADKA
   Przezroczyste okienko nad grą (tryb okna lub bez ramek; nie wyłączny pełny ekran).
-  "Przesuń nakładkę" odblokowuje ją, aby można ją było przeciągnąć; po puszczeniu sama się blokuje.
+  Przeciągnij ją myszą, aby ją przesunąć; przed grą zablokuj ją (kłódka lub Ctrl+Alt+L).
   Zablokowana przepuszcza kliknięcia do gry i znika po kilku sekundach ciszy.
 
 SKRÓTY (działają w grach)

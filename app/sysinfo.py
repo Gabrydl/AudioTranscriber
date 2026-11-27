@@ -29,14 +29,24 @@ class ResourceMonitor:
         psutil.cpu_percent(None)
 
     def _ollama_rss(self) -> int:
-        total = 0
-        for p in psutil.process_iter(["name", "memory_info"]):
-            try:
+        """Memory of the Ollama processes. Going through every process is slow on Windows, so the list of
+        Ollama processes is only looked up again every 15 s; in between just their memory is read."""
+        import time
+        now = time.monotonic()
+        if now - getattr(self, "_oll_at", -1e9) > 15:
+            self._oll_at = now
+            procs = []
+            for p in psutil.process_iter(["name"]):
                 n = (p.info["name"] or "").lower()
                 if n.startswith("ollama") or "llama" in n:
-                    total += p.info["memory_info"].rss
+                    procs.append(p)
+            self._oll = procs
+        total = 0
+        for p in list(getattr(self, "_oll", [])):
+            try:
+                total += p.memory_info().rss
             except Exception:
-                pass
+                self._oll.remove(p)
         return total
 
     def sample(self) -> dict:

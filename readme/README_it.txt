@@ -45,7 +45,7 @@ IMPOSTAZIONI (categorie a sinistra, opzioni rare sotto "Avanzate")
 
 OVERLAY
   Un riquadro trasparente sopra il gioco (in finestra o senza bordi; non a schermo intero esclusivo).
-  "Sposta l'overlay" lo sblocca per poterlo trascinare; si blocca di nuovo da solo quando lo lasci.
+  Trascinalo col mouse per spostarlo; bloccalo (lucchetto o Ctrl+Alt+L) prima di giocare.
   Quando è bloccato i clic passano al gioco e sparisce dopo qualche secondo di silenzio.
 
 TASTI RAPIDI (funzionano dentro i giochi)

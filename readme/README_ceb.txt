@@ -49,7 +49,7 @@ MGA SETTING (mga kategorya sa wala, talagsaon nga mga opsyon sa "Advanced")
 
 OVERLAY
   Usa ka klaro nga kahon ibabaw sa dula (windowed o borderless; dili sa exclusive full screen).
-  I-unlock kini sa "Ibalhin ang overlay" aron ma-drag nimo; kusa kining ma-lock pag-usab inig buhi nimo.
+  I-drag kini gamit ang mouse aron ibalhin; i-lock kini (padlock o Ctrl+Alt+L) sa dili pa magdula.
   Kung naka-lock, molusot sa dula ang mga click ug mawala kini human sa pipila ka segundo nga hilom.
 
 MGA HOTKEY (mogana sulod sa dula)

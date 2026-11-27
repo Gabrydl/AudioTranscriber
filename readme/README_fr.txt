@@ -47,8 +47,8 @@ PARAMÈTRES (catégories à gauche, options rares sous "Avancé")
 
 OVERLAY
   Une boîte transparente par-dessus le jeu (fenêtré ou sans bordure ; pas en plein écran exclusif).
-  "Déplacer l'overlay" le déverrouille pour que tu le fasses glisser ; il se reverrouille tout seul
-  quand tu le lâches. Verrouillé, les clics passent au jeu et il s'efface après quelques secondes
+  Fais-le glisser à la souris pour le déplacer ; verrouille-le (cadenas ou Ctrl+Alt+L) avant de
+  jouer. Verrouillé, les clics passent au jeu et il s'efface après quelques secondes
   de silence.
 
 RACCOURCIS (marchent dans les jeux)

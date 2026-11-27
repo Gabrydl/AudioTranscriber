@@ -47,7 +47,7 @@ ASETUKSET (luokat vasemmalla, harvinaiset valinnat kohdassa "Lisäasetukset")
 
 PEITTOKUVA
   Läpinäkyvä laatikko pelin päällä (ikkuna- tai reunaton tila; ei yksinomainen koko näyttö).
-  "Siirrä peittokuvaa" avaa lukituksen, jotta voit vetää sitä; se lukittuu itsestään, kun päästät irti.
+  Siirrä sitä vetämällä hiirellä; lukitse se ennen pelaamista (lukko tai Ctrl+Alt+L).
   Lukittuna napsautukset menevät peliin ja se häviää muutaman hiljaisen sekunnin jälkeen.
 
 PIKANÄPPÄIMET (toimivat peleissä)

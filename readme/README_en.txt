@@ -42,7 +42,7 @@ SETTINGS (categories on the left, rare options under "Advanced")
 
 OVERLAY
   A see-through box on top of your game (windowed or borderless; not exclusive full screen).
-  "Move overlay" unlocks it so you can drag it; it locks again by itself after you drop it.
+  Drag it with the mouse to move it; lock it (padlock button or Ctrl+Alt+L) before you play.
   When locked, clicks go through to the game and it fades away after a few quiet seconds.
 
 HOTKEYS (work inside games)

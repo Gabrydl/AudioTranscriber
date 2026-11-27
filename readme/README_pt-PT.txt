@@ -44,7 +44,7 @@ DEFINIÇÕES (categorias à esquerda, opções raras em "Avançado")
 
 OVERLAY
   Uma caixa transparente por cima do jogo (modo janela ou sem margens; não em ecrã inteiro exclusivo).
-  "Mover o overlay" desbloqueia-o para o poder arrastar; volta a bloquear-se sozinho quando o larga.
+  Arraste-o com o rato para o mover; bloqueie-o (cadeado ou Ctrl+Alt+L) antes de jogar.
   Bloqueado, os cliques passam para o jogo e desaparece após alguns segundos de silêncio.
 
 ATALHOS (funcionam dentro dos jogos)

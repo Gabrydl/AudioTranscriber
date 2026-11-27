@@ -45,7 +45,7 @@ EINSTELLUNGEN (Kategorien links, seltene Optionen unter "Erweitert")
 
 OVERLAY
   Ein durchsichtiger Kasten über dem Spiel (Fenster- oder randloser Modus; nicht exklusives Vollbild).
-  "Overlay verschieben" entsperrt es, damit du es ziehen kannst; nach dem Loslassen sperrt es sich wieder.
+  Zum Verschieben mit der Maus ziehen; vor dem Spielen sperren (Schloss oder Strg+Alt+L).
   Gesperrt werden Klicks ans Spiel weitergeleitet und es blendet sich nach ein paar stillen Sekunden aus.
 
 TASTENKÜRZEL (gehen auch in Spielen)

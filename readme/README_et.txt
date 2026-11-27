@@ -45,7 +45,7 @@ SEADED (kategooriad vasakul, harvad valikud jaotises "Täpsemalt")
 
 ÜLEKATE
   Läbipaistev kast mängu peal (aknas või ääristeta režiim; mitte ainuõigusega täisekraan).
-  "Liiguta ülekatet" avab luku, et saaksid seda lohistada; lahti lastes lukustub see ise uuesti.
+  Liiguta seda hiirega lohistades; lukusta see enne mängimist (tabalukk või Ctrl+Alt+L).
   Lukus olles lähevad klõpsud mängu ja see kaob pärast mõnda vaikset sekundit.
 
 KIIRKLAHVID (töötavad mängudes)

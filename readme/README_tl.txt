@@ -46,7 +46,7 @@ MGA SETTING (mga kategorya sa kaliwa, mga bihirang opsyon sa "Advanced")
 
 OVERLAY
   Isang malinaw na kahon sa ibabaw ng laro (windowed o borderless; hindi sa exclusive full screen).
-  Ina-unlock ito ng "Ilipat ang overlay" para ma-drag mo; kusa itong nagla-lock ulit pagbitaw mo.
+  I-drag ito gamit ang mouse para ilipat; i-lock ito (padlock o Ctrl+Alt+L) bago maglaro.
   Kapag naka-lock, tumatagos sa laro ang mga click at naglalaho ito pagkalipas ng ilang segundong tahimik.
 
 MGA HOTKEY (gumagana sa loob ng laro)

@@ -42,7 +42,7 @@ NASTAVENÍ (kategorie vlevo, méně časté volby pod "Pokročilé")
 
 PŘEKRYV
   Průhledné okénko nad hrou (v okně nebo bez okrajů; ne v exkluzivním režimu celé obrazovky).
-  "Přesunout překryv" ho odemkne, abyste ho mohli přetáhnout; po puštění se sám zase zamkne.
+  Přesuňte ho tažením myší; před hraním ho zamkněte (zámek nebo Ctrl+Alt+L).
   Zamčený propouští kliknutí do hry a po pár sekundách ticha zmizí.
 
 KLÁVESOVÉ ZKRATKY (fungují i ve hrách)
