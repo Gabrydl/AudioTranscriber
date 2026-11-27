@@ -377,6 +377,9 @@ class Card(QFrame):
         self.est.hide()
         head.addWidget(self.est)
         head.addStretch(1)
+        self.when = QLabel()                         # time stamp of the sentence
+        self.when.setObjectName("meta")
+        head.addWidget(self.when)
         self.conf = QLabel()
         head.addWidget(self.conf)
         col.addLayout(head)
@@ -436,10 +439,14 @@ class Card(QFrame):
                 f" font-size: 11px; font-weight: 800; }}")
             self.avatar.setToolTip("")
             self.spk.hide()
-        when = dt.datetime.fromtimestamp(l.t).strftime("%H:%M")
-        lat = f" · {(l.asr_ms + (l.llm_first_ms or l.llm_ms)) / 1000:.1f}s" if (l.llm_first_ms or l.llm_ms) else ""
-        self.meta.setText(f"{LANGUAGES.get(l.lang, l.lang)} · {when}{lat}")
-        self.meta.setToolTip(f"{l.source.rsplit('.', 1)[0]} · " + dt.datetime.fromtimestamp(l.t).strftime("%H:%M:%S"))
+        lat = f" · {(l.asr_ms + l.llm_wait_ms + (l.llm_first_ms or l.llm_ms)) / 1000:.1f}s" if (l.llm_first_ms or l.llm_ms) else ""
+        self.meta.setText(f"{LANGUAGES.get(l.lang, l.lang)}{lat}")
+        self.when.setText(dt.datetime.fromtimestamp(l.t).strftime("%H:%M:%S"))
+        tip = (f"{l.source.rsplit('.', 1)[0]} · said at " + dt.datetime.fromtimestamp(l.t).strftime("%H:%M:%S") +
+               f"\nWaited {l.q_ms / 1000:.1f}s · recognition {l.whisper_ms / 1000:.1f}s · voices +{l.voice_ms / 1000:.1f}s"
+               f"\nTranslator: waited {l.llm_wait_ms / 1000:.1f}s · first words {l.llm_first_ms / 1000:.1f}s · done {l.llm_ms / 1000:.1f}s")
+        self.meta.setToolTip(tip)
+        self.when.setToolTip(tip)
         c = l.confidence
         dot = "#8c8c94" if c > .62 else "#6a6a72" if c > .42 else "#4a4a50"
         self.conf.setText(f"<span style='color:{dot};font-size:12px'>●</span>")
@@ -593,8 +600,11 @@ class Overlay(QWidget):
     def _line_html(self, l: Line, fade: float) -> str:
         fs = self.s.overlay_font
         col = MUTED
-        who = (f"<span style='color:{spk_color(l.speaker_id)};font-weight:700;font-size:{fs - 3}px'>"
-               f"{_html.escape(l.speaker_name)}{'?' if l.speaker_unsure else ''}</span>&nbsp; ") if l.speaker_id else ""
+        stamp = (f"<span style='color:{DIM};font-size:{fs - 5}px'>{dt.datetime.fromtimestamp(l.t).strftime('%H:%M:%S')}</span>&nbsp; "
+                 if getattr(self.s, "overlay_time", True) else "")
+        who = stamp + ((f"<span style='color:{spk_color(l.speaker_id)};font-weight:700;font-size:{fs - 3}px'>"
+                        f"{_html.escape(l.speaker_name)}{'?' if l.speaker_unsure else ''}</span>&nbsp; ")
+                       if l.speaker_id else "")
         lang = f"<span style='color:{col};font-weight:800;font-size:{fs - 4}px'>{l.lang.upper()}</span>&nbsp; "
         tr = next((v for v in l.tr.values() if v), "")
         heard = _html.escape(l.corrected or l.text)

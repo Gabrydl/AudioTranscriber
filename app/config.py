@@ -118,6 +118,7 @@ class Settings:
     discord_name: str = "display"         # display | nick | username
     discord_fresh_done: bool = False      # old voices were moved to speakers_before_discord.json once
     bisaya_added: bool = False            # 1.4.2: Bisaya added once to the recognised languages
+    overlay_time: bool = True             # time stamp in front of each overlay line
     # 1.1 – control
     hotkeys_enabled: bool = True          # Ctrl+Alt+S start/stop · P pause · C copy · O overlay · L lock
     overlay_show_original: bool = False   # overlay: heard text above the translation

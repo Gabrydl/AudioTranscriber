@@ -82,6 +82,11 @@ class Line:
     tr: dict = field(default_factory=dict)   # {"it": "...", "en": "..."}
     llm_ms: int = 0
     llm_first_ms: int = 0                    # time until the first Italian words appeared
+    q_ms: int = 0                            # waited before Whisper started on it
+    whisper_ms: int = 0                      # Whisper (language + transcription)
+    voice_ms: int = 0                        # extra wait for the voice print after Whisper
+    llm_wait_ms: int = 0                     # waited for the translator to be free
+    t_ready: float = 0.0                     # when it was handed to the translator
     speaker_name: str = ""
     usual_lang: str = ""                     # the language this person usually speaks (learned)
     state: str = "transcribed"               # transcribed | streaming | done | llm-off | skipped
@@ -351,10 +356,14 @@ class Transcriber:
 
     def load(self):
         MODELS_DIR.mkdir(parents=True, exist_ok=True)
-        if self.model_name in BACKGROUND_MODELS and not whisper_on_disk(self.model_name):
-            # big model not downloaded yet: start now with the fast one, fetch the big one in the background
-            start_background_download(self.model_name, self.status)
-            self.model_name = BACKGROUND_MODELS[self.model_name]
+        if not whisper_on_disk(self.model_name):
+            # model not downloaded yet: start right away with one that is on disk, fetch the chosen one in the
+            # background (it is used from the next Start) - no more waiting minutes on "loading"
+            fallback = next((m for m in (BACKGROUND_MODELS.get(self.model_name), "large-v3-turbo", "large-v3",
+                                         "medium", "small", "base") if m and m != self.model_name and whisper_on_disk(m)), None)
+            if fallback:
+                start_background_download(self.model_name, self.status)
+                self.model_name = fallback
         name = self.model_name
         self.status(f"loading '{name}'…")
         t0 = time.time()
@@ -480,7 +489,7 @@ class Transcriber:
         try:
             segs, _info = self.model.transcribe(
                 audio, language=wcode(lang), task="transcribe",
-                beam_size=8 if self.device == "cuda" else 2, best_of=5, patience=2.0,   # weighs more alternatives
+                beam_size=5 if self.device == "cuda" else 2, best_of=5, patience=1.0,
                 vad_filter=True, vad_parameters=dict(min_silence_duration_ms=500, threshold=0.3, speech_pad_ms=400),
                 condition_on_previous_text=False, initial_prompt=prompt, word_timestamps=True,
                 temperature=[0.0, 0.2, 0.4], no_speech_threshold=0.6,
@@ -491,7 +500,7 @@ class Transcriber:
             p2 = (f"{vocab}. " + (prompt or "")).strip() if vocab else prompt
             segs, _info = self.model.transcribe(
                 audio, language=wcode(lang), task="transcribe",
-                beam_size=8 if self.device == "cuda" else 2, best_of=5, patience=2.0,
+                beam_size=5 if self.device == "cuda" else 2, best_of=5, patience=1.0,
                 vad_filter=True, vad_parameters=dict(min_silence_duration_ms=500, threshold=0.3, speech_pad_ms=400),
                 condition_on_previous_text=False, initial_prompt=p2, word_timestamps=True,
                 temperature=[0.0, 0.2, 0.4], no_speech_threshold=0.6,
@@ -532,7 +541,7 @@ class Transcriber:
 # --------------------------------------------------------------------------- background model download
 BACKGROUND_MODELS = {"large-v3": "large-v3-turbo"}     # big model -> what to use while it downloads
 _BG = {"thread": None, "status": None}
-_BG_SIZE = {"large-v3": 3.09e9}
+_BG_SIZE = {"large-v3": 3.09e9, "large-v3-turbo": 1.62e9, "medium": 1.53e9, "small": 0.48e9, "base": 0.15e9}
 
 
 def whisper_on_disk(name: str) -> bool:
@@ -576,7 +585,7 @@ def start_background_download(name: str, status) -> None:
         def ticker():
             while not done.wait(3.0):
                 got = _downloaded_bytes(name) / 1e9
-                report(f"using turbo · downloading {name} in the background: {got:.1f} / {_BG_SIZE.get(name, 3e9) / 1e9:.1f} GB")
+                report(f"downloading {name} in the background (used from the next Start): {got:.1f} / {_BG_SIZE.get(name, 3e9) / 1e9:.1f} GB")
         threading.Thread(target=ticker, daemon=True).start()
         for attempt in range(1, 4):
             try:
@@ -741,6 +750,7 @@ class Translator:
         models = _user_env("OLLAMA_MODELS")
         if models:
             env["OLLAMA_MODELS"] = models
+        env.setdefault("OLLAMA_NUM_PARALLEL", "2")     # two sentences translated at the same time
         self.status("starting Ollama…")
         log.info("Starting Ollama: %s", exe)
         flags = 0x08000000 if sys.platform == "win32" else 0          # CREATE_NO_WINDOW
@@ -976,7 +986,7 @@ class Engine:
         if not self.s.auto_lighter:
             return
         self._recent_ms = (self._recent_ms + [ms])[-4:]
-        slow = len(self._recent_ms) >= 4 and sum(self._recent_ms) / 4 > self.s.lag_limit_s * 1000
+        slow = len(self._recent_ms) >= 4 and min(self._recent_ms) > self.s.lag_limit_s * 1000
         backlog = self.asr_q.qsize() >= 4
         self._lag_hits = self._lag_hits + 1 if (slow or backlog) else 0
         nxt = self.LIGHTER.get(self.transcriber.model_name)
@@ -1003,6 +1013,8 @@ class Engine:
         self._stop.clear()
         threading.Thread(target=self._asr_loop, daemon=True, name="asr").start()
         threading.Thread(target=self._llm_loop, daemon=True, name="llm").start()
+        # a second translator worker: while one sentence is translated the next one starts (Ollama serves both)
+        threading.Thread(target=self._llm_loop, args=(True,), daemon=True, name="llm2").start()
         threading.Thread(target=self._spk_load, daemon=True, name="spk").start()
         threading.Thread(target=self._wait_ready, daemon=True, name="ready").start()
 
@@ -1071,25 +1083,29 @@ class Engine:
             if utt is None or self._stop.is_set():
                 break
             t0 = time.time()
+            q_ms = int(max(0.0, t0 - (utt.started + utt.audio.size / 16000)) * 1000)
             emb, pool = self.embedder, self._pool
             fut = pool.submit(emb.analyze, utt.audio) if (emb and pool) else None   # runs on CPU while Whisper uses the GPU
             prior_fn = self._prior_fn(fut, utt)
             try:
                 res = self.transcriber.transcribe(utt.audio, utt.source, prior_fn=prior_fn)
+                whisper_ms = int((time.time() - t0) * 1000)
             except Exception as e:
                 log.exception("transcribe")
                 self.on_status("asr", f"transcription error: {e}")
                 continue
             analysis = None
+            tv = time.time()
             if fut is not None:
                 try:
-                    analysis = fut.result(timeout=10)
+                    analysis = fut.result(timeout=6)
                 except Exception:
                     log.exception("voice print")
+            voice_ms = int((time.time() - tv) * 1000)
             ms = int((time.time() - t0) * 1000)
             self.on_metrics("asr_ms", ms)
             if not res or self._stop.is_set():
-                self._check_lag(ms)
+                self._check_lag(whisper_ms)
                 continue
             lang, text, conf, marked, words = res
             parts = self._split_by_speaker(utt.audio, text, marked, words, analysis, emb)
@@ -1099,19 +1115,19 @@ class Engine:
             prev_sid = None
             for part in parts:
                 line = Line(self._next_id, utt.source, lang, part["text"], conf, utt.started + part["t0"],
-                            asr_ms=ms, marked=part["marked"])
+                            asr_ms=ms, marked=part["marked"], q_ms=q_ms, whisper_ms=whisper_ms, voice_ms=voice_ms)
                 self._next_id += 1
                 m = None
                 dc = self.discord
                 in_call = dc is not None and dc.connected and dc.channel_id and self.registry is not None
                 if in_call:
-                    t0, t1 = utt.started + part["t0"], utt.started + part.get("t1", utt.audio.size / 16000)
-                    uid = dc.dominant(t0, t1)
+                    s0, s1 = utt.started + part["t0"], utt.started + part.get("t1", utt.audio.size / 16000)
+                    uid = dc.dominant(s0, s1)
                     if uid:                                        # Discord: exactly this person was talking
                         m = self.registry.assign_discord(uid, dc.members().get(uid) or {}, part["embs"],
                                                          part["speech_s"])
                     elif part["embs"]:
-                        talking = [u for u, f in dc.who(t0, t1).items() if f >= 0.15]
+                        talking = [u for u, f in dc.who(s0, s1).items() if f >= 0.15]
                         if talking:                                # several at once: decide by voice among them
                             m = self.registry.identify_among(part["embs"], talking)
                 if (m is not None or part["embs"]) and self.registry is not None:
@@ -1157,12 +1173,13 @@ class Engine:
                 if self.s.llm_enabled and not self.translator.available:
                     self._revive_llm()
                 if self.s.llm_enabled and (self.translator.available or self._reviving):
+                    line.t_ready = time.time()
                     self.llm_q.put(line)
                 else:
                     line.state = "llm-off"
                     self.on_update(line)
                     self._remember(line)
-            self._check_lag(int((time.time() - t0) * 1000))
+            self._check_lag(whisper_ms)               # only Whisper's own time (not voices or the translator)
         self.transcriber.unload()
 
     def _prior_fn(self, fut, utt):
@@ -1251,22 +1268,27 @@ class Engine:
         log.info("speaker changes inside sentence at %s", ", ".join(f"{b:.2f}s" for b in bounds[1:-1]))
         return parts
 
-    def _llm_loop(self):
-        try:
-            if self.s.llm_enabled and self.translator.ensure() and not self._stop.is_set():
-                self.translator.load()
-            elif self.s.llm_enabled:
-                log.warning("Translator not available at start")
-        except Exception as e:
-            log.exception("LLM load")
-            self.on_status("llm", f"failed to load: {str(e)[:120]}")
-            self.translator.available = False
-        finally:
-            self._llm_ready.set()
+    def _llm_loop(self, helper: bool = False):
+        if helper:
+            self._llm_ready.wait()
+        else:
+            try:
+                if self.s.llm_enabled and self.translator.ensure() and not self._stop.is_set():
+                    self.translator.load()
+                elif self.s.llm_enabled:
+                    log.warning("Translator not available at start")
+            except Exception as e:
+                log.exception("LLM load")
+                self.on_status("llm", f"failed to load: {str(e)[:120]}")
+                self.translator.available = False
+            finally:
+                self._llm_ready.set()
         while not self._stop.is_set():
             line = self.llm_q.get()
             if line is None or self._stop.is_set():
+                self.llm_q.put(None)                     # let the other worker stop too
                 break
+            line.llm_wait_ms = int((time.time() - line.t_ready) * 1000) if line.t_ready else 0
             # translator being (re)started? wait up to 30 s for it
             waited = 0.0
             while self._reviving and waited < 30 and not self._stop.is_set():
@@ -1295,6 +1317,8 @@ class Engine:
                 try:
                     # only what was said just before (last 20 s, max 3 lines) - older talk confused it
                     ctx = [h for h in self.history if h.state != "skipped" and line.t - h.t <= 20.0][-3:]
+                    if self.llm_q.qsize() >= 2:
+                        ctx = ctx[-1:]                   # falling behind: shorter prompt, faster answer
                     data = self.translator.translate_stream(line, ctx, partial, tgt)
                     break
                 except Exception as e:
@@ -1318,13 +1342,14 @@ class Engine:
                 self._remember(line)
                 continue
             heard = len(line.text.split())
-            if data and len(str(data.get("tr") or "").split()) > heard * 2 + 5:
-                # translation much longer than what was said -> it mixed in older lines: redo without context
-                log.info("translation too long for the heard text - retrying without context")
-                try:
-                    data = self.translator.translate_stream(line, [], partial, tgt) or data
-                except Exception:
-                    pass
+            trw = str(data.get("tr") or "").split() if data else []
+            if len(trw) > heard * 2 + 5:
+                # much longer than what was said -> it mixed in older lines: keep only the start (no second
+                # translation: that doubled the wait)
+                keep = " ".join(trw[: heard * 2 + 3])
+                cut = max(keep.rfind(". "), keep.rfind("? "), keep.rfind("! "))
+                data["tr"] = keep[: cut + 1] if cut > len(keep) // 3 else keep
+                log.info("translation too long for the heard text - trimmed")
             line.llm_ms = int((time.time() - t0) * 1000)
             self.on_metrics("llm_ms", line.llm_first_ms or line.llm_ms)
             if data.get("skip") is True:
@@ -1345,6 +1370,9 @@ class Engine:
             line.state = "done"
             self.on_update(line)
             self._remember(line)
+            log.info("line %d timing: waited %.1fs · whisper %.1fs · voices +%.1fs · translator queue %.1fs · "
+                     "first words %.1fs · done %.1fs", line.id, line.q_ms / 1000, line.whisper_ms / 1000,
+                     line.voice_ms / 1000, line.llm_wait_ms / 1000, line.llm_first_ms / 1000, line.llm_ms / 1000)
 
     def _revive_llm(self):
         """Ollama missing/crashed mid-session -> restart it in the background (at most every 15 s)."""
