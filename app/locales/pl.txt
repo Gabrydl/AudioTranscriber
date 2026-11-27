@@ -361,3 +361,15 @@
 361|za dużo zapytań na minutę
 362|klucz API lub model odrzucony – sprawdź Ustawienia
 363|błąd Google {c}
+364|Tylko ten
+365|Kliknij, aby szybko przełączyć (działa w trakcie, od następnego zdania).
+366|Więcej w Ustawieniach…
+367|Fiński
+368|Estoński
+369|Serbski
+370|Chorwacki
+371|Czarnogórski
+372|Rosyjski
+373|Grecki
+374|Bośniacki
+375|Bułgarski

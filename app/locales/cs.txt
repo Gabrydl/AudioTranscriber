@@ -361,3 +361,15 @@
 361|příliš mnoho požadavků za minutu
 362|API klíč nebo model odmítnut – zkontrolujte Nastavení
 363|chyba Googlu {c}
+364|Jen tento
+365|Kliknutím rychle přepnete (funguje i za běhu, od další věty).
+366|Další v Nastavení…
+367|Finština
+368|Estonština
+369|Srbština
+370|Chorvatština
+371|Černohorština
+372|Ruština
+373|Řečtina
+374|Bosenština
+375|Bulharština

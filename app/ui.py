@@ -514,7 +514,9 @@ LLM_SHORT = {"qwen2.5:3b": "Light", "gemma3:4b": "Medium", "gemma3:12b": "Heavy"
 
 # translation languages shown in the → menu (native names)
 TARGETS = {"en": "English", "it": "Italiano", "pt": "Português", "es": "Español", "de": "Deutsch",
-           "fr": "Français", "tl": "Tagalog", "cs": "Čeština", "pl": "Polski", "ceb": "Bisaya"}
+           "fr": "Français", "tl": "Tagalog", "cs": "Čeština", "pl": "Polski", "ceb": "Bisaya",
+           "fi": "Suomi", "et": "Eesti", "sr": "Српски", "hr": "Hrvatski", "cnr": "Crnogorski",
+           "bs": "Bosanski", "bg": "Български", "ru": "Русский", "el": "Ελληνικά"}
 
 
 # ----------------------------------------------------------------------------- overlay
@@ -800,6 +802,48 @@ def flag_pixmap(kind: str, w: int = 30, h: int = 20) -> QPixmap:
         rect(0, H / 2 - H * .17, W, H * .34, "#ffffff")
         rect(W / 2 - H * .1, 0, H * .2, H, "#c8102e")
         rect(0, H / 2 - H * .1, W, H * .2, "#c8102e")
+    elif kind == "fi":
+        rect(0, 0, W, H, "#ffffff")
+        rect(W * .28, 0, H * .28, H, "#002f6c")
+        rect(0, H * .36, W, H * .28, "#002f6c")
+    elif kind == "ee":
+        htri(("#0072ce", "#000000", "#ffffff"))
+    elif kind == "ru":
+        htri(("#ffffff", "#0039a6", "#d52b1e"))
+    elif kind == "rs":
+        htri(("#c6363c", "#0c4076", "#ffffff"))
+        p.setBrush(QColor("#c6363c"))
+        p.drawRoundedRect(QRectF(W * .24, H * .22, W * .18, H * .5), 2, 2)
+    elif kind == "hr":
+        htri(("#ff0000", "#ffffff", "#171796"))
+        for i in range(3):                       # the red and white checks of the shield
+            for j in range(3):
+                rect(W * .4 + i * W * .067, H * .26 + j * H * .1, W * .067, H * .1,
+                     "#ff0000" if (i + j) % 2 == 0 else "#ffffff")
+    elif kind == "me":
+        rect(0, 0, W, H, "#c40308")
+        p.setPen(QPen(QColor("#d4af37"), H * .1))
+        p.setBrush(Qt.NoBrush)
+        p.drawRect(QRectF(H * .05, H * .05, W - H * .1, H - H * .1))
+        p.setPen(Qt.NoPen)
+        p.setBrush(QColor("#d4af37"))
+        p.drawEllipse(QPointF(W / 2, H / 2), H * .2, H * .24)
+    elif kind == "ba":
+        rect(0, 0, W, H, "#002395")
+        from PySide6.QtGui import QPolygonF
+        p.setBrush(QColor("#fecb00"))
+        p.drawPolygon(QPolygonF([QPointF(W * .28, 0), QPointF(W * .72, 0), QPointF(W * .72, H)]))
+        p.setBrush(QColor("#ffffff"))
+        for i in range(5):
+            p.drawEllipse(QPointF(W * (.22 + i * .1), H * (.08 + i * .21)), H * .05, H * .05)
+    elif kind == "bg":
+        htri(("#ffffff", "#00966e", "#d62612"))
+    elif kind == "gr":
+        for i in range(9):
+            rect(0, H * i / 9, W, H / 9 + .5, "#0d5eaf" if i % 2 == 0 else "#ffffff")
+        rect(0, 0, H * 5 / 9, H * 5 / 9, "#0d5eaf")
+        rect(H * 2 / 9, 0, H / 9, H * 5 / 9, "#ffffff")
+        rect(0, H * 2 / 9, H * 5 / 9, H / 9, "#ffffff")
     elif kind == "latam":
         rect(0, 0, W, H, "#26262b")
         p.setPen(QColor("#f2f2f3"))
@@ -835,6 +879,16 @@ class _NoWheelUnlessFocused(QObject):
                 QApplication.sendEvent(w.verticalScrollBar(), ev)   # scroll the page instead
             return True
         return False
+
+
+class StickyMenu(QMenu):
+    """A menu whose tick boxes can be clicked one after another without it closing."""
+    def mouseReleaseEvent(self, e):
+        a = self.activeAction()
+        if a is not None and a.isCheckable() and a.isEnabled():
+            a.trigger()
+            return
+        super().mouseReleaseEvent(e)
 
 
 class SetCard(QFrame):
@@ -1775,6 +1829,14 @@ class MainWindow(QWidget):
         self.pause_btn.clicked.connect(self.toggle_pause)
         self.pause_btn.setEnabled(False)
         row2.addWidget(self.pause_btn)
+        # quick switch of the languages listened for (the same ticks as Settings > Recognition)
+        self.langs_btn = QPushButton()
+        self.langs_btn.setObjectName("ghost")
+        self.langs_btn.setCursor(Qt.PointingHandCursor)
+        self.langs_menu = StickyMenu(self.langs_btn)
+        self.langs_menu.aboutToShow.connect(self._fill_langs_menu)
+        self.langs_btn.setMenu(self.langs_menu)
+        row2.addWidget(self.langs_btn)
         self.target_btn = QPushButton()
         self.target_btn.setObjectName("ghost")
         self.target_btn.setCursor(Qt.PointingHandCursor)
@@ -2390,6 +2452,7 @@ class MainWindow(QWidget):
         self.tray.showMessage("AudioTranscriber", tr("Paused") if self.paused else tr("Listening again"), app_icon(), 1200)
 
     def _show_target(self):
+        self._update_langs_btn()
         t = getattr(self.s, "target", "en")
         if t not in TARGETS:
             t = "en"
@@ -2424,6 +2487,54 @@ class MainWindow(QWidget):
             self.settings_panel._sel(self.settings_panel.lm, model)
         except Exception:
             pass
+
+    def _fill_langs_menu(self):
+        m = self.langs_menu
+        m.clear()
+        t = m.addAction(tr("Languages to recognise"))
+        t.setEnabled(False)
+        for code, name in LANGUAGES.items():
+            a = m.addAction(f"{lname(code)}  ·  {code.upper()}")
+            a.setCheckable(True)
+            a.setChecked(code in self.s.languages)
+            a.toggled.connect(lambda on, c=code: self._toggle_lang(c, on))
+        m.addSeparator()
+        only = m.addMenu(tr("Only this one"))
+        for code in LANGUAGES:
+            only.addAction(lname(code)).triggered.connect(lambda _=False, c=code: self._only_lang(c))
+        m.addAction(tr("More in Settings…")).triggered.connect(
+            lambda: self._open_settings_at(next(iter(self.settings_panel.lang_boxes.values()))))
+
+    def _toggle_lang(self, code, on):
+        langs = [c for c in LANGUAGES if (c in self.s.languages and c != code) or (c == code and on)]
+        self._apply_langs(langs or [code])
+
+    def _only_lang(self, code):
+        self._apply_langs([code])
+
+    def _apply_langs(self, langs):
+        """Takes effect from the next sentence, also while listening."""
+        self.s.languages = langs
+        for c, cb in self.settings_panel.lang_boxes.items():
+            cb.blockSignals(True)
+            cb.setChecked(c in langs)
+            cb.blockSignals(False)
+        self.s.save()
+        self._update_langs_btn()
+        if self.langs_menu.isVisible():          # keep the ticks in step (e.g. the last one can't be unticked)
+            for a in self.langs_menu.actions():
+                if a.isCheckable():
+                    code = a.text().rsplit("·", 1)[-1].strip().lower()
+                    a.blockSignals(True)
+                    a.setChecked(code in langs)
+                    a.blockSignals(False)
+
+    def _update_langs_btn(self):
+        langs = [c for c in LANGUAGES if c in self.s.languages]
+        shown = " ".join(c.upper() for c in langs[:3]) + (f" +{len(langs) - 3}" if len(langs) > 3 else "")
+        self.langs_btn.setText("🎧 " + shown)
+        self.langs_btn.setToolTip(tr("Languages to recognise") + ": " + ", ".join(lname(c) for c in langs) + "\n" +
+                                  tr("Click to switch quickly (works while running, from the next sentence)."))
 
     def _set_target(self, code):
         if code in TARGETS:
@@ -2572,6 +2683,7 @@ class MainWindow(QWidget):
 
     def _display_changed(self):
         self._start_hotkeys()
+        self._update_langs_btn()
         for c in self.cards.values():
             c.show_original = self.s.show_original
             c.orig.setVisible(self.s.show_original or c.line.state != "done")

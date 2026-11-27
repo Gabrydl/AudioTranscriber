@@ -361,3 +361,15 @@
 361|zu viele Anfragen pro Minute
 362|API-Schlüssel oder Modell abgelehnt – prüfe die Einstellungen
 363|Google-Fehler {c}
+364|Nur diese
+365|Klicken zum schnellen Wechseln (geht auch während es läuft, ab dem nächsten Satz).
+366|Mehr in den Einstellungen…
+367|Finnisch
+368|Estnisch
+369|Serbisch
+370|Kroatisch
+371|Montenegrinisch
+372|Russisch
+373|Griechisch
+374|Bosnisch
+375|Bulgarisch

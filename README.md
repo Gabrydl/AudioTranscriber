@@ -4,13 +4,13 @@ Windows app that listens to another app (Discord by default), transcribes what p
 
 ## What it does
 - Live transcription + translation of an app's audio (Discord, games, browsers…), with an in-game overlay
-- Recognises Portuguese, Spanish, German, Tagalog, Bisaya (Cebuano), French, English, Czech and Polish (and more)
+- Recognises Portuguese, Spanish, German, Tagalog, Bisaya (Cebuano), French, English, Czech, Polish, Italian, Finnish, Estonian, Serbian, Croatian, Montenegrin, Bosnian, Bulgarian, Russian and Greek; a headphones button switches them in one click
 - Knows who is talking: by voice, and with **Discord names** through Discord's local RPC connection (no bot)
 - Learns the language each person usually speaks; League of Legends terms kept as they are
 - Voice detector for sentence cutting, noise removal for bad microphones (CPU or graphics card)
 - Instant translations for short phrases ("gg", "ok", "wait")
 - Carbon Pro dark UI with Settings split into categories, global hotkeys, auto start when a Discord call begins
-- Interface in 12 languages: English, Italiano, Português (Brasil / Portugal), Español (España / Latinoamérica), Deutsch, Français, Tagalog, Bisaya, Čeština, Polski. The installer asks (Windows language preselected); the flag button in the app switches it later
+- Interface in 21 languages: English, Italiano, Português (Brasil / Portugal), Español (España / Latinoamérica), Deutsch, Français, Tagalog, Bisaya, Čeština, Polski, Suomi, Eesti, Српски, Hrvatski, Crnogorski, Bosanski, Български, Русский, Ελληνικά. The installer asks (Windows language preselected); the flag button in the app switches it later
 - Updates itself from this repo's releases when it opens (settings, voices and models are kept)
 
 ## Install

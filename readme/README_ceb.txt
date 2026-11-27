@@ -20,6 +20,7 @@ PAGSUGOD
      ang nadungog.
   3. Ipakita sa balod ang kakusog sa tingog. Sundon sa "Auto" ang saba sa background sa matag tawo;
      i-drag ang putol-putol nga linya aron ikaw ang mohan-ay.
+  Ang headphones button tupad sa Sugdi paspas nga mobalhin sa mga pinulongan nga ilhon.
 
 ANG WINDOW
   Wala nga bar: Live, Mga tawo, Mga pulong, Overlay, I-lock ang overlay, Limpyohi, flag sa pinulongan,

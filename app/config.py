@@ -48,11 +48,22 @@ LANGUAGES = {
     "pl": "Polish",
     "it": "Italian",
     "ceb": "Bisaya (Cebuano)",
+    "fi": "Finnish",
+    "et": "Estonian",
+    "sr": "Serbian",
+    "hr": "Croatian",
+    "cnr": "Montenegrin",
+    "bs": "Bosnian",
+    "bg": "Bulgarian",
+    "ru": "Russian",
+    "el": "Greek",
 }
 DEFAULT_LANGS = ["pt", "es", "de", "tl", "fr", "en", "cs", "pl", "ceb"]
 # languages Whisper has no token for: recognised with the closest one, then labelled by their own words
-WHISPER_CODE = {"ceb": "tl"}
+WHISPER_CODE = {"ceb": "tl", "cnr": "bs"}
 AUSTRONESIAN = ("tl", "id", "ms", "jw", "su", "haw", "mi")   # where Whisper puts Bisaya speech
+# Serbian, Croatian, Montenegrin (and Bosnian) are one language to Whisper: our code -> its token
+SHTOKAVIAN = {"sr": "sr", "hr": "hr", "bs": "bs", "cnr": "bs"}
 
 WHISPER_MODELS = {
     "large-v3": "max accuracy · ~3 GB VRAM (1.7 GB next to gemma3:12b) · slower",

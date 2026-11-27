@@ -361,3 +361,15 @@
 361|trop de requêtes par minute
 362|clé d'API ou modèle refusé – vérifie les Paramètres
 363|erreur Google {c}
+364|Seulement celle-ci
+365|Clique pour changer vite (marche en cours d'écoute, dès la phrase suivante).
+366|Plus dans les Paramètres…
+367|Finnois
+368|Estonien
+369|Serbe
+370|Croate
+371|Monténégrin
+372|Russe
+373|Grec
+374|Bosnien
+375|Bulgare

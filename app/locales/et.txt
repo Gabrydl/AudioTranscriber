@@ -1,0 +1,375 @@
+1|klõpsa Discordis „Volita”…
+2|ühendatud · sa pole häälkõnes
+3|ühendatud · kanalis {place}: {n}
+4|kõne
+5|ootan Discordi…
+6|ühendan uuesti…
+7|käivitan Ollama…
+8|laadin '{name}'…
+9|'{name}' valmis CPU-l ({t})
+10|laadin {m}…
+11|{m} valmis ({where})
+12|jääb maha ({t}) – vahetan {a} → {b}…
+13|tõlge pole saadaval – Ollamat ei saanud käivitada
+14|Ollama ei tööta – ainult transkriptsioon (tõlge väljas)
+15|Laadin alla tõlkemudeli {m} (ainult üks kord)…
+16|häälte tuvastamine pole saadaval
+17|laadimine ebaõnnestus
+18|võrgus (Gemini) – graafikakaardi tõlkija väljas
+19|Laadin alla '{name}' (ainult üks kord)…
+20|'{name}' valmis (juba laaditud)
+21|'{name}' valmis GPU-l ({t})
+22|GPU ebaõnnestus – lähen üle CPU-le
+23|{m} ei mahu täielikult kaardile – jagan seda CPU-ga…
+24|transkriptsiooni viga
+25|vahetan mudelile {m}…
+26|tõlkija peatus – käivitan Ollama uuesti…
+27|Mudelit {m} ei saanud alla laadida
+28|Mudelit {m} ei saanud laadida
+29|{gb} GB kaardil
+30|Laadin alla {m}
+31|Valmis teavitusalal
+32|häälte tuvastamine valmis (häälemudeleid: {n})
+33|Isik {n}
+34|allalaadimine ebaõnnestus, proovin uuesti ({a}/{b})…
+35|laadin alla {p} (ainult üks kord)
+36|häälemudel
+37|häälemudel {k} pole saadaval – kasutan teisi
+38|Valitud rakenduse helitugevus reaalajas.\nLohista valget joont üles või alla: joonest kõrgem heli loetakse kõneks.
+39|KÕNE
+40|Kes seda ütles – klõpsa ümbernimetamiseks või parandamiseks
+41|KONTEKSTIST ARVATUD
+42|tõlgin…
+43|Lukusta
+44|Lukusta: klõpsud lähevad mängu (Ctrl+Alt+L)
+45|GPU: kiireim, mudelid peavad mahtuma graafikakaardile (kui mõni ei mahu, jagatakse see automaatselt).\nSegatud: tõlkija kasutab graafikakaarti nii palju kui mahub ja ülejäänuks CPU-d.\nAinult CPU: töötab ilma graafikakaardita, palju aeglasem.
+46|Häältuvastus (eirab müra ja klõpse)
+47|Kõnetuvastus otsustab, kus lause algab ja lõpeb, mitte ainult helitugevus.\nMürarikkad mikrofonid ei hoia enam lauset lahti, klõpsudest ei saa valeridu.\nKehtib järgmisest Alusta-vajutusest.
+48|Nimed, mänguterminid, släng – üks reale või komadega eraldatud\nnt Gabry, War Thunder, Bismarck, GG
+49|League of Legendsi terminid
+50|Tšempionid, loitsud, esemed, ruunid ja släng (Rioti nimed kõigis keeltes).\nTuvastatakse paremini ja jäetakse tõlgetes mängu ingliskeelseks sõnaks:\nFlash jääb Flashiks, Hexflash jääb Hexflashiks, "destello" muutub Flashiks.
+51|Mürasummutus (sumin, sisin, kehvad mikrofonid)
+52|Müra eemaldamine graafikakaardil
+53|Puhastab väga mürarikkad hääled graafikakaardil; kasutab CPU-d, kui kaart ei saa.
+54|Näita ebakindlaid sõnu hallilt
+55|Jäta keelekontroll vahele inimestel, kelle keel on teada
+56|Kiirem: kui inimese keel on kindel, jäetakse eraldi keeleetapp vahele.
+57|Tõlgi + paranda valesti kuuldud sõnad
+58|Graafikakaart – kohalik, töötab ka võrguta
+59|Võrgus – Gemini, kui internet on olemas
+60|Tõlkemudel töötab sinu arvutis (Ollama). Midagi ei lahku arvutist.
+61|Tõlgib hoopis Google'i Gemini API: kiirem ja nutikam kui miski, mis mahub 8 GB kaardile.\nMõlemad märgitud: kõigepealt võrgus, graafikakaart võtab üle, kui võrguteenus ei vasta\n(internetti pole, päeva tasuta piirang täis, liiga aeglane).
+62|Kergem = vähem graafikamälu ja kiirem · raskem = paremad tõlked.
+63|Vahetub kohe, ka töö ajal. Puuduvad mudelid laaditakse alla automaatselt.
+64|Gemini API võti (tasuta)
+65|Tasuta võti
+66|Ära tõlgi ridu, mis on juba tõlkekeeles
+67|Lühikesed fraasid kohe (gg, ok, oota…) ilma tõlkijata
+68|Tuvasta, kes räägib
+69|Jäta hääled meelde (salvestatakse ainult sellesse arvutisse)
+70|Õpi iga inimese keel
+71|Mõne rea järel teab see, mis keelt keegi tavaliselt räägib, nii et lühikesi või\nebaselgeid lauseid ei kuulda enam vales keeles.\nSelget üleminekut teise keelde tuvastatakse ikka.
+72|Ctrl+klõps: vali mitu · Shift+klõps: vali vahemik · Ctrl+A: kõik\nDelete-klahv või "Unusta valitud" eemaldab valitud inimesed
+73|Unusta valitud
+74|Unusta kõik hääled
+75|Näita jälle kõiki
+76|Vasakule: kaks inimest liidetakse sagedamini · Paremale: üks inimene jagatakse sagedamini
+77|Nimed ja kõneleja Discordist
+78|Kasutab Discordi enda kohalikku ühendust (Discordi rakendus selles arvutis) – ükski bot ei liitu\nsinu serveritega. Iga hääl seotakse inimese Discordi kontoga, nii et nimed on\nõiged esimesest lausest ja säilivad seansside vahel.
+79|Client ID (lehelt discord.com/developers)
+80|Client Secret
+81|Ühenda
+82|Kuidas seadistada
+83|Logi välja
+84|Väljas
+85|Alusta kuulamist, kui Discordi kõne algab
+86|Peata, kui kõne lõpeb (vabastab GPU)
+87|Originaaltekst voos (väljas = ainult tõlge)
+88|Näita ülekattes originaalteksti
+89|Kellaaeg iga rea ees
+90|Kui ülekate on lukus (klõpsud lähevad läbi), kaob see pärast nii mitut vaikset sekundit. 0 = mitte kunagi.
+91|Üldised kiirklahvid (töötavad mängudes)
+92|Ctrl+Alt+S alusta/peata · Ctrl+Alt+P paus · Ctrl+Alt+C kopeeri viimane tõlge\nCtrl+Alt+O ülekate sisse/välja · Ctrl+Alt+L lukusta/ava ülekate (klõpsud lähevad läbi)
+93|Käivita koos Windowsiga (teavitusalal)
+94|Ühenda uuesti, kui kõrvaklapid / seade vahetub
+95|Vaheta kergemale mudelile, kui jääb maha
+96|Ekspordi .txt
+97|Tühjenda voog
+98|Discordi nimed – seadistamine (üks kord, umbes 2 minutit)
+99|<b>1.</b> Ava brauseris <b>discord.com/developers/applications</b> ja logi sisse.<br><b>2.</b> <b>New Application</b> → pane nimeks <i>AudioTranscriber</i> → Create.<br><b>3.</b> Vasak menüü <b>OAuth2</b>: kopeeri <b>Client ID</b>. Klõpsa <b>Reset Secret</b> ja kopeeri <b>Client Secret</b>.<br><b>4.</b> Ikka OAuth2-s → <b>Redirects</b> → <b>Add Redirect</b>: <code>http://localhost</code> → <b>Save Changes</b>.<br><b>5.</b> Kleebi mõlemad koodid siia, märgi <i>Nimed ja kõneleja Discordist</i> ja klõpsa <b>Ühenda</b>.<br><b>6.</b> Discord näitab akent: klõpsa <b>Volita</b>.<br><br>Valmis – see ühendub iga kord ise uuesti. Koodid ja sisselogimine jäävad ainult sellesse arvutisse (settings.json ja discord_token.json).
+100|Mõlemad: kõigepealt võrgus, graafikakaart siis, kui võrguteenus ei vasta.
+101|Ainult võrgus: kui see ei vasta, jäävad read tõlkimata.
+102|Gemini – tasuta võti (1 minut)
+103|<b>1.</b> Ava <b>aistudio.google.com/apikey</b> ja logi sisse Google'i kontoga.<br><b>2.</b> Klõpsa <b>Create API key</b> ja kopeeri see.<br><b>3.</b> Kleebi see siia. See jääb sellesse arvutisse (settings.json).<br><br><b>Gemma 3 27B</b> on suurim tasuta päevakvoot (umbes 14 400 lauset). Gemini Flash-Lite / Flash on nutikamad, kuid nende tasuta kvoot on väike.<br>Tasuta paketis võib Google saadetut oma toodete parandamiseks kasutada; sisselülitatud arveldusega mitte.
+104|liidab rohkem
+105|Otse – vestlus
+106|Inimesed – nimed, hääled, Discord
+107|Teada olevad sõnad – nimed, mänguterminid, släng
+108|Ülekate mängu peal – Ctrl+Alt+O
+109|Lukusta ülekate (klõpsud lähevad mängu) – Ctrl+Alt+L
+110|Tühjenda kogu vestlus (ka ülekate)
+111|Seaded
+112|Otseseanss
+113|Auto
+114|Automaatne lävi: jälgib iga inimese taustamüra\n(aitab sisisevate / mürarikaste mikrofonide puhul). Lohista joont, et seda ise sättida.
+115|Peata / jätka kuulamist – Ctrl+Alt+P\n(mudelid jäävad laadituks, midagi ei transkribeerita)
+116|KUULA
+117|Värskenda rakenduste loendit
+118|Vali ülalt rakendus (Discord valitakse automaatselt) ja klõpsa Alusta.\nRead ilmuvad siia, kui inimesed räägivad – mida öeldi ja tõlge.
+119|JÕUDLUS
+120|INIMESED
+121|Nimed ilmuvad siia, kui inimesed räägivad.
+122|Näita ülekatet mängus
+123|Liiguta ülekatet
+124|Avab ülekatte luku, et saaksid seda lohistada; lahti lastes lukustub see ise uuesti
+125|Näita akent
+126|Ülekate sisse/välja
+127|Välju
+128|peatatud – mälu vabastatud
+129|See jäi maha, seega vahetati kergemale kõnemudelile.
+130|Tegelikult on see…
+131|Keegi uus…
+132|Räägib alati…
+133|Nimeta inimene ümber
+134|Nimi:
+135|Uus inimene
+136|Nimi (valikuline):
+137|Viimane tõlge kopeeritud
+138|Taaskäivita kohe
+139|Hiljem
+140|ühendan…
+141|tõlge pole saadaval – kas Ollama töötab?
+142|Lohista liigutamiseks · nurgast suuruse muutmiseks
+143|Uuendusi kontrollitakse rakenduse avamisel.
+144|Kleebi esmalt võti.
+145|jagab rohkem
+146|tasakaalus
+147|Ülekate peitub vaikuses: mitte kunagi
+148|Alusta
+149|ootel
+150|Ükski rakendus ei esita heli – liitu Discordi kõnega, siis ⟳
+151|Vali esmalt vähemalt üks rakendus (nt Discord).
+152|Kuulan
+153|seaded rakendatud – kasutusel järgmisest Alusta-vajutusest
+154|Kasuta jälle Discordi nime
+155|Tuvasta automaatselt
+156|Näita seda inimest jälle
+157|Kedagi ei eirata
+158|pausil – jätkamiseks vajuta Ctrl+Alt+P
+159|kuulan
+160|Pausil
+161|Kuulan jälle
+162|Klõpsa teise keele valimiseks (töötab töö ajal, järgmisest lausest).
+163|Kas unustada kõik salvestatud hääled?
+164|Veel pole midagi eksportida.
+165|Salvestatud asukohta
+166|Rakendus taaskäivitub keele vahetamiseks.
+167|AudioTranscriberi + Ollama mälu
+168|kleebi esmalt Client ID ja Client Secret (vt „Kuidas seadistada”)
+169|välja logitud – uuesti volitamiseks klõpsa Ühenda
+170|Klõpsa ümbernimetamiseks või parandamiseks
+171|võrgus
+172|ootas {a} · esimesed sõnad {b} · valmis {c}
+173|Tuvastuse kindlus {p}%
+174|Hallid sõnad: tuvastaja polnud neis kindel
+175|Täpsemalt
+176|Rakenda
+177|Laadib valitud mudelid (ka töö ajal).
+178|Käita seadmel
+179|Kuvatav nimi
+180|Täna kasutatud: {used} / umbes {lim} tasuta
+181|Täna kasutatud: {used}
+182|lähtestub kell 09:00
+183|Lauset lõpetav paus: {ms} ms
+184|Häälte eristamine: {side} ({v})
+185|Ülekatte tausta läbipaistmatus: {v}%
+186|Ülekatte teksti suurus: {v}px
+187|Ülekatte teksti läbipaistmatus: {v}%
+188|…kui lause võtab kauem kui {v} s
+189|Ridu ülekattes: {v}
+190|Rakenduse keel
+191|Viivitus
+192|Rakenduse RAM
+193|Read
+194|Tõlkija
+195|Esitab praegu heli
+196|Praegu ei esita heli
+197|Laadin…
+198|Peata
+199|Tuntud hääled: {n}
+200|Nimeta „{name}” ümber…
+201|Unusta inimese {name} hääl…
+202|keel tuvastatakse automaatselt
+203|helisade muutus
+204|salvestamine peatus
+205|uuesti ühendatud – kuulan
+206|rakendus kadus – ootan, kuni see naaseb
+207|Discordi kõne – kuulan
+208|Kõik teised jäävad alles.
+209|Inimese {name} hääl unustatud
+210|tõlge keelde: {lang}
+211|Ülekate lukus: klõpsud lähevad mängu – avamiseks klõpsa või Ctrl+Alt+L
+212|Viimane lause: {a} tuvastust + {b} tõlke alguseni
+213|ebakindel
+214|{name} – klõpsa ümbernimetamiseks või parandamiseks
+215|graafikakaart
+216|Kuuldud: „{text}”
+217|Kõnemudel
+218|Suurem on täpsem, väiksem on kiirem.
+219|Tuvastatavad keeled
+220|Kuulatakse ainult märgituid.
+221|Laused
+222|Millal lause algab ja lõpeb.
+223|Teada olevad sõnad
+224|Kasutavad tuvastaja ja tõlkija, et need sõnad tuleksid õigesti.
+225|Kus see töötab
+226|Mõlemad märgitud: kõigepealt võrgus, graafikakaart varuks.
+227|Graafikakaardi mudel
+228|Töötab selles arvutis Ollamaga.
+229|Võrgus – Gemini
+230|Google'i tõlkija, kasutatakse internetiga.
+231|Hääled
+232|Klõpsa mis tahes rea nimel, et see ümber nimetada või inimest parandada – iga parandus muudab täpsemaks.
+233|Tuntud inimesed
+234|Ctrl või Shift + klõps mitme valimiseks.
+235|Eiratud inimesed
+236|Klõpsa mis tahes rea nimel, et seda inimest eirata või määrata keel, mida ta alati räägib.
+237|Ühendus
+238|Kasutab selle arvuti Discordi rakendust – ükski bot ei liitu sinu serveritega.
+239|Nimed
+240|Milline Discordi nimi igal real kuvatakse. Ise sisestatud nimi jääb alles.
+241|Kõned
+242|Alusta ja peata koos sinu Discordi kõnedega.
+243|Otsevoog
+244|Selle akna read.
+245|Ülekatte tekst
+246|Mida ülekate mängu peal näitab.
+247|Ülekatte välimus
+248|Püsib mängude peal aknas või ääristeta režiimis (mitte ainuõigusega täisekraanil).
+249|Kiirklahvid
+250|Ka vasaku riba lipunupust. Rakendus taaskäivitub vahetamiseks.
+251|Windows
+252|Töökindlus
+253|Hoiab seda ise töös.
+254|Transkriptsioon
+255|Midagi ei salvestata, kui sa ei ekspordi.
+256|häält veel pole
+257|häälenäidiseid: {n}
+258|Ülekate peitub vaikuses: {v} s pärast (lukus olles)
+259|alamprotsessid
+260|Ei saanud käivitada:
+261|Ei saanud salvestada:
+262|Jah, see on {name}
+263|Eira: {name}
+264|Liida „{name}” inimesega…
+265|Eiratud inimesed: {n}
+266|{model} võetakse kasutusele Alusta-vajutusel
+267|otsin rakendust uuesti
+268|Kõne lõppes – peatatud
+269|Kas unustada need hääled?
+270|Kanalis {place}: {n}
+271|Kuulamine peatub hetkeks.
+272|Süsteem
+273|Versioon {v}
+274|Peida ülekate
+275|alati {lang}
+276|Tõlge keelde: {lang}.
+277|ei tööta
+278|Kas unustada inimese {name} hääl?\nTeised inimesed jäävad alles. Kui {name} jälle räägib, saab ta uue nime.
+279|kõnes
+280|Discord ühendatud – vanad hääled teisaldatud faili speakers_before_discord.json: {n}
+281|Rohkem valikuid: {n}
+282|Windows keeldus rakenduse {app} eraldi salvestamisest – salvestan KOGU süsteemiheli
+283|Inimesed
+284|Hääle sobivus {p}%
+285|Ootas {q} · tuvastus {w} · hääled +{v}
+286|öeldud kell {t}
+287|Uuendust ei saanud alla laadida – proovitakse uuesti rakenduse järgmisel avamisel
+288|Laadin alla uuenduse {v}…
+289|Uuendan versioonile {v} – tagasi mõne sekundi pärast
+290|Uuendus {v} valmis – taaskäivitan…
+291|Uuendus {v} valmis – paigaldatakse, kui klõpsad Peata
+292|portugali
+293|hispaania
+294|saksa
+295|tagalogi
+296|prantsuse
+297|inglise
+298|tšehhi
+299|poola
+300|itaalia
+301|bisaja (sebu)
+302|suurim täpsus
+303|suurim täpsus · ~3 GB VRAM (1,7 GB koos gemma3:12b-ga) · aeglasem
+304|kiire ja väga hea
+305|kiire ja väga hea · ~1,6 GB VRAM
+306|hea
+307|hea · ~1,5 GB
+308|kerge
+309|kerge · ~0,8 GB
+310|pisike
+311|pisike · ~0,3 GB
+312|GPU – kõik graafikakaardil (kiireim)
+313|Segatud – graafikakaart + CPU (kaardist suuremate mudelite jaoks)
+314|Ainult CPU – ilma graafikakaardita (aeglane)
+315|Kerge – qwen2.5:3b
+316|~2,5 GB graafikamälu
+317|Kerge – qwen2.5:3b · ~2,5 GB graafikamälu · kiireim
+318|Keskmine – gemma3:4b
+319|~4 GB graafikamälu
+320|Keskmine – gemma3:4b · ~4 GB graafikamälu · kiire, hea
+321|Raske – gemma3:12b
+322|~8 GB graafikamälu
+323|Raske – gemma3:12b · ~8 GB graafikamälu · parim, 10–20 s 8 GB kaartidel
+324|Gemma 3 27B
+325|Gemma 3 27B – tasuta, umbes 14 400 lauset päevas
+326|Gemini Flash-Lite
+327|Gemini Flash-Lite – kiirem/nutikam, väike tasuta päevapiirang
+328|Gemini Flash
+329|Gemini Flash – kõige nutikam, väga väike tasuta päevapiirang
+330|Tuvastus
+331|Kuidas kõnet kuuldakse ja tekstiks muudetakse
+332|Tõlge
+333|Kus ja kuidas ridu tõlgitakse
+334|Inimesed
+335|Kes räägib: hääled, nimed, eiratud inimesed
+336|Discord
+337|Nimed ja kõned otse Discordi rakendusest
+338|Ülekate ja kuva
+339|Otsevoog ja ülekate mängu peal
+340|Rakendus
+341|Keel, Windows, töökindlus ja uuendused
+342|Kuvatav nimi
+343|Hüüdnimi serveris
+344|@kasutajanimi
+345|Client Secret puudub – kleebi see jaotisse Seaded > Discord
+346|lisa http://localhost jaotisse OAuth2 > Redirects
+347|kontrolli Client Secretit
+348|Discordi sisselogimine ebaõnnestus
+349|Discord lükkas Client ID tagasi ({why}) – kontrolli seda seadetes
+350|juurdepääsu ei lubatud Discordis
+351|Mudelit {m} ei saanud alla laadida – jään turbo juurde (kontrolli ühendust)
+352|tõlge pole saadaval – võrgutõlkija ei vastanud
+353|{m} alla laaditud – kasutamiseks klõpsa Peata ja Alusta
+354|{m} alla laaditud – vali see jaotises Seaded > Tõlge
+355|laadin {m} taustal alla (kasutusel järgmisest Alusta-vajutusest)
+356|Mudelit {m} ei saanud alla laadida – proovitakse uuesti järgmisel käivitamisel
+357|{m} valmis · laadin taustal alla {x}
+358|vastust pole (internet?)
+359|kasutan graafikakaarti
+360|päeva tasuta piirang täis (lähtestub kell 09:00)
+361|liiga palju päringuid minutis
+362|API võti või mudel lükati tagasi – kontrolli seadeid
+363|Google'i viga {c}
+364|Ainult see
+365|Klõpsa kiireks vahetamiseks (töötab töö ajal, järgmisest lausest).
+366|Rohkem seadetes…
+367|soome
+368|eesti
+369|serbia
+370|horvaadi
+371|montenegro
+372|vene
+373|kreeka
+374|bosnia
+375|bulgaaria

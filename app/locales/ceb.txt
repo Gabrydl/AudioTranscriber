@@ -361,3 +361,15 @@
 361|daghan kaayo nga request matag minuto
 362|gibalibaran ang API key o model – susiha ang Mga Setting
 363|error sa Google {c}
+364|Kini ra
+365|I-click aron paspas nga mobalhin (mogana bisan nagdagan, sugod sa sunod nga pulong).
+366|Uban pa sa Mga Setting…
+367|Finnish
+368|Estonian
+369|Serbian
+370|Croatian
+371|Montenegrin
+372|Ruso
+373|Griyego
+374|Bosnian
+375|Bulgarian

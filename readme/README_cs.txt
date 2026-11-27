@@ -17,6 +17,7 @@ ZAČÍNÁME
   2. Klikněte na Spustit. Každá věta se objeví s tím, kdo ji řekl, časem, překladem a tím, co zaznělo.
   3. Vlna ukazuje hlasitost. "Auto" sleduje šum v pozadí u každého člověka; tažením přerušované čáry
      ho nastavíte ručně.
+  Tlačítko se sluchátky vedle Spustit rychle přepne jazyky k rozpoznání.
 
 OKNO
   Levý pruh: Živě, Lidé, Slova, Překryv, Zamknout překryv, Vymazat, vlajka jazyka, Nastavení.

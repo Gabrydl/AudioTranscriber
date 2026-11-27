@@ -79,7 +79,19 @@ BY_LANG = {"pl": {"no": "yes", "ja": None, "tak": "yes"}, "cs": {"no": "yes", "j
            "ceb": {"oo": "yes", "o": "yes", "dili": "no", "sige": "ok", "sige sige": "ok", "hulat": "wait",
                    "hulat sa": "wait", "adto ta": "letsgo", "tara": "letsgo", "tabang": "help", "dagan": "run",
                    "amping": "careful", "kumusta": "hello", "babay": "bye", "salamat": "thanks", "nindot": "nice",
-                   "pasayloa": "sorry", "go": None}}
+                   "pasayloa": "sorry", "go": None},
+           "fi": {"kiitos": "thanks", "joo": "yes", "kylla": "yes", "ei": "no", "odota": "wait", "mennaan": "letsgo",
+                  "moi": "hello", "hei": "hello", "anteeksi": "sorry", "apua": "help", "juokse": "run", "varo": "careful"},
+           "et": {"aitah": "thanks", "jah": "yes", "jaa": "yes", "ei": "no", "oota": "wait", "oot": "wait",
+                  "lahme": "letsgo", "tere": "hello", "vabandust": "sorry", "appi": "help", "jookse": "run"},
+           "hr": {"hvala": "thanks", "da": "yes", "ne": "no", "cekaj": "wait", "idemo": "letsgo", "bok": "hello",
+                  "oprosti": "sorry", "pomoc": "help", "bjezi": "run", "pazi": "careful"},
+           "sr": {"hvala": "thanks", "da": "yes", "ne": "no", "cekaj": "wait", "idemo": "letsgo", "cao": "hello",
+                  "izvini": "sorry", "pomoc": "help", "bezi": "run", "pazi": "careful"},
+           "bs": {"hvala": "thanks", "da": "yes", "ne": "no", "cekaj": "wait", "idemo": "letsgo", "cao": "hello",
+                  "izvini": "sorry", "pomoc": "help", "bjezi": "run", "pazi": "careful"},
+           "cnr": {"hvala": "thanks", "da": "yes", "ne": "no", "cekaj": "wait", "idemo": "letsgo", "cao": "hello",
+                   "izvini": "sorry", "pomoc": "help", "bjezi": "run", "pazi": "careful"}}
 
 
 def _norm(text: str) -> str:

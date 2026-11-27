@@ -361,3 +361,15 @@
 361|demasiadas solicitudes por minuto
 362|clave de API o modelo rechazados – revisa la Configuración
 363|error de Google {c}
+364|Solo este
+365|Haz clic para cambiar rápido (funciona mientras está funcionando, desde la siguiente frase).
+366|Más en Configuración…
+367|Finlandés
+368|Estonio
+369|Serbio
+370|Croata
+371|Montenegrino
+372|Ruso
+373|Griego
+374|Bosnio
+375|Búlgaro

@@ -25,6 +25,15 @@ LANGS = [
     ("ceb", "Bisaya (Cebuano)", "ph"),
     ("cs", "Čeština", "cz"),
     ("pl", "Polski", "pl"),
+    ("fi", "Suomi", "fi"),
+    ("et", "Eesti", "ee"),
+    ("sr", "Српски", "rs"),
+    ("hr", "Hrvatski", "hr"),
+    ("cnr", "Crnogorski", "me"),
+    ("bs", "Bosanski", "ba"),
+    ("bg", "Български", "bg"),
+    ("ru", "Русский", "ru"),
+    ("el", "Ελληνικά", "gr"),
 ]
 CODES = [c for c, _n, _f in LANGS]
 NAMES = {c: n for c, n, _f in LANGS}
@@ -95,5 +104,7 @@ def match(tag: str) -> str:
         return "tl"
     if t.startswith("ceb"):
         return "ceb"
+    if t.startswith("cnr") or t in ("sr-latn-me", "sr-me"):
+        return "cnr"
     base = t.split("-")[0]
     return base if base in CODES else "en"

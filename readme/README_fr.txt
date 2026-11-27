@@ -20,6 +20,7 @@ DÉMARRER
      été entendu.
   3. L'onde montre le volume. "Auto" suit le bruit de fond de chaque personne ; fais glisser la ligne
      pointillée pour le régler à la main.
+  Le bouton casque à côté de Démarrer change en un clic les langues à reconnaître.
 
 LA FENÊTRE
   Barre de gauche : En direct, Personnes, Mots à connaître, Overlay, Verrouiller l'overlay, Vider,

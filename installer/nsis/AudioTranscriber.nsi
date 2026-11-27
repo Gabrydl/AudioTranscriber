@@ -100,7 +100,7 @@ Page custom MaintenancePage MaintenanceLeave
 ; interface languages: the first screen asks, with the Windows language already selected
 !define MUI_LANGDLL_ALLLANGUAGES
 !define MUI_LANGDLL_WINDOWTITLE "${APP}"
-!define MUI_LANGDLL_INFO "Language / Lingua / Idioma / Sprache / Langue / Wika / Pinulongan / Jazyk / Język"
+!define MUI_LANGDLL_INFO "Language / Lingua / Idioma / Sprache / Langue / Wika / Jazyk / Język / Kieli / Keel / Језик / Jezik / Език / Язык / Γλώσσα"
 !insertmacro MUI_LANGUAGEEX "lang" "English"
 !insertmacro MUI_LANGUAGEEX "lang" "Italian"
 !insertmacro MUI_LANGUAGEEX "lang" "PortugueseBR"
@@ -113,6 +113,15 @@ Page custom MaintenancePage MaintenanceLeave
 !insertmacro MUI_LANGUAGEEX "lang" "Cebuano"
 !insertmacro MUI_LANGUAGEEX "lang" "Czech"
 !insertmacro MUI_LANGUAGEEX "lang" "Polish"
+!insertmacro MUI_LANGUAGEEX "lang" "Finnish"
+!insertmacro MUI_LANGUAGEEX "lang" "Estonian"
+!insertmacro MUI_LANGUAGEEX "lang" "Serbian"
+!insertmacro MUI_LANGUAGEEX "lang" "Croatian"
+!insertmacro MUI_LANGUAGEEX "lang" "Montenegrin"
+!insertmacro MUI_LANGUAGEEX "lang" "Bosnian"
+!insertmacro MUI_LANGUAGEEX "lang" "Bulgarian"
+!insertmacro MUI_LANGUAGEEX "lang" "Russian"
+!insertmacro MUI_LANGUAGEEX "lang" "Greek"
 !insertmacro MUI_RESERVEFILE_LANGDLL
 !include "strings.nsh"
 

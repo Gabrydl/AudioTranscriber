@@ -19,6 +19,7 @@ LOSLEGEN
   2. Klicke auf Start. Jeder Satz erscheint mit Sprecher, Uhrzeit, Übersetzung und dem Gehörten.
   3. Die Welle zeigt die Lautstärke. "Auto" folgt dem Hintergrundrauschen jeder Person; ziehe die
      gestrichelte Linie, um sie selbst einzustellen.
+  Der Kopfhörer-Knopf neben Start wechselt die zu erkennenden Sprachen mit einem Klick.
 
 DAS FENSTER
   Linke Leiste: Live, Personen, Wörter, Overlay, Overlay sperren, Leeren, Sprachflagge, Einstellungen.

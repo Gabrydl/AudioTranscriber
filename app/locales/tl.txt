@@ -361,3 +361,15 @@
 361|sobrang daming request bawat minuto
 362|tinanggihan ang API key o model – tingnan ang Mga Setting
 363|error ng Google {c}
+364|Ito lang
+365|I-click para mabilis na lumipat (gumagana kahit tumatakbo, mula sa susunod na pangungusap).
+366|Higit pa sa Mga Setting…
+367|Finnish
+368|Estonian
+369|Serbian
+370|Croatian
+371|Montenegrin
+372|Ruso
+373|Griyego
+374|Bosnian
+375|Bulgarian

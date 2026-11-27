@@ -1,0 +1,375 @@
+1|napsauta Discordissa ”Valtuuta”…
+2|yhdistetty · et ole äänipuhelussa
+3|yhdistetty · kanavalla {place}: {n}
+4|puhelu
+5|odotetaan Discordia…
+6|yhdistetään uudelleen…
+7|käynnistetään Ollama…
+8|ladataan '{name}'…
+9|'{name}' valmis CPU:lla ({t})
+10|ladataan {m}…
+11|{m} valmis ({where})
+12|viivettä ({t}) – vaihdetaan {a} → {b}…
+13|käännös ei käytettävissä – Ollamaa ei voitu käynnistää
+14|Ollama ei ole käynnissä – vain litterointi (käännös pois päältä)
+15|Ladataan käännösmalli {m} (vain kerran)…
+16|äänien tunnistus ei käytettävissä
+17|lataus epäonnistui
+18|verkossa (Gemini) – näytönohjaimen kääntäjä pois päältä
+19|Ladataan '{name}' (vain kerran)…
+20|'{name}' valmis (jo ladattu)
+21|'{name}' valmis GPU:lla ({t})
+22|GPU epäonnistui – siirrytään CPU:lle
+23|{m} ei mahdu kokonaan näytönohjaimelle – jaetaan CPU:n kanssa…
+24|litterointivirhe
+25|vaihdetaan malliin {m}…
+26|kääntäjä pysähtyi – käynnistetään Ollama uudelleen…
+27|Mallia {m} ei voitu ladata
+28|mallia {m} ei voitu ottaa käyttöön
+29|{gb} Gt näytönohjaimella
+30|Ladataan {m}
+31|Valmiina ilmaisinalueella
+32|äänien tunnistus valmis (äänimalleja: {n})
+33|Henkilö {n}
+34|lataus epäonnistui, yritetään uudelleen ({a}/{b})…
+35|ladataan {p} (vain kerran)
+36|äänimalli
+37|äänimalli {k} ei käytettävissä – käytetään muita
+38|Valitun sovelluksen äänenvoimakkuus reaaliajassa.\nVedä valkoista viivaa ylös tai alas: viivan yläpuolella oleva ääni lasketaan puheeksi.
+39|PUHE
+40|Kuka tämän sanoi – napsauta nimetäksesi uudelleen tai korjataksesi
+41|ARVATTU ASIAYHTEYDESTÄ
+42|käännetään…
+43|Lukitse
+44|Lukitse: napsautukset menevät peliin (Ctrl+Alt+L)
+45|GPU: nopein, mallien on mahduttava näytönohjaimelle (jos yksi ei mahdu, se jaetaan automaattisesti).\nYhdistelmä: kääntäjä käyttää näytönohjainta niin paljon kuin mahtuu ja CPU:ta lopuille.\nVain CPU: toimii ilman näytönohjainta, paljon hitaampi.
+46|Puheentunnistin (ohittaa kohinan ja napsahdukset)
+47|Puheentunnistin päättää, missä lause alkaa ja loppuu, ei pelkkä äänenvoimakkuus.\nKohinaiset mikit eivät enää pidä lausetta auki, napsahduksista ei tule vääriä rivejä.\nKoskee seuraavasta Käynnistä-painalluksesta alkaen.
+48|Nimet, pelitermit, slangi – yksi riville tai pilkuilla erotettuina\nesim. Gabry, War Thunder, Bismarck, GG
+49|League of Legends -termit
+50|Mestarit, loitsut, esineet, riimut ja slangi (Riotin nimet kaikilla kielillä).\nTunnistetaan paremmin ja jätetään käännöksissä pelin englanninkieliseksi sanaksi:\nFlash pysyy Flashina, Hexflash pysyy Hexflashina, "destello" muuttuu Flashiksi.
+51|Kohinanpoisto (hurina, sihinä, huonot mikit)
+52|Kohinanpoisto näytönohjaimella
+53|Puhdistaa erittäin kohinaiset äänet näytönohjaimella; käyttää CPU:ta, kun näytönohjain ei pysty.
+54|Näytä epävarmat sanat harmaana
+55|Ohita kielen tarkistus, kun henkilön kieli tunnetaan
+56|Nopeampi: kun henkilön kieli on varma, erillinen kielivaihe ohitetaan.
+57|Käännä + korjaa väärin kuullut sanat
+58|Näytönohjain – paikallinen, toimii ilman verkkoa
+59|Verkossa – Gemini, kun internet on käytössä
+60|Käännösmalli toimii omalla koneellasi (Ollama). Mitään ei lähetetä koneelta.
+61|Kääntäjänä toimii Googlen Gemini API: nopeampi ja älykkäämpi kuin mikään 8 Gt:n näytönohjaimelle mahtuva.\nMolemmat valittuina: ensin verkossa, näytönohjain ottaa hoitaakseen, kun verkkopalvelu ei vastaa\n(ei internetiä, päivän ilmaisraja täynnä, liian hidas).
+62|Kevyempi = vähemmän näyttömuistia ja nopeampi · raskaampi = paremmat käännökset.
+63|Vaihtuu heti, myös käytön aikana. Puuttuvat mallit ladataan automaattisesti.
+64|Gemini API -avain (ilmainen)
+65|Ilmainen avain
+66|Älä käännä rivejä, jotka ovat jo käännöskielellä
+67|Lyhyet fraasit heti (gg, ok, odota…) ilman kääntäjää
+68|Tunnista, kuka puhuu
+69|Muista äänet (tallennetaan vain tälle koneelle)
+70|Opettele jokaisen henkilön kieli
+71|Muutaman rivin jälkeen se tietää, mitä kieltä kukin yleensä puhuu, joten lyhyitä tai\nepäselviä lauseita ei enää kuulla väärällä kielellä.\nSelvä vaihto toiseen kieleen tunnistetaan silti.
+72|Ctrl+napsautus: valitse useita · Vaihto+napsautus: valitse alue · Ctrl+A: kaikki\nDelete-näppäin tai "Unohda valitut" poistaa valitut henkilöt
+73|Unohda valitut
+74|Unohda kaikki äänet
+75|Näytä kaikki uudelleen
+76|Vasemmalle: kaksi henkilöä yhdistetään useammin · Oikealle: yksi henkilö jaetaan useammin
+77|Nimet ja puhuja Discordista
+78|Käyttää Discordin omaa paikallista yhteyttä (Discord-sovellus tällä koneella) – mikään botti ei liity\npalvelimillesi. Jokainen ääni yhdistetään henkilön Discord-tiliin, joten nimet ovat\noikein ensimmäisestä lauseesta lähtien ja säilyvät istuntojen välillä.
+79|Client ID (osoitteesta discord.com/developers)
+80|Client Secret
+81|Yhdistä
+82|Näin otat sen käyttöön
+83|Kirjaudu ulos
+84|Pois päältä
+85|Aloita kuuntelu, kun Discord-puhelu alkaa
+86|Lopeta, kun puhelu päättyy (vapauttaa GPU:n)
+87|Alkuperäinen teksti syötteessä (pois = vain käännös)
+88|Näytä alkuperäinen teksti peittokuvassa
+89|Kellonaika jokaisen rivin alussa
+90|Kun peittokuva on lukittu (napsautukset menevät läpi), se häviää näin monen hiljaisen sekunnin jälkeen. 0 = ei koskaan.
+91|Yleiset pikanäppäimet (toimivat peleissä)
+92|Ctrl+Alt+S käynnistä/pysäytä · Ctrl+Alt+P tauko · Ctrl+Alt+C kopioi viimeisin käännös\nCtrl+Alt+O peittokuva päälle/pois · Ctrl+Alt+L lukitse/avaa peittokuva (napsautukset menevät läpi)
+93|Käynnistä Windowsin mukana (ilmaisinalueelle)
+94|Yhdistä uudelleen, kun kuulokkeet / laite vaihtuu
+95|Vaihda kevyempään malliin, kun viivettä on
+96|Vie .txt
+97|Tyhjennä syöte
+98|Discord-nimet – käyttöönotto (kerran, noin 2 minuuttia)
+99|<b>1.</b> Avaa selaimessa <b>discord.com/developers/applications</b> ja kirjaudu sisään.<br><b>2.</b> <b>New Application</b> → anna nimeksi <i>AudioTranscriber</i> → Create.<br><b>3.</b> Vasemmasta valikosta <b>OAuth2</b>: kopioi <b>Client ID</b>. Napsauta <b>Reset Secret</b> ja kopioi <b>Client Secret</b>.<br><b>4.</b> Yhä OAuth2:ssa → <b>Redirects</b> → <b>Add Redirect</b>: <code>http://localhost</code> → <b>Save Changes</b>.<br><b>5.</b> Liitä molemmat koodit tähän, valitse <i>Nimet ja puhuja Discordista</i> ja napsauta <b>Yhdistä</b>.<br><b>6.</b> Discord näyttää ikkunan: napsauta <b>Valtuuta</b>.<br><br>Valmis – se yhdistää uudelleen itse joka kerta. Koodit ja kirjautuminen pysyvät vain tällä koneella (settings.json ja discord_token.json).
+100|Molemmat: ensin verkossa, näytönohjain kun verkkopalvelu ei vastaa.
+101|Vain verkossa: jos se ei vastaa, rivit jäävät kääntämättä.
+102|Gemini – ilmainen avain (1 minuutti)
+103|<b>1.</b> Avaa <b>aistudio.google.com/apikey</b> ja kirjaudu Google-tilillä.<br><b>2.</b> Napsauta <b>Create API key</b> ja kopioi avain.<br><b>3.</b> Liitä se tähän. Se pysyy tällä koneella (settings.json).<br><br><b>Gemma 3 27B</b>:llä on suurin päivittäinen ilmaiskiintiö (noin 14 400 lausetta). Gemini Flash-Lite / Flash ovat älykkäämpiä, mutta niiden ilmaiskiintiö on pieni.<br>Ilmaisversiossa Google voi käyttää lähetettyä sisältöä tuotteidensa parantamiseen; laskutuksen ollessa päällä ei voi.
+104|yhdistää enemmän
+105|Livenä – keskustelu
+106|Henkilöt – nimet, äänet, Discord
+107|Tunnettavat sanat – nimet, pelitermit, slangi
+108|Peittokuva pelin päällä – Ctrl+Alt+O
+109|Lukitse peittokuva (napsautukset menevät peliin) – Ctrl+Alt+L
+110|Tyhjennä koko keskustelu (myös peittokuva)
+111|Asetukset
+112|Live-istunto
+113|Auto
+114|Automaattinen kynnys: seuraa jokaisen henkilön taustakohinaa\n(auttaa sihisevien / kohinaisten mikkien kanssa). Vedä viivaa säätääksesi sen itse.
+115|Keskeytä / jatka kuuntelua – Ctrl+Alt+P\n(mallit pysyvät ladattuina, mitään ei litteroida)
+116|KUUNTELE
+117|Päivitä sovellusluettelo
+118|Valitse sovellus yltä (Discord valitaan automaattisesti) ja napsauta Käynnistä.\nRivit ilmestyvät tähän ihmisten puhuessa – mitä sanottiin ja käännös.
+119|SUORITUSKYKY
+120|HENKILÖT
+121|Nimet ilmestyvät tähän ihmisten puhuessa.
+122|Näytä peittokuva pelissä
+123|Siirrä peittokuvaa
+124|Avaa peittokuvan lukituksen, jotta voit vetää sitä; se lukittuu itsestään, kun päästät irti
+125|Näytä ikkuna
+126|Peittokuva päälle/pois
+127|Lopeta
+128|pysäytetty – muisti vapautettu
+129|Viivettä oli, joten vaihdettiin kevyempään puhemalliin.
+130|Oikeasti tämä on…
+131|Joku uusi…
+132|Puhuu aina…
+133|Nimeä henkilö uudelleen
+134|Nimi:
+135|Uusi henkilö
+136|Nimi (valinnainen):
+137|Viimeisin käännös kopioitu
+138|Käynnistä uudelleen nyt
+139|Myöhemmin
+140|yhdistetään…
+141|käännös ei käytettävissä – onko Ollama käynnissä?
+142|Vedä siirtääksesi · kulmasta koon muuttamiseksi
+143|Päivitykset tarkistetaan, kun sovellus avataan.
+144|Liitä ensin avain.
+145|jakaa enemmän
+146|tasapainoinen
+147|Peittokuva piiloutuu hiljaisuudessa: ei koskaan
+148|Käynnistä
+149|vapaana
+150|Mikään sovellus ei toista ääntä – liity Discord-puheluun ja sitten ⟳
+151|Valitse ensin vähintään yksi sovellus (esim. Discord).
+152|Kuunnellaan
+153|asetukset otettu käyttöön – käytetään seuraavasta Käynnistä-painalluksesta
+154|Käytä taas Discord-nimeä
+155|Tunnista automaattisesti
+156|Näytä tämä henkilö uudelleen
+157|Ketään ei ohiteta
+158|tauolla – jatka painamalla Ctrl+Alt+P
+159|kuunnellaan
+160|Tauolla
+161|Kuunnellaan taas
+162|Napsauta valitaksesi toisen kielen (toimii käytön aikana, seuraavasta lauseesta alkaen).
+163|Unohdetaanko kaikki tallennetut äänet?
+164|Ei vielä mitään vietävää.
+165|Tallennettu kohteeseen
+166|Sovellus käynnistyy uudelleen kielen vaihtamiseksi.
+167|AudioTranscriberin + Ollaman muisti
+168|liitä ensin Client ID ja Client Secret (katso ”Näin otat sen käyttöön”)
+169|kirjauduttu ulos – valtuuta uudelleen napsauttamalla Yhdistä
+170|Napsauta nimetäksesi uudelleen tai korjataksesi
+171|verkossa
+172|odotettiin {a} · ensimmäiset sanat {b} · valmis {c}
+173|Tunnistuksen varmuus {p} %
+174|Harmaat sanat: tunnistin ei ollut niistä varma
+175|Lisäasetukset
+176|Käytä
+177|Lataa valitut mallit (myös käytön aikana).
+178|Suoritetaan
+179|Näytettävä nimi
+180|Käytetty tänään: {used} / noin {lim} ilmaista
+181|Käytetty tänään: {used}
+182|nollautuu klo 09:00
+183|Lauseen päättävä tauko: {ms} ms
+184|Äänten erottelu: {side} ({v})
+185|Peittokuvan taustan peittävyys: {v} %
+186|Peittokuvan tekstin koko: {v} px
+187|Peittokuvan tekstin peittävyys: {v} %
+188|…kun lause kestää yli {v} s
+189|Rivejä peittokuvassa: {v}
+190|Sovelluksen kieli
+191|Viive
+192|Sovelluksen RAM
+193|Rivit
+194|Kääntäjä
+195|Toistaa ääntä nyt
+196|Ei toista ääntä nyt
+197|Ladataan…
+198|Pysäytä
+199|Tunnetut äänet: {n}
+200|Nimeä ”{name}” uudelleen…
+201|Unohda henkilön {name} ääni…
+202|kieli tunnistetaan automaattisesti
+203|äänilaite vaihtui
+204|kaappaus pysähtyi
+205|yhdistetty uudelleen – kuunnellaan
+206|sovellus katosi – odotetaan sen palaamista
+207|Discord-puhelu – kuunnellaan
+208|Kaikki muut säilyvät.
+209|Henkilön {name} ääni unohdettu
+210|käännetään kielelle {lang}
+211|Peittokuva lukittu: napsautukset menevät peliin – avaa napsauttamalla tai Ctrl+Alt+L
+212|Viimeisin lause: {a} tunnistusta + {b} käännöksen alkuun
+213|epävarma
+214|{name} – napsauta nimetäksesi uudelleen tai korjataksesi
+215|näytönohjain
+216|Kuultu: ”{text}”
+217|Puhemalli
+218|Suurempi on tarkempi, pienempi on nopeampi.
+219|Tunnistettavat kielet
+220|Vain valittuja kuunnellaan.
+221|Lauseet
+222|Milloin lause alkaa ja loppuu.
+223|Tunnettavat sanat
+224|Tunnistin ja kääntäjä käyttävät näitä, jotta sanat tulevat oikein.
+225|Missä se toimii
+226|Molemmat valittuina: ensin verkossa, näytönohjain varalla.
+227|Näytönohjaimen malli
+228|Toimii tällä koneella Ollaman avulla.
+229|Verkossa – Gemini
+230|Googlen kääntäjä, käytössä kun internet on saatavilla.
+231|Äänet
+232|Napsauta nimeä millä tahansa rivillä nimetäksesi sen uudelleen tai korjataksesi henkilön – jokainen korjaus parantaa tarkkuutta.
+233|Tunnetut henkilöt
+234|Ctrl tai Vaihto + napsautus valitsee useita.
+235|Ohitetut henkilöt
+236|Napsauta nimeä millä tahansa rivillä ohittaaksesi henkilön tai asettaaksesi kielen, jota hän aina puhuu.
+237|Yhteys
+238|Käyttää Discord-sovellusta tällä koneella – mikään botti ei liity palvelimillesi.
+239|Nimet
+240|Mikä Discord-nimi näkyy kullakin rivillä. Itse kirjoittamasi nimi säilyy.
+241|Puhelut
+242|Käynnistä ja pysäytä yhdessä Discord-puheluidesi kanssa.
+243|Live-syöte
+244|Tämän ikkunan rivit.
+245|Peittokuvan teksti
+246|Mitä peittokuva pelin päällä näyttää.
+247|Peittokuvan ulkoasu
+248|Pysyy pelien päällä ikkuna- tai reunattomassa tilassa (ei yksinomaisessa koko näytön tilassa).
+249|Pikanäppäimet
+250|Myös vasemman palkin lippupainikkeesta. Sovellus käynnistyy uudelleen vaihtoa varten.
+251|Windows
+252|Luotettavuus
+253|Pitää sen käynnissä itsestään.
+254|Litterointi
+255|Mitään ei tallenneta, ellet vie sitä.
+256|ei vielä ääntä
+257|ääninäytteitä: {n}
+258|Peittokuva piiloutuu hiljaisuudessa: {v} s jälkeen (lukittuna)
+259|aliprosessit
+260|Käynnistys ei onnistunut:
+261|Kaappaus ei onnistunut:
+262|Kyllä, tämä on {name}
+263|Ohita: {name}
+264|Yhdistä ”{name}” henkilöön…
+265|Ohitetut henkilöt: {n}
+266|{model} otetaan käyttöön Käynnistä-painalluksella
+267|etsitään sovellusta uudelleen
+268|Puhelu päättyi – pysäytetty
+269|Unohdetaanko nämä äänet?
+270|Kanavalla {place}: {n}
+271|Kuuntelu pysähtyy hetkeksi.
+272|Järjestelmä
+273|Versio {v}
+274|Piilota peittokuva
+275|aina {lang}
+276|Käännetään kielelle {lang}.
+277|ei käynnissä
+278|Unohdetaanko henkilön {name} ääni?\nMuut henkilöt säilyvät. Jos {name} puhuu uudelleen, hän saa uuden nimen.
+279|puhelussa
+280|Discord yhdistetty – vanhat äänet siirretty tiedostoon speakers_before_discord.json: {n}
+281|Lisää vaihtoehtoja: {n}
+282|Windows esti sovelluskohtaisen kaappauksen sovellukselle {app} – kaapataan KAIKKI järjestelmän ääni
+283|Henkilöt
+284|Äänen vastaavuus {p} %
+285|Odotettiin {q} · tunnistus {w} · äänet +{v}
+286|sanottu klo {t}
+287|Päivitystä ei voitu ladata – yritetään uudelleen, kun sovellus avataan seuraavan kerran
+288|Ladataan päivitystä {v}…
+289|Päivitetään versioon {v} – takaisin muutamassa sekunnissa
+290|Päivitys {v} valmis – käynnistetään uudelleen…
+291|Päivitys {v} valmis – asennetaan, kun napsautat Pysäytä
+292|portugali
+293|espanja
+294|saksa
+295|tagalog
+296|ranska
+297|englanti
+298|tšekki
+299|puola
+300|italia
+301|bisaya (cebuano)
+302|paras tarkkuus
+303|paras tarkkuus · ~3 Gt VRAM (1,7 Gt gemma3:12b:n rinnalla) · hitaampi
+304|nopea ja erittäin hyvä
+305|nopea ja erittäin hyvä · ~1,6 Gt VRAM
+306|hyvä
+307|hyvä · ~1,5 Gt
+308|kevyt
+309|kevyt · ~0,8 Gt
+310|pienin
+311|pienin · ~0,3 Gt
+312|GPU – kaikki näytönohjaimella (nopein)
+313|Yhdistelmä – näytönohjain + CPU (näytönohjainta suuremmille malleille)
+314|Vain CPU – ilman näytönohjainta (hidas)
+315|Kevyt – qwen2.5:3b
+316|~2,5 Gt näyttömuistia
+317|Kevyt – qwen2.5:3b · ~2,5 Gt näyttömuistia · nopein
+318|Keskitaso – gemma3:4b
+319|~4 Gt näyttömuistia
+320|Keskitaso – gemma3:4b · ~4 Gt näyttömuistia · nopea, hyvä
+321|Raskas – gemma3:12b
+322|~8 Gt näyttömuistia
+323|Raskas – gemma3:12b · ~8 Gt näyttömuistia · paras, 10–20 s 8 Gt:n näytönohjaimilla
+324|Gemma 3 27B
+325|Gemma 3 27B – ilmainen, noin 14 400 lausetta päivässä
+326|Gemini Flash-Lite
+327|Gemini Flash-Lite – nopeampi/älykkäämpi, pieni päivittäinen ilmaisraja
+328|Gemini Flash
+329|Gemini Flash – älykkäin, hyvin pieni päivittäinen ilmaisraja
+330|Tunnistus
+331|Miten puhe kuullaan ja muutetaan tekstiksi
+332|Käännös
+333|Missä ja miten rivit käännetään
+334|Henkilöt
+335|Kuka puhuu: äänet, nimet, ohitetut henkilöt
+336|Discord
+337|Nimet ja puhelut suoraan Discord-sovelluksesta
+338|Peittokuva ja näyttö
+339|Live-syöte ja peittokuva pelin päällä
+340|Sovellus
+341|Kieli, Windows, luotettavuus ja päivitykset
+342|Näyttönimi
+343|Lempinimi palvelimella
+344|@käyttäjänimi
+345|Client Secret puuttuu – liitä se kohtaan Asetukset > Discord
+346|lisää http://localhost kohtaan OAuth2 > Redirects
+347|tarkista Client Secret
+348|Discord-kirjautuminen epäonnistui
+349|Discord hylkäsi Client ID:n ({why}) – tarkista se asetuksista
+350|pääsyä ei sallittu Discordissa
+351|Mallia {m} ei voitu ladata – pysytään turbossa (tarkista yhteys)
+352|käännös ei käytettävissä – verkkokääntäjä ei vastannut
+353|{m} ladattu – ota se käyttöön painamalla Pysäytä ja Käynnistä
+354|{m} ladattu – valitse se kohdasta Asetukset > Käännös
+355|ladataan {m} taustalla (käytössä seuraavasta Käynnistä-painalluksesta)
+356|Mallia {m} ei voitu ladata – yritetään uudelleen seuraavalla käynnistyksellä
+357|{m} valmis · ladataan {x} taustalla
+358|ei vastausta (internet?)
+359|käytetään näytönohjainta
+360|päivän ilmaisraja täynnä (nollautuu klo 09:00)
+361|liian monta pyyntöä minuutissa
+362|API-avain tai malli hylättiin – tarkista asetukset
+363|Googlen virhe {c}
+364|Vain tämä
+365|Napsauta vaihtaaksesi nopeasti (toimii käytön aikana, seuraavasta lauseesta alkaen).
+366|Lisää asetuksissa…
+367|suomi
+368|viro
+369|serbia
+370|kroatia
+371|montenegro
+372|venäjä
+373|kreikka
+374|bosnia
+375|bulgaria

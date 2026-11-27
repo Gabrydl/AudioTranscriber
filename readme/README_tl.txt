@@ -20,6 +20,7 @@ PAGSISIMULA
      salin at ang narinig.
   3. Ipinapakita ng alon ang lakas ng tunog. Sinusundan ng "Auto" ang ingay sa background ng bawat tao;
      i-drag ang putol-putol na linya para ikaw ang mag-ayos.
+  Ang headphones button sa tabi ng Simulan ay mabilis na nagpapalit ng mga wikang kikilalanin.
 
 ANG WINDOW
   Kaliwang bar: Live, Mga tao, Mga salita, Overlay, I-lock ang overlay, Linisin, flag ng wika, Mga Setting.

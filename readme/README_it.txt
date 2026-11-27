@@ -18,6 +18,7 @@ AVVIO
   2. Premi Avvia. Ogni frase compare con chi l'ha detta, l'ora, la traduzione e cosa è stato sentito.
   3. L'onda mostra il volume. "Auto" segue il rumore di fondo di ogni persona; trascina la linea
      tratteggiata per regolarlo a mano.
+  Il pulsante con le cuffie accanto ad Avvia cambia al volo le lingue da riconoscere.
 
 LA FINESTRA
   Barra a sinistra: Dal vivo, Persone, Parole da conoscere, Overlay, Blocca overlay, Svuota, bandiera

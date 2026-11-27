@@ -361,3 +361,15 @@
 361|too many requests per minute
 362|API key or model refused – check Settings
 363|Google error {c}
+364|Only this one
+365|Click to switch quickly (works while running, from the next sentence).
+366|More in Settings…
+367|Finnish
+368|Estonian
+369|Serbian
+370|Croatian
+371|Montenegrin
+372|Russian
+373|Greek
+374|Bosnian
+375|Bulgarian

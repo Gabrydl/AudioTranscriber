@@ -18,6 +18,7 @@ EMPEZAR
   2. Pulsa Iniciar. Cada frase aparece con quién la dijo, la hora, la traducción y lo que se oyó.
   3. La onda muestra el volumen. "Auto" sigue el ruido de fondo de cada persona; arrastra la línea
      discontinua para ajustarlo a mano.
+  El botón de los auriculares junto a Iniciar cambia rápido los idiomas que reconocer.
 
 LA VENTANA
   Barra izquierda: En directo, Personas, Palabras que conocer, Overlay, Bloquear overlay, Vaciar,

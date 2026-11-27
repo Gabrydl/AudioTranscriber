@@ -1,0 +1,375 @@
+1|klikni „Autorizuj” u Discordu…
+2|povezano · nisi u glasovnom pozivu
+3|povezano · u {place}: {n}
+4|pozivu
+5|čekam Discord…
+6|ponovo povezivanje…
+7|pokrećem Ollamu…
+8|učitavam '{name}'…
+9|'{name}' spreman na CPU-u ({t})
+10|učitavam {m}…
+11|{m} spreman ({where})
+12|kasni ({t}) – prebacujem s {a} na {b}…
+13|prevod nije dostupan – Ollama se nije mogla pokrenuti
+14|Ollama ne radi – samo prepis (prevod isključen)
+15|Preuzimam model za prevod {m} (samo jednom)…
+16|prepoznavanje glasova nije dostupno
+17|učitavanje nije uspjelo
+18|online (Gemini) – prevodilac na grafičkoj kartici isključen
+19|Preuzimam '{name}' (samo jednom)…
+20|'{name}' spreman (već učitan)
+21|'{name}' spreman na GPU-u ({t})
+22|GPU nije uspio – prelazim na CPU
+23|{m} ne stane cijeli na karticu – dijelim ga s CPU-om…
+24|greška prepisa
+25|prebacujem na {m}…
+26|prevodilac je stao – ponovo pokrećem Ollamu…
+27|{m} se nije moglo preuzeti
+28|{m} se nije moglo učitati
+29|{gb} GB na kartici
+30|Preuzimam {m}
+31|Spreman u području obavještenja
+32|prepoznavanje glasova spremno (glasovni modeli: {n})
+33|Osoba {n}
+34|preuzimanje nije uspjelo, pokušavam ponovo ({a}/{b})…
+35|preuzimam {p} (samo jednom)
+36|glasovni model
+37|glasovni model {k} nije dostupan – koristim ostale
+38|Jačina zvuka uživo odabrane aplikacije.\nPovuci bijelu liniju gore ili dolje: zvuk iznad nje računa se kao govor.
+39|GOVOR
+40|Ko je ovo rekao – klikni za preimenovanje ili ispravak
+41|POGOĐENO IZ KONTEKSTA
+42|prevodim…
+43|Zaključaj
+44|Zaključaj: klikovi prolaze do igre (Ctrl+Alt+L)
+45|GPU: najbrže, modeli moraju stati na grafičku karticu (ako jedan ne stane, sam se podijeli).\nMiješano: prevodilac koristi grafičku karticu koliko stane, a CPU za ostatak.\nSamo CPU: radi bez grafičke kartice, puno sporije.
+46|Detektor glasa (zanemaruje šum i klikove)
+47|Detektor govora odlučuje gdje rečenica počinje i završava, ne samo jačina zvuka.\nMikrofoni sa šumom više ne drže rečenicu otvorenom, klikovi ne postaju lažni redovi.\nVrijedi od sljedećeg Pokreni.
+48|Imena, pojmovi iz igara, sleng – jedan po redu ili odvojeni zarezima\nnpr. Gabry, War Thunder, Bismarck, GG
+49|Pojmovi iz League of Legends
+50|Šampioni, čarolije, predmeti, rune i sleng (Riotovi nazivi na svim jezicima).\nBolje se prepoznaju i u prevodima ostaju engleska riječ iz igre:\nFlash ostaje Flash, Hexflash ostaje Hexflash, "destello" postaje Flash.
+51|Uklanjanje šuma (brujanje, šištanje, loši mikrofoni)
+52|Čišćenje šuma na grafičkoj kartici
+53|Čisti vrlo bučne glasove na grafičkoj kartici; koristi CPU kad kartica ne može.
+54|Nesigurne riječi prikaži sivo
+55|Preskoči provjeru jezika za osobe poznatog jezika
+56|Brže: kad je jezik osobe siguran, zasebni prolaz za jezik se preskače.
+57|Prevedi + ispravi krivo čute riječi
+58|Grafička kartica – lokalno, radi i bez interneta
+59|Online – Gemini, kad ima interneta
+60|Model za prevod radi na tvom računaru (Ollama). Ništa ne napušta računar.
+61|Umjesto toga prevodi Googleov Gemini API: brži i pametniji od onoga što stane na karticu od 8 GB.\nOboje označeno: prvo online, grafička kartica preuzima kad online ne odgovori\n(nema interneta, dnevno besplatno ograničenje potrošeno, presporo).
+62|Lakši = manje grafičke memorije i brže · teži = bolji prevodi.
+63|Mijenja se odmah, i dok radi. Modeli koji nedostaju preuzmu se sami.
+64|Gemini API ključ (besplatan)
+65|Besplatan ključ
+66|Ne prevodi redove koji su već na jeziku prevoda
+67|Kratke fraze odmah (gg, ok, čekaj…) bez prevodioca
+68|Prepoznaj ko govori
+69|Pamti glasove (sačuvano samo na ovom računaru)
+70|Nauči jezik svake osobe
+71|Nakon nekoliko redova zna kojim jezikom svaka osoba obično govori, pa se kratke ili\nnejasne rečenice više ne čuju na krivom jeziku.\nJasan prelaz na drugi jezik i dalje se prepoznaje.
+72|Ctrl+klik: odaberi više · Shift+klik: odaberi raspon · Ctrl+A: sve\nTipka Delete ili "Zaboravi odabrane" uklanja odabrane osobe
+73|Zaboravi odabrane
+74|Zaboravi sve glasove
+75|Ponovo prikaži sve
+76|Lijevo: dvije osobe češće se spoje · Desno: jedna osoba češće se razdvoji
+77|Imena i ko govori iz Discorda
+78|Koristi Discordovu lokalnu vezu (aplikacija Discord na ovom računaru) – nijedan bot ne ulazi\nna tvoje servere. Svaki glas povezan je s Discord računom osobe, pa su imena\ntačna od prve rečenice i ostaju između sesija.
+79|Client ID (s discord.com/developers)
+80|Client Secret
+81|Poveži
+82|Kako to podesiti
+83|Odjava
+84|Isključeno
+85|Počni slušati kad počne poziv na Discordu
+86|Zaustavi kad poziv završi (oslobađa GPU)
+87|Izvorni tekst u feedu (isključeno = samo prevod)
+88|Prikaži izvorni tekst u overlayu
+89|Vrijeme ispred svakog reda
+90|Kad je overlay zaključan (klikovi prolaze), nestaje nakon toliko sekundi tišine. 0 = nikad.
+91|Globalni prečaci (rade i u igrama)
+92|Ctrl+Alt+S pokreni/zaustavi · Ctrl+Alt+P pauza · Ctrl+Alt+C kopiraj zadnji prevod\nCtrl+Alt+O overlay uklj./isklj. · Ctrl+Alt+L zaključaj/otključaj overlay (klikovi prolaze)
+93|Pokreni s Windowsom (u području obavještenja)
+94|Ponovo se poveži kad se promijene slušalice / uređaj
+95|Prijeđi na lakši model kad kasni
+96|Izvezi .txt
+97|Očisti feed
+98|Imena iz Discorda – podešavanje (jednom, oko 2 minute)
+99|<b>1.</b> Otvori <b>discord.com/developers/applications</b> u pretraživaču i prijavi se.<br><b>2.</b> <b>New Application</b> → nazovi je <i>AudioTranscriber</i> → Create.<br><b>3.</b> Lijevi meni <b>OAuth2</b>: kopiraj <b>Client ID</b>. Klikni <b>Reset Secret</b> i kopiraj <b>Client Secret</b>.<br><b>4.</b> I dalje u OAuth2 → <b>Redirects</b> → <b>Add Redirect</b>: <code>http://localhost</code> → <b>Save Changes</b>.<br><b>5.</b> Nalijepi oba koda ovdje, označi <i>Imena i ko govori iz Discorda</i> i klikni <b>Poveži</b>.<br><b>6.</b> Discord prikaže prozor: klikni <b>Autorizuj</b>.<br><br>Gotovo – svaki put se sam ponovo poveže. Kodovi i prijava ostaju samo na ovom računaru (settings.json i discord_token.json).
+100|Oboje: prvo online, grafička kartica kad online ne odgovori.
+101|Samo online: ako ne odgovori, redovi ostaju neprevedeni.
+102|Gemini – besplatan ključ (1 minuta)
+103|<b>1.</b> Otvori <b>aistudio.google.com/apikey</b> i prijavi se Google računom.<br><b>2.</b> Klikni <b>Create API key</b> i kopiraj ga.<br><b>3.</b> Nalijepi ga ovdje. Ostaje na ovom računaru (settings.json).<br><br><b>Gemma 3 27B</b> ima najveću besplatnu dnevnu kvotu (oko 14.400 rečenica). Gemini Flash-Lite / Flash su pametniji, ali im je besplatna kvota mala.<br>U besplatnom planu Google smije koristiti poslano za poboljšanje svojih proizvoda; s uključenim plaćanjem ne smije.
+104|više spaja
+105|Uživo – razgovor
+106|Osobe – imena, glasovi, Discord
+107|Riječi koje treba znati – imena, pojmovi iz igara, sleng
+108|Overlay iznad igre – Ctrl+Alt+O
+109|Zaključaj overlay (klikovi prolaze do igre) – Ctrl+Alt+L
+110|Očisti cijeli chat (i overlay)
+111|Podešavanja
+112|Sesija uživo
+113|Auto
+114|Automatski prag: prati pozadinski šum svake osobe\n(pomaže kod mikrofona koji šište / šume). Povuci liniju da ga podesiš ručno.
+115|Pauziraj / nastavi slušanje – Ctrl+Alt+P\n(modeli ostaju učitani, ništa se ne prepisuje)
+116|SLUŠAJ
+117|Osvježi spisak aplikacija
+118|Odaberi aplikaciju gore (Discord se odabere sam) i klikni Pokreni.\nRedovi se ovdje pojavljuju dok ljudi govore – šta je rečeno i prevod.
+119|PERFORMANSE
+120|OSOBE
+121|Imena se ovdje pojavljuju dok ljudi govore.
+122|Prikaži overlay u igri
+123|Pomakni overlay
+124|Otključava overlay da ga možeš povući; nakon što ga pustiš, sam se ponovo zaključa
+125|Prikaži prozor
+126|Overlay uklj./isklj.
+127|Izlaz
+128|zaustavljeno – memorija oslobođena
+129|Kasnilo je, pa je prebačeno na lakši model govora.
+130|Zapravo je to…
+131|Neko novi…
+132|Uvijek govori…
+133|Preimenuj osobu
+134|Ime:
+135|Nova osoba
+136|Ime (neobavezno):
+137|Zadnji prevod kopiran
+138|Ponovo pokreni sada
+139|Kasnije
+140|povezujem…
+141|prevod nije dostupan – radi li Ollama?
+142|Povuci za pomicanje · ugao za promjenu veličine
+143|Ažuriranja se provjeravaju pri otvaranju aplikacije.
+144|Prvo nalijepi ključ.
+145|više razdvaja
+146|uravnoteženo
+147|Overlay se skriva u tišini: nikad
+148|Pokreni
+149|neaktivno
+150|Nijedna aplikacija ne reprodukuje zvuk – uđi u poziv na Discordu, pa ⟳
+151|Prvo odaberi barem jednu aplikaciju (npr. Discord).
+152|Slušam
+153|podešavanja primijenjena – koriste se od sljedećeg Pokreni
+154|Ponovo koristi ime s Discorda
+155|Prepoznaj automatski
+156|Ponovo prikaži ovu osobu
+157|Niko nije ignorisan
+158|pauzirano – pritisni Ctrl+Alt+P za nastavak
+159|slušam
+160|Pauzirano
+161|Ponovo slušam
+162|Klikni za odabir drugog jezika (radi i dok radi, od sljedeće rečenice).
+163|Zaboraviti sve sačuvane glasove?
+164|Još nema ničega za izvoz.
+165|Sačuvano u
+166|Aplikacija se ponovo pokreće za promjenu jezika.
+167|Memorija AudioTranscribera + Ollame
+168|prvo nalijepi Client ID i Client Secret (vidi „Kako to podesiti”)
+169|odjavljeno – klikni Poveži za ponovnu autorizaciju
+170|Klikni za preimenovanje ili ispravak
+171|online
+172|čekanje {a} · prve riječi {b} · gotovo {c}
+173|Sigurnost prepoznavanja {p}%
+174|Sive riječi: prepoznavanje nije bilo sigurno u njih
+175|Napredno
+176|Primijeni
+177|Učitava odabrane modele (i dok radi).
+178|Pokreni na
+179|Prikazano ime
+180|Danas iskorišteno: {used} od oko {lim} besplatnih
+181|Danas iskorišteno: {used}
+182|resetuje se u 09:00
+183|Stanka koja završava rečenicu: {ms} ms
+184|Razdvajanje glasova: {side} ({v})
+185|Neprovidnost pozadine overlaya: {v}%
+186|Veličina teksta overlaya: {v}px
+187|Neprovidnost teksta overlaya: {v}%
+188|…kad rečenica traje duže od {v} s
+189|Redovi u overlayu: {v}
+190|Jezik aplikacije
+191|Kašnjenje
+192|RAM aplikacije
+193|Redovi
+194|Prevodilac
+195|Upravo reprodukuje zvuk
+196|Trenutno ne reprodukuje zvuk
+197|Učitavanje…
+198|Zaustavi
+199|Poznati glasovi: {n}
+200|Preimenuj „{name}”…
+201|Zaboravi glas osobe {name}…
+202|jezik se prepoznaje automatski
+203|audio uređaj promijenjen
+204|snimanje zaustavljeno
+205|ponovo povezano – slušam
+206|aplikacija je nestala – čekam da se vrati
+207|Poziv na Discordu – slušam
+208|Svi ostali ostaju.
+209|Glas osobe {name} zaboravljen
+210|prevod na: {lang}
+211|Overlay zaključan: klikovi prolaze do igre – klikni ili Ctrl+Alt+L za otključavanje
+212|Zadnja rečenica: {a} prepoznavanja + {b} do početka prevoda
+213|nesigurno
+214|{name} – klikni za preimenovanje ili ispravak
+215|grafička kartica
+216|Čuto: „{text}”
+217|Model govora
+218|Veći je tačniji, manji je brži.
+219|Jezici za prepoznavanje
+220|Sluša se samo označene.
+221|Rečenice
+222|Kad rečenica počinje i završava.
+223|Riječi koje treba znati
+224|Koriste ih prepoznavanje i prevodilac, da te riječi ispadnu tačno.
+225|Gdje radi
+226|Oboje označeno: prvo online, grafička kartica kao rezerva.
+227|Model na grafičkoj kartici
+228|Radi na ovom računaru s Ollamom.
+229|Online – Gemini
+230|Googleov prevodilac, koristi se kad ima interneta.
+231|Glasovi
+232|Klikni ime u bilo kojem redu da ga preimenuješ ili ispraviš osobu – svaki ispravak povećava tačnost.
+233|Poznate osobe
+234|Ctrl ili Shift + klik za odabir više njih.
+235|Ignorisane osobe
+236|Klikni ime u bilo kojem redu da ignorišeš tu osobu ili odrediš jezik kojim uvijek govori.
+237|Veza
+238|Koristi aplikaciju Discord na ovom računaru – nijedan bot ne ulazi na tvoje servere.
+239|Imena
+240|Koje se ime s Discorda prikazuje uz svaki red. Ime koje sam upišeš ostaje.
+241|Pozivi
+242|Pokreni i zaustavi zajedno s tvojim pozivima na Discordu.
+243|Feed uživo
+244|Redovi u ovom prozoru.
+245|Tekst overlaya
+246|Šta overlay iznad igre prikazuje.
+247|Izgled overlaya
+248|Ostaje iznad igara u prozorskom načinu ili bez okvira (ne u ekskluzivnom cijelom ekranu).
+249|Prečaci
+250|I preko dugmeta sa zastavom u lijevoj traci. Aplikacija se za promjenu ponovo pokreće.
+251|Windows
+252|Pouzdanost
+253|Sam održava rad.
+254|Prepis
+255|Ništa se ne čuva osim ako izvezeš.
+256|još nema glasa
+257|uzorci glasa: {n}
+258|Overlay se skriva u tišini: nakon {v} s (kad je zaključan)
+259|podprocesi
+260|Nije moguće pokrenuti:
+261|Nije moguće snimati:
+262|Da, to je {name}
+263|Ignoriši: {name}
+264|Spoji „{name}” s…
+265|Ignorisane osobe: {n}
+266|{model} će se koristiti pri Pokreni
+267|ponovo tražim aplikaciju
+268|Poziv završen – zaustavljeno
+269|Zaboraviti ove glasove?
+270|U {place}: {n}
+271|Slušanje se na trenutak zaustavlja.
+272|Sistem
+273|Verzija {v}
+274|Sakrij overlay
+275|uvijek {lang}
+276|Prevod na: {lang}.
+277|ne radi
+278|Zaboraviti glas osobe {name}?\nOstale osobe ostaju. Ako {name} ponovo progovori, dobit će novo ime.
+279|u pozivu
+280|Discord povezan – stari glasovi premješteni u speakers_before_discord.json: {n}
+281|Više opcija: {n}
+282|Windows je odbio snimanje po aplikaciji za {app} – snimam SAV zvuk sistema
+283|Osobe
+284|Podudaranje glasa {p}%
+285|Čekanje {q} · prepoznavanje {w} · glasovi +{v}
+286|rečeno u {t}
+287|Ažuriranje se nije moglo preuzeti – pokušava ponovo pri sljedećem otvaranju aplikacije
+288|Preuzimam ažuriranje {v}…
+289|Ažuriram na {v} – vraćam se za nekoliko sekundi
+290|Ažuriranje {v} spremno – ponovo pokrećem…
+291|Ažuriranje {v} spremno – instalira se kad klikneš Zaustavi
+292|Portugalski
+293|Španski
+294|Njemački
+295|Tagaloški
+296|Francuski
+297|Engleski
+298|Češki
+299|Poljski
+300|Italijanski
+301|Bisaya (cebuanski)
+302|najveća tačnost
+303|najveća tačnost · ~3 GB VRAM (1,7 GB uz gemma3:12b) · sporije
+304|brz i vrlo dobar
+305|brz i vrlo dobar · ~1,6 GB VRAM
+306|dobar
+307|dobar · ~1,5 GB
+308|lagan
+309|lagan · ~0,8 GB
+310|najmanji
+311|najmanji · ~0,3 GB
+312|GPU – sve na grafičkoj kartici (najbrže)
+313|Miješano – grafička kartica + CPU (za modele veće od kartice)
+314|Samo CPU – bez grafičke kartice (sporo)
+315|Lagani – qwen2.5:3b
+316|~2,5 GB grafičke memorije
+317|Lagani – qwen2.5:3b · ~2,5 GB grafičke memorije · najbrži
+318|Srednji – gemma3:4b
+319|~4 GB grafičke memorije
+320|Srednji – gemma3:4b · ~4 GB grafičke memorije · brz, dobar
+321|Teški – gemma3:12b
+322|~8 GB grafičke memorije
+323|Teški – gemma3:12b · ~8 GB grafičke memorije · najbolji, 10–20 s na karticama od 8 GB
+324|Gemma 3 27B
+325|Gemma 3 27B – besplatno, oko 14.400 rečenica dnevno
+326|Gemini Flash-Lite
+327|Gemini Flash-Lite – brži/pametniji, malo dnevno besplatno ograničenje
+328|Gemini Flash
+329|Gemini Flash – najpametniji, vrlo malo dnevno besplatno ograničenje
+330|Prepoznavanje
+331|Kako se govor čuje i pretvara u tekst
+332|Prevod
+333|Gdje i kako se redovi prevode
+334|Osobe
+335|Ko govori: glasovi, imena, ignorisane osobe
+336|Discord
+337|Imena i pozivi izravno iz aplikacije Discord
+338|Overlay i prikaz
+339|Feed uživo i overlay iznad igre
+340|Aplikacija
+341|Jezik, Windows, pouzdanost i ažuriranja
+342|Prikazano ime
+343|Nadimak na serveru
+344|@korisničko ime
+345|Nedostaje Client Secret - nalijepi ga u Podešavanja > Discord
+346|dodaj http://localhost u OAuth2 > Redirects
+347|provjeri Client Secret
+348|Prijava na Discord nije uspjela
+349|Discord je odbio Client ID ({why}) - provjeri ga u Podešavanjima
+350|pristup nije dopušten u Discordu
+351|{m} se nije moglo preuzeti – ostajem na turbo (provjeri vezu)
+352|prevod nije dostupan – online prevodilac nije odgovorio
+353|{m} preuzet – klikni Zaustavi pa Pokreni da ga koristiš
+354|{m} preuzet – odaberi ga u Podešavanja > Prevod
+355|preuzimam {m} u pozadini (koristi se od sljedećeg Pokreni)
+356|{m} se nije moglo preuzeti – pokušat će ponovo pri sljedećem Pokreni
+357|{m} spreman · u pozadini preuzimam {x}
+358|nema odgovora (internet?)
+359|koristim grafičku karticu
+360|dnevno besplatno ograničenje potrošeno (resetuje se u 09:00)
+361|previše zahtjeva u minuti
+362|API ključ ili model odbijen – provjeri Podešavanja
+363|Googleova greška {c}
+364|Samo ovaj
+365|Klikni za brzu promjenu (radi i dok radi, od sljedeće rečenice).
+366|Više u Podešavanjima…
+367|Finski
+368|Estonski
+369|Srpski
+370|Hrvatski
+371|Crnogorski
+372|Ruski
+373|Grčki
+374|Bosanski
+375|Bugarski

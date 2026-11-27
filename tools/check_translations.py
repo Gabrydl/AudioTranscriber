@@ -17,7 +17,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 NAMES = {"it": "Italian", "pt-BR": "Brazilian Portuguese", "pt-PT": "European Portuguese",
          "es-ES": "Spanish (Spain)", "es-419": "Latin American Spanish", "de": "German", "fr": "French",
-         "tl": "Tagalog (Filipino)", "ceb": "Cebuano (Bisaya)", "cs": "Czech", "pl": "Polish"}
+         "tl": "Tagalog (Filipino)", "ceb": "Cebuano (Bisaya)", "cs": "Czech", "pl": "Polish",
+         "fi": "Finnish", "et": "Estonian", "sr": "Serbian (Cyrillic, ekavian)", "hr": "Croatian",
+         "cnr": "Montenegrin (Latin script)", "bs": "Bosnian", "bg": "Bulgarian", "ru": "Russian", "el": "Greek"}
 MODEL = "gemini-flash-latest"          # smarter than Gemma for reviewing; a few calls only
 
 

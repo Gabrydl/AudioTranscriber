@@ -19,6 +19,7 @@ START
      co zostało usłyszane.
   3. Fala pokazuje głośność. "Auto" śledzi szum tła każdej osoby; przeciągnij przerywaną linię, aby
      ustawić go ręcznie.
+  Przycisk ze słuchawkami obok Start szybko przełącza języki do rozpoznawania.
 
 OKNO
   Lewy pasek: Na żywo, Osoby, Słowa, Nakładka, Zablokuj nakładkę, Wyczyść, flaga języka, Ustawienia.

@@ -18,6 +18,7 @@ START
   2. Press Start. Each sentence appears with who said it, the time, the translation and what was heard.
   3. The waveform shows the volume. "Auto" follows each person's background noise; drag the dashed
      line to set it by hand.
+  The headphones button next to Start switches the languages to recognise in one click.
 
 THE WINDOW
   Left bar: Live, People, Words to know, Overlay, Lock overlay, Clear, language flag, Settings.

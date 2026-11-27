@@ -19,7 +19,7 @@ from typing import Callable, Optional
 
 import numpy as np
 
-from .config import MODELS_DIR, LANGUAGES, ROOT, WHISPER_CODE, AUSTRONESIAN
+from .config import MODELS_DIR, LANGUAGES, ROOT, WHISPER_CODE, AUSTRONESIAN, SHTOKAVIAN
 
 
 def wcode(lang: str) -> str:
@@ -39,6 +39,13 @@ def lang_probs(probs, allowed) -> dict:
             pm["tl"] = pm["ceb"] = group / 2
         else:
             pm["ceb"] = group
+    on = [c for c in SHTOKAVIAN if c in allowed]
+    if on:                         # Whisper mixes these up: the ticked ones share what goes to the unticked ones
+        toks_on = {SHTOKAVIAN[c] for c in on}
+        spare = sum(raw.get(t, 0.0) for t in set(SHTOKAVIAN.values()) if t not in toks_on)
+        for c in on:                   # Bosnian and Montenegrin share Whisper's "bs" token
+            share = sum(1 for o in on if SHTOKAVIAN[o] == SHTOKAVIAN[c])
+            pm[c] = raw.get(SHTOKAVIAN[c], 0.0) / share + spare / len(on)
     tot = sum(pm.values()) or 1e-9
     return {l: p / tot for l, p in pm.items()}
 
@@ -717,7 +724,10 @@ Reply with JSON only, keys in EXACTLY this order:
 
 
 TARGET_NAMES = {"en": "English", "it": "Italian", "pt": "Portuguese", "es": "Spanish", "de": "German",
-                "fr": "French", "tl": "Tagalog", "cs": "Czech", "pl": "Polish", "ceb": "Bisaya (Cebuano)"}
+                "fr": "French", "tl": "Tagalog", "cs": "Czech", "pl": "Polish", "ceb": "Bisaya (Cebuano)",
+                "fi": "Finnish", "et": "Estonian", "sr": "Serbian", "hr": "Croatian",
+                "cnr": "Montenegrin (Latin script)", "bs": "Bosnian", "bg": "Bulgarian",
+                "ru": "Russian", "el": "Greek"}
 
 
 def target_of(settings) -> str:
@@ -1467,7 +1477,9 @@ class Engine:
             line.estimated = bool(data.get("estimated")) and line.corrected.lower() != line.text.lower()
             lang = str(data.get("lang") or line.lang).lower().strip()
             lang = lang if lang in LANGUAGES else lang[:2]
-            if lang in LANGUAGES and not ({lang, line.lang} <= {"tl", "ceb"}):
+            # close relatives (Tagalog/Bisaya, Serbian/Croatian/Montenegrin) keep the label Whisper and the person gave
+            if lang in LANGUAGES and not ({lang, line.lang} <= {"tl", "ceb"}) \
+                    and not ({lang, line.lang} <= {"sr", "hr", "cnr", "bs"}):
                 line.lang = lang
             line.tr = {tgt: str(data.get("tr") or line.tr.get(tgt, "")).strip()}
             line.state = "done"
