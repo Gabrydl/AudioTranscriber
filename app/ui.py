@@ -510,6 +510,22 @@ def lname(code: str) -> str:
     return tr(LANGUAGES.get(code, code))
 
 
+def abc_key(name: str) -> str:
+    """Alphabetical order that ignores accents (Č with C, É with E); Latin, then Greek, then Cyrillic."""
+    import unicodedata
+    return "".join(ch for ch in unicodedata.normalize("NFKD", name) if not unicodedata.combining(ch)).casefold()
+
+
+def langs_abc(codes=None) -> list:
+    """Recognition languages sorted by their name in the interface language."""
+    return sorted(LANGUAGES if codes is None else codes, key=lambda c: abc_key(lname(c)))
+
+
+def ui_langs_abc() -> list:
+    """Interface languages sorted by their own name (like the installer's list)."""
+    return sorted(i18n.LANGS, key=lambda x: abc_key(x[1]))
+
+
 LLM_SHORT = {"qwen2.5:3b": "Light", "gemma3:4b": "Medium", "gemma3:12b": "Heavy"}
 
 # translation languages shown in the → menu (native names)
@@ -1116,8 +1132,8 @@ class SettingsPanel(QFrame):
         lg.setHorizontalSpacing(12)
         lg.setVerticalSpacing(7)
         self.lang_boxes = {}
-        for i, (code, name) in enumerate(LANGUAGES.items()):
-            cb = QCheckBox(tr(name))
+        for i, code in enumerate(langs_abc()):
+            cb = QCheckBox(lname(code))
             cb.toggled.connect(self._langs)
             lg.addWidget(cb, i // 2, i % 2)
             self.lang_boxes[code] = cb
@@ -1316,7 +1332,7 @@ class SettingsPanel(QFrame):
         # ================= App
         g, adv = page("app")
         self.ui_lang = QComboBox()
-        for code, name, _f in i18n.LANGS:
+        for code, name, _f in ui_langs_abc():
             self.ui_lang.addItem(flag_icon(code), name, code)
         self.ui_lang.setIconSize(QSize(24, 16))
         self.ui_lang.activated.connect(lambda _i: self.langPicked.emit(self.ui_lang.currentData() or "en"))
@@ -1750,7 +1766,7 @@ class MainWindow(QWidget):
         self.flag_btn.setToolTip(tr("App language") + ": " + i18n.NAMES.get(i18n.current(), "English"))
         self.flag_btn.setPopupMode(QToolButton.InstantPopup)
         fm = QMenu(self.flag_btn)
-        for code, name, _f in i18n.LANGS:
+        for code, name, _f in ui_langs_abc():
             act = fm.addAction(flag_icon(code), name)
             act.setCheckable(True)
             act.setChecked(code == i18n.current())
@@ -2359,7 +2375,7 @@ class MainWindow(QWidget):
         auto = lk.addAction(tr("Detect automatically") + ("  ✓" if not cur else ""))
         auto.triggered.connect(lambda: self._lock_lang(sid, ""))
         lk.addSeparator()
-        for code in self.s.languages or list(LANGUAGES):
+        for code in langs_abc(self.s.languages or None):
             act = lk.addAction(lname(code) + ("  ✓" if cur == code else ""))
             act.triggered.connect(lambda _=False, c=code: self._lock_lang(sid, c))
         ig = m.addAction(tr("Show this person again") if reg.is_ignored(sid) else tr("Ignore {name}").format(name=reg.name(sid)))
@@ -2493,20 +2509,20 @@ class MainWindow(QWidget):
         m.clear()
         t = m.addAction(tr("Languages to recognise"))
         t.setEnabled(False)
-        for code, name in LANGUAGES.items():
+        for code in langs_abc():
             a = m.addAction(f"{lname(code)}  ·  {code.upper()}")
             a.setCheckable(True)
             a.setChecked(code in self.s.languages)
             a.toggled.connect(lambda on, c=code: self._toggle_lang(c, on))
         m.addSeparator()
         only = m.addMenu(tr("Only this one"))
-        for code in LANGUAGES:
+        for code in langs_abc():
             only.addAction(lname(code)).triggered.connect(lambda _=False, c=code: self._only_lang(c))
         m.addAction(tr("More in Settings…")).triggered.connect(
             lambda: self._open_settings_at(next(iter(self.settings_panel.lang_boxes.values()))))
 
     def _toggle_lang(self, code, on):
-        langs = [c for c in LANGUAGES if (c in self.s.languages and c != code) or (c == code and on)]
+        langs = [c for c in langs_abc() if (c in self.s.languages and c != code) or (c == code and on)]
         self._apply_langs(langs or [code])
 
     def _only_lang(self, code):
@@ -2530,7 +2546,7 @@ class MainWindow(QWidget):
                     a.blockSignals(False)
 
     def _update_langs_btn(self):
-        langs = [c for c in LANGUAGES if c in self.s.languages]
+        langs = [c for c in langs_abc() if c in self.s.languages]
         shown = " ".join(c.upper() for c in langs[:3]) + (f" +{len(langs) - 3}" if len(langs) > 3 else "")
         self.langs_btn.setText("🎧 " + shown)
         self.langs_btn.setToolTip(tr("Languages to recognise") + ": " + ", ".join(lname(c) for c in langs) + "\n" +
