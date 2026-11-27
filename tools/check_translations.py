@@ -20,7 +20,7 @@ NAMES = {"it": "Italian", "pt-BR": "Brazilian Portuguese", "pt-PT": "European Po
          "tl": "Tagalog (Filipino)", "ceb": "Cebuano (Bisaya)", "cs": "Czech", "pl": "Polish",
          "fi": "Finnish", "et": "Estonian", "sr": "Serbian (Cyrillic, ekavian)", "hr": "Croatian",
          "cnr": "Montenegrin (Latin script)", "bs": "Bosnian", "bg": "Bulgarian", "ru": "Russian", "el": "Greek"}
-MODEL = "gemini-flash-latest"          # smarter than Gemma for reviewing; a few calls only
+MODEL = "gemma-3-27b-it"               # the big free daily allowance (Flash kept answering "busy")
 
 
 def read(p: Path) -> dict[int, str]:
@@ -35,20 +35,33 @@ def read(p: Path) -> dict[int, str]:
 def ask(key: str, prompt: str) -> str:
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
     body = {"contents": [{"role": "user", "parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.2, "responseMimeType": "application/json"}}
+            "generationConfig": {"temperature": 0.2}}
     req = urllib.request.Request(url, json.dumps(body).encode(), method="POST",
                                  headers={"Content-Type": "application/json", "x-goog-api-key": key})
-    for attempt in range(4):
+    for attempt in range(6):
         try:
-            with urllib.request.urlopen(req, timeout=120) as r:
+            with urllib.request.urlopen(req, timeout=300) as r:
                 d = json.loads(r.read())
             return d["candidates"][0]["content"]["parts"][0]["text"]
         except urllib.error.HTTPError as e:
-            if e.code in (429, 500, 503) and attempt < 3:
-                time.sleep(20 * (attempt + 1))
+            if e.code in (429, 500, 503) and attempt < 5:
+                print(f"   Google busy ({e.code}), waiting…", flush=True)
+                time.sleep(30 * (attempt + 1))
+                continue
+            raise
+        except (TimeoutError, OSError):
+            if attempt < 5:
+                print("   no answer yet, retrying…", flush=True)
+                time.sleep(15)
                 continue
             raise
     return "[]"
+
+
+def parse(text: str):
+    """The JSON list in the answer (Gemma may wrap it in ```json fences or add a sentence)."""
+    a, b = text.find("["), text.rfind("]")
+    return json.loads(text[a:b + 1]) if a >= 0 and b > a else []
 
 
 PROMPT = """You are a native {lang} speaker and a professional software localizer.
@@ -57,7 +70,7 @@ used with Discord). Each item has the English original and the current {lang} tr
 Report ONLY items where the {lang} text is wrong, unnatural, ungrammatical, misleading, uses the wrong
 regional variant, or is inconsistent with the other items. Keep placeholders like {{name}} exactly,
 keep \\n line breaks and HTML tags exactly, keep product names (Discord, Gemini, Ollama, Whisper, GPU, CPU).
-Do not report matters of taste. Answer with a JSON list: [{{"n": number, "fix": "corrected text", "why": "short reason in English"}}].
+Do not report matters of taste. Answer ONLY with a JSON list, nothing else: [{{"n": number, "fix": "corrected text", "why": "short reason in English"}}].
 An empty list [] means everything is fine.
 
 ITEMS:
@@ -84,26 +97,34 @@ def main():
     en = read(ROOT / "app" / "locales" / "en.txt")
     en_readme = (ROOT / "readme" / "README_en.txt").read_text(encoding="utf-8")
     out_path = ROOT / "translation_check.json"
-    report = json.loads(out_path.read_text(encoding="utf-8")) if out_path.exists() else {}
+    report = {}
+    if out_path.exists():
+        try:
+            report = json.loads(out_path.read_text(encoding="utf-8"))
+        except Exception:
+            report = {}
+    # languages already checked without errors are skipped, so it can be stopped and started again
+    only = [c for c in only if not (c in report and not any("error" in x for x in report[c]["app"]))]
     for code in only:
         lang = NAMES[code]
         tr = read(ROOT / "app" / "locales" / f"{code}.txt")
         nums = sorted(tr)
         found = []
-        for i in range(0, len(nums), 90):                        # a few calls per language
+        print(f"{code}: checking…", flush=True)
+        for i in range(0, len(nums), 50):
             items = "\n".join(json.dumps({"n": n, "en": en.get(n, ""), "tr": tr[n]}, ensure_ascii=False)
-                              for n in nums[i:i + 90])
+                              for n in nums[i:i + 50])
             try:
-                found += json.loads(ask(key, PROMPT.format(lang=lang, items=items)))
+                found += parse(ask(key, PROMPT.format(lang=lang, items=items)))
             except Exception as e:
                 found.append({"error": str(e)[:200]})
-            time.sleep(4)
+            time.sleep(3)
         rd = ROOT / "readme" / f"README_{code}.txt"
         rfound = []
         if rd.exists():
             try:
-                rfound = json.loads(ask(key, README_PROMPT.format(lang=lang, en=en_readme,
-                                                                  tr=rd.read_text(encoding="utf-8"))))
+                rfound = parse(ask(key, README_PROMPT.format(lang=lang, en=en_readme,
+                                                             tr=rd.read_text(encoding="utf-8"))))
             except Exception as e:
                 rfound = [{"error": str(e)[:200]}]
         report[code] = {"app": found, "readme": rfound}
