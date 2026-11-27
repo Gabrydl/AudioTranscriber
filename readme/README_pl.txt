@@ -30,7 +30,7 @@ OKNO
   Szare słowa = rozpoznawanie nie było ich pewne.
 
 USTAWIENIA (kategorie po lewej, rzadkie opcje w "Zaawansowane")
-  Rozpoznawanie  model mowy i gdzie działa, języki do rozpoznawania, wykrywanie zdań, słowa do znania
+  Rozpoznawanie  model mowy i gdzie działa, języki do rozpoznawania, wykrywanie zdań, słowa do zapamiętania
                  (imiona, terminy z gier, slang), terminy z League of Legends.
   Tłumaczenie    karta graficzna (lokalnie, offline), Online - Gemini (darmowy klucz) albo oba:
                  najpierw online, karta graficzna jako zapas. Darmowy dzienny limit Gemini zeruje się

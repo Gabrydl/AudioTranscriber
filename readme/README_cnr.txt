@@ -16,8 +16,8 @@ INSTALACIJA
 POČETAK
   1. Uđi u poziv na Discordu. Discord se pojavi pod "SLUŠAJ" (zelena tačka = reprodukuje zvuk).
   2. Klikni Pokreni. Svaka rečenica pojavi se s tim ko ju je rekao, vremenom, prevodom i onim
-     šta je čuto.
-  3. Valni oblik pokazuje jačinu zvuka. "Auto" prati pozadinski šum svake osobe; povuci isprekidanu
+     šta se čulo.
+  3. Talasni oblik pokazuje jačinu zvuka. "Auto" prati pozadinski šum svake osobe; povuci isprekidanu
      liniju da ga podesiš ručno.
   Dugme sa slušalicama pokraj Pokreni brzo mijenja jezike koji se slušaju.
 
@@ -45,7 +45,7 @@ PODEŠAVANJA (kategorije lijevo, rijetke opcije pod "Napredno")
 
 OVERLAY
   Prozirni okvir iznad igre (prozorski način ili bez okvira; ne u ekskluzivnom cijelom ekranu).
-  "Pomakni overlay" ga otključava da ga možeš povući; nakon što ga pustiš, sam se ponovo zaključa.
+  "Pomjeri overlay" ga otključava da ga možeš povući; nakon što ga pustiš, sam se ponovo zaključa.
   Zaključan propušta klikove do igre i nestaje nakon nekoliko sekundi tišine.
 
 PREČACI (rade i u igrama)

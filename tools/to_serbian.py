@@ -19,7 +19,7 @@ EKAV = [("rijetke","retke"),("Bisaya","Бисаја"),("prepisuje","transkribuje
  ("ljevoj","levoj"),("Kad ","Kada "),("kad ","kada "),("Prepis","Transkripcija"),("prepisa","transkripcije"),("prepis","transkripcija"),
  ("preko gumba","preko dugmeta"),("ponovo pokreće","ponovo pokreće"),("Gotovo","Gotovo")]
 BRAND_INFL = [("Ollamu","Ollama"),("Ollame","Ollama"),("Ollamom","Ollama"),("Ollamu","Ollama")]
-BRANDS = ["AudioTranscriber","Discord","Google","Windows","Riot","Gemini","Gemma","Whisper","Ollama","Hexflash","Flash-Lite","Flash","League","Legends","War","Thunder","Bismarck","Gabry","Client","Secret","Shift","Delete","Ctrl","Alt","LATAM","New","Application","Create","Reset","Redirects","Redirect","Add","Save","Changes","Authorize","Turbo","turbo","feed","feedu","overlay","overlaya","overlayu","online"]
+BRANDS = ["AudioTranscriber","Discord","Google","Windows","Riot","Gemini","Gemma","Whisper","Ollama","Hexflash","Flash-Lite","Flash","League","Legends","War","Thunder","Bismarck","Gabry","Client","Secret","Shift","Delete","Ctrl","Alt","LATAM","New","Application","Create","Reset","Redirects","Redirect","Add","Save","Changes","Authorize","Turbo","turbo","feed","feedu","overlay","overlaya","overlayu","online","of","org"]
 LAT = {"lj":"љ","Lj":"Љ","LJ":"Љ","nj":"њ","Nj":"Њ","NJ":"Њ","dž":"џ","Dž":"Џ","DŽ":"Џ"}
 ONE = dict(zip("abvgdđežzijklmnoprstćufhcčšABVGDĐEŽZIJKLMNOPRSTĆUFHCČŠ","абвгдђежзијклмнопрстћуфхцчшАБВГДЂЕЖЗИЈКЛМНОПРСТЋУФХЦЧШ"))
 def cyr(w):
@@ -33,7 +33,7 @@ ACRO = {"GPU","CPU","VRAM","RAM","API","ID","GB","LATAM","OAuth2","GG","LOL","UR
 SPECIAL = {"feed":"фид","feedu":"фиду","feedom":"фидом","overlay":"оверлеј","overlaya":"оверлеја","overlayu":"оверлеју",
            "overlayom":"оверлејом","Overlay":"Оверлеј","online":"онлајн","Online":"Онлајн"}
 def word(w):
-    if re.fullmatch(r"\{[^}]*\}|<[^>]*>", w) or "://" in w or re.search(r"\.(json|txt|com|exe|log|py)", w):
+    if re.fullmatch(r"\{[^}]*\}|<[^>]*>", w) or "://" in w or re.search(r"\.(json|txt|com|org|exe|log|py)", w):
         return w
     if w in SPECIAL:
         return SPECIAL[w]
@@ -50,6 +50,11 @@ def word(w):
         return w
     return cyr(w)
 def convert(text):
+    # ijekavian/western forms the word list misses: "dobit će" -> "dobiće", "iskorišteno", "talijansko", "izravno"
+    text = re.sub(r"\b(\w+[aei])t će\b", r"\1će", text)
+    for a, b in (("iskorište", "iskorišće"), ("talijansk", "italijansk"), ("izravno", "direktno"),
+                 ("Lijev", "Lev"), ("lijev", "lev")):
+        text = text.replace(a, b)
     for a,b in EKAV: text = text.replace(a,b)
     for a,b in BRAND_INFL: text = text.replace(a,b)
     # keep literal \n escapes

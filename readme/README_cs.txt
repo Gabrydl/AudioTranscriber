@@ -17,12 +17,12 @@ ZAČÍNÁME
   2. Klikněte na Spustit. Každá věta se objeví s tím, kdo ji řekl, časem, překladem a tím, co zaznělo.
   3. Vlna ukazuje hlasitost. "Auto" sleduje šum v pozadí u každého člověka; tažením přerušované čáry
      ho nastavíte ručně.
-  Tlačítko se sluchátky vedle Spustit rychle přepne jazyky k rozpoznání.
+  Tlačítko se sluchátky vedle Spustit jedním kliknutím přepne jazyky k rozpoznání.
 
 OKNO
   Levý pruh: Živě, Lidé, Slova, Překryv, Zamknout překryv, Vymazat, vlajka jazyka, Nastavení.
   Vpravo: zpoždění, grafická karta, paměť, řádky a lidé v hovoru.
-  Kliknutím na jméno v libovolném řádku ho přejmenujete, opravíte osobu, sloučíte dva lidi, někoho
+  Kliknutím na jméno v libovolném řádku ho můžete přejmenovat, opravit osobu, sloučit dva lidi, někoho
   ignorujete nebo nastavíte jazyk, kterým vždy mluví. Každá oprava zvyšuje přesnost.
   "ODHADNUTO Z KONTEXTU" = slova nebyla jasná a překladač odhadl smysl.
   Šedá slova = rozpoznávač si jimi nebyl jistý.
@@ -50,7 +50,7 @@ KLÁVESOVÉ ZKRATKY (fungují i ve hrách)
   Ctrl+Alt+O překryv zap / vyp    Ctrl+Alt+L zamknout / odemknout překryv
 
 AKTUALIZACE
-  Při otevření aplikace hledá novější verzi, potichu ji stáhne a restartuje se do ní (pokud právě
+  Po otevření aplikace zkontroluje novější verzi, tiše ji stáhne a restartuje se do ní (pokud právě
   posloucháte, jakmile kliknete na Zastavit). Nastavení, hlasy, přihlášení do Discordu a modely zůstanou.
 
 OPRAVA A ODINSTALACE

@@ -19,7 +19,7 @@
 19|A transferir '{name}' (só uma vez)…
 20|'{name}' pronto (já carregado)
 21|'{name}' pronto na GPU ({t})
-22|a GPU falhou – a usar o CPU
+22|a GPU falhou – a utilizar o CPU
 23|{m} não cabe todo na placa – a dividi-lo com o CPU…
 24|erro de transcrição
 25|a mudar para {m}…
@@ -100,7 +100,7 @@
 100|As duas: primeiro online, a placa gráfica quando o online não responde.
 101|Só online: se não responder, as linhas ficam sem tradução.
 102|Gemini – chave gratuita (1 minuto)
-103|<b>1.</b> Abra <b>aistudio.google.com/apikey</b> e inicie sessão com uma conta Google.<br><b>2.</b> Clique em <b>Create API key</b> e copie a chave.<br><b>3.</b> Cole-a aqui. Fica neste PC (settings.json).<br><br>O <b>Gemma 4 31B</b> tem a maior quota gratuita diária. Gemini Flash-Lite / Flash são mais inteligentes, mas a quota gratuita deles é pequena.<br>No plano gratuito a Google pode usar o que é enviado para melhorar os seus produtos; com a faturação ativada, não.
+103|<b>1.</b> Abra <b>aistudio.google.com/apikey</b> e inicie sessão com uma conta Google.<br><b>2.</b> Clique em <b>Create API key</b> e copie-a.<br><b>3.</b> Cole-a aqui. Fica neste PC (settings.json).<br><br>O <b>Gemma 4 31B</b> tem a maior quota gratuita diária. Gemini Flash-Lite / Flash são mais inteligentes, mas a sua quota gratuita é pequena.<br>No plano gratuito a Google pode usar o que é enviado para melhorar os seus produtos; com a faturação ativada, não.
 104|junta mais
 105|Em direto – a conversa
 106|Pessoas – nomes, vozes, Discord
@@ -123,7 +123,7 @@
 123|Mover o overlay
 124|Desbloqueia o overlay para o poder arrastar; volta a bloquear-se sozinho quando o larga
 125|Mostrar a janela
-126|Overlay sim/não
+126|Mostrar/ocultar overlay
 127|Sair
 128|parado – memória libertada
 129|Estava com atraso, por isso mudou para um modelo de fala mais leve.
@@ -138,7 +138,7 @@
 138|Reiniciar agora
 139|Mais tarde
 140|a ligar…
-141|tradução indisponível – o Ollama está a correr?
+141|tradução indisponível – o Ollama está a funcionar?
 142|Arraste para mover · canto para redimensionar
 143|As atualizações são verificadas quando a aplicação abre.
 144|Cole primeiro uma chave.
@@ -147,10 +147,10 @@
 147|O overlay esconde-se no silêncio: nunca
 148|Iniciar
 149|inativo
-150|Nenhuma aplicação está a tocar áudio – entre numa chamada do Discord e depois ⟳
+150|Nenhuma aplicação está a reproduzir áudio – entre numa chamada do Discord e depois ⟳
 151|Escolha primeiro pelo menos uma aplicação (ex.: Discord).
 152|A ouvir
-153|definições aplicadas – usadas no próximo Iniciar
+153|definições aplicadas – usadas no próximo arranque
 154|Usar outra vez o nome do Discord
 155|Detetar automaticamente
 156|Mostrar esta pessoa outra vez
@@ -159,11 +159,11 @@
 159|a ouvir
 160|Em pausa
 161|A ouvir outra vez
-162|Clique para escolher outra língua (funciona enquanto está a correr, a partir da frase seguinte).
+162|Clique para escolher outro idioma (funciona em execução, a partir da frase seguinte).
 163|Esquecer todas as vozes guardadas?
 164|Ainda não há nada para exportar.
 165|Guardado em
-166|A aplicação reinicia para mudar a língua.
+166|A aplicação é reiniciada para mudar o idioma.
 167|Memória do AudioTranscriber + Ollama
 168|cole primeiro o Client ID e o Client Secret (veja “Como configurar”)
 169|sessão terminada – carregue em Ligar para autorizar outra vez
@@ -171,15 +171,15 @@
 171|online
 172|esperou {a} · primeiras palavras {b} · concluído {c}
 173|Confiança do reconhecimento {p}%
-174|Palavras a cinzento: o reconhecedor não tinha a certeza delas
+174|Palavras a cinzento: o reconhecedor tinha dúvidas sobre as mesmas
 175|Avançado
 176|Aplicar
-177|Carrega os modelos escolhidos (também enquanto está a correr).
-178|Correr em
+177|Carrega os modelos escolhidos (também em execução).
+178|Executar em
 179|Nome mostrado
 180|Usadas hoje: {used} de cerca de {lim} gratuitas
 181|Usadas hoje: {used}
-182|repõe às 09:00
+182|reinicia às 09:00
 183|Pausa que termina uma frase: {ms} ms
 184|Separação das vozes: {side} ({v})
 185|Opacidade do fundo do overlay: {v}%
@@ -192,8 +192,8 @@
 192|RAM da aplicação
 193|Linhas
 194|Tradutor
-195|A tocar áudio agora
-196|Não está a tocar áudio agora
+195|A reproduzir áudio agora
+196|De momento, não está a reproduzir áudio
 197|A carregar…
 198|Parar
 199|Vozes conhecidas: {n}
@@ -201,7 +201,7 @@
 201|Esquecer a voz de {name}…
 202|língua detetada automaticamente
 203|o dispositivo de áudio mudou
-204|captura parada
+204|captura interrompida
 205|novamente ligado – a ouvir
 206|a aplicação desapareceu – à espera que volte
 207|Chamada do Discord – a ouvir
@@ -221,7 +221,7 @@
 221|Frases
 222|Quando uma frase começa e acaba.
 223|Palavras a conhecer
-224|Usadas pelo reconhecedor e pelo tradutor, para que estas palavras saiam certas.
+224|Usadas pelo reconhecedor e pelo tradutor, para que estas palavras saiam corretas.
 225|Onde corre
 226|As duas marcadas: primeiro online, a placa gráfica como reserva.
 227|Modelo na placa gráfica
@@ -239,7 +239,7 @@
 239|Nomes
 240|Que nome do Discord aparece em cada linha. Um nome escrito por si é mantido.
 241|Chamadas
-242|Iniciar e parar junto com as suas chamadas do Discord.
+242|Iniciar e parar em conjunto com as suas chamadas do Discord.
 243|Feed em direto
 244|As linhas desta janela.
 245|Texto do overlay
@@ -250,7 +250,7 @@
 250|Também no botão da bandeira na barra à esquerda. A aplicação reinicia para mudar.
 251|Windows
 252|Fiabilidade
-253|Mantém tudo a correr sozinho.
+253|Mantém-se a funcionar sozinho.
 254|Transcrição
 255|Nada é guardado se não o exportar.
 256|ainda sem voz
@@ -264,7 +264,7 @@
 264|Juntar “{name}” a…
 265|Pessoas ignoradas: {n}
 266|{model} será usado ao Iniciar
-267|a procurar a aplicação outra vez
+267|à procura da aplicação novamente
 268|Chamada terminada – parado
 269|Esquecer estas vozes?
 270|Em {place}: {n}
@@ -274,8 +274,8 @@
 274|Esconder o overlay
 275|sempre {lang}
 276|A traduzir para {lang}.
-277|não está a correr
-278|Esquecer a voz de {name}?\nAs outras pessoas são mantidas. Se {name} voltar a falar, recebe um nome novo.
+277|não está a funcionar
+278|Esquecer a voz de {name}?\nAs outras pessoas são mantidas. Se {name} voltar a falar, receberá um nome novo.
 279|na chamada
 280|Discord ligado – vozes antigas movidas para speakers_before_discord.json: {n}
 281|Mais opções: {n}
@@ -328,7 +328,7 @@
 328|Gemini Flash
 329|Gemini Flash – o mais inteligente, limite gratuito diário muito pequeno
 330|Reconhecimento
-331|Como a fala é ouvida e passada a texto
+331|Como a fala é captada e convertida em texto
 332|Tradução
 333|Onde e como as linhas são traduzidas
 334|Pessoas
@@ -353,7 +353,7 @@
 353|{m} transferido – carregue em Parar e Iniciar para o usar
 354|{m} transferido – escolha-o em Definições > Tradução
 355|a transferir {m} em segundo plano (usado a partir do próximo Iniciar)
-356|não foi possível transferir {m} – tenta outra vez no próximo Iniciar
+356|não foi possível transferir {m} – tentará novamente no próximo arranque
 357|{m} pronto · a transferir {x} em segundo plano
 358|sem resposta (internet?)
 359|a usar a placa gráfica

@@ -19,9 +19,9 @@
 19|Preuzimam '{name}' (samo jednom)…
 20|'{name}' spreman (već učitan)
 21|'{name}' spreman na GPU-u ({t})
-22|GPU nije uspio – prelazim na CPU
+22|GPU nije uspio – prebacivanje na CPU
 23|{m} ne stane cijeli na karticu – dijelim ga s CPU-om…
-24|greška prijepisa
+24|pogreška u prijepisu
 25|prebacujem na {m}…
 26|prevoditelj je stao – ponovno pokrećem Ollamu…
 27|{m} se nije moglo preuzeti
@@ -35,7 +35,7 @@
 35|preuzimam {p} (samo jednom)
 36|glasovni model
 37|glasovni model {k} nije dostupan – koristim ostale
-38|Glasnoća uživo odabrane aplikacije.\nPovuci bijelu liniju gore ili dolje: zvuk iznad nje računa se kao govor.
+38|Glasnoća odabrane aplikacije uživo.\nPovuci bijelu liniju gore ili dolje: zvuk iznad nje računa se kao govor.
 39|GOVOR
 40|Tko je ovo rekao – klikni za preimenovanje ili ispravak
 41|POGOĐENO IZ KONTEKSTA
@@ -44,7 +44,7 @@
 44|Zaključaj: klikovi prolaze do igre (Ctrl+Alt+L)
 45|GPU: najbrže, modeli moraju stati na grafičku karticu (ako jedan ne stane, sam se podijeli).\nMiješano: prevoditelj koristi grafičku karticu koliko stane, a CPU za ostatak.\nSamo CPU: radi bez grafičke kartice, puno sporije.
 46|Detektor glasa (zanemaruje šum i klikove)
-47|Detektor govora odlučuje gdje rečenica počinje i završava, ne samo glasnoća.\nMikrofoni sa šumom više ne drže rečenicu otvorenom, klikovi ne postaju lažni redovi.\nVrijedi od sljedećeg Pokreni.
+47|Detektor govora odlučuje gdje rečenica počinje i završava, a ne samo glasnoća.\nMikrofoni s pozadinskim bukom više ne drže rečenicu otvorenom, klikovi ne postaju lažne linije.\nPrimjenjuje se od sljedećeg pokretanja.
 48|Imena, pojmovi iz igara, sleng – jedan po retku ili odvojeni zarezima\nnpr. Gabry, War Thunder, Bismarck, GG
 49|Pojmovi iz League of Legends
 50|Šampioni, čarolije, predmeti, rune i sleng (Riotovi nazivi na svim jezicima).\nBolje se prepoznaju i u prijevodima ostaju engleska riječ iz igre:\nFlash ostaje Flash, Hexflash ostaje Hexflash, "destello" postaje Flash.
@@ -150,7 +150,7 @@
 150|Nijedna aplikacija ne reproducira zvuk – uđi u poziv na Discordu, pa ⟳
 151|Prvo odaberi barem jednu aplikaciju (npr. Discord).
 152|Slušam
-153|postavke primijenjene – koriste se od sljedećeg Pokreni
+153|postavke primijenjene – primijenit će se pri sljedećem pokretanju
 154|Ponovno koristi ime s Discorda
 155|Prepoznaj automatski
 156|Ponovno prikaži ovu osobu
@@ -159,7 +159,7 @@
 159|slušam
 160|Pauzirano
 161|Ponovno slušam
-162|Klikni za odabir drugog jezika (radi i dok radi, od sljedeće rečenice).
+162|Klikni za odabir drugog jezika (radi i tijekom rada, od sljedeće rečenice).
 163|Zaboraviti sve spremljene glasove?
 164|Još nema ničega za izvoz.
 165|Spremljeno u
@@ -213,15 +213,15 @@
 213|nesigurno
 214|{name} – klikni za preimenovanje ili ispravak
 215|grafička kartica
-216|Čuto: „{text}”
+216|Čulo se: „{text}”
 217|Model govora
 218|Veći je točniji, manji je brži.
 219|Jezici za prepoznavanje
-220|Sluša se samo označene.
+220|Slušaju se samo označeni.
 221|Rečenice
 222|Kad rečenica počinje i završava.
 223|Riječi koje treba znati
-224|Koriste ih prepoznavanje i prevoditelj, da te riječi ispadnu točno.
+224|Koriste ih prepoznavanje i prevoditelj kako bi te riječi bile točne.
 225|Gdje radi
 226|Oboje označeno: prvo online, grafička kartica kao rezerva.
 227|Model na grafičkoj kartici
@@ -240,7 +240,7 @@
 240|Koje se ime s Discorda prikazuje uz svaki redak. Ime koje sam upišeš ostaje.
 241|Pozivi
 242|Pokreni i zaustavi zajedno s tvojim pozivima na Discordu.
-243|Feed uživo
+243|Prikaz uživo
 244|Retci u ovom prozoru.
 245|Tekst overlaya
 246|Što overlay iznad igre prikazuje.
@@ -260,10 +260,10 @@
 260|Nije moguće pokrenuti:
 261|Nije moguće snimati:
 262|Da, to je {name}
-263|Ignoriraj: {name}
+263|Ignoriraj {name}
 264|Spoji „{name}” s…
 265|Ignorirane osobe: {n}
-266|{model} će se koristiti pri Pokreni
+266|{model} će se koristiti pri pokretanju
 267|ponovno tražim aplikaciju
 268|Poziv završen – zaustavljeno
 269|Zaboraviti ove glasove?
@@ -279,7 +279,7 @@
 279|u pozivu
 280|Discord povezan – stari glasovi premješteni u speakers_before_discord.json: {n}
 281|Više opcija: {n}
-282|Windows je odbio snimanje po aplikaciji za {app} – snimam SAV zvuk sustava
+282|Windows je odbio snimanje po aplikaciji za {app} – snima se SAV zvuk sustava
 283|Osobe
 284|Podudaranje glasa {p}%
 285|Čekanje {q} · prepoznavanje {w} · glasovi +{v}
@@ -362,7 +362,7 @@
 362|API ključ ili model odbijen – provjeri Postavke
 363|Googleova greška {c}
 364|Samo ovaj
-365|Klikni za brzu promjenu (radi i dok radi, od sljedeće rečenice).
+365|Klikni za brzu promjenu (radi i tijekom rada, od sljedeće rečenice).
 366|Više u Postavkama…
 367|Finski
 368|Estonski

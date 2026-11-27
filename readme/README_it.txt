@@ -18,7 +18,7 @@ AVVIO
   2. Premi Avvia. Ogni frase compare con chi l'ha detta, l'ora, la traduzione e cosa è stato sentito.
   3. L'onda mostra il volume. "Auto" segue il rumore di fondo di ogni persona; trascina la linea
      tratteggiata per regolarlo a mano.
-  Il pulsante con le cuffie accanto ad Avvia cambia al volo le lingue da riconoscere.
+  Il pulsante con le cuffie accanto ad Avvia cambia le lingue da riconoscere con un clic.
 
 LA FINESTRA
   Barra a sinistra: Dal vivo, Persone, Parole da conoscere, Overlay, Blocca overlay, Svuota, bandiera
@@ -57,7 +57,7 @@ AGGIORNAMENTI
   stai ascoltando, appena premi Ferma). Impostazioni, voci, accesso Discord e modelli restano.
 
 RIPARAZIONE E DISINSTALLAZIONE
-  Ripara: Impostazioni > App > AudioTranscriber > Modifica, oppure riavvia l'installazione e scegli
+  Ripara: Impostazioni > App > AudioTranscriber > Modifica, oppure esegui di nuovo l'installazione e scegli
   Ripara. Scarica solo ciò che manca; impostazioni e voci restano.
   Disinstalla: Impostazioni > App > AudioTranscriber > Disinstalla. Chiede se eliminare anche i modelli
   e le impostazioni (circa 8 GB). Ollama è un programma a parte con il suo programma di disinstallazione.
@@ -69,5 +69,5 @@ PRIVACY
 FILE
   AudioTranscriber.exe  l'app                 Setup.exe     riparazione    Uninstall.exe  rimozione
   app\                  programma             models\       modelli vocali e delle voci
-  ollama_models\        modelli di traduzione transcripts\  solo quando premi Esporta
+  ollama_models\        modelli del traduttore transcripts\  solo quando premi Esporta
   settings.json         le tue impostazioni   speakers.json voci salvate   setup.log      log installazione

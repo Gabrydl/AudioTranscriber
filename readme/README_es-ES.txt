@@ -18,7 +18,7 @@ EMPEZAR
   2. Pulsa Iniciar. Cada frase aparece con quién la dijo, la hora, la traducción y lo que se oyó.
   3. La onda muestra el volumen. "Auto" sigue el ruido de fondo de cada persona; arrastra la línea
      discontinua para ajustarlo a mano.
-  El botón de los auriculares junto a Iniciar cambia rápido los idiomas que reconocer.
+  El botón de los auriculares junto a Iniciar cambia rápidamente los idiomas a reconocer.
 
 LA VENTANA
   Barra izquierda: En directo, Personas, Palabras que conocer, Overlay, Bloquear overlay, Vaciar,
@@ -29,7 +29,7 @@ LA VENTANA
   Palabras grises = el reconocedor no estaba seguro de ellas.
 
 AJUSTES (categorías a la izquierda, opciones poco usadas en "Avanzado")
-  Reconocimiento  modelo de voz y dónde funciona, idiomas que reconocer, detección de frases, palabras
+  Reconocimiento  modelo de voz y dónde funciona, idiomas a reconocer, detección de frases, palabras
                   que conocer (nombres, términos de juego, jerga), términos de League of Legends.
   Traducción      tarjeta gráfica (local, sin conexión), Online - Gemini (clave gratis), o las dos:
                   primero online, la tarjeta gráfica de reserva. El límite gratuito diario de Gemini se
@@ -39,7 +39,7 @@ AJUSTES (categorías a la izquierda, opciones poco usadas en "Avanzado")
   Discord         nombres y quién habla directamente desde la aplicación Discord de este PC (sin bot),
                   se configura una vez con "Cómo configurarlo" (unos 2 minutos); empieza y para con
                   tus llamadas.
-  Overlay y pantalla  texto original, texto del overlay, tamaño, opacidad, ocultar solo, atajos.
+  Overlay y pantalla  texto original, texto del overlay, tamaño, opacidad, ocultación automática, atajos.
   Aplicación      idioma de la aplicación, iniciar con Windows, fiabilidad, exportar, versión.
 
 OVERLAY
@@ -53,7 +53,7 @@ ATAJOS (funcionan dentro de los juegos)
 
 ACTUALIZACIONES
   Al abrirse, la aplicación busca una versión más nueva, la descarga en silencio y se reinicia con ella
-  (si estás escuchando, en cuanto pulses Parar). Ajustes, voces, sesión de Discord y modelos se mantienen.
+  (si estás escuchando, en cuanto pulses Detener). Ajustes, voces, sesión de Discord y modelos se mantienen.
 
 REPARAR Y DESINSTALAR
   Reparar: Configuración > Aplicaciones > AudioTranscriber > Modificar, o vuelve a ejecutar la

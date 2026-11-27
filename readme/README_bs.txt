@@ -16,8 +16,8 @@ INSTALACIJA
 POČETAK
   1. Uđi u poziv na Discordu. Discord se pojavi pod "SLUŠAJ" (zelena tačka = reprodukuje zvuk).
   2. Klikni Pokreni. Svaka rečenica pojavi se s tim ko ju je rekao, vremenom, prevodom i onim
-     šta je čuto.
-  3. Valni oblik pokazuje jačinu zvuka. "Auto" prati pozadinski šum svake osobe; povuci isprekidanu
+     šta se čulo.
+  3. Talasni oblik pokazuje jačinu zvuka. "Auto" prati pozadinski šum svake osobe; povuci isprekidanu
      liniju da ga postaviš ručno.
   Dugme sa slušalicama pokraj Pokreni brzo mijenja jezike koji se slušaju.
 
@@ -57,7 +57,7 @@ AŽURIRANJA
   upravo slušaš, čim klikneš Zaustavi). Postavke, glasovi, prijava na Discord i modeli ostaju.
 
 POPRAVAK I DEINSTALACIJA
-  Popravka: Postavke > Aplikacije > AudioTranscriber > Izmijeni ili ponovo pokreni instalaciju i
+  Popravak: Postavke > Aplikacije > AudioTranscriber > Izmijeni ili ponovo pokreni instalaciju i
   izaberi Popravi. Preuzima samo ono šta nedostaje; postavke i glasovi ostaju.
   Deinstalacija: Postavke > Aplikacije > AudioTranscriber > Deinstaliraj. Pita treba li izbrisati
   i modele i tvoje postavke (oko 8 GB). Ollama je poseban program s vlastitim programom za deinstalaciju.

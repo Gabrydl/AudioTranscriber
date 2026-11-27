@@ -60,7 +60,7 @@
 60|O modelo de tradução roda no seu PC (Ollama). Nada sai do PC.
 61|Quem traduz é a API Gemini do Google: mais rápida e inteligente do que cabe numa placa de 8 GB.\nAs duas marcadas: primeiro online, a placa de vídeo assume quando o online não responde\n(sem internet, limite grátis do dia atingido, lento demais).
 62|Mais leve = menos memória de vídeo e mais rápido · mais pesado = traduções melhores.
-63|Troca na hora, também enquanto roda. Modelos que faltam são baixados sozinhos.
+63|Troca na hora, inclusive durante a execução. Modelos ausentes são baixados automaticamente.
 64|Chave da API Gemini (grátis)
 65|Chave grátis
 66|Não traduzir linhas que já estão no idioma da tradução
@@ -89,7 +89,7 @@
 89|Horário na frente de cada linha
 90|Quando o overlay está travado (os cliques passam) ele some depois de tantos segundos de silêncio. 0 = nunca.
 91|Atalhos globais (funcionam dentro dos jogos)
-92|Ctrl+Alt+S iniciar/parar · Ctrl+Alt+P pausar · Ctrl+Alt+C copiar a última tradução\nCtrl+Alt+O overlay liga/desliga · Ctrl+Alt+L travar/destravar o overlay (cliques passam)
+92|Ctrl+Alt+S iniciar/parar · Ctrl+Alt+P pausar · Ctrl+Alt+C copiar última tradução\nCtrl+Alt+O ligar/desligar overlay · Ctrl+Alt+L travar/destravar overlay (cliques passam)
 93|Iniciar com o Windows (na bandeja)
 94|Reconectar quando o fone / dispositivo mudar
 95|Trocar para um modelo mais leve quando atrasar
@@ -100,7 +100,7 @@
 100|As duas: primeiro online, a placa de vídeo quando o online não responde.
 101|Só online: se não responder, as linhas ficam sem tradução.
 102|Gemini – chave grátis (1 minuto)
-103|<b>1.</b> Abra <b>aistudio.google.com/apikey</b> e entre com uma conta Google.<br><b>2.</b> Clique em <b>Create API key</b> e copie a chave.<br><b>3.</b> Cole aqui. Ela fica neste PC (settings.json).<br><br>O <b>Gemma 4 31B</b> tem a maior cota grátis por dia. Gemini Flash-Lite / Flash são mais inteligentes, mas a cota grátis deles é pequena.<br>No plano grátis o Google pode usar o que é enviado para melhorar os produtos dele; com o faturamento ativado, não.
+103|<b>1.</b> Abra <b>aistudio.google.com/apikey</b> e entre com uma conta Google.<br><b>2.</b> Clique em <b>Create API key</b> e copie a chave.<br><b>3.</b> Cole aqui. Ela fica neste PC (settings.json).<br><br>O <b>Gemma 4 31B</b> tem a maior cota diária gratuita. Gemini Flash-Lite / Flash são mais inteligentes, mas a cota gratuita deles é pequena.<br>No plano gratuito, o Google pode usar o que é enviado para melhorar os produtos dele; com o faturamento ativado, não.
 104|junta mais
 105|Ao vivo – a conversa
 106|Pessoas – nomes, vozes, Discord
@@ -111,11 +111,11 @@
 111|Configurações
 112|Sessão ao vivo
 113|Auto
-114|Limite automático: acompanha o ruído de fundo de cada pessoa\n(ajuda com microfones com chiado / ruído). Arraste a linha para ajustar na mão.
+114|Limite automático: acompanha o ruído de fundo de cada pessoa\n(ajuda com microfones com chiado/ruído). Arraste a linha para ajustar manualmente.
 115|Pausar / continuar a escuta – Ctrl+Alt+P\n(os modelos continuam carregados, nada é transcrito)
 116|OUVIR
 117|Atualizar a lista de apps
-118|Escolha um app acima (o Discord é escolhido sozinho) e clique em Iniciar.\nAs linhas aparecem aqui enquanto as pessoas falam – o que foi dito e a tradução.
+118|Escolha um app acima (o Discord é selecionado automaticamente) e clique em Iniciar.\nAs linhas aparecem aqui conforme as pessoas falam – o que foi dito e a tradução.
 119|DESEMPENHO
 120|PESSOAS
 121|Os nomes aparecem aqui enquanto as pessoas falam.
@@ -123,7 +123,7 @@
 123|Mover o overlay
 124|Destrava o overlay para você arrastar; ele trava de novo sozinho quando você solta
 125|Mostrar a janela
-126|Overlay liga/desliga
+126|Ativar/desativar overlay
 127|Sair
 128|parado – memória liberada
 129|Estava atrasando, então trocou para um modelo de fala mais leve.
@@ -150,15 +150,15 @@
 150|Nenhum app está tocando áudio – entre numa chamada do Discord e depois ⟳
 151|Escolha pelo menos um app (ex.: Discord) primeiro.
 152|Ouvindo
-153|configurações aplicadas – usadas no próximo Iniciar
-154|Usar o nome do Discord de novo
-155|Detectar sozinho
-156|Mostrar esta pessoa de novo
+153|configurações aplicadas – usadas no próximo início
+154|Usar o nome do Discord novamente
+155|Detectar automaticamente
+156|Mostrar esta pessoa novamente
 157|Ninguém ignorado
 158|pausado – aperte Ctrl+Alt+P para continuar
 159|ouvindo
 160|Pausado
-161|Ouvindo de novo
+161|Ouvindo novamente
 162|Clique para escolher outro idioma (funciona enquanto roda, a partir da próxima frase).
 163|Esquecer todas as vozes salvas?
 164|Nada para exportar ainda.
@@ -166,18 +166,18 @@
 166|O app reinicia para trocar o idioma.
 167|Memória do AudioTranscriber + Ollama
 168|cole o Client ID e o Client Secret primeiro (veja “Como configurar”)
-169|desconectado – clique em Conectar para autorizar de novo
+169|desconectado – clique em Conectar para autorizar novamente
 170|Clique para renomear ou corrigir
 171|online
 172|esperou {a} · primeiras palavras {b} · pronto {c}
 173|Confiança do reconhecimento {p}%
-174|Palavras cinzas: o reconhecedor não tinha certeza delas
+174|Palavras em cinza: o reconhecedor não tinha certeza delas
 175|Avançado
 176|Aplicar
 177|Carrega os modelos escolhidos (também enquanto roda).
 178|Rodar em
 179|Nome mostrado
-180|Usadas hoje: {used} de umas {lim} grátis
+180|Usadas hoje: {used} de cerca de {lim} gratuitas
 181|Usadas hoje: {used}
 182|zera às 09:00
 183|Pausa que encerra uma frase: {ms} ms
@@ -199,11 +199,11 @@
 199|Vozes conhecidas: {n}
 200|Renomear “{name}”…
 201|Esquecer a voz de {name}…
-202|idioma detectado sozinho
-203|dispositivo de áudio mudou
-204|captura parou
+202|idioma detectado automaticamente
+203|dispositivo de áudio alterado
+204|captura interrompida
 205|reconectado – ouvindo
-206|o app sumiu – esperando ele voltar
+206|o app foi fechado – aguardando ele voltar
 207|Chamada do Discord – ouvindo
 208|Todos os outros são mantidos.
 209|Voz de {name} esquecida
@@ -217,11 +217,11 @@
 217|Modelo de fala
 218|Maior é mais preciso, menor é mais rápido.
 219|Idiomas para reconhecer
-220|Só os marcados são ouvidos.
+220|Apenas os marcados são ouvidos.
 221|Frases
 222|Quando uma frase começa e termina.
 223|Palavras para conhecer
-224|Usadas pelo reconhecedor e pelo tradutor, para essas palavras saírem certas.
+224|Usadas pelo reconhecedor e pelo tradutor, para que essas palavras saiam certas.
 225|Onde roda
 226|As duas marcadas: primeiro online, a placa de vídeo como reserva.
 227|Modelo na placa de vídeo
@@ -255,26 +255,26 @@
 255|Nada é salvo se você não exportar.
 256|ainda sem voz
 257|amostras de voz: {n}
-258|O overlay some no silêncio: depois de {v} s (quando travado)
+258|O overlay desaparece no silêncio: após {v} s (quando travado)
 259|processos filhos
 260|Não foi possível iniciar:
 261|Não foi possível capturar:
 262|Sim, é {name}
 263|Ignorar {name}
-264|Juntar “{name}” com…
+264|Mesclar “{name}” com…
 265|Pessoas ignoradas: {n}
 266|{model} será usado ao Iniciar
-267|procurando o app de novo
-268|Chamada terminou – parado
+267|procurando o app novamente
+268|Chamada encerrada – parado
 269|Esquecer estas vozes?
 270|Em {place}: {n}
 271|A escuta para por um momento.
 272|Sistema
 273|Versão {v}
-274|Esconder o overlay
+274|Ocultar overlay
 275|sempre {lang}
 276|Traduzindo para {lang}.
-277|não está rodando
+277|não está em execução
 278|Esquecer a voz de {name}?\nAs outras pessoas são mantidas. Se {name} falar de novo, recebe um nome novo.
 279|na chamada
 280|Discord conectado – vozes antigas movidas para speakers_before_discord.json: {n}
@@ -282,9 +282,9 @@
 282|O Windows recusou a captura por app de {app} – capturando TODO o áudio do sistema
 283|Pessoas
 284|Semelhança da voz {p}%
-285|Esperou {q} · reconhecimento {w} · vozes +{v}
+285|Aguardado {q} · reconhecimento {w} · vozes +{v}
 286|dito às {t}
-287|Não foi possível baixar a atualização – tenta de novo na próxima vez que o app abrir
+287|Não foi possível baixar a atualização – vai tentar de novo na próxima vez que o app abrir
 288|Baixando a atualização {v}…
 289|Atualizando para {v} – volta em poucos segundos
 290|Atualização {v} pronta – reiniciando…
@@ -324,11 +324,11 @@
 324|Gemma 4 31B
 325|Gemma 4 31B – grátis
 326|Gemini Flash-Lite
-327|Gemini Flash-Lite – mais rápido/inteligente, limite grátis do dia pequeno
+327|Gemini Flash-Lite – mais rápido/inteligente, limite diário gratuito reduzido
 328|Gemini Flash
-329|Gemini Flash – o mais inteligente, limite grátis do dia bem pequeno
+329|Gemini Flash – o mais inteligente, limite diário gratuito muito baixo
 330|Reconhecimento
-331|Como a fala é ouvida e virada em texto
+331|Como a fala é capturada e convertida em texto
 332|Tradução
 333|Onde e como as linhas são traduzidas
 334|Pessoas
@@ -353,12 +353,12 @@
 353|{m} baixado – clique em Parar e Iniciar para usar
 354|{m} baixado – escolha em Configurações > Tradução
 355|baixando {m} em segundo plano (usado a partir do próximo Iniciar)
-356|não foi possível baixar {m} – tenta de novo no próximo Iniciar
+356|não foi possível baixar {m} – tentará novamente no próximo início
 357|{m} pronto · baixando {x} em segundo plano
 358|sem resposta (internet?)
 359|usando a placa de vídeo
 360|limite grátis do dia atingido (zera às 09:00)
-361|pedidos demais por minuto
+361|muitas solicitações por minuto
 362|chave da API ou modelo recusados – verifique as Configurações
 363|erro do Google {c}
 364|Só este

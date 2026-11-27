@@ -17,7 +17,7 @@
 17|načtení selhalo
 18|online (Gemini) – překladač na grafické kartě vypnut
 19|Stahuji '{name}' (jen jednou)…
-20|'{name}' připraven (už načtený)
+20|'{name}' připraven (již načten)
 21|'{name}' připraven na GPU ({t})
 22|GPU selhala – přecházím na CPU
 23|{m} se celý nevejde na kartu – dělím ho s CPU…
@@ -44,7 +44,7 @@
 44|Zamknout: kliknutí projdou do hry (Ctrl+Alt+L)
 45|GPU: nejrychlejší, modely se musí vejít na grafickou kartu (když se některý nevejde, rozdělí se sám).\nMix: překladač používá grafickou kartu, kam se vejde, a na zbytek CPU.\nJen CPU: funguje bez grafické karty, mnohem pomaleji.
 46|Detektor hlasu (ignoruje šum a cvakání)
-47|Detektor řeči rozhoduje, kde věta začíná a končí, nejen hlasitost.\nŠumivé mikrofony už nedrží větu otevřenou, cvakání nevytváří falešné řádky.\nPlatí od příštího Spustit.
+47|Detektor řeči rozhoduje, kde věta začíná a končí, a nespoléhá se jen na hlasitost.\nŠumivé mikrofony už nedrží větu otevřenou, cvakání nevytváří falešné řádky.\nProjeví se od příštího spuštění.
 48|Jména, herní výrazy, slang – jeden na řádek nebo oddělené čárkami\nnapř. Gabry, War Thunder, Bismarck, GG
 49|Výrazy z League of Legends
 50|Šampioni, kouzla, předměty, runy a slang (názvy od Riotu ve všech jazycích).\nLépe se rozpoznají a v překladech zůstanou jako anglické herní slovo:\nFlash zůstane Flash, Hexflash zůstane Hexflash, "destello" se změní na Flash.
@@ -100,11 +100,11 @@
 100|Obě: nejdřív online, grafická karta, když online neodpoví.
 101|Jen online: když neodpoví, řádky zůstanou nepřeložené.
 102|Gemini – klíč zdarma (1 minuta)
-103|<b>1.</b> Otevřete <b>aistudio.google.com/apikey</b> a přihlaste se účtem Google.<br><b>2.</b> Klikněte na <b>Create API key</b> a zkopírujte ho.<br><b>3.</b> Vložte ho sem. Zůstane na tomto PC (settings.json).<br><br><b>Gemma 4 31B</b> má největší denní příděl zdarma. Gemini Flash-Lite / Flash jsou chytřejší, ale jejich příděl zdarma je malý.<br>U bezplatného tarifu může Google odeslaný obsah použít ke zlepšení svých produktů; se zapnutou fakturací ne.
+103|<b>1.</b> Otevřete <b>aistudio.google.com/apikey</b> a přihlaste se účtem Google.<br><b>2.</b> Klikněte na <b>Create API key</b> a zkopírujte ho.<br><b>3.</b> Vložte ho sem. Zůstane na tomto PC (settings.json).<br><br><b>Gemma 4 31B</b> má největší bezplatný denní limit. Gemini Flash-Lite / Flash jsou chytřejší, ale jejich bezplatný limit je malý.<br>U bezplatného tarifu může Google odeslaný data použít ke zlepšení svých produktů; při zapnuté fakturaci ne.
 104|více slučovat
 105|Živě – rozhovor
 106|Lidé – jména, hlasy, Discord
-107|Slova, která má znát – jména, herní výrazy, slang
+107|Slova, která je třeba znát – jména, herní výrazy, slang
 108|Překryv nad hrou – Ctrl+Alt+O
 109|Zamknout překryv (kliknutí projdou do hry) – Ctrl+Alt+L
 110|Vymazat celý chat (i překryv)
@@ -150,7 +150,7 @@
 150|Žádná aplikace nepřehrává zvuk – připojte se k hovoru na Discordu, pak ⟳
 151|Nejdřív vyberte aspoň jednu aplikaci (např. Discord).
 152|Poslouchám
-153|nastavení použito – platí od příštího Spustit
+153|nastavení použito – platí od příštího spuštění
 154|Znovu použít jméno z Discordu
 155|Rozpoznat automaticky
 156|Znovu zobrazit tuto osobu
@@ -201,7 +201,7 @@
 201|Zapomenout hlas osoby {name}…
 202|jazyk se rozpozná automaticky
 203|zvukové zařízení se změnilo
-204|zachytávání se zastavilo
+204|záznam byl zastaven
 205|znovu připojeno – poslouchám
 206|aplikace zmizela – čekám, až se vrátí
 207|Hovor na Discordu – poslouchám
@@ -217,13 +217,13 @@
 217|Model řeči
 218|Větší je přesnější, menší je rychlejší.
 219|Jazyky k rozpoznání
-220|Poslouchá se jen na zaškrtnuté.
+220|Poslouchají se pouze zaškrtnuté.
 221|Věty
 222|Kdy věta začíná a končí.
 223|Slova, která má znát
 224|Používá je rozpoznávač i překladač, aby tato slova vyšla správně.
 225|Kde běží
-226|Obě zaškrtnuté: nejdřív online, grafická karta jako záloha.
+226|Obě zaškrtnuté: nejdříve online, grafická karta jako záloha.
 227|Model na grafické kartě
 228|Běží na tomto PC s Ollamou.
 229|Online – Gemini
@@ -233,7 +233,7 @@
 233|Známí lidé
 234|Ctrl nebo Shift + klik pro výběr více.
 235|Ignorovaní lidé
-236|Kliknutím na jméno v libovolném řádku tu osobu ignorujete nebo nastavíte jazyk, kterým vždy mluví.
+236|Kliknutím na jméno v libovolném řádku tuto osobu ignorujete nebo opravíte jazyk, kterým vždy mluví.
 237|Připojení
 238|Používá aplikaci Discord na tomto PC – na vaše servery se nepřipojí žádný bot.
 239|Jména
@@ -263,7 +263,7 @@
 263|Ignorovat: {name}
 264|Sloučit „{name}“ s…
 265|Ignorovaní lidé: {n}
-266|{model} se použije při Spustit
+266|{model} se použije při spuštění
 267|znovu hledám aplikaci
 268|Hovor skončil – zastaveno
 269|Zapomenout tyto hlasy?
@@ -328,7 +328,7 @@
 328|Gemini Flash
 329|Gemini Flash – nejchytřejší, velmi malý denní limit zdarma
 330|Rozpoznávání
-331|Jak se řeč slyší a mění na text
+331|Jak se řeč zachytí a převede na text
 332|Překlad
 333|Kde a jak se řádky překládají
 334|Lidé
@@ -348,13 +348,13 @@
 348|Přihlášení do Discordu selhalo
 349|Discord odmítl Client ID ({why}) - zkontrolujte ho v Nastavení
 350|přístup nebyl v Discordu povolen
-351|{m} se nepodařilo stáhnout – zůstávám u turbo (zkontrolujte připojení)
+351|{m} se nepodařilo stáhnout – zůstávám u režimu turbo (zkontrolujte připojení)
 352|překlad není k dispozici – online překladač neodpověděl
-353|{m} staženo – použijete ho přes Zastavit a Spustit
+353|{m} staženo – pro použití klikněte na Zastavit a Spustit
 354|{m} staženo – vyberte ho v Nastavení > Překlad
-355|stahuji {m} na pozadí (použije se od příštího Spustit)
-356|{m} se nepodařilo stáhnout – zkusí to znovu při příštím Spustit
-357|{m} připraven · na pozadí stahuji {x}
+355|{m} se stahuje na pozadí (použije se od příštího spuštění)
+356|{m} se nepodařilo stáhnout – pokusí se znovu při příštím spuštění
+357|{m} připraven · na pozadí se stahuje {x}
 358|žádná odpověď (internet?)
 359|používám grafickou kartu
 360|denní limit zdarma vyčerpán (nuluje se v 09:00)

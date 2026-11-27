@@ -19,7 +19,7 @@
 19|Pobieram '{name}' (tylko raz)…
 20|'{name}' gotowy (już wczytany)
 21|'{name}' gotowy na GPU ({t})
-22|GPU zawiodło – przechodzę na CPU
+22|błąd GPU – przechodzę na CPU
 23|{m} nie mieści się cały na karcie – dzielę go z CPU…
 24|błąd transkrypcji
 25|zmieniam na {m}…
@@ -44,21 +44,21 @@
 44|Zablokuj: kliknięcia przechodzą do gry (Ctrl+Alt+L)
 45|GPU: najszybciej, modele muszą zmieścić się na karcie graficznej (jeśli któryś się nie mieści, dzieli się sam).\nMieszany: tłumacz używa karty graficznej, ile się da, a CPU na resztę.\nTylko CPU: działa bez karty graficznej, dużo wolniej.
 46|Detektor głosu (ignoruje szumy i kliknięcia)
-47|Detektor mowy decyduje, gdzie zdanie się zaczyna i kończy, nie tylko głośność.\nSzumiące mikrofony nie trzymają już zdania otwartego, kliknięcia nie stają się fałszywymi liniami.\nDziała od następnego Start.
+47|Detektor mowy decyduje, gdzie zaczyna się i kończy zdanie, a nie tylko głośność.\nSzumiące mikrofony nie utrzymują już otwartego zdania, a kliknięcia nie zamieniają się w fałszywe linie.\nDziała od następnego uruchomienia.
 48|Imiona, terminy z gier, slang – jeden na linię albo oddzielone przecinkami\nnp. Gabry, War Thunder, Bismarck, GG
 49|Terminy z League of Legends
-50|Bohaterowie, czary, przedmioty, runy i slang (nazwy Riotu we wszystkich językach).\nLepiej rozpoznawane i zostawiane jako angielskie słowo z gry w tłumaczeniach:\nFlash zostaje Flash, Hexflash zostaje Hexflash, "destello" staje się Flash.
+50|Bohaterowie, czary, przedmioty, runy i slang (nazwy Riotu w każdym języku).\nLepiej rozpoznawane i zachowywane w tłumaczeniach jako angielskie słowa z gry:\nFlash zostaje jako Flash, Hexflash jako Hexflash, a „destello” zamienia się w Flash.
 51|Redukcja szumów (buczenie, syczenie, słabe mikrofony)
 52|Usuwanie szumów na karcie graficznej
 53|Czyści bardzo zaszumione głosy na karcie graficznej; gdy karta nie może, używa CPU.
 54|Niepewne słowa na szaro
 55|Pomiń sprawdzanie języka u osób o znanym języku
-56|Szybciej: gdy język osoby jest pewny, osobny przebieg dla języka jest pomijany.
+56|Szybciej: gdy język danej osoby jest pewny, osobny etap weryfikacji języka jest pomijany.
 57|Tłumacz + poprawiaj źle usłyszane słowa
 58|Karta graficzna – lokalnie, działa offline
 59|Online – Gemini, gdy jest internet
 60|Model tłumaczenia działa na twoim PC (Ollama). Nic nie opuszcza PC.
-61|Zamiast tego tłumaczy Gemini API od Google: szybsze i mądrzejsze niż to, co mieści się na karcie 8 GB.\nOba zaznaczone: najpierw online, karta graficzna przejmuje, gdy online nie odpowiada\n(brak internetu, dzienny darmowy limit wyczerpany, za wolno).
+61|Zamiast tego tłumaczy Gemini API od Google: działa szybciej i inteligentniej niż to, co mieści się na karcie 8 GB.\nOba zaznaczone: najpierw online, karta graficzna przejmuje zadanie, gdy tryb online jest niedostępny\n(brak internetu, wyczerpany dzienny darmowy limit, zbyt wolne działanie).
 62|Lżejszy = mniej pamięci graficznej i szybciej · cięższy = lepsze tłumaczenia.
 63|Zmienia od razu, także w trakcie działania. Brakujące modele pobierają się same.
 64|Klucz API Gemini (darmowy)
@@ -69,7 +69,7 @@
 69|Zapamiętuj głosy (zapisane tylko na tym PC)
 70|Ucz się języka każdej osoby
 71|Po kilku liniach wie, w jakim języku zwykle mówi każda osoba, więc krótkie lub\nniewyraźne zdania nie są już słyszane w złym języku.\nWyraźna zmiana na inny język nadal jest rozpoznawana.
-72|Ctrl+klik: wybierz kilka · Shift+klik: wybierz zakres · Ctrl+A: wszystkie\nKlawisz Delete albo "Zapomnij zaznaczone" usuwa wybrane osoby
+72|Ctrl+klik: wybierz kilka · Shift+klik: wybierz zakres · Ctrl+A: wszystkie\nKlawisz Delete lub "Zapomnij zaznaczone" usuwa wybrane osoby
 73|Zapomnij zaznaczone
 74|Zapomnij wszystkie głosy
 75|Pokaż znowu wszystkich
@@ -83,15 +83,15 @@
 83|Wyloguj
 84|Wyłączone
 85|Zacznij słuchać, gdy zaczyna się rozmowa na Discordzie
-86|Zatrzymaj, gdy rozmowa się kończy (zwalnia GPU)
+86|Zatrzymaj po zakończeniu rozmowy (zwalnia GPU)
 87|Tekst oryginalny w kanale (wyłączone = tylko tłumaczenie)
 88|Pokazuj tekst oryginalny w nakładce
 89|Godzina przed każdą linią
 90|Gdy nakładka jest zablokowana (kliknięcia przechodzą), znika po tylu sekundach ciszy. 0 = nigdy.
 91|Globalne skróty (działają w grach)
 92|Ctrl+Alt+S start/stop · Ctrl+Alt+P pauza · Ctrl+Alt+C kopiuj ostatnie tłumaczenie\nCtrl+Alt+O nakładka wł./wył. · Ctrl+Alt+L zablokuj/odblokuj nakładkę (kliknięcia przechodzą)
-93|Uruchamiaj z Windows (w zasobniku)
-94|Połącz ponownie po zmianie słuchawek / urządzenia
+93|Uruchamiaj z systemem Windows (w zasobniku)
+94|Połącz ponownie po zmianie słuchawek lub urządzenia
 95|Przejdź na lżejszy model, gdy jest opóźnienie
 96|Eksportuj .txt
 97|Wyczyść kanał
@@ -100,11 +100,11 @@
 100|Oba: najpierw online, karta graficzna, gdy online nie odpowiada.
 101|Tylko online: jeśli nie odpowie, linie zostają nieprzetłumaczone.
 102|Gemini – darmowy klucz (1 minuta)
-103|<b>1.</b> Otwórz <b>aistudio.google.com/apikey</b> i zaloguj się kontem Google.<br><b>2.</b> Kliknij <b>Create API key</b> i skopiuj go.<br><b>3.</b> Wklej go tutaj. Zostaje na tym PC (settings.json).<br><br><b>Gemma 4 31B</b> ma największy darmowy dzienny przydział. Gemini Flash-Lite / Flash są mądrzejsze, ale ich darmowy przydział jest mały.<br>W darmowym planie Google może używać wysłanych treści do ulepszania swoich produktów; z włączonymi płatnościami nie.
+103|<b>1.</b> Otwórz <b>aistudio.google.com/apikey</b> i zaloguj się na konto Google.<br><b>2.</b> Kliknij przycisk <b>Create API key</b> i go skopiuj.<br><b>3.</b> Wklej go tutaj. Pozostanie on na tym komputerze (settings.json).<br><br><b>Gemma 4 31B</b> oferuje największy darmowy dzienny limit. Gemini Flash-Lite / Flash są mądrzejsze, ale ich darmowy limit jest mały.<br>W darmowym planie Google może wykorzystywać przesłane treści do ulepszania swoich produktów; po włączeniu płatności już tego nie robi.
 104|częściej łączy
 105|Na żywo – rozmowa
 106|Osoby – imiona, głosy, Discord
-107|Słowa do znania – imiona, terminy z gier, slang
+107|Słowa do zapamiętania – imiona, terminy z gier, slang
 108|Nakładka nad grą – Ctrl+Alt+O
 109|Zablokuj nakładkę (kliknięcia przechodzą do gry) – Ctrl+Alt+L
 110|Wyczyść cały czat (także nakładkę)
@@ -112,10 +112,10 @@
 112|Sesja na żywo
 113|Auto
 114|Automatyczny próg: śledzi szum tła każdej osoby\n(pomaga przy syczących / szumiących mikrofonach). Przeciągnij linię, aby ustawić go ręcznie.
-115|Wstrzymaj / wznów słuchanie – Ctrl+Alt+P\n(modele zostają wczytane, nic nie jest transkrybowane)
+115|Wstrzymaj / wznów nasłuchiwanie – Ctrl+Alt+P\n(modele pozostają wczytane, nic nie jest transkrybowane)
 116|SŁUCHAJ
 117|Odśwież listę aplikacji
-118|Wybierz aplikację powyżej (Discord wybiera się sam) i kliknij Start.\nLinie pojawiają się tutaj, gdy ludzie mówią – co zostało powiedziane i tłumaczenie.
+118|Wybierz aplikację powyżej (Discord zostanie wybrany automatycznie) i kliknij Start.\nLinie pojawiają się tutaj, gdy ludzie mówią – co zostało powiedziane i tłumaczenie.
 119|WYDAJNOŚĆ
 120|OSOBY
 121|Imiona pojawiają się tutaj, gdy ludzie mówią.
@@ -126,7 +126,7 @@
 126|Nakładka wł./wył.
 127|Zakończ
 128|zatrzymano – pamięć zwolniona
-129|Było opóźnienie, więc przełączono na lżejszy model mowy.
+129|Wystąpiły opóźnienia, więc przełączono na lżejszy model mowy.
 130|Tak naprawdę to…
 131|Ktoś nowy…
 132|Zawsze mówi…
@@ -150,10 +150,10 @@
 150|Żadna aplikacja nie odtwarza dźwięku – dołącz do rozmowy na Discordzie, potem ⟳
 151|Najpierw wybierz co najmniej jedną aplikację (np. Discord).
 152|Słucham
-153|ustawienia zastosowane – działają od następnego Start
-154|Użyj znowu nazwy z Discorda
+153|ustawienia zastosowane – zaczną działać po następnym uruchomieniu
+154|Przywróć nazwę z Discorda
 155|Wykrywaj automatycznie
-156|Pokaż znowu tę osobę
+156|Pokaż tę osobę ponownie
 157|Nikt nie jest ignorowany
 158|wstrzymano – naciśnij Ctrl+Alt+P, aby kontynuować
 159|słucham
@@ -220,8 +220,8 @@
 220|Słuchane są tylko zaznaczone.
 221|Zdania
 222|Kiedy zdanie się zaczyna i kończy.
-223|Słowa do znania
-224|Używane przez rozpoznawanie i tłumacza, żeby te słowa wychodziły poprawnie.
+223|Słowa do zapamiętania
+224|Używane przez moduł rozpoznawania i tłumacza, aby te słowa brzmiały poprawnie.
 225|Gdzie działa
 226|Oba zaznaczone: najpierw online, karta graficzna jako zapas.
 227|Model na karcie graficznej
@@ -260,10 +260,10 @@
 260|Nie można uruchomić:
 261|Nie można przechwycić:
 262|Tak, to {name}
-263|Ignoruj: {name}
+263|Ignoruj {name}
 264|Połącz „{name}” z…
 265|Ignorowane osoby: {n}
-266|{model} zostanie użyty przy Start
+266|{model} zostanie użyty przy uruchomieniu
 267|ponownie szukam aplikacji
 268|Rozmowa zakończona – zatrzymano
 269|Zapomnieć te głosy?
@@ -352,8 +352,8 @@
 352|tłumaczenie niedostępne – tłumacz online nie odpowiedział
 353|pobrano {m} – kliknij Stop i Start, aby go użyć
 354|pobrano {m} – wybierz go w Ustawienia > Tłumaczenie
-355|pobieram {m} w tle (używany od następnego Start)
-356|nie udało się pobrać {m} – ponowi próbę przy następnym Start
+355|pobieram {m} w tle (używany od następnego uruchomienia)
+356|nie udało się pobrać {m} – ponowi próbę przy następnym uruchomieniu
 357|{m} gotowy · pobieram {x} w tle
 358|brak odpowiedzi (internet?)
 359|używam karty graficznej

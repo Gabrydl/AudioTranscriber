@@ -11,15 +11,15 @@
 11|{m} pronto ({where})
 12|in ritardo ({t}) – passo da {a} a {b}…
 13|traduzione non disponibile – impossibile avviare Ollama
-14|Ollama non è attivo – solo trascrizione (traduzione spenta)
+14|Ollama non è in esecuzione – solo trascrizione (traduzione disattivata)
 15|Download del modello di traduzione {m} (una volta sola)…
 16|riconoscimento delle voci non disponibile
 17|caricamento non riuscito
-18|online (Gemini) – traduttore sulla scheda video spento
+18|online (Gemini) – traduttore sulla scheda video disattivato
 19|Download di '{name}' (una volta sola)…
 20|'{name}' pronto (già caricato)
 21|'{name}' pronto sulla GPU ({t})
-22|GPU non riuscita – passo alla CPU
+22|GPU non disponibile – passaggio alla CPU
 23|{m} non entra tutto nella scheda video – lo divido con la CPU…
 24|errore di trascrizione
 25|passo a {m}…
@@ -35,7 +35,7 @@
 35|download {p} (una volta sola)
 36|modello vocale
 37|modello vocale {k} non disponibile – uso gli altri
-38|Volume dal vivo dell'app scelta.\nTrascina la linea bianca su o giù: il suono sopra la linea conta come parlato.
+38|Volume in tempo reale dell'app selezionata.\nTrascina la linea bianca su o giù: il suono sopra la linea conta come parlato.
 39|PARLATO
 40|Chi l'ha detto – clicca per rinominare o correggere
 41|DEDOTTO DAL CONTESTO
@@ -44,7 +44,7 @@
 44|Blocca: i clic passano al gioco (Ctrl+Alt+L)
 45|GPU: la più veloce, i modelli devono stare nella scheda video (se uno non ci sta, viene diviso da solo).\nMisto: il traduttore usa la scheda video finché c'entra e la CPU per il resto.\nSolo CPU: funziona senza scheda video, molto più lento.
 46|Rilevatore di voce (ignora rumori e clic)
-47|Un rilevatore di parlato decide dove inizia e finisce una frase, non solo il volume.\nI microfoni rumorosi non tengono più aperta una frase, i clic non diventano righe finte.\nVale dal prossimo Avvia.
+47|Un rilevatore di parlato decide dove inizia e finisce una frase, non solo il volume.\nI microfoni rumorosi non tengono più aperta una frase, i clic non diventano righe finte.\nVale dal prossimo avvio.
 48|Nomi, termini di gioco, slang – uno per riga o separati da virgole\nes. Gabry, War Thunder, Bismarck, GG
 49|Termini di League of Legends
 50|Campioni, incantesimi, oggetti, rune e slang (i nomi di Riot in ogni lingua).\nRiconosciuti meglio e lasciati come parola inglese del gioco nelle traduzioni:\nFlash resta Flash, Hexflash resta Hexflash, "destello" diventa Flash.
@@ -60,15 +60,15 @@
 60|Il modello di traduzione gira sul tuo PC (Ollama). Niente esce dal PC.
 61|Traduce invece l'API Gemini di Google: più veloce e intelligente di quello che entra in una scheda da 8 GB.\nEntrambi spuntati: prima online, la scheda video subentra quando online non risponde\n(niente internet, limite gratuito giornaliero raggiunto, troppo lento).
 62|Più leggero = meno memoria video e più veloce · più pesante = traduzioni migliori.
-63|Cambia subito, anche mentre è in funzione. I modelli mancanti vengono scaricati da soli.
+63|Cambia subito, anche durante l'esecuzione. I modelli mancanti vengono scaricati automaticamente.
 64|Chiave API Gemini (gratis)
-65|Chiave gratis
+65|Ottieni una chiave gratuita
 66|Non tradurre le righe già nella lingua di traduzione
 67|Frasi brevi subito (gg, ok, aspetta…) senza traduttore
 68|Riconosci chi parla
 69|Ricorda le voci (salvate solo su questo PC)
 70|Impara la lingua di ogni persona
-71|Dopo qualche riga sa la lingua che ogni persona parla di solito, così le frasi brevi o\npoco chiare non vengono più sentite nella lingua sbagliata.\nUn passaggio netto a un'altra lingua viene comunque riconosciuto.
+71|Dopo qualche riga apprende la lingua parlata di solito da ciascuno, in modo che le frasi brevi o\npoco chiare non vengano più interpretate nella lingua sbagliata.\nUn passaggio netto a un'altra lingua viene comunque riconosciuto.
 72|Ctrl+clic: scegli più persone · Maiusc+clic: scegli un intervallo · Ctrl+A: tutte\nIl tasto Canc o "Dimentica selezionati" rimuove le persone scelte
 73|Dimentica selezionati
 74|Dimentica tutte le voci
@@ -83,13 +83,13 @@
 83|Esci
 84|Spento
 85|Inizia ad ascoltare quando parte una chiamata Discord
-86|Fermati quando la chiamata finisce (libera la GPU)
+86|Ferma quando la chiamata finisce (libera la GPU)
 87|Testo originale nel feed (spento = solo traduzione)
 88|Mostra il testo originale nell'overlay
 89|Ora davanti a ogni riga
 90|Quando l'overlay è bloccato (i clic passano) sparisce dopo questi secondi di silenzio. 0 = mai.
 91|Tasti rapidi globali (funzionano dentro i giochi)
-92|Ctrl+Alt+S avvia/ferma · Ctrl+Alt+P pausa · Ctrl+Alt+C copia l'ultima traduzione\nCtrl+Alt+O overlay sì/no · Ctrl+Alt+L blocca/sblocca l'overlay (i clic passano)
+92|Ctrl+Alt+S avvia/arresta · Ctrl+Alt+P pausa · Ctrl+Alt+C copia l'ultima traduzione\nCtrl+Alt+O attiva/disattiva overlay · Ctrl+Alt+L blocca/sblocca overlay (i clic passano)
 93|Avvia con Windows (nell'area di notifica)
 94|Riconnetti quando cambiano cuffie / dispositivo
 95|Passa a un modello più leggero quando è in ritardo
@@ -100,7 +100,7 @@
 100|Entrambi: prima online, la scheda video quando online non risponde.
 101|Solo online: se non risponde, le righe restano senza traduzione.
 102|Gemini – chiave gratis (1 minuto)
-103|<b>1.</b> Apri <b>aistudio.google.com/apikey</b> e accedi con un account Google.<br><b>2.</b> Clicca <b>Create API key</b> e copiala.<br><b>3.</b> Incollala qui. Resta su questo PC (settings.json).<br><br><b>Gemma 4 31B</b> ha la quota gratuita giornaliera più grande. Gemini Flash-Lite / Flash sono più intelligenti ma la loro quota gratuita è piccola.<br>Con il piano gratuito Google può usare ciò che viene inviato per migliorare i suoi prodotti; con la fatturazione attiva no.
+103|<b>1.</b> Apri <b>aistudio.google.com/apikey</b> e accedi con un account Google.<br><b>2.</b> Clicca <b>Create API key</b> e copiala.<br><b>3.</b> Incollala qui. Rimarrà su questo PC (settings.json).<br><br><b>Gemma 4 31B</b> offre la maggiore quota gratuita giornaliera. Gemini Flash-Lite / Flash sono più intelligenti, ma la loro quota gratuita è ridotta.<br>Con il piano gratuito Google può utilizzare i dati inviati per migliorare i propri prodotti; con la fatturazione attiva no.
 104|unisce di più
 105|Dal vivo – la conversazione
 106|Persone – nomi, voci, Discord
@@ -115,7 +115,7 @@
 115|Pausa / riprendi l'ascolto – Ctrl+Alt+P\n(i modelli restano caricati, niente viene trascritto)
 116|ASCOLTA
 117|Aggiorna l'elenco delle app
-118|Scegli un'app qui sopra (Discord viene scelto da solo) e premi Avvia.\nLe righe appaiono qui mentre le persone parlano – cosa è stato detto e la traduzione.
+118|Scegli un'app qui sopra (Discord viene selezionato automaticamente) e premi Avvia.\nLe righe compaiono qui mentre le persone parlano – cosa è stato detto e la traduzione.
 119|PRESTAZIONI
 120|PERSONE
 121|I nomi appaiono qui mentre le persone parlano.
@@ -123,7 +123,7 @@
 123|Sposta l'overlay
 124|Sblocca l'overlay per poterlo trascinare; si blocca di nuovo da solo quando lo lasci
 125|Mostra la finestra
-126|Overlay sì/no
+126|Attiva/disattiva overlay
 127|Esci
 128|fermato – memoria liberata
 129|Era in ritardo, quindi è passato a un modello vocale più leggero.
@@ -147,12 +147,12 @@
 147|L'overlay si nasconde nel silenzio: mai
 148|Avvia
 149|inattivo
-150|Nessuna app sta riproducendo audio – entra in una chiamata Discord, poi ⟳
+150|Nessuna app sta riproducendo audio – unisciti a una chiamata Discord, poi ⟳
 151|Prima scegli almeno un'app (es. Discord).
 152|In ascolto
-153|impostazioni applicate – usate al prossimo Avvia
+153|impostazioni applicate – utilizzate al prossimo avvio
 154|Usa di nuovo il nome Discord
-155|Rileva da solo
+155|Rilevamento automatico
 156|Mostra di nuovo questa persona
 157|Nessuno ignorato
 158|in pausa – premi Ctrl+Alt+P per continuare
@@ -170,14 +170,14 @@
 170|Clicca per rinominare o correggere
 171|online
 172|attesa {a} · prime parole {b} · finito {c}
-173|Sicurezza del riconoscimento {p}%
+173|Affidabilità del riconoscimento {p}%
 174|Parole grigie: il riconoscitore non ne era sicuro
 175|Avanzate
 176|Applica
 177|Carica i modelli scelti (anche mentre è attivo).
 178|Esegui su
 179|Nome mostrato
-180|Usate oggi: {used} su circa {lim} gratis
+180|Usate oggi: {used} su circa {lim} gratuite
 181|Usate oggi: {used}
 182|si azzera alle 09:00
 183|Pausa che chiude una frase: {ms} ms
@@ -199,11 +199,11 @@
 199|Voci conosciute: {n}
 200|Rinomina “{name}”…
 201|Dimentica la voce di {name}…
-202|lingua rilevata da sola
+202|lingua rilevata automaticamente
 203|dispositivo audio cambiato
 204|cattura interrotta
 205|riconnesso – in ascolto
-206|l'app non c'è più – aspetto che ritorni
+206|l'app è chiusa – in attesa che si riapra
 207|Chiamata Discord – in ascolto
 208|Tutti gli altri restano.
 209|Voce di {name} dimenticata
@@ -263,7 +263,7 @@
 263|Ignora {name}
 264|Unisci “{name}” a…
 265|Persone ignorate: {n}
-266|{model} verrà usato all'Avvia
+266|{model} verrà usato all'avvio
 267|cerco di nuovo l'app
 268|Chiamata finita – fermato
 269|Dimenticare queste voci?
@@ -279,12 +279,12 @@
 279|in chiamata
 280|Discord collegato – voci vecchie spostate in speakers_before_discord.json: {n}
 281|Altre opzioni: {n}
-282|Windows ha rifiutato la cattura per app di {app} – catturo TUTTO l'audio di sistema
+282|Windows ha rifiutato la cattura per app di {app} – cattura di TUTTO l'audio di sistema in corso
 283|Persone
 284|Somiglianza della voce {p}%
 285|Attesa {q} · riconoscimento {w} · voci +{v}
 286|detto alle {t}
-287|Impossibile scaricare l'aggiornamento – riprova alla prossima apertura dell'app
+287|Impossibile scaricare l'aggiornamento – verrà riprovato alla prossima apertura dell'app
 288|Download dell'aggiornamento {v}…
 289|Aggiornamento a {v} – di nuovo qui tra pochi secondi
 290|Aggiornamento {v} pronto – riavvio…
@@ -317,7 +317,7 @@
 317|Leggero – qwen2.5:3b · ~2,5 GB di memoria video · il più veloce
 318|Medio – gemma3:4b
 319|~4 GB di memoria video
-320|Medio – gemma3:4b · ~4 GB di memoria video · veloce, buono
+320|Medio – gemma3:4b · ~4 GB di memoria video · veloce e buono
 321|Pesante – gemma3:12b
 322|~8 GB di memoria video
 323|Pesante – gemma3:12b · ~8 GB di memoria video · il migliore, 10–20 s su schede da 8 GB
@@ -328,7 +328,7 @@
 328|Gemini Flash
 329|Gemini Flash – il più intelligente, limite gratuito giornaliero molto piccolo
 330|Riconoscimento
-331|Come il parlato viene sentito e trasformato in testo
+331|Come viene percepito e convertito in testo il parlato
 332|Traduzione
 333|Dove e come vengono tradotte le righe
 334|Persone
@@ -353,10 +353,10 @@
 353|{m} scaricato – premi Ferma e Avvia per usarlo
 354|{m} scaricato – sceglilo in Impostazioni > Traduzione
 355|download di {m} in background (usato dal prossimo Avvia)
-356|impossibile scaricare {m} – riprova al prossimo Avvia
+356|impossibile scaricare {m} – verrà riprovato al prossimo avvio
 357|{m} pronto · download di {x} in background
 358|nessuna risposta (internet?)
-359|uso la scheda video
+359|utilizzo della scheda video
 360|limite gratuito giornaliero raggiunto (si azzera alle 09:00)
 361|troppe richieste al minuto
 362|chiave API o modello rifiutati – controlla le Impostazioni

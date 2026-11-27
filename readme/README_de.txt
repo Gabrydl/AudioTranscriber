@@ -2,7 +2,7 @@ AudioTranscriber 1.6.0 - Live-Transkription und -Übersetzung von Sprache
 ========================================================================
 
 WAS ES MACHT
-  Es hört den Apps zu, die du auswählst (z. B. Discord), schreibt mit, was jede Person sagt, und
+  Es hört den von dir ausgewählten Apps zu (z. B. Discord), schreibt mit, was jede Person sagt, und
   übersetzt es live in die Sprache deiner Wahl. Die Spracherkennung läuft auf diesem PC. Die Übersetzung
   läuft ebenfalls auf diesem PC oder, wenn du es einschaltest, online mit Gemini. Kein Konto, nichts
   wird auf der Festplatte aufgezeichnet.
@@ -15,7 +15,7 @@ INSTALLATION
   kannst du jederzeit über den Flaggen-Knopf in der linken Leiste ändern.
 
 LOSLEGEN
-  1. Tritt einem Discord-Anruf bei. Discord erscheint unter "ZUHÖREN BEI" (grüner Punkt = spielt Ton ab).
+  1. Tritt einem Discord-Anruf bei. Discord erscheint unter "ZUHÖREN BEI" (grüner Punkt = Audio wird abgespielt).
   2. Klicke auf Start. Jeder Satz erscheint mit Sprecher, Uhrzeit, Übersetzung und dem Gehörten.
   3. Die Welle zeigt die Lautstärke. "Auto" folgt dem Hintergrundrauschen jeder Person; ziehe die
      gestrichelte Linie, um sie selbst einzustellen.
@@ -46,10 +46,10 @@ EINSTELLUNGEN (Kategorien links, seltene Optionen unter "Erweitert")
 OVERLAY
   Ein durchsichtiger Kasten über dem Spiel (Fenster- oder randloser Modus; nicht exklusives Vollbild).
   "Overlay verschieben" entsperrt es, damit du es ziehen kannst; nach dem Loslassen sperrt es sich wieder.
-  Gesperrt gehen Klicks ans Spiel durch und es blendet sich nach ein paar stillen Sekunden aus.
+  Gesperrt werden Klicks ans Spiel weitergeleitet und es blendet sich nach ein paar stillen Sekunden aus.
 
 TASTENKÜRZEL (gehen auch in Spielen)
-  Strg+Alt+S Start / Stopp        Strg+Alt+P Pause / weiter       Strg+Alt+C letzte Übersetzung kopieren
+  Strg+Alt+S Start / Stopp        Strg+Alt+P Pause / Fortsetzen   Strg+Alt+C letzte Übersetzung kopieren
   Strg+Alt+O Overlay an / aus     Strg+Alt+L Overlay sperren / entsperren
 
 UPDATES

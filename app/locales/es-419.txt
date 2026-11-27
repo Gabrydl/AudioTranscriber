@@ -19,11 +19,11 @@
 19|Descargando '{name}' (solo una vez)…
 20|'{name}' listo (ya cargado)
 21|'{name}' listo en la GPU ({t})
-22|la GPU falló – se usa la CPU
-23|{m} no cabe entero en la tarjeta – repartiéndolo con la CPU…
+22|la GPU falló – usando la CPU
+23|{m} no cabe por completo en la tarjeta – dividiéndolo con la CPU…
 24|error de transcripción
 25|cambiando a {m}…
-26|el traductor se paró – reiniciando Ollama…
+26|el traductor se detuvo – reiniciando Ollama…
 27|No se pudo descargar {m}
 28|no se pudo cargar {m}
 29|{gb} GB en la tarjeta
@@ -35,7 +35,7 @@
 35|descargando {p} (solo una vez)
 36|modelo de voz
 37|modelo de voz {k} no disponible – se usan los demás
-38|Volumen en vivo de la app elegida.\nArrastra la línea blanca arriba o abajo: el sonido por encima cuenta como voz.
+38|Volumen en vivo de la aplicación seleccionada.\nArrastra la línea blanca hacia arriba o hacia abajo: el sonido por encima cuenta como voz.
 39|VOZ
 40|Quién lo dijo – haz clic para renombrar o corregir
 41|DEDUCIDO DEL CONTEXTO
@@ -44,23 +44,23 @@
 44|Bloquear: los clics pasan al juego (Ctrl+Alt+L)
 45|GPU: lo más rápido, los modelos tienen que caber en la tarjeta de video (si uno no cabe, se reparte solo).\nMixto: el traductor usa la tarjeta de video hasta donde cabe y la CPU para el resto.\nSolo CPU: funciona sin tarjeta de video, mucho más lento.
 46|Detector de voz (ignora ruidos y clics)
-47|Un detector de voz decide dónde empieza y acaba una frase, no solo el volumen.\nLos micrófonos con ruido ya no dejan una frase abierta, los clics no se convierten en líneas falsas.\nSe aplica desde el próximo Iniciar.
+47|Un detector de voz decide dónde empieza y termina una oración, no solo el volumen.\nLos micrófonos ruidosos ya no dejan una oración abierta, los clics ya no se convierten en líneas falsas.\nAplica a partir del siguiente inicio.
 48|Nombres, términos de juego, jerga – uno por línea o separados por comas\nej.: Gabry, War Thunder, Bismarck, GG
 49|Términos de League of Legends
-50|Campeones, hechizos, objetos, runas y jerga (los nombres de Riot en todos los idiomas).\nSe reconocen mejor y se dejan como la palabra inglesa del juego en las traducciones:\nFlash sigue siendo Flash, Hexflash sigue siendo Hexflash, "destello" pasa a Flash.
+50|Campeones, hechizos, objetos, runas y jerga (nombres de Riot en todos los idiomas).\nSe reconocen mejor y se mantienen en inglés en las traducciones:\nFlash sigue siendo Flash, Hexflash sigue siendo Hexflash, "destello" pasa a ser Flash.
 51|Supresión de ruido (zumbido, siseo, micrófonos malos)
 52|Limpieza de ruido en la tarjeta de video
 53|Limpia las voces con mucho ruido en la tarjeta de video; usa la CPU cuando la tarjeta no puede.
 54|Mostrar en gris las palabras dudosas
 55|Saltar la revisión de idioma para quien tiene idioma conocido
-56|Más rápido: cuando el idioma de una persona es seguro, se salta el paso aparte de idioma.
+56|Más rápido: una vez que se determina el idioma de una persona, se omite el paso de idioma independiente.
 57|Traducir + corregir palabras mal oídas
 58|Tarjeta de video – local, funciona sin conexión
 59|Online – Gemini, cuando hay internet
 60|El modelo de traducción funciona en tu PC (Ollama). Nada sale de la PC.
 61|Traduce la API Gemini de Google: más rápida y inteligente que lo que cabe en una tarjeta de 8 GB.\nLas dos marcadas: primero online, la tarjeta de video toma el relevo cuando online no responde\n(sin internet, límite gratuito diario alcanzado, demasiado lento).
 62|Más ligero = menos memoria de video y más rápido · más pesado = mejores traducciones.
-63|Cambia al momento, también funcionando. Los modelos que faltan se descargan solos.
+63|Cambia al instante, incluso mientras se ejecuta. Los modelos faltantes se descargan automáticamente.
 64|Clave de la API de Gemini (gratis)
 65|Clave gratis
 66|No traducir líneas que ya están en el idioma de traducción
@@ -83,28 +83,28 @@
 83|Cerrar sesión
 84|Desactivado
 85|Empezar a escuchar cuando empieza una llamada de Discord
-86|Parar cuando acaba la llamada (libera la GPU)
+86|Detener al terminar la llamada (libera la GPU)
 87|Texto original en el feed (desactivado = solo traducción)
 88|Mostrar el texto original en el overlay
 89|Hora delante de cada línea
 90|Cuando el overlay está bloqueado (los clics lo atraviesan) se desvanece tras estos segundos de silencio. 0 = nunca.
 91|Atajos globales (funcionan dentro de los juegos)
-92|Ctrl+Alt+S iniciar/parar · Ctrl+Alt+P pausa · Ctrl+Alt+C copiar la última traducción\nCtrl+Alt+O overlay sí/no · Ctrl+Alt+L bloquear/desbloquear el overlay (los clics pasan)
+92|Ctrl+Alt+S iniciar/parar · Ctrl+Alt+P pausa · Ctrl+Alt+C copiar la última traducción\nCtrl+Alt+O mostrar/ocultar overlay · Ctrl+Alt+L bloquear/desbloquear el overlay (los clics pasan)
 93|Iniciar con Windows (en la bandeja)
 94|Reconectar al cambiar audífonos / dispositivo
 95|Pasar a un modelo más ligero cuando va lento
 96|Exportar .txt
 97|Borrar el feed
 98|Nombres de Discord – configuración (una vez, unos 2 minutos)
-99|<b>1.</b> Abre <b>discord.com/developers/applications</b> en el navegador e inicia sesión.<br><b>2.</b> <b>New Application</b> → llámala <i>AudioTranscriber</i> → Create.<br><b>3.</b> Menú de la izquierda <b>OAuth2</b>: copia el <b>Client ID</b>. Haz clic en <b>Reset Secret</b> y copia el <b>Client Secret</b>.<br><b>4.</b> Sigue en OAuth2 → <b>Redirects</b> → <b>Add Redirect</b>: <code>http://localhost</code> → <b>Save Changes</b>.<br><b>5.</b> Pega aquí los dos códigos, marca <i>Nombres y quién habla desde Discord</i> y presiona <b>Conectar</b>.<br><b>6.</b> Discord muestra una ventana: haz clic en <b>Autorizar</b>.<br><br>Listo – se reconecta solo cada vez. Los códigos y la sesión se quedan solo en esta PC (settings.json y discord_token.json).
-100|Las dos: primero online, la tarjeta de video cuando online no responde.
+99|<b>1.</b> Abre <b>discord.com/developers/applications</b> en tu navegador e inicia sesión.<br><b>2.</b> <b>New Application</b> → ponle de nombre <i>AudioTranscriber</i> → Create.<br><b>3.</b> Menú izquierdo <b>OAuth2</b>: copia el <b>Client ID</b>. Haz clic en <b>Reset Secret</b> y copia el <b>Client Secret</b>.<br><b>4.</b> Aún en OAuth2 → <b>Redirects</b> → <b>Add Redirect</b>: <code>http://localhost</code> → <b>Save Changes</b>.<br><b>5.</b> Pega ambos códigos aquí, marca <i>Nombres y quién habla desde Discord</i> y haz clic en <b>Conectar</b>.<br><b>6.</b> Discord mostrará una ventana: haz clic en <b>Autorizar</b>.<br><br>Listo, se reconecta automáticamente cada vez. Los códigos y el inicio de sesión se guardan únicamente en esta PC (settings.json y discord_token.json).
+100|Ambas: primero online, la tarjeta de video cuando online no responde.
 101|Solo online: si no responde, las líneas se quedan sin traducir.
 102|Gemini – clave gratis (1 minuto)
-103|<b>1.</b> Abre <b>aistudio.google.com/apikey</b> e inicia sesión con una cuenta de Google.<br><b>2.</b> Haz clic en <b>Create API key</b> y cópiala.<br><b>3.</b> Pégala aquí. Se queda en esta PC (settings.json).<br><br><b>Gemma 4 31B</b> tiene la mayor cuota gratuita diaria. Gemini Flash-Lite / Flash son más inteligentes, pero su cuota gratuita es pequeña.<br>Con el plan gratuito Google puede usar lo que se envía para mejorar sus productos; con la facturación activada, no.
+103|<b>1.</b> Abre <b>aistudio.google.com/apikey</b> e inicia sesión con una cuenta de Google.<br><b>2.</b> Haz clic en <b>Create API key</b> y cópiala.<br><b>3.</b> Pégala aquí. Se queda en esta PC (settings.json).<br><br><b>Gemma 4 31B</b> tiene la mayor cuota diaria gratuita. Gemini Flash-Lite / Flash son más inteligentes, pero su cuota gratuita es pequeña.<br>Con el plan gratuito Google puede usar lo que se envía para mejorar sus productos; con la facturación activada, no.
 104|junta más
 105|En vivo – la conversación
 106|Personas – nombres, voces, Discord
-107|Palabras que conocer – nombres, términos de juego, jerga
+107|Palabras por conocer – nombres, términos de juego, jerga
 108|Overlay sobre el juego – Ctrl+Alt+O
 109|Bloquear el overlay (los clics pasan al juego) – Ctrl+Alt+L
 110|Borrar todo el chat (también el overlay)
@@ -123,9 +123,9 @@
 123|Mover el overlay
 124|Desbloquea el overlay para poder arrastrarlo; se vuelve a bloquear solo al soltarlo
 125|Mostrar la ventana
-126|Overlay sí/no
+126|Mostrar/ocultar overlay
 127|Salir
-128|parado – memoria liberada
+128|detenido – memoria liberada
 129|Iba lento, así que cambió a un modelo de voz más ligero.
 130|En realidad es…
 131|Alguien nuevo…
@@ -138,7 +138,7 @@
 138|Reiniciar ahora
 139|Más tarde
 140|conectando…
-141|traducción no disponible – ¿Ollama está funcionando?
+141|traducción no disponible – ¿está ejecutándose Ollama?
 142|Arrastra para mover · esquina para cambiar el tamaño
 143|Las actualizaciones se revisan al abrir la app.
 144|Primero pega una clave.
@@ -150,7 +150,7 @@
 150|Ninguna app está reproduciendo audio – entra a una llamada de Discord y luego ⟳
 151|Primero elige al menos una app (p. ej. Discord).
 152|Escuchando
-153|configuración aplicada – se usa en el próximo Iniciar
+153|configuración aplicada: se usará en el próximo inicio
 154|Volver a usar el nombre de Discord
 155|Detectar automáticamente
 156|Volver a mostrar a esta persona
@@ -159,7 +159,7 @@
 159|escuchando
 160|En pausa
 161|Escuchando otra vez
-162|Haz clic para elegir otro idioma (funciona funcionando, desde la siguiente frase).
+162|Haz clic para elegir otro idioma (funciona en ejecución, a partir de la siguiente frase).
 163|¿Olvidar todas las voces guardadas?
 164|Todavía no hay nada que exportar.
 165|Guardado en
@@ -171,10 +171,10 @@
 171|online
 172|esperó {a} · primeras palabras {b} · terminado {c}
 173|Confianza del reconocimiento {p}%
-174|Palabras grises: el reconocedor no estaba seguro de ellas
+174|Palabras en gris: el reconocedor no estaba seguro de ellas
 175|Avanzado
 176|Aplicar
-177|Carga los modelos elegidos (también funcionando).
+177|Carga los modelos elegidos (incluso en ejecución).
 178|Ejecutar en
 179|Nombre mostrado
 180|Usadas hoy: {used} de unas {lim} gratis
@@ -193,7 +193,7 @@
 193|Líneas
 194|Traductor
 195|Reproduciendo audio ahora
-196|No reproduce audio ahora
+196|No está reproduciendo audio
 197|Cargando…
 198|Parar
 199|Voces conocidas: {n}
@@ -201,7 +201,7 @@
 201|Olvidar la voz de {name}…
 202|idioma detectado automáticamente
 203|cambió el dispositivo de audio
-204|la captura se paró
+204|captura detenida
 205|reconectado – escuchando
 206|la app ya no está – esperando a que vuelva
 207|Llamada de Discord – escuchando
@@ -216,14 +216,14 @@
 216|Oído: “{text}”
 217|Modelo de voz
 218|Más grande es más preciso, más pequeño es más rápido.
-219|Idiomas que reconocer
+219|Idiomas a reconocer
 220|Solo se escuchan los marcados.
 221|Frases
-222|Cuándo empieza y acaba una frase.
+222|Cuándo empieza y termina una frase.
 223|Palabras que conocer
 224|Las usan el reconocedor y el traductor, para que estas palabras salgan bien.
 225|Dónde funciona
-226|Las dos marcadas: primero online, la tarjeta de video de reserva.
+226|Ambas marcadas: primero online, la tarjeta de video como respaldo.
 227|Modelo en la tarjeta de video
 228|Funciona en esta PC con Ollama.
 229|Online – Gemini
@@ -239,7 +239,7 @@
 239|Nombres
 240|Qué nombre de Discord se muestra en cada línea. Un nombre que escribas tú se mantiene.
 241|Llamadas
-242|Empieza y para junto con tus llamadas de Discord.
+242|Inicia y se detiene junto con tus llamadas de Discord.
 243|Feed en vivo
 244|Las líneas de esta ventana.
 245|Texto del overlay
@@ -265,10 +265,10 @@
 265|Personas ignoradas: {n}
 266|{model} se usará al Iniciar
 267|buscando la app otra vez
-268|Llamada terminada – parado
+268|Llamada terminada – detenido
 269|¿Olvidar estas voces?
 270|En {place}: {n}
-271|La escucha se para un momento.
+271|La escucha se detiene un momento.
 272|Sistema
 273|Versión {v}
 274|Ocultar el overlay
@@ -282,13 +282,13 @@
 282|Windows rechazó la captura por app de {app} – capturando TODO el audio del sistema
 283|Personas
 284|Coincidencia de voz {p}%
-285|Esperó {q} · reconocimiento {w} · voces +{v}
+285|Espera {q} · reconocimiento {w} · voces +{v}
 286|dicho a las {t}
 287|No se pudo descargar la actualización – lo vuelve a intentar al abrir la app
 288|Descargando la actualización {v}…
 289|Actualizando a {v} – vuelve en unos segundos
 290|Actualización {v} lista – reiniciando…
-291|Actualización {v} lista – se instala cuando presiones Parar
+291|Actualización {v} lista – se instala al presionar Parar
 292|Portugués
 293|Español
 294|Alemán
@@ -362,7 +362,7 @@
 362|clave de API o modelo rechazados – revisa la Configuración
 363|error de Google {c}
 364|Solo este
-365|Haz clic para cambiar rápido (funciona mientras está funcionando, desde la siguiente frase).
+365|Haz clic para cambiar rápido (funciona en ejecución, desde la siguiente frase).
 366|Más en Configuración…
 367|Finlandés
 368|Estonio

@@ -11,11 +11,11 @@
 11|{m} prêt ({where})
 12|en retard ({t}) – passage de {a} à {b}…
 13|traduction indisponible – impossible de démarrer Ollama
-14|Ollama ne tourne pas – transcription seule (traduction coupée)
+14|Ollama ne s'exécute pas – transcription seule (traduction désactivée)
 15|Téléchargement du modèle de traduction {m} (une seule fois)…
 16|reconnaissance des voix indisponible
 17|échec du chargement
-18|en ligne (Gemini) – traducteur sur la carte graphique coupé
+18|en ligne (Gemini) – traducteur sur la carte graphique désactivé
 19|Téléchargement de '{name}' (une seule fois)…
 20|'{name}' prêt (déjà chargé)
 21|'{name}' prêt sur le GPU ({t})
@@ -35,7 +35,7 @@
 35|téléchargement {p} (une seule fois)
 36|modèle de voix
 37|modèle de voix {k} indisponible – utilisation des autres
-38|Volume en direct de l'appli choisie.\nFais glisser la ligne blanche vers le haut ou le bas : le son au-dessus compte comme de la parole.
+38|Volume en direct de l'application sélectionnée.\nFais glisser la ligne blanche vers le haut ou le bas : le son situé au-dessus est considéré comme de la parole.
 39|PAROLE
 40|Qui a dit ça – clique pour renommer ou corriger
 41|DÉDUIT DU CONTEXTE
@@ -44,7 +44,7 @@
 44|Verrouiller : les clics passent au jeu (Ctrl+Alt+L)
 45|GPU : le plus rapide, les modèles doivent tenir sur la carte graphique (si l'un ne tient pas, il est partagé automatiquement).\nMixte : le traducteur utilise la carte graphique autant qu'il peut et le CPU pour le reste.\nCPU seul : marche sans carte graphique, beaucoup plus lent.
 46|Détecteur de voix (ignore bruits et clics)
-47|Un détecteur de parole décide où une phrase commence et finit, pas seulement le volume.\nLes micros bruyants ne gardent plus une phrase ouverte, les clics ne deviennent plus de fausses lignes.\nS'applique au prochain Démarrer.
+47|Un détecteur de parole détermine où une phrase commence et finit, en se basant sur autre chose que le seul volume.\nLes micros bruyants ne maintiennent plus une phrase ouverte, les clics ne génèrent plus de fausses lignes.\nS'applique au prochain démarrage.
 48|Noms, termes de jeu, argot – un par ligne ou séparés par des virgules\npar ex. Gabry, War Thunder, Bismarck, GG
 49|Termes de League of Legends
 50|Champions, sorts, objets, runes et argot (les noms de Riot dans toutes les langues).\nMieux reconnus, et gardés comme le mot anglais du jeu dans les traductions :\nFlash reste Flash, Hexflash reste Hexflash, "destello" devient Flash.
@@ -53,16 +53,16 @@
 53|Nettoie les voix très bruyantes sur la carte graphique ; utilise le CPU quand la carte ne peut pas.
 54|Afficher en gris les mots incertains
 55|Sauter la vérification de langue quand la langue de la personne est connue
-56|Plus rapide : une fois la langue d'une personne sûre, le passage séparé pour la langue est sauté.
+56|Plus rapide : une fois qu'on connaît la langue d'une personne, le passage séparé pour la langue est sauté.
 57|Traduire + corriger les mots mal entendus
 58|Carte graphique – en local, marche hors ligne
-59|En ligne – Gemini, quand internet est là
+59|En ligne – Gemini, lorsque Internet est actif
 60|Le modèle de traduction tourne sur ton PC (Ollama). Rien ne quitte le PC.
 61|C'est l'API Gemini de Google qui traduit : plus rapide et plus intelligente que ce qui tient sur une carte de 8 Go.\nLes deux cochées : d'abord en ligne, la carte graphique prend le relais quand le service en ligne ne répond pas\n(pas d'internet, limite gratuite du jour atteinte, trop lent).
 62|Plus léger = moins de mémoire graphique et plus rapide · plus lourd = meilleures traductions.
 63|Change tout de suite, même en marche. Les modèles manquants sont téléchargés automatiquement.
 64|Clé d'API Gemini (gratuite)
-65|Clé gratuite
+65|Obtenir une clé gratuite
 66|Ne pas traduire les lignes déjà dans la langue de traduction
 67|Phrases courtes tout de suite (gg, ok, attends…) sans le traducteur
 68|Reconnaître qui parle
@@ -89,7 +89,7 @@
 89|Heure devant chaque ligne
 90|Quand l'overlay est verrouillé (les clics passent), il s'efface après ce nombre de secondes de silence. 0 = jamais.
 91|Raccourcis globaux (marchent dans les jeux)
-92|Ctrl+Alt+S démarrer/arrêter · Ctrl+Alt+P pause · Ctrl+Alt+C copier la dernière traduction\nCtrl+Alt+O overlay oui/non · Ctrl+Alt+L verrouiller/déverrouiller l'overlay (les clics passent)
+92|Ctrl+Alt+S démarrer/arrêter · Ctrl+Alt+P pause · Ctrl+Alt+C copier la dernière traduction\nCtrl+Alt+O activer/désactiver l'overlay · Ctrl+Alt+L verrouiller/déverrouiller l'overlay (les clics passent)
 93|Démarrer avec Windows (dans la zone de notification)
 94|Se reconnecter quand le casque / l'appareil change
 95|Passer à un modèle plus léger en cas de retard
@@ -123,7 +123,7 @@
 123|Déplacer l'overlay
 124|Déverrouille l'overlay pour que tu puisses le faire glisser ; il se reverrouille tout seul quand tu le lâches
 125|Afficher la fenêtre
-126|Overlay oui/non
+126|Afficher/masquer l'overlay
 127|Quitter
 128|arrêté – mémoire libérée
 129|Il prenait du retard, il est donc passé à un modèle de parole plus léger.
@@ -147,10 +147,10 @@
 147|L'overlay se cache en silence : jamais
 148|Démarrer
 149|inactif
-150|Aucune appli ne joue de son – rejoins un appel Discord, puis ⟳
+150|Aucune appli ne diffuse de son – rejoins un appel Discord, puis ⟳
 151|Choisis d'abord au moins une appli (par ex. Discord).
 152|À l'écoute
-153|paramètres appliqués – utilisés au prochain Démarrer
+153|paramètres appliqués – utilisés au prochain démarrage
 154|Reprendre le nom Discord
 155|Détecter automatiquement
 156|Afficher de nouveau cette personne
@@ -174,7 +174,7 @@
 174|Mots en gris : la reconnaissance n'en était pas sûre
 175|Avancé
 176|Appliquer
-177|Charge les modèles choisis (même en marche).
+177|Charge les modèles choisis (même en cours d'exécution).
 178|Exécuter sur
 179|Nom affiché
 180|Utilisées aujourd'hui : {used} sur environ {lim} gratuites
@@ -203,31 +203,31 @@
 203|l'appareil audio a changé
 204|capture arrêtée
 205|reconnecté – à l'écoute
-206|l'appli a disparu – on attend qu'elle revienne
+206|l'appli a disparu – en attente de son retour
 207|Appel Discord – à l'écoute
 208|Tous les autres sont gardés.
 209|Voix de {name} oubliée
 210|traduction vers {lang}
-211|Overlay verrouillé : les clics passent au jeu – clique ou Ctrl+Alt+L pour déverrouiller
+211|Overlay verrouillé : les clics sont transmis au jeu – clique ou Ctrl+Alt+L pour déverrouiller
 212|Dernière phrase : {a} de reconnaissance + {b} avant le début de la traduction
 213|incertain
 214|{name} – clique pour renommer ou corriger
 215|carte graphique
 216|Entendu : « {text} »
 217|Modèle de parole
-218|Plus grand est plus précis, plus petit est plus rapide.
+218|Plus le modèle est grand, plus il est précis ; plus il est petit, plus il est rapide.
 219|Langues à reconnaître
 220|Seules celles cochées sont écoutées.
 221|Phrases
 222|Quand une phrase commence et finit.
 223|Mots à connaître
-224|Utilisés par la reconnaissance et le traducteur, pour que ces mots sortent juste.
+224|Utilisés par la reconnaissance et le traducteur, pour que ces mots soient corrects.
 225|Où il tourne
-226|Les deux cochées : d'abord en ligne, la carte graphique en secours.
+226|Les deux cochés : d'abord en ligne, avec la carte graphique en secours.
 227|Modèle sur la carte graphique
 228|Tourne sur ce PC avec Ollama.
 229|En ligne – Gemini
-230|Le traducteur de Google, utilisé quand internet est là.
+230|Le traducteur de Google, utilisé lorsque Internet est actif.
 231|Voix
 232|Clique sur un nom dans une ligne pour le renommer ou corriger la personne – chaque correction le rend plus précis.
 233|Personnes connues
@@ -239,7 +239,7 @@
 239|Noms
 240|Quel nom Discord apparaît sur chaque ligne. Un nom que tu tapes toi-même est gardé.
 241|Appels
-242|Démarrer et s'arrêter avec tes appels Discord.
+242|Démarrer et s'arrêter en même temps que tes appels Discord.
 243|Fil en direct
 244|Les lignes de cette fenêtre.
 245|Texte de l'overlay
@@ -263,8 +263,8 @@
 263|Ignorer {name}
 264|Fusionner « {name} » avec…
 265|Personnes ignorées : {n}
-266|{model} sera utilisé au Démarrer
-267|on cherche de nouveau l'appli
+266|{model} sera utilisé au démarrage
+267|nouvelle recherche de l'appli
 268|Appel terminé – arrêté
 269|Oublier ces voix ?
 270|Dans {place} : {n}
@@ -275,7 +275,7 @@
 275|toujours {lang}
 276|Traduction vers {lang}.
 277|pas lancé
-278|Oublier la voix de {name} ?\nLes autres personnes sont gardées. Si {name} reparle, la personne reçoit un nouveau nom.
+278|Oublier la voix de {name} ?\nLes autres personnes sont conservées. Si {name} reparle, un nouveau nom lui sera attribué.
 279|dans l'appel
 280|Discord lié – anciennes voix déplacées dans speakers_before_discord.json : {n}
 281|Autres options : {n}

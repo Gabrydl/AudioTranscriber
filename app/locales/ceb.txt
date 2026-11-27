@@ -32,7 +32,7 @@
 32|andam na ang pag-ila sa tingog (mga voice model: {n})
 33|Tawo {n}
 34|napakyas ang download, gisulayan pag-usab ({a}/{b})…
-35|gi-download {p} (kausa ra)
+35|gi-download ang {p} (kausa ra)
 36|voice model
 37|walay voice model nga {k} – gigamit ang uban
 38|Live nga kakusog sa tingog sa napiling app.\nI-drag pataas o paubos ang puti nga linya: ang tingog nga naa sa ibabaw niini maihap nga sinultihan.
@@ -123,7 +123,7 @@
 123|Ibalhin ang overlay
 124|I-unlock ang overlay aron ma-drag nimo; kusa kining ma-lock pag-usab inig buhi nimo
 125|Ipakita ang window
-126|Overlay on/off
+126|I-on/off ang overlay
 127|Gawas
 128|mihunong – nahawan ang memory
 129|Nahinay kini, busa mibalhin sa mas gaan nga speech model.
@@ -169,7 +169,7 @@
 169|naka-log out – pindota ang Konektar aron mo-authorize pag-usab
 170|I-click aron usbon ang ngalan o tul-iron
 171|online
-172|naghulat {a} · unang pulong {b} · human {c}
+172|naghulat {a} · unang mga pulong {b} · human {c}
 173|Kasiguroan sa pag-ila {p}%
 174|Abuhon nga mga pulong: dili sigurado ang recognizer niini
 175|Advanced
@@ -205,7 +205,7 @@
 205|nakonektar pag-usab – namati
 206|nawala ang app – naghulat nga mobalik
 207|Tawag sa Discord – namati
-208|Magpabilin ang tanan nga uban.
+208|Magpabilin ang uban.
 209|Nakalimtan na ang tingog ni {name}
 210|gihubad ngadto sa {lang}
 211|Naka-lock ang overlay: molusot sa dula ang mga click – i-click o Ctrl+Alt+L aron i-unlock
@@ -237,7 +237,7 @@
 237|Koneksyon
 238|Gigamit ang Discord app niini nga PC – walay bot nga mosulod sa imong mga server.
 239|Mga ngalan
-240|Unsang ngalan sa Discord ang ipakita sa matag linya. Magpabilin ang ngalan nga ikaw mismo ang nag-type.
+240|Unsang ngalan sa Discord ang ipakita sa matag linya. Ang ngalan nga imong gi-type maoy ipabilin.
 241|Mga tawag
 242|Sugdi ug hunonga uban sa imong mga tawag sa Discord.
 243|Live nga feed
@@ -263,7 +263,7 @@
 263|Balewalaa si {name}
 264|Iusa si “{name}” kang…
 265|Mga gibalewala: {n}
-266|Gamiton ang {model} inig Sugdi
+266|Gamiton ang {model} inig sugod
 267|gipangita pag-usab ang app
 268|Nahuman ang tawag – mihunong
 269|Kalimtan kini nga mga tingog?

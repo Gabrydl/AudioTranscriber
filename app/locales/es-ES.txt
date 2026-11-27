@@ -53,12 +53,12 @@
 53|Limpia las voces con mucho ruido en la tarjeta gráfica; usa la CPU cuando la tarjeta no puede.
 54|Mostrar en gris las palabras dudosas
 55|Saltar la comprobación de idioma para quien tiene idioma conocido
-56|Más rápido: cuando el idioma de una persona es seguro, se salta el paso aparte de idioma.
+56|Más rápido: cuando el idioma de una persona es seguro, se omite el paso de idioma independiente.
 57|Traducir + corregir palabras mal oídas
 58|Tarjeta gráfica – local, funciona sin conexión
 59|Online – Gemini, cuando hay internet
 60|El modelo de traducción funciona en tu PC (Ollama). Nada sale del PC.
-61|Traduce la API Gemini de Google: más rápida y lista que lo que cabe en una tarjeta de 8 GB.\nLas dos marcadas: primero online, la tarjeta gráfica toma el relevo cuando online no responde\n(sin internet, límite gratuito diario alcanzado, demasiado lento).
+61|Traduce la API Gemini de Google: más rápida y potente que lo que cabe en una tarjeta de 8 GB.\nAmbas marcadas: primero online, la tarjeta gráfica toma el relevo cuando el servicio online no responde\n(sin internet, límite gratuito diario alcanzado, demasiado lento).
 62|Más ligero = menos memoria gráfica y más rápido · más pesado = mejores traducciones.
 63|Cambia al momento, también en marcha. Los modelos que faltan se descargan solos.
 64|Clave de la API de Gemini (gratis)
@@ -69,13 +69,13 @@
 69|Recordar las voces (guardadas solo en este PC)
 70|Aprender el idioma de cada persona
 71|Tras unas líneas sabe el idioma que suele hablar cada persona, así que las frases cortas o\npoco claras ya no se oyen en el idioma equivocado.\nUn cambio claro a otro idioma se sigue reconociendo.
-72|Ctrl+clic: elegir varias · Mayús+clic: elegir un rango · Ctrl+A: todas\nLa tecla Supr o "Olvidar seleccionadas" quita las personas elegidas
+72|Ctrl+clic: seleccionar varias · Mayús+clic: seleccionar un rango · Ctrl+A: todas\nLa tecla Supr o "Olvidar seleccionadas" elimina a las personas seleccionadas
 73|Olvidar seleccionadas
 74|Olvidar todas las voces
 75|Mostrar a todos otra vez
 76|Izquierda: dos personas se juntan más a menudo · Derecha: una persona se divide más a menudo
 77|Nombres y quién habla desde Discord
-78|Usa la conexión local del propio Discord (la aplicación Discord de este PC) – ningún bot entra\nen tus servidores. Cada voz queda unida a la cuenta de Discord de la persona, así que los nombres\nson correctos desde la primera frase y se mantienen entre sesiones.
+78|Usa la conexión local propia de Discord (la aplicación de Discord en este PC); no se une ningún bot\na tus servidores. Cada voz está vinculada a la cuenta de Discord de la persona, por lo que los nombres\nson correctos desde la primera frase y se conservan entre sesiones.
 79|Client ID (de discord.com/developers)
 80|Client Secret
 81|Conectar
@@ -83,28 +83,28 @@
 83|Cerrar sesión
 84|Desactivado
 85|Empezar a escuchar cuando empieza una llamada de Discord
-86|Parar cuando acaba la llamada (libera la GPU)
+86|Detener cuando acaba la llamada (libera la GPU)
 87|Texto original en el feed (desactivado = solo traducción)
 88|Mostrar el texto original en el overlay
 89|Hora delante de cada línea
 90|Cuando el overlay está bloqueado (los clics lo atraviesan) se desvanece tras estos segundos de silencio. 0 = nunca.
-91|Atajos globales (funcionan dentro de los juegos)
-92|Ctrl+Alt+S iniciar/parar · Ctrl+Alt+P pausa · Ctrl+Alt+C copiar la última traducción\nCtrl+Alt+O overlay sí/no · Ctrl+Alt+L bloquear/desbloquear el overlay (los clics pasan)
+91|Atajos globales (funcionan en los juegos)
+92|Ctrl+Alt+S iniciar/detener · Ctrl+Alt+P pausa · Ctrl+Alt+C copiar la última traducción\nCtrl+Alt+O mostrar/ocultar overlay · Ctrl+Alt+L bloquear/desbloquear el overlay (los clics pasan)
 93|Iniciar con Windows (en la bandeja)
 94|Reconectar al cambiar auriculares / dispositivo
 95|Pasar a un modelo más ligero cuando va con retraso
 96|Exportar .txt
 97|Vaciar el feed
 98|Nombres de Discord – configuración (una vez, unos 2 minutos)
-99|<b>1.</b> Abre <b>discord.com/developers/applications</b> en el navegador e inicia sesión.<br><b>2.</b> <b>New Application</b> → llámala <i>AudioTranscriber</i> → Create.<br><b>3.</b> Menú de la izquierda <b>OAuth2</b>: copia el <b>Client ID</b>. Haz clic en <b>Reset Secret</b> y copia el <b>Client Secret</b>.<br><b>4.</b> Sigue en OAuth2 → <b>Redirects</b> → <b>Add Redirect</b>: <code>http://localhost</code> → <b>Save Changes</b>.<br><b>5.</b> Pega aquí los dos códigos, marca <i>Nombres y quién habla desde Discord</i> y pulsa <b>Conectar</b>.<br><b>6.</b> Discord muestra una ventana: haz clic en <b>Autorizar</b>.<br><br>Listo – se reconecta solo cada vez. Los códigos y la sesión se quedan solo en este PC (settings.json y discord_token.json).
-100|Las dos: primero online, la tarjeta gráfica cuando online no responde.
+99|<b>1.</b> Abre <b>discord.com/developers/applications</b> en tu navegador e inicia sesión.<br><b>2.</b> <b>New Application</b> → asígnale el nombre <i>AudioTranscriber</i> → Create.<br><b>3.</b> Menú izquierdo <b>OAuth2</b>: copia el <b>Client ID</b>. Haz clic en <b>Reset Secret</b> y copia el <b>Client Secret</b>.<br><b>4.</b> Sigue en OAuth2 → <b>Redirects</b> → <b>Add Redirect</b>: <code>http://localhost</code> → <b>Save Changes</b>.<br><b>5.</b> Pega ambos códigos aquí, marca <i>Nombres y quién habla desde Discord</i> y pulsa <b>Conectar</b>.<br><b>6.</b> Discord mostrará una ventana: haz clic en <b>Autorizar</b>.<br><br>Listo: se reconecta automáticamente cada vez. Los códigos y la sesión se quedan únicamente en este PC (settings.json y discord_token.json).
+100|Ambas: primero online, la tarjeta gráfica cuando el servicio online no responde.
 101|Solo online: si no responde, las líneas se quedan sin traducir.
 102|Gemini – clave gratis (1 minuto)
-103|<b>1.</b> Abre <b>aistudio.google.com/apikey</b> e inicia sesión con una cuenta de Google.<br><b>2.</b> Haz clic en <b>Create API key</b> y cópiala.<br><b>3.</b> Pégala aquí. Se queda en este PC (settings.json).<br><br><b>Gemma 4 31B</b> tiene la mayor cuota gratuita diaria. Gemini Flash-Lite / Flash son más listos, pero su cuota gratuita es pequeña.<br>Con el plan gratuito Google puede usar lo que se envía para mejorar sus productos; con la facturación activada, no.
+103|<b>1.</b> Abre <b>aistudio.google.com/apikey</b> e inicia sesión con una cuenta de Google.<br><b>2.</b> Haz clic en <b>Create API key</b> y cópiala.<br><b>3.</b> Pégala aquí. Se queda en este PC (settings.json).<br><br><b>Gemma 4 31B</b> tiene la mayor cuota gratuita diaria. Gemini Flash-Lite / Flash son más inteligentes, pero su cuota gratuita es pequeña.<br>Con el plan gratuito Google puede usar lo que se envía para mejorar sus productos; con la facturación activada, no.
 104|junta más
 105|En directo – la conversación
 106|Personas – nombres, voces, Discord
-107|Palabras que conocer – nombres, términos de juego, jerga
+107|Palabras que conocer – nombres, términos de juegos, jerga
 108|Overlay sobre el juego – Ctrl+Alt+O
 109|Bloquear el overlay (los clics pasan al juego) – Ctrl+Alt+L
 110|Vaciar todo el chat (también el overlay)
@@ -115,7 +115,7 @@
 115|Pausar / reanudar la escucha – Ctrl+Alt+P\n(los modelos siguen cargados, no se transcribe nada)
 116|ESCUCHAR
 117|Actualizar la lista de aplicaciones
-118|Elige una aplicación arriba (Discord se elige solo) y pulsa Iniciar.\nLas líneas aparecen aquí mientras la gente habla – lo que se dijo y su traducción.
+118|Elige una aplicación arriba (Discord se selecciona automáticamente) y pulsa Iniciar.\nLas líneas aparecen aquí mientras la gente habla: lo que se dijo y su traducción.
 119|RENDIMIENTO
 120|PERSONAS
 121|Los nombres aparecen aquí mientras la gente habla.
@@ -123,7 +123,7 @@
 123|Mover el overlay
 124|Desbloquea el overlay para poder arrastrarlo; se vuelve a bloquear solo al soltarlo
 125|Mostrar la ventana
-126|Overlay sí/no
+126|Mostrar/ocultar overlay
 127|Salir
 128|parado – memoria liberada
 129|Iba con retraso, así que ha pasado a un modelo de voz más ligero.
@@ -150,7 +150,7 @@
 150|Ninguna aplicación está reproduciendo audio – entra en una llamada de Discord y luego ⟳
 151|Primero elige al menos una aplicación (p. ej. Discord).
 152|Escuchando
-153|ajustes aplicados – se usan en el próximo Iniciar
+153|ajustes aplicados – se usarán en el próximo inicio
 154|Volver a usar el nombre de Discord
 155|Detectar automáticamente
 156|Volver a mostrar a esta persona
@@ -159,7 +159,7 @@
 159|escuchando
 160|En pausa
 161|Escuchando otra vez
-162|Haz clic para elegir otro idioma (funciona en marcha, desde la siguiente frase).
+162|Haz clic para elegir otro idioma (funciona en marcha, a partir de la siguiente frase).
 163|¿Olvidar todas las voces guardadas?
 164|Todavía no hay nada que exportar.
 165|Guardado en
@@ -171,7 +171,7 @@
 171|online
 172|esperó {a} · primeras palabras {b} · terminado {c}
 173|Confianza del reconocimiento {p}%
-174|Palabras grises: el reconocedor no estaba seguro de ellas
+174|Palabras en gris: el reconocedor no estaba seguro de ellas
 175|Avanzado
 176|Aplicar
 177|Carga los modelos elegidos (también en marcha).
@@ -193,19 +193,19 @@
 193|Líneas
 194|Traductor
 195|Reproduciendo audio ahora
-196|No reproduce audio ahora
+196|No se está reproduciendo audio
 197|Cargando…
-198|Parar
+198|Detener
 199|Voces conocidas: {n}
 200|Renombrar “{name}”…
 201|Olvidar la voz de {name}…
 202|idioma detectado automáticamente
 203|cambió el dispositivo de audio
-204|la captura se paró
+204|captura detenida
 205|reconectado – escuchando
 206|la aplicación ya no está – esperando a que vuelva
 207|Llamada de Discord – escuchando
-208|Todos los demás se mantienen.
+208|Todos los demás se conservan.
 209|Voz de {name} olvidada
 210|traduciendo al {lang}
 211|Overlay bloqueado: los clics pasan al juego – haz clic o Ctrl+Alt+L para desbloquear
@@ -216,7 +216,7 @@
 216|Oído: “{text}”
 217|Modelo de voz
 218|Más grande es más preciso, más pequeño es más rápido.
-219|Idiomas que reconocer
+219|Idiomas a reconocer
 220|Solo se escuchan los marcados.
 221|Frases
 222|Cuándo empieza y acaba una frase.
@@ -239,7 +239,7 @@
 239|Nombres
 240|Qué nombre de Discord se muestra en cada línea. Un nombre que escribas tú se mantiene.
 241|Llamadas
-242|Empieza y para junto con tus llamadas de Discord.
+242|Se inicia y se detiene con tus llamadas de Discord.
 243|Feed en directo
 244|Las líneas de esta ventana.
 245|Texto del overlay
@@ -250,7 +250,7 @@
 250|También en el botón de la bandera de la barra izquierda. La aplicación se reinicia para cambiar.
 251|Windows
 252|Fiabilidad
-253|Lo mantiene funcionando solo.
+253|Lo mantiene en marcha por sí solo.
 254|Transcripción
 255|No se guarda nada salvo que lo exportes.
 256|todavía sin voz
@@ -263,18 +263,18 @@
 263|Ignorar a {name}
 264|Unir “{name}” con…
 265|Personas ignoradas: {n}
-266|{model} se usará al Iniciar
+266|{model} se usará al iniciar
 267|buscando la aplicación otra vez
-268|Llamada terminada – parado
+268|Llamada finalizada – detenido
 269|¿Olvidar estas voces?
 270|En {place}: {n}
-271|La escucha se para un momento.
+271|La escucha se detiene un momento.
 272|Sistema
 273|Versión {v}
 274|Ocultar el overlay
 275|siempre {lang}
 276|Traduciendo al {lang}.
-277|no está en marcha
+277|no se está ejecutando
 278|¿Olvidar la voz de {name}?\nLas demás personas se mantienen. Si {name} vuelve a hablar, recibe un nombre nuevo.
 279|en la llamada
 280|Discord vinculado – voces antiguas movidas a speakers_before_discord.json: {n}
@@ -282,13 +282,13 @@
 282|Windows rechazó la captura por aplicación de {app} – capturando TODO el audio del sistema
 283|Personas
 284|Coincidencia de voz {p}%
-285|Esperó {q} · reconocimiento {w} · voces +{v}
+285|Espera {q} · reconocimiento {w} · voces +{v}
 286|dicho a las {t}
-287|No se pudo descargar la actualización – lo vuelve a intentar al abrir la aplicación
+287|No se pudo descargar la actualización; se reintentará al abrir la aplicación
 288|Descargando la actualización {v}…
 289|Actualizando a {v} – vuelve en unos segundos
 290|Actualización {v} lista – reiniciando…
-291|Actualización {v} lista – se instala cuando pulses Parar
+291|Actualización {v} lista – se instala cuando pulses Detener
 292|Portugués
 293|Español
 294|Alemán
@@ -324,9 +324,9 @@
 324|Gemma 4 31B
 325|Gemma 4 31B – gratis
 326|Gemini Flash-Lite
-327|Gemini Flash-Lite – más rápido/listo, límite gratuito diario pequeño
+327|Gemini Flash-Lite – más rápido e inteligente, límite gratuito diario pequeño
 328|Gemini Flash
-329|Gemini Flash – el más listo, límite gratuito diario muy pequeño
+329|Gemini Flash – el más inteligente, límite gratuito diario muy pequeño
 330|Reconocimiento
 331|Cómo se oye la voz y se convierte en texto
 332|Traducción
@@ -348,15 +348,15 @@
 348|Falló el inicio de sesión en Discord
 349|Discord rechazó el Client ID ({why}) - revísalo en Ajustes
 350|no se permitió el acceso en Discord
-351|no se pudo descargar {m} – sigue con turbo (revisa la conexión)
+351|no se pudo descargar {m} – se mantiene en turbo (comprueba la conexión)
 352|traducción no disponible – el traductor online no respondió
-353|{m} descargado – pulsa Parar e Iniciar para usarlo
+353|{m} descargado – pulsa Detener e Iniciar para usarlo
 354|{m} descargado – elígelo en Ajustes > Traducción
 355|descargando {m} en segundo plano (se usa desde el próximo Iniciar)
 356|no se pudo descargar {m} – se reintentará en el próximo Iniciar
 357|{m} listo · descargando {x} en segundo plano
 358|sin respuesta (¿internet?)
-359|se usa la tarjeta gráfica
+359|usando la tarjeta gráfica
 360|límite gratuito diario alcanzado (se reinicia a las 09:00)
 361|demasiadas peticiones por minuto
 362|clave de API o modelo rechazados – revisa los Ajustes

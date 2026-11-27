@@ -10,7 +10,7 @@ ANO ANG GINAGAWA NITO
 PAG-INSTALL
   Patakbuhin ang AudioTranscriber_Setup.exe. Itatanong ng unang screen ang wika ng app (napili na ang
   wika ng Windows mo). Inihahanda ng Setup ang lahat nang hakbang-hakbang (mga 8 GB, 10-20 minuto).
-  Kapag may nakitang lumang kopya, gagamitin ulit ang mga model, setting at boses nito. Pagkatapos,
+  Kapag may nakitang mas lumang kopya, gagamitin ulit ang mga model, setting at boses nito. Pagkatapos,
   buksan ang AudioTranscriber mula sa desktop o sa Start menu. Mapapalitan mo anumang oras ang wika ng
   app gamit ang flag button sa kaliwang bar.
 
@@ -27,12 +27,12 @@ ANG WINDOW
   Sa kanan: delay, graphics card, memory, mga linya at ang mga tao sa tawag.
   I-click ang pangalan sa kahit anong linya para palitan ito, itama ang tao, pagsamahin ang dalawang
   tao, balewalain ang isang tao o itakda ang wikang lagi niyang gamit. Bawat pagtama ay nagpapatumpak.
-  "HINULA MULA SA KONTEKSTO" = malabo ang mga salita at hinulaan ng translator ang kahulugan.
+  "HINULAAN MULA SA KONTEKSTO" = malabo ang mga salita at hinulaan ng tagasalin ang kahulugan.
   Mga salitang kulay abo = hindi sigurado ang recognizer sa mga ito.
 
 MGA SETTING (mga kategorya sa kaliwa, mga bihirang opsyon sa "Advanced")
   Pagkilala     speech model at kung saan tumatakbo, mga wikang kikilalanin, pagtukoy ng pangungusap,
-                mga salitang dapat alam (pangalan, termino sa laro, slang), mga termino ng League of Legends.
+                mga salitang dapat malaman (pangalan, termino sa laro, slang), mga termino ng League of Legends.
   Pagsasalin    graphics card (lokal, offline), Online - Gemini (libreng key), o pareho: online muna,
                 graphics card bilang reserba. Nare-reset ang libreng limit ng Gemini bawat araw ng
                 09:00 (oras sa Italy).

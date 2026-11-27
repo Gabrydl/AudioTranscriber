@@ -811,7 +811,7 @@ LangString F_PYINST ${LANG_CZECH} "Python se nepodařilo nainstalovat. Nainstalu
 LangString F_PYINST ${LANG_POLISH} "Nie udało się zainstalować Pythona. Zainstaluj Pythona 3.11 z python.org, potem wybierz Napraw."
 LangString F_PYINST ${LANG_FINNISH} "Pythonia ei voitu asentaa. Asenna Python 3.11 osoitteesta python.org ja valitse sitten Korjaa."
 LangString F_PYINST ${LANG_ESTONIAN} "Pythonit ei saanud paigaldada. Paigalda Python 3.11 saidilt python.org ja vali siis Paranda."
-LangString F_PYINST ${LANG_SERBIAN} "Python није могао да се инсталира. Инсталирај Python 3.11 са python.орг, па изабери Поправи."
+LangString F_PYINST ${LANG_SERBIAN} "Python није могао да се инсталира. Инсталирај Python 3.11 са python.org, па изабери Поправи."
 LangString F_PYINST ${LANG_CROATIAN} "Python se nije mogao instalirati. Instaliraj Python 3.11 s python.org, zatim odaberi Popravi."
 LangString F_PYINST ${LANG_MONTENEGRIN} "Python nije mogao da se instalira. Instaliraj Python 3.11 sa python.org, pa izaberi Popravi."
 LangString F_PYINST ${LANG_BOSNIAN} "Python nije mogao da se instalira. Instaliraj Python 3.11 sa python.org, pa izaberi Popravi."

@@ -18,7 +18,7 @@ EMPEZAR
   2. Presiona Iniciar. Cada frase aparece con quién la dijo, la hora, la traducción y lo que se oyó.
   3. La onda muestra el volumen. "Auto" sigue el ruido de fondo de cada persona; arrastra la línea
      punteada para ajustarlo a mano.
-  El botón de los audífonos junto a Iniciar cambia rápido los idiomas que reconocer.
+  El botón de los audífonos junto a Iniciar cambia rápido los idiomas a reconocer.
 
 LA VENTANA
   Barra izquierda: En vivo, Personas, Palabras que conocer, Overlay, Bloquear overlay, Borrar, bandera
@@ -29,7 +29,7 @@ LA VENTANA
   Palabras grises = el reconocedor no estaba seguro de ellas.
 
 CONFIGURACIÓN (categorías a la izquierda, opciones poco usadas en "Avanzado")
-  Reconocimiento  modelo de voz y dónde funciona, idiomas que reconocer, detección de frases, palabras
+  Reconocimiento  modelo de voz y dónde funciona, idiomas a reconocer, detección de frases, palabras
                   que conocer (nombres, términos de juego, jerga), términos de League of Legends.
   Traducción      tarjeta de video (local, sin conexión), Online - Gemini (clave gratis), o las dos:
                   primero online, la tarjeta de video de reserva. El límite gratuito diario de Gemini se
@@ -39,7 +39,7 @@ CONFIGURACIÓN (categorías a la izquierda, opciones poco usadas en "Avanzado")
   Discord         nombres y quién habla directamente desde la app de Discord de esta PC (sin bot), se
                   configura una vez con "Cómo configurarlo" (unos 2 minutos); empieza y para con tus
                   llamadas.
-  Overlay y pantalla  texto original, texto del overlay, tamaño, opacidad, ocultar solo, atajos.
+  Overlay y pantalla  texto original, texto del overlay, tamaño, opacidad, ocultamiento automático, atajos.
   App             idioma de la app, iniciar con Windows, fiabilidad, exportar, versión.
 
 OVERLAY

@@ -44,7 +44,7 @@
 44|Zaključaj: klikovi prolaze do igre (Ctrl+Alt+L)
 45|GPU: najbrže, modeli moraju stati na grafičku karticu (ako jedan ne stane, sam se podijeli).\nMiješano: prevodilac koristi grafičku karticu koliko stane, a CPU za ostatak.\nSamo CPU: radi bez grafičke kartice, puno sporije.
 46|Detektor glasa (zanemaruje šum i klikove)
-47|Detektor govora odlučuje gdje rečenica počinje i završava, ne samo jačina zvuka.\nMikrofoni sa šumom više ne drže rečenicu otvorenom, klikovi ne postaju lažni redovi.\nVrijedi od sljedećeg Pokreni.
+47|Detektor govora odlučuje gdje rečenica počinje i završava, a ne samo jačina zvuka.\nMikrofoni sa šumom više ne drže rečenicu otvorenom, klikovi ne postaju lažne linije.\nPrimjenjuje se od sljedećeg pokretanja.
 48|Imena, pojmovi iz igara, sleng – jedan po redu ili odvojeni zarezima\nnpr. Gabry, War Thunder, Bismarck, GG
 49|Pojmovi iz League of Legends
 50|Šampioni, čarolije, predmeti, rune i sleng (Riotovi nazivi na svim jezicima).\nBolje se prepoznaju i u prevodima ostaju engleska riječ iz igre:\nFlash ostaje Flash, Hexflash ostaje Hexflash, "destello" postaje Flash.
@@ -112,10 +112,10 @@
 112|Sesija uživo
 113|Auto
 114|Automatski prag: prati pozadinski šum svake osobe\n(pomaže kod mikrofona koji šište / šume). Povuci liniju da ga postaviš ručno.
-115|Pauziraj / nastavi slušanje – Ctrl+Alt+P\n(modeli ostaju učitani, ništa se ne prepisuje)
+115|Pauziraj / nastavi slušanje – Ctrl+Alt+P\n(modeli ostaju učitani, ništa se ne transkribuje)
 116|SLUŠAJ
 117|Osvježi spisak aplikacija
-118|Odaberi aplikaciju gore (Discord se odabere sam) i klikni Pokreni.\nRedovi se ovdje pojavljuju dok ljudi govore – šta je rečeno i prevod.
+118|Odaberi aplikaciju iznad (Discord se automatski odabire) i klikni Pokreni.\nRedovi se ovdje pojavljuju dok ljudi govore – šta je rečeno i prevod.
 119|PERFORMANSE
 120|OSOBE
 121|Imena se ovdje pojavljuju dok ljudi govore.
@@ -150,7 +150,7 @@
 150|Nijedna aplikacija ne reprodukuje zvuk – uđi u poziv na Discordu, pa ⟳
 151|Prvo odaberi barem jednu aplikaciju (npr. Discord).
 152|Slušam
-153|postavke primijenjene – koriste se od sljedećeg Pokreni
+153|postavke primijenjene – koriste se od sljedećeg pokretanja
 154|Ponovo koristi ime s Discorda
 155|Prepoznaj automatski
 156|Ponovo prikaži ovu osobu
@@ -159,7 +159,7 @@
 159|slušam
 160|Pauzirano
 161|Ponovo slušam
-162|Klikni za odabir drugog jezika (radi i dok radi, od sljedeće rečenice).
+162|Klikni za odabir drugog jezika (radi i tokom rada, od sljedeće rečenice).
 163|Zaboraviti sve sačuvane glasove?
 164|Još nema ničega za izvoz.
 165|Sačuvano u
@@ -213,15 +213,15 @@
 213|nesigurno
 214|{name} – klikni za preimenovanje ili ispravak
 215|grafička kartica
-216|Čuto: „{text}”
+216|Čulo se: „{text}”
 217|Model govora
 218|Veći je tačniji, manji je brži.
 219|Jezici za prepoznavanje
-220|Sluša se samo označene.
+220|Slušaju se samo označeni.
 221|Rečenice
 222|Kad rečenica počinje i završava.
 223|Riječi koje treba znati
-224|Koriste ih prepoznavanje i prevodilac, da te riječi ispadnu tačno.
+224|Koriste ih prepoznavanje i prevodilac, kako bi te riječi bile tačne.
 225|Gdje radi
 226|Oboje označeno: prvo online, grafička kartica kao rezerva.
 227|Model na grafičkoj kartici
@@ -246,7 +246,7 @@
 246|Šta overlay iznad igre prikazuje.
 247|Izgled overlaya
 248|Ostaje iznad igara u prozorskom načinu ili bez okvira (ne u ekskluzivnom cijelom ekranu).
-249|Prečaci
+249|Prečice
 250|I preko dugmeta sa zastavom u lijevoj traci. Aplikacija se za promjenu ponovo pokreće.
 251|Windows
 252|Pouzdanost
@@ -260,10 +260,10 @@
 260|Nije moguće pokrenuti:
 261|Nije moguće snimati:
 262|Da, to je {name}
-263|Ignoriši: {name}
+263|Ignoriši {name}
 264|Spoji „{name}” s…
 265|Ignorisane osobe: {n}
-266|{model} će se koristiti pri Pokreni
+266|{model} će se koristiti pri pokretanju
 267|ponovo tražim aplikaciju
 268|Poziv završen – zaustavljeno
 269|Zaboraviti ove glasove?
@@ -279,7 +279,7 @@
 279|u pozivu
 280|Discord povezan – stari glasovi premješteni u speakers_before_discord.json: {n}
 281|Više opcija: {n}
-282|Windows je odbio snimanje po aplikaciji za {app} – snimam SAV zvuk sistema
+282|Windows je odbio snimanje po aplikaciji za {app} – snima se SAV zvuk sistema
 283|Osobe
 284|Podudaranje glasa {p}%
 285|Čekanje {q} · prepoznavanje {w} · glasovi +{v}

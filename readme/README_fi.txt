@@ -4,11 +4,11 @@ AudioTranscriber 1.6.0 - puheen litterointi ja käännös reaaliajassa
 MITÄ SE TEKEE
   Se kuuntelee valitsemiasi sovelluksia (kuten Discordia), kirjoittaa ylös, mitä kukin sanoo, ja
   kääntää sen reaaliajassa valitsemallesi kielelle. Puheentunnistus toimii tällä koneella. Myös
-  käännös toimii tällä koneella tai verkossa Geminillä, jos otat sen käyttöön. Ei tiliä, mitään ei
+  käännös toimii tällä koneella tai verkossa Geminillä, jos otat sen käyttöön. Ei vaadi tiliä, mitään ei
   tallenneta levylle.
 
 ASENNUS
-  Suorita AudioTranscriber_Setup.exe. Ensimmäinen näkymä kysyy sovelluksen kielen (Windowsin kieli on
+  Suorita AudioTranscriber_Setup.exe. Ensimmäisessä näytössä kysytään sovelluksen kieltä (Windowsin kieli on
   jo valittuna). Asennus valmistelee kaiken vaihe vaiheelta (noin 8 Gt, 10–20 minuuttia). Jos aiempi
   kopio löytyy, sen mallit, asetukset ja äänet käytetään uudelleen. Avaa sitten AudioTranscriber
   työpöydältä tai Käynnistä-valikosta. Sovelluksen kielen voi vaihtaa milloin tahansa vasemman
@@ -19,7 +19,7 @@ ALOITUS
   2. Napsauta Käynnistä. Jokainen lause näkyy puhujan, kellonajan, käännöksen ja kuullun kanssa.
   3. Aaltomuoto näyttää äänenvoimakkuuden. "Auto" seuraa jokaisen henkilön taustakohinaa; vedä
      katkoviivaa säätääksesi sen itse.
-  Käynnistä-painikkeen vieressä oleva kuulokepainike vaihtaa kuunneltavat kielet nopeasti.
+  Käynnistä-painikkeen vieressä oleva kuulokepainike vaihtaa tunnistettavat kielet yhdellä napsautuksella.
 
 IKKUNA
   Vasen palkki: Livenä, Henkilöt, Sanat, Peittokuva, Lukitse peittokuva, Tyhjennä, kielen lippu,
@@ -60,7 +60,7 @@ PÄIVITYKSET
 
 KORJAUS JA POISTO
   Korjaus: Asetukset > Sovellukset > AudioTranscriber > Muokkaa tai suorita asennus uudelleen ja
-  valitse Korjaa. Lataa vain puuttuvat; asetukset ja äänet säilyvät.
+  valitse Korjaa. Se lataa vain puuttuvat tiedostot; asetukset ja äänet säilyvät.
   Poisto: Asetukset > Sovellukset > AudioTranscriber > Poista asennus. Kysyy, poistetaanko myös mallit
   ja asetuksesi (noin 8 Gt). Ollama on erillinen ohjelma, jolla on oma poisto-ohjelmansa.
 

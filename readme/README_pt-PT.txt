@@ -18,7 +18,7 @@ COMEÇAR
   2. Carregue em Iniciar. Cada frase aparece com quem a disse, a hora, a tradução e o que foi ouvido.
   3. A onda mostra o volume. "Auto" acompanha o ruído de fundo de cada pessoa; arraste a linha
      tracejada para o ajustar à mão.
-  O botão com auscultadores ao lado de Iniciar muda rapidamente as línguas a reconhecer.
+  O botão de auscultadores ao lado de Iniciar alterna as línguas a reconhecer com um clique.
 
 A JANELA
   Barra à esquerda: Em direto, Pessoas, Palavras a conhecer, Overlay, Bloquear overlay, Limpar, bandeira

@@ -16,10 +16,10 @@ INSTALACIJA
 POČETAK
   1. Uđi u poziv na Discordu. Discord se pojavi pod "SLUŠAJ" (zelena točka = reproducira zvuk).
   2. Klikni Pokreni. Svaka rečenica pojavi se s tim tko ju je rekao, vremenom, prijevodom i onim
-     što je čuto.
+     što se čulo.
   3. Valni oblik pokazuje glasnoću. "Auto" prati pozadinski šum svake osobe; povuci isprekidanu
      liniju da ga postaviš ručno.
-  Gumb sa slušalicama pokraj Pokreni brzo mijenja jezike koji se slušaju.
+  Gumb sa slušalicama pokraj gumba Pokreni brzo mijenja jezike koji se slušaju.
 
 PROZOR
   Lijeva traka: Uživo, Osobe, Riječi, Overlay, Zaključaj overlay, Očisti, zastava jezika, Postavke.
@@ -27,7 +27,7 @@ PROZOR
   Klikni ime u bilo kojem retku da ga preimenuješ, ispraviš osobu, spojiš dvije osobe, nekoga
   ignoriraš ili odrediš jezik kojim uvijek govori. Svaki ispravak povećava točnost.
   "POGOĐENO IZ KONTEKSTA" = riječi nisu bile jasne pa je prevoditelj pogodio smisao.
-  Sive riječi = prepoznavanje nije bilo sigurno u njih.
+  Sive riječi = prepoznavanje nije bilo pouzdano za njih.
 
 POSTAVKE (kategorije lijevo, rijetke opcije pod "Napredno")
   Prepoznavanje  model govora i gdje radi, jezici za prepoznavanje, prepoznavanje rečenica, riječi

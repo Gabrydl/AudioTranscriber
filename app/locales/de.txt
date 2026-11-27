@@ -11,11 +11,11 @@
 11|{m} bereit ({where})
 12|hängt hinterher ({t}) – wechsle von {a} zu {b}…
 13|Übersetzung nicht verfügbar – Ollama konnte nicht gestartet werden
-14|Ollama läuft nicht – nur Transkription (Übersetzung aus)
+14|Ollama läuft nicht – nur Transkription (Übersetzung ausgeschaltet)
 15|Lade das Übersetzungsmodell {m} herunter (nur einmal)…
 16|Stimmerkennung nicht verfügbar
 17|Laden fehlgeschlagen
-18|online (Gemini) – Übersetzer auf der Grafikkarte aus
+18|online (Gemini) – Übersetzer auf der Grafikkarte ausgeschaltet
 19|Lade '{name}' herunter (nur einmal)…
 20|'{name}' bereit (schon geladen)
 21|'{name}' bereit auf der GPU ({t})
@@ -41,7 +41,7 @@
 41|AUS DEM KONTEXT ERRATEN
 42|übersetze…
 43|Sperren
-44|Sperren: Klicks gehen ans Spiel durch (Strg+Alt+L)
+44|Sperren: Klicks werden ans Spiel weitergeleitet (Strg+Alt+L)
 45|GPU: am schnellsten, die Modelle müssen auf die Grafikkarte passen (passt eins nicht, wird es automatisch geteilt).\nMix: Der Übersetzer nutzt die Grafikkarte, soweit sie reicht, und die CPU für den Rest.\nNur CPU: geht ohne Grafikkarte, viel langsamer.
 46|Sprachdetektor (ignoriert Geräusche und Klicks)
 47|Ein Sprachdetektor entscheidet, wo ein Satz anfängt und endet, nicht nur die Lautstärke.\nRauschende Mikros halten einen Satz nicht mehr offen, Klicks werden keine falschen Zeilen.\nGilt ab dem nächsten Start.
@@ -100,13 +100,13 @@
 100|Beide: zuerst online, die Grafikkarte, wenn online nicht antwortet.
 101|Nur online: Antwortet es nicht, bleiben die Zeilen unübersetzt.
 102|Gemini – Gratis-Schlüssel (1 Minute)
-103|<b>1.</b> Öffne <b>aistudio.google.com/apikey</b> und melde dich mit einem Google-Konto an.<br><b>2.</b> Klicke auf <b>Create API key</b> und kopiere ihn.<br><b>3.</b> Füge ihn hier ein. Er bleibt auf diesem PC (settings.json).<br><br><b>Gemma 4 31B</b> hat das größte tägliche Gratiskontingent. Gemini Flash-Lite / Flash sind klüger, aber ihr Gratiskontingent ist klein.<br>Im Gratistarif darf Google das Gesendete zur Verbesserung seiner Produkte nutzen; mit aktivierter Abrechnung nicht.
+103|<b>1.</b> Öffne <b>aistudio.google.com/apikey</b> und melde dich mit einem Google-Konto an.<br><b>2.</b> Klicke auf <b>Create API key</b> und kopiere ihn.<br><b>3.</b> Füge ihn hier ein. Er bleibt auf diesem PC (settings.json).<br><br><b>Gemma 4 31B</b> hat das größte tägliche Gratiskontingent. Gemini Flash-Lite / Flash sind schlauer, aber ihr Gratiskontingent ist klein.<br>Im Gratistarif darf Google das Gesendete zur Verbesserung seiner Produkte nutzen; mit aktivierter Abrechnung nicht.
 104|mehr zusammenlegen
 105|Live – das Gespräch
 106|Personen – Namen, Stimmen, Discord
 107|Wörter, die es kennen soll – Namen, Spielbegriffe, Slang
 108|Overlay über dem Spiel – Strg+Alt+O
-109|Overlay sperren (Klicks gehen ans Spiel durch) – Strg+Alt+L
+109|Overlay sperren (Klicks werden ans Spiel weitergeleitet) – Strg+Alt+L
 110|Den ganzen Chat leeren (auch das Overlay)
 111|Einstellungen
 112|Live-Sitzung
@@ -155,11 +155,11 @@
 155|Automatisch erkennen
 156|Diese Person wieder anzeigen
 157|Niemand ignoriert
-158|pausiert – Strg+Alt+P zum Weitermachen
+158|pausiert – Strg+Alt+P zum Fortfahren
 159|hört zu
 160|Pausiert
 161|Hört wieder zu
-162|Klicken, um eine andere Sprache zu wählen (geht auch während es läuft, ab dem nächsten Satz).
+162|Klicken, um eine andere Sprache auszuwählen (wirkt auch im laufenden Betrieb, ab dem nächsten Satz).
 163|Alle gespeicherten Stimmen vergessen?
 164|Noch nichts zu exportieren.
 165|Gespeichert unter
@@ -174,7 +174,7 @@
 174|Graue Wörter: Die Erkennung war sich bei ihnen nicht sicher
 175|Erweitert
 176|Übernehmen
-177|Lädt die gewählten Modelle (auch während es läuft).
+177|Lädt die gewählten Modelle (auch im laufenden Betrieb).
 178|Ausführen auf
 179|Angezeigter Name
 180|Heute genutzt: {used} von etwa {lim} gratis
@@ -203,13 +203,13 @@
 203|Audiogerät gewechselt
 204|Aufnahme gestoppt
 205|wieder verbunden – hört zu
-206|die App ist weg – warte, bis sie zurückkommt
+206|die App ist weg – warte, bis sie wieder da ist
 207|Discord-Anruf – hört zu
 208|Alle anderen bleiben erhalten.
 209|Stimme von {name} vergessen
 210|übersetzt ins {lang}
-211|Overlay gesperrt: Klicks gehen ans Spiel durch – klicken oder Strg+Alt+L zum Entsperren
-212|Letzter Satz: {a} Erkennung + {b}, bis die Übersetzung begann
+211|Overlay gesperrt: Klicks werden ans Spiel weitergeleitet – klicken oder Strg+Alt+L zum Entsperren
+212|Letzter Satz: {a} für Erkennung + {b} bis zum Start der Übersetzung
 213|unsicher
 214|{name} – klicken zum Umbenennen oder Korrigieren
 215|Grafikkarte
@@ -273,7 +273,7 @@
 273|Version {v}
 274|Overlay ausblenden
 275|immer {lang}
-276|Übersetzt ins {lang}.
+276|Übersetzung: {lang}.
 277|läuft nicht
 278|Die Stimme von {name} vergessen?\nDie anderen Personen bleiben. Spricht {name} wieder, bekommt die Person einen neuen Namen.
 279|im Anruf

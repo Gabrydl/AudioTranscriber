@@ -44,7 +44,7 @@
 44|Lukusta: klõpsud lähevad mängu (Ctrl+Alt+L)
 45|GPU: kiireim, mudelid peavad mahtuma graafikakaardile (kui mõni ei mahu, jagatakse see automaatselt).\nSegatud: tõlkija kasutab graafikakaarti nii palju kui mahub ja ülejäänuks CPU-d.\nAinult CPU: töötab ilma graafikakaardita, palju aeglasem.
 46|Häältuvastus (eirab müra ja klõpse)
-47|Kõnetuvastus otsustab, kus lause algab ja lõpeb, mitte ainult helitugevus.\nMürarikkad mikrofonid ei hoia enam lauset lahti, klõpsudest ei saa valeridu.\nKehtib järgmisest Alusta-vajutusest.
+47|Kõnetuvastus otsustab, kus lause algab ja lõpeb, mitte ainult helitugevus.\nMürarikkad mikrofonid ei hoia enam lauset lahti, klõpsudest ei saa valeridu.\nKehtib järgmisest käivitamisest.
 48|Nimed, mänguterminid, släng – üks reale või komadega eraldatud\nnt Gabry, War Thunder, Bismarck, GG
 49|League of Legendsi terminid
 50|Tšempionid, loitsud, esemed, ruunid ja släng (Rioti nimed kõigis keeltes).\nTuvastatakse paremini ja jäetakse tõlgetes mängu ingliskeelseks sõnaks:\nFlash jääb Flashiks, Hexflash jääb Hexflashiks, "destello" muutub Flashiks.
@@ -100,11 +100,11 @@
 100|Mõlemad: kõigepealt võrgus, graafikakaart siis, kui võrguteenus ei vasta.
 101|Ainult võrgus: kui see ei vasta, jäävad read tõlkimata.
 102|Gemini – tasuta võti (1 minut)
-103|<b>1.</b> Ava <b>aistudio.google.com/apikey</b> ja logi sisse Google'i kontoga.<br><b>2.</b> Klõpsa <b>Create API key</b> ja kopeeri see.<br><b>3.</b> Kleebi see siia. See jääb sellesse arvutisse (settings.json).<br><br><b>Gemma 4 31B</b> on suurim tasuta päevakvoot. Gemini Flash-Lite / Flash on nutikamad, kuid nende tasuta kvoot on väike.<br>Tasuta paketis võib Google saadetut oma toodete parandamiseks kasutada; sisselülitatud arveldusega mitte.
+103|<b>1.</b> Ava <b>aistudio.google.com/apikey</b> ja logi sisse Google'i kontoga.<br><b>2.</b> Klõpsa <b>Create API key</b> ja kopeeri see.<br><b>3.</b> Kleebi see siia. See jääb sellesse arvutisse (settings.json).<br><br><b>Gemma 4 31B</b> pakub suurimat tasuta päevakvooti. Gemini Flash-Lite / Flash on nutikamad, kuid nende tasuta kvoot on väike.<br>Tasuta paketis võib Google saadetut oma toodete parandamiseks kasutada; sisselülitatud arveldusega mitte.
 104|liidab rohkem
 105|Otse – vestlus
 106|Inimesed – nimed, hääled, Discord
-107|Teada olevad sõnad – nimed, mänguterminid, släng
+107|Teadaolevad sõnad – nimed, mänguterminid, släng
 108|Ülekate mängu peal – Ctrl+Alt+O
 109|Lukusta ülekate (klõpsud lähevad mängu) – Ctrl+Alt+L
 110|Tühjenda kogu vestlus (ka ülekate)
@@ -150,15 +150,15 @@
 150|Ükski rakendus ei esita heli – liitu Discordi kõnega, siis ⟳
 151|Vali esmalt vähemalt üks rakendus (nt Discord).
 152|Kuulan
-153|seaded rakendatud – kasutusel järgmisest Alusta-vajutusest
-154|Kasuta jälle Discordi nime
+153|seaded rakendatud – jõustuvad järgmisel käivitamisel
+154|Kasuta uuesti Discordi nime
 155|Tuvasta automaatselt
-156|Näita seda inimest jälle
+156|Näita seda inimest uuesti
 157|Kedagi ei eirata
 158|pausil – jätkamiseks vajuta Ctrl+Alt+P
 159|kuulan
 160|Pausil
-161|Kuulan jälle
+161|Kuulan uuesti
 162|Klõpsa teise keele valimiseks (töötab töö ajal, järgmisest lausest).
 163|Kas unustada kõik salvestatud hääled?
 164|Veel pole midagi eksportida.
@@ -166,7 +166,7 @@
 166|Rakendus taaskäivitub keele vahetamiseks.
 167|AudioTranscriberi + Ollama mälu
 168|kleebi esmalt Client ID ja Client Secret (vt „Kuidas seadistada”)
-169|välja logitud – uuesti volitamiseks klõpsa Ühenda
+169|välja logitud – uuesti autoriseerimiseks klõpsa Ühenda
 170|Klõpsa ümbernimetamiseks või parandamiseks
 171|võrgus
 172|ootas {a} · esimesed sõnad {b} · valmis {c}
@@ -200,14 +200,14 @@
 200|Nimeta „{name}” ümber…
 201|Unusta inimese {name} hääl…
 202|keel tuvastatakse automaatselt
-203|helisade muutus
+203|heliseade muutus
 204|salvestamine peatus
 205|uuesti ühendatud – kuulan
 206|rakendus kadus – ootan, kuni see naaseb
 207|Discordi kõne – kuulan
 208|Kõik teised jäävad alles.
 209|Inimese {name} hääl unustatud
-210|tõlge keelde: {lang}
+210|tõlgitakse keelde: {lang}
 211|Ülekate lukus: klõpsud lähevad mängu – avamiseks klõpsa või Ctrl+Alt+L
 212|Viimane lause: {a} tuvastust + {b} tõlke alguseni
 213|ebakindel
@@ -220,7 +220,7 @@
 220|Kuulatakse ainult märgituid.
 221|Laused
 222|Millal lause algab ja lõpeb.
-223|Teada olevad sõnad
+223|Teadaolevad sõnad
 224|Kasutavad tuvastaja ja tõlkija, et need sõnad tuleksid õigesti.
 225|Kus see töötab
 226|Mõlemad märgitud: kõigepealt võrgus, graafikakaart varuks.
@@ -245,7 +245,7 @@
 245|Ülekatte tekst
 246|Mida ülekate mängu peal näitab.
 247|Ülekatte välimus
-248|Püsib mängude peal aknas või ääristeta režiimis (mitte ainuõigusega täisekraanil).
+248|Püsib mängude peal akna- või ääristeta režiimis (mitte eksklusiivsel täisekraanil).
 249|Kiirklahvid
 250|Ka vasaku riba lipunupust. Rakendus taaskäivitub vahetamiseks.
 251|Windows
@@ -255,15 +255,15 @@
 255|Midagi ei salvestata, kui sa ei ekspordi.
 256|häält veel pole
 257|häälenäidiseid: {n}
-258|Ülekate peitub vaikuses: {v} s pärast (lukus olles)
+258|Ülekate peitub vaikuses: pärast {v} s (lukus olles)
 259|alamprotsessid
-260|Ei saanud käivitada:
-261|Ei saanud salvestada:
+260|Käivitamine ebaõnnestus:
+261|Salvestamine ebaõnnestus:
 262|Jah, see on {name}
 263|Eira: {name}
 264|Liida „{name}” inimesega…
 265|Eiratud inimesed: {n}
-266|{model} võetakse kasutusele Alusta-vajutusel
+266|{model} võetakse käivitamisel kasutusse
 267|otsin rakendust uuesti
 268|Kõne lõppes – peatatud
 269|Kas unustada need hääled?
@@ -279,12 +279,12 @@
 279|kõnes
 280|Discord ühendatud – vanad hääled teisaldatud faili speakers_before_discord.json: {n}
 281|Rohkem valikuid: {n}
-282|Windows keeldus rakenduse {app} eraldi salvestamisest – salvestan KOGU süsteemiheli
+282|Windows keeldus rakenduse {app} eraldi salvestamisest – salvestatakse KOGU süsteemiheli
 283|Inimesed
 284|Hääle sobivus {p}%
 285|Ootas {q} · tuvastus {w} · hääled +{v}
 286|öeldud kell {t}
-287|Uuendust ei saanud alla laadida – proovitakse uuesti rakenduse järgmisel avamisel
+287|Uuenduse allalaadimine ebaõnnestus – proovitakse uuesti rakenduse järgmisel avamisel
 288|Laadin alla uuenduse {v}…
 289|Uuendan versioonile {v} – tagasi mõne sekundi pärast
 290|Uuendus {v} valmis – taaskäivitan…

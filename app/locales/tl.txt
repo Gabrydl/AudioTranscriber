@@ -32,13 +32,13 @@
 32|handa na ang pagkilala ng boses (mga voice model: {n})
 33|Tao {n}
 34|pumalya ang download, sinusubukan ulit ({a}/{b})…
-35|dina-download {p} (isang beses lang)
+35|dina-download ang {p} (isang beses lang)
 36|voice model
 37|hindi available ang voice model na {k} – ginagamit ang iba
 38|Live na lakas ng tunog ng napiling app.\nI-drag pataas o pababa ang puting linya: ang tunog sa itaas nito ay bibilangin bilang salita.
 39|SALITA
 40|Sino ang nagsabi nito – i-click para palitan ang pangalan o itama
-41|HINULA MULA SA KONTEKSTO
+41|HINULAAN MULA SA KONTEKSTO
 42|isinasalin…
 43|I-lock
 44|I-lock: tatagos sa laro ang mga click (Ctrl+Alt+L)
@@ -104,7 +104,7 @@
 104|mas pinagsasama
 105|Live – ang usapan
 106|Mga tao – pangalan, boses, Discord
-107|Mga salitang dapat alam – pangalan, termino sa laro, slang
+107|Mga salitang dapat malaman – pangalan, termino sa laro, slang
 108|Overlay sa ibabaw ng laro – Ctrl+Alt+O
 109|I-lock ang overlay (tatagos sa laro ang mga click) – Ctrl+Alt+L
 110|Linisin ang buong chat (pati ang overlay)
@@ -123,7 +123,7 @@
 123|Ilipat ang overlay
 124|Ina-unlock ang overlay para ma-drag mo; kusa itong nagla-lock ulit pagbitaw mo
 125|Ipakita ang window
-126|Overlay on/off
+126|I-on/off ang overlay
 127|Lumabas
 128|huminto – napalaya ang memory
 129|Bumabagal ito, kaya lumipat sa mas magaang speech model.
@@ -179,7 +179,7 @@
 179|Pangalang ipinapakita
 180|Nagamit ngayon: {used} sa mga {lim} na libre
 181|Nagamit ngayon: {used}
-182|nare-reset ng 09:00
+182|nagre-reset tuwing 09:00
 183|Paghintong tumatapos sa pangungusap: {ms} ms
 184|Paghihiwalay ng boses: {side} ({v})
 185|Opacity ng background ng overlay: {v}%
@@ -357,7 +357,7 @@
 357|handa na ang {m} · dina-download ang {x} sa background
 358|walang sagot (internet?)
 359|ginagamit ang graphics card
-360|naubos ang libreng limit sa araw (nare-reset ng 09:00)
+360|naabot na ang libreng limit ngayong araw (nagre-reset tuwing 09:00)
 361|sobrang daming request bawat minuto
 362|tinanggihan ang API key o model – tingnan ang Mga Setting
 363|error ng Google {c}

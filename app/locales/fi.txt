@@ -100,7 +100,7 @@
 100|Molemmat: ensin verkossa, näytönohjain kun verkkopalvelu ei vastaa.
 101|Vain verkossa: jos se ei vastaa, rivit jäävät kääntämättä.
 102|Gemini – ilmainen avain (1 minuutti)
-103|<b>1.</b> Avaa <b>aistudio.google.com/apikey</b> ja kirjaudu Google-tilillä.<br><b>2.</b> Napsauta <b>Create API key</b> ja kopioi avain.<br><b>3.</b> Liitä se tähän. Se pysyy tällä koneella (settings.json).<br><br><b>Gemma 4 31B</b>:llä on suurin päivittäinen ilmaiskiintiö. Gemini Flash-Lite / Flash ovat älykkäämpiä, mutta niiden ilmaiskiintiö on pieni.<br>Ilmaisversiossa Google voi käyttää lähetettyä sisältöä tuotteidensa parantamiseen; laskutuksen ollessa päällä ei voi.
+103|<b>1.</b> Avaa <b>aistudio.google.com/apikey</b> ja kirjaudu Google-tilillä.<br><b>2.</b> Napsauta <b>Create API key</b> ja kopioi avain.<br><b>3.</b> Liitä se tähän. Se pysyy tällä koneella (settings.json).<br><br><b>Gemma 4 31B</b>:llä on suurin päivittäinen ilmaiskiintiö. Gemini Flash-Lite / Flash ovat älykkäämpiä, mutta niiden ilmaiskiintiö on pieni.<br>Ilmaisversiossa Google voi käyttää lähetettyä sisältöä tuotteidensa parantamiseen; laskutuksen ollessa käytössä ei.
 104|yhdistää enemmän
 105|Livenä – keskustelu
 106|Henkilöt – nimet, äänet, Discord
@@ -121,7 +121,7 @@
 121|Nimet ilmestyvät tähän ihmisten puhuessa.
 122|Näytä peittokuva pelissä
 123|Siirrä peittokuvaa
-124|Avaa peittokuvan lukituksen, jotta voit vetää sitä; se lukittuu itsestään, kun päästät irti
+124|Avaa peittokuvan lukitus, jotta voit vetää sitä; se lukittuu itsestään, kun päästät irti
 125|Näytä ikkuna
 126|Peittokuva päälle/pois
 127|Lopeta
@@ -324,9 +324,9 @@
 324|Gemma 4 31B
 325|Gemma 4 31B – ilmainen
 326|Gemini Flash-Lite
-327|Gemini Flash-Lite – nopeampi/älykkäämpi, pieni päivittäinen ilmaisraja
+327|Gemini Flash-Lite – nopeampi/älykkäämpi, pieni päivittäinen ilmaiskiintiö
 328|Gemini Flash
-329|Gemini Flash – älykkäin, hyvin pieni päivittäinen ilmaisraja
+329|Gemini Flash – älykkäin, hyvin pieni päivittäinen ilmaiskiintiö
 330|Tunnistus
 331|Miten puhe kuullaan ja muutetaan tekstiksi
 332|Käännös
