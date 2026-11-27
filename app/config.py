@@ -126,7 +126,7 @@ class Settings:
     gemini_model: str = "gemma-3-27b-it"
     online_day: str = ""
     online_used: int = 0
-    online_timeout_s: float = 6.0
+    online_timeout_s: float = 10.0
     # 1.1 – control
     hotkeys_enabled: bool = True          # Ctrl+Alt+S start/stop · P pause · C copy · O overlay · L lock
     overlay_show_original: bool = False   # overlay: heard text above the translation

@@ -87,15 +87,14 @@ class GeminiTranslator:
             body = {"systemInstruction": {"parts": [{"text": sysp}]},
                     "contents": [{"role": "user", "parts": [{"text": user}]}],
                     "generationConfig": {"temperature": 0.2, "maxOutputTokens": 300,
-                                         "responseMimeType": "application/json",
-                                         "thinkingConfig": {"thinkingBudget": 0}}}
+                                         "responseMimeType": "application/json"}}
         req = urllib.request.Request(API.format(model=model), data=json.dumps(body).encode(),
                                      headers={"Content-Type": "application/json", "x-goog-api-key": key,
                                               "User-Agent": "AudioTranscriber"})
         buf, last = "", None
         t0 = time.time()
         try:
-            with urllib.request.urlopen(req, timeout=float(getattr(self.s, "online_timeout_s", 6) or 6)) as r:
+            with urllib.request.urlopen(req, timeout=float(getattr(self.s, "online_timeout_s", 10) or 10)) as r:
                 self._count()
                 for raw in r:
                     raw = raw.decode("utf-8", "replace").strip()

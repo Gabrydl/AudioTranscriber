@@ -12,7 +12,7 @@ RequestExecutionLevel user
 SetCompressor /SOLID lzma
 
 !define APP        "AudioTranscriber"
-!define VERSION    "1.5.1"
+!define VERSION    "1.5.2"
 !define PUBLISHER  "Gabrydl"
 !define EXE        "AudioTranscriber.exe"
 !define REGKEY     "Software\AudioTranscriber"

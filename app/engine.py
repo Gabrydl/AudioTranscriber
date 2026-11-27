@@ -333,6 +333,53 @@ def mark_uncertain(segments, thr: float = 0.45) -> str:
     return " ".join(out)
 
 
+# --------------------------------------------------------------------------- loaded-model cache
+# Stop -> Start (or "Apply") used to unload Whisper and the voice models and load them again (8-40 s each
+# time), and a Start while the previous session was still loading loaded a second copy on the graphics card:
+# the "endless loading". Now the models stay loaded for a while after Stop and the next Start reuses them;
+# only one load can happen at a time.
+_CACHE = {"whisper": None, "whisper_key": None, "whisper_device": None, "emb": None, "timer": None, "users": 0}
+_CACHE_LOCK = threading.RLock()
+KEEP_AFTER_STOP_S = 180
+
+
+def _cancel_release():
+    t = _CACHE.get("timer")
+    if t is not None:
+        t.cancel()
+        _CACHE["timer"] = None
+
+
+def _schedule_release():
+    """After Stop: free the graphics card only if nothing was started again within a few minutes."""
+    with _CACHE_LOCK:
+        _CACHE["users"] = max(0, _CACHE["users"] - 1)
+        if _CACHE["users"] > 0:            # a newer session is using the models
+            return
+        _cancel_release()
+
+        def free():
+            with _CACHE_LOCK:
+                if _CACHE.get("timer") is None:
+                    return
+                _CACHE.update(whisper=None, whisper_key=None, emb=None, timer=None)
+            import gc
+            gc.collect()
+            log.info("Models freed (%d s after Stop)", KEEP_AFTER_STOP_S)
+        t = threading.Timer(KEEP_AFTER_STOP_S, free)
+        t.daemon = True
+        _CACHE["timer"] = t
+        t.start()
+
+
+def free_models_now():
+    with _CACHE_LOCK:
+        _cancel_release()
+        _CACHE.update(whisper=None, whisper_key=None, emb=None)
+    import gc
+    gc.collect()
+
+
 # --------------------------------------------------------------------------- Whisper
 class Transcriber:
     def __init__(self, settings, status: Callable[[str], None]):
@@ -356,6 +403,25 @@ class Transcriber:
             return WhisperModel(name, device=device, compute_type=compute, download_root=str(MODELS_DIR), **kw)
 
     def load(self):
+        with _CACHE_LOCK:                      # one load at a time; the next session reuses it
+            _cancel_release()
+            big = (getattr(self.s, "llm_enabled", True) and self.s.llm_model in BIG_LLMS
+                   and getattr(self.s, "compute", "gpu") != "cpu" and getattr(self.s, "translate_local", True))
+            key = (self.model_name, self.device, big)
+            _CACHE["users"] += 1
+            if _CACHE["whisper"] is not None and _CACHE["whisper_key"] == key:
+                self.model = _CACHE["whisper"]
+                self.device = _CACHE["whisper_device"]
+                log.info("Whisper %s reused (already loaded)", self.model_name)
+                self.status(f"'{self.model_name}' ready (already loaded)")
+                return
+            _CACHE.update(whisper=None, whisper_key=None)          # a different model: free the old one first
+            import gc
+            gc.collect()
+            self._load_fresh()
+            _CACHE.update(whisper=self.model, whisper_key=key, whisper_device=self.device)
+
+    def _load_fresh(self):
         MODELS_DIR.mkdir(parents=True, exist_ok=True)
         if not whisper_on_disk(self.model_name):
             # model not downloaded yet: start right away with one that is on disk, fetch the chosen one in the
@@ -390,7 +456,17 @@ class Transcriber:
         self.status(f"'{name}' ready on CPU ({time.time() - t0:.1f}s)")
 
     def unload(self):
-        """Free VRAM/RAM (called on Stop)."""
+        """Called on Stop: the model stays cached a few minutes (fast restart), then it is freed."""
+        if self.model is None:
+            return
+        self.model = None
+        _schedule_release()
+
+    def drop(self):
+        """Really free it now (lag fallback switching to another model)."""
+        with _CACHE_LOCK:
+            if _CACHE["whisper"] is self.model:
+                _CACHE.update(whisper=None, whisper_key=None)
         self.model = None
         import gc
         gc.collect()
@@ -1006,7 +1082,7 @@ class Engine:
         self.on_status("asr", f"lagging ({sum(self._recent_ms) / max(1, len(self._recent_ms)) / 1000:.1f}s) – switching {old} → {nxt}…")
         log.info("Lag fallback: %s -> %s", old, nxt)
         try:
-            self.transcriber.unload()
+            self.transcriber.drop()
             self.transcriber.model_name = nxt
             self.transcriber.load()
             self.on_metrics("model_switch", 1)
@@ -1033,8 +1109,14 @@ class Engine:
             if self.s.speakers_enabled and self.registry is not None:
                 from concurrent.futures import ThreadPoolExecutor
                 from .speakers import Embedder
-                emb = Embedder(lambda m: self.on_status("spk", m))
-                emb.load()
+                with _CACHE_LOCK:
+                    emb = _CACHE.get("emb")
+                    if emb is None:
+                        emb = Embedder(lambda m: self.on_status("spk", m))
+                        emb.load()
+                        _CACHE["emb"] = emb
+                    else:
+                        log.info("Speaker models reused (already loaded)")
                 self.embedder = emb
                 self._pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="voiceprint")
         except Exception as e:
