@@ -127,6 +127,11 @@ ENGLISH:
 
 
 def main():
+    for st in (sys.stdout, sys.stderr):           # a console that can't show "…" or Cyrillic must not crash it
+        try:
+            st.reconfigure(errors="replace")
+        except Exception:
+            pass
     s = json.loads((ROOT / "settings.json").read_text(encoding="utf-8"))
     key = (s.get("gemini_key") or "").strip()
     if not key:
@@ -183,4 +188,17 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BaseException:
+        import traceback
+        err = traceback.format_exc()
+        try:
+            (ROOT / "translation_check_error.txt").write_text(err, encoding="utf-8")
+        except Exception:
+            pass
+        print(err)
+        try:
+            input("Something went wrong (saved in translation_check_error.txt). Press Enter to close.")
+        except Exception:
+            time.sleep(60)

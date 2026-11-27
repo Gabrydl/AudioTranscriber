@@ -29,3 +29,4 @@ installer/payload/
 # built launcher and installer: publish them as release files instead
 *.exe
 *.zip
+translation_check_error.txt
