@@ -68,32 +68,45 @@ def read(p: Path) -> dict[int, str]:
 
 
 def ask(key: str, prompt: str) -> str:
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
-    body = {"contents": [{"role": "user", "parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.2}}
-    req = urllib.request.Request(url, json.dumps(body).encode(), method="POST",
-                                 headers={"Content-Type": "application/json", "x-goog-api-key": key})
-    for attempt in range(6):
+    """When the model is busy it moves on to the next one at once, instead of waiting on the same one."""
+    global MODEL
+    body = json.dumps({"contents": [{"role": "user", "parts": [{"text": prompt}]}],
+                       "generationConfig": {"temperature": 0.2}}).encode()
+    models = [MODEL] + [m for m in CANDIDATES if m != MODEL]
+    gone = set()
+    for attempt in range(16):
+        live = [m for m in models if m not in gone]
+        if not live:
+            raise Fatal("Google answered none of the models")
+        m = live[attempt % len(live)]
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent"
+        req = urllib.request.Request(url, body, method="POST",
+                                     headers={"Content-Type": "application/json", "x-goog-api-key": key})
         try:
             with urllib.request.urlopen(req, timeout=300) as r:
                 d = json.loads(r.read())
-            return d["candidates"][0]["content"]["parts"][0]["text"]
+            if m != MODEL:
+                print(f"   switched to {m}", flush=True)
+                MODEL = m
+            parts = d["candidates"][0]["content"].get("parts") or []
+            return "".join(p.get("text", "") for p in parts if not p.get("thought"))
         except urllib.error.HTTPError as e:
             msg = _err_text(e)
-            if e.code in (429, 500, 503) and attempt < 5:
-                print(f"   Google busy ({e.code} {msg[:80]}), waiting…", flush=True)
-                time.sleep(30 * (attempt + 1))
+            if e.code in (429, 500, 503):
+                print(f"   {m} busy ({e.code}), trying another…", flush=True)
+                # a full round of busy models: give Google a little time
+                time.sleep(3 if (attempt + 1) % len(live) else 20 * (1 + attempt // len(live)))
                 continue
-            if e.code in (400, 401, 403, 404):
+            if e.code == 404:
+                gone.add(m)
+                continue
+            if e.code in (400, 401, 403):
                 raise Fatal(f"{e.code} {msg}")
             raise RuntimeError(f"{e.code} {msg}")
         except (TimeoutError, OSError):
-            if attempt < 5:
-                print("   no answer yet, retrying…", flush=True)
-                time.sleep(15)
-                continue
-            raise
-    return "[]"
+            print("   no answer yet, retrying…", flush=True)
+            time.sleep(10)
+    raise RuntimeError("Google stayed busy")
 
 
 def parse(text: str):
