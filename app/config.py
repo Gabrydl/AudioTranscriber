@@ -127,6 +127,7 @@ class Settings:
     online_day: str = ""
     online_used: int = 0
     online_timeout_s: float = 10.0
+    skip_same_lang: bool = True           # lines already in the translation language skip the translator
     # 1.1 – control
     hotkeys_enabled: bool = True          # Ctrl+Alt+S start/stop · P pause · C copy · O overlay · L lock
     overlay_show_original: bool = False   # overlay: heard text above the translation

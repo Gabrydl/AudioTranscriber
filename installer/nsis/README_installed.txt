@@ -1,4 +1,4 @@
-AudioTranscriber 1.5.3 - live voice -> Italiano + English (100% local)
+AudioTranscriber 1.5.4 - live voice -> Italiano + English (100% local)
 ====================================================================
 
 START
@@ -52,6 +52,8 @@ USE
     game term you know ("flesh" -> Flash, "Marko" -> Marco) are offered to the translator to fix.
   - Each person's language is learned after a few lines, so short or unclear sentences aren't heard
     in the wrong language (Settings > Speakers > "Learn each person's language").
+  - Lines already in your translation language (e.g. English while translating into English) appear at once,
+    without the translator.
   - Translator: Settings > Translator model. Tick "Graphics card" (local, offline), "Online – Gemini"
     (free Google key, faster and smarter) or both (online first, graphics card as backup when there is
     no internet or the free daily limit is reached; the limit resets at 09:00 Italian time).

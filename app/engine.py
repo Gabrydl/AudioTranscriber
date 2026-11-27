@@ -1255,6 +1255,8 @@ class Engine:
                         quick_tr = lookup(line.text, target_of(self.s), line.lang)
                     except Exception:
                         log.exception("phrases")
+                if quick_tr is None and getattr(self.s, "skip_same_lang", True) and line.lang == target_of(self.s):
+                    quick_tr = line.text                   # already in your language: shown at once, no translator
                 if quick_tr is not None:                   # "gg", "ok", "wait"...: no translator needed
                     line.tr = {target_of(self.s): quick_tr}
                     line.corrected = line.text
