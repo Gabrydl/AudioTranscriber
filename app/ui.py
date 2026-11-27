@@ -344,7 +344,8 @@ def unsure_html(marked: str) -> str:
     out = []
     for w in marked.split():
         if w.endswith("(?)") and len(w) > 3:
-            out.append(f"<span style='color:{DIM}' title='{tr("not sure")}'>{_html.escape(w[:-3])}</span>")
+            ns = _html.escape(tr("not sure"), quote=True)
+            out.append(f"<span style='color:{DIM}' title='{ns}'>{_html.escape(w[:-3])}</span>")
         else:
             out.append(_html.escape(w))
     return " ".join(out)
