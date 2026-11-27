@@ -8,7 +8,7 @@ CE QU'IL FAIT
   le disque.
 
 INSTALLATION
-  Lance AudioTranscriber_Setup.exe. Le premier écran demande la langue de l'appli (celle de Windows est
+  Lance Setup.exe. Le premier écran demande la langue de l'appli (celle de Windows est
   déjà sélectionnée). L'installation prépare tout étape par étape (environ 8 Go, 10-20 minutes). Si une
   ancienne copie est trouvée, ses modèles, paramètres et voix sont réutilisés. Ouvre ensuite
   AudioTranscriber depuis le bureau ou le menu Démarrer. Tu peux changer la langue de l'appli à tout

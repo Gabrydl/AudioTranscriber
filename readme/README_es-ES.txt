@@ -7,7 +7,7 @@ QUÉ HACE
   funciona en este PC, o en línea con Gemini si lo activas. Sin cuenta, no se graba nada en el disco.
 
 INSTALACIÓN
-  Ejecuta AudioTranscriber_Setup.exe. La primera pantalla pregunta el idioma de la aplicación (el de
+  Ejecuta Setup.exe. La primera pantalla pregunta el idioma de la aplicación (el de
   Windows ya está seleccionado). La instalación prepara todo paso a paso (unos 8 GB, 10-20 minutos). Si
   encuentra una copia anterior, reutiliza sus modelos, ajustes y voces. Después abre AudioTranscriber
   desde el escritorio o el menú Inicio. Puedes cambiar el idioma de la aplicación cuando quieras con el

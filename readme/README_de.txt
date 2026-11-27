@@ -8,7 +8,7 @@ WAS ES MACHT
   wird auf der Festplatte aufgezeichnet.
 
 INSTALLATION
-  Starte AudioTranscriber_Setup.exe. Der erste Bildschirm fragt nach der Sprache der App (deine
+  Starte Setup.exe. Der erste Bildschirm fragt nach der Sprache der App (deine
   Windows-Sprache ist schon ausgewählt). Das Setup richtet alles Schritt für Schritt ein (etwa 8 GB,
   10-20 Minuten). Wird eine frühere Kopie gefunden, werden ihre Modelle, Einstellungen und Stimmen
   wiederverwendet. Öffne AudioTranscriber dann über den Desktop oder das Startmenü. Die Sprache der App

@@ -7,7 +7,7 @@ CO ROBI
   przez Gemini, jeśli je włączysz. Bez konta, nic nie jest nagrywane na dysk.
 
 INSTALACJA
-  Uruchom AudioTranscriber_Setup.exe. Pierwszy ekran pyta o język aplikacji (język Windows jest już
+  Uruchom Setup.exe. Pierwszy ekran pyta o język aplikacji (język Windows jest już
   wybrany). Instalator przygotowuje wszystko krok po kroku (około 8 GB, 10-20 minut). Jeśli znajdzie
   wcześniejszą kopię, użyje ponownie jej modeli, ustawień i głosów. Potem otwórz AudioTranscriber z
   pulpitu albo z menu Start. Język aplikacji możesz zmienić w każdej chwili przyciskiem z flagą na

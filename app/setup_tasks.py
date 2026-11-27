@@ -1,4 +1,4 @@
-"""Setup steps run by AudioTranscriber_Setup.exe (Install / Repair) with the app's own Python. No PowerShell.
+"""Setup steps run by Setup.exe (Install / Repair) with the app's own Python. No PowerShell.
 
     python -u setup_tasks.py reuse  <root>   take models, settings and voices from an earlier copy (hard links, no extra space)
     python -u setup_tasks.py cuda   <root>   NVIDIA GPU found -> CUDA 12 libraries for Whisper

@@ -8,7 +8,7 @@ UNSA ANG BUHATON NIINI
   account, walay gi-record sa disk.
 
 PAG-INSTALL
-  Padagana ang AudioTranscriber_Setup.exe. Pangutan-on sa unang screen ang pinulongan sa app (napili
+  Padagana ang Setup.exe. Pangutan-on sa unang screen ang pinulongan sa app (napili
   na ang pinulongan sa imong Windows). Andamon sa Setup ang tanan lakang-lakang (mga 8 GB, 10-20
   minutos). Kung adunay makit-ang daan nga kopya, gamiton pag-usab ang mga model, setting ug tingog
   niini. Human niana, ablihi ang AudioTranscriber gikan sa desktop o sa Start menu. Mausab nimo bisan

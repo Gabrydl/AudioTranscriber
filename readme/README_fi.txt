@@ -8,7 +8,7 @@ MITÄ SE TEKEE
   tallenneta levylle.
 
 ASENNUS
-  Suorita AudioTranscriber_Setup.exe. Ensimmäisessä näytössä kysytään sovelluksen kieltä (Windowsin kieli on
+  Suorita Setup.exe. Ensimmäisessä näytössä kysytään sovelluksen kieltä (Windowsin kieli on
   jo valittuna). Asennus valmistelee kaiken vaihe vaiheelta (noin 8 Gt, 10–20 minuuttia). Jos aiempi
   kopio löytyy, sen mallit, asetukset ja äänet käytetään uudelleen. Avaa sitten AudioTranscriber
   työpöydältä tai Käynnistä-valikosta. Sovelluksen kielen voi vaihtaa milloin tahansa vasemman

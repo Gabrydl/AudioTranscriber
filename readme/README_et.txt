@@ -8,7 +8,7 @@ MIDA SEE TEEB
   salvestata midagi.
 
 PAIGALDAMINE
-  Käivita AudioTranscriber_Setup.exe. Esimene ekraan küsib rakenduse keelt (Windowsi keel on juba
+  Käivita Setup.exe. Esimene ekraan küsib rakenduse keelt (Windowsi keel on juba
   valitud). Paigaldus valmistab kõik samm-sammult ette (umbes 8 GB, 10–20 minutit). Kui leitakse
   varasem koopia, kasutatakse selle mudeleid, seadeid ja hääli uuesti. Seejärel ava AudioTranscriber
   töölaualt või menüüst Start. Rakenduse keelt saad igal ajal muuta vasaku riba lipunupust.

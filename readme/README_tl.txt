@@ -8,7 +8,7 @@ ANO ANG GINAGAWA NITO
   account, walang nire-record sa disk.
 
 PAG-INSTALL
-  Patakbuhin ang AudioTranscriber_Setup.exe. Itatanong ng unang screen ang wika ng app (napili na ang
+  Patakbuhin ang Setup.exe. Itatanong ng unang screen ang wika ng app (napili na ang
   wika ng Windows mo). Inihahanda ng Setup ang lahat nang hakbang-hakbang (mga 8 GB, 10-20 minuto).
   Kapag may nakitang mas lumang kopya, gagamitin ulit ang mga model, setting at boses nito. Pagkatapos,
   buksan ang AudioTranscriber mula sa desktop o sa Start menu. Mapapalitan mo anumang oras ang wika ng

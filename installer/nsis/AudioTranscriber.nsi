@@ -1,10 +1,10 @@
 ; AudioTranscriber installer (NSIS 3, Modern UI 2) - Install / Repair / Uninstall
-; Build:  makensis AudioTranscriber.nsi      ->  AudioTranscriber_Setup.exe
+; Build:  makensis AudioTranscriber.nsi      ->  Setup.exe
 ;
 ; The installer does the whole setup itself, step by step with a visible log (no PowerShell anywhere):
 ; program files, Python, packages, CUDA, Ollama + translator model, Whisper + voice models, shortcuts.
 ; It keeps a copy of itself as Setup.exe in the app folder: AudioTranscriber.exe opens it for Repair.
-;   AudioTranscriber_Setup.exe /REPAIR   repair the installed copy directly
+;   Setup.exe /REPAIR   repair the installed copy directly
 
 Unicode true
 ManifestDPIAware true
@@ -22,7 +22,7 @@ SetCompressor /SOLID lzma
 !define PYVER      "3.11.9"
 
 Name "${APP}"
-OutFile "AudioTranscriber_Setup.exe"
+OutFile "Setup.exe"
 InstallDir "$LOCALAPPDATA\Programs\${APP}"
 BrandingText "${APP} ${VERSION}"
 ShowInstDetails show

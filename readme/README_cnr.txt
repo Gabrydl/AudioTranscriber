@@ -7,7 +7,7 @@ AudioTranscriber 1.6.0 - prepis i prevod govora uživo
   ako to uključiš, online preko Geminija. Bez naloga, ništa se ne snima na disk.
 
 INSTALACIJA
-  Pokreni AudioTranscriber_Setup.exe. Prvi ekran pita jezik aplikacije (jezik Windowsa je već
+  Pokreni Setup.exe. Prvi ekran pita jezik aplikacije (jezik Windowsa je već
   izabran). Instalacija sve priprema korak po korak (oko 8 GB, 10-20 minuta). Ako pronađe raniju
   kopiju, ponovo koristi njene modele, podešavanja i glasove. Zatim otvori AudioTranscriber s radne
   površine ili iz menija Start. Jezik aplikacije možeš promijeniti bilo kada dugmetom sa zastavom
